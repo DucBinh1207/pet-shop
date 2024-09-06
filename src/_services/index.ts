@@ -1,3 +1,4 @@
+import { getCookie } from "cookies-next";
 import axios, { AxiosRequestConfig } from "axios";
 
 const apiClient = axios.create({
@@ -10,10 +11,10 @@ const apiClient = axios.create({
 
 apiClient.interceptors.request.use(
   (config) => {
-    const token = localStorage.getItem("token");
+    const token = getCookie("token");
 
     if (token) {
-      config.headers.Authorization = `Bearer ${localStorage.getItem("token")}`;
+      config.headers.Authorization = `Bearer ${token}`;
     }
 
     return config;
