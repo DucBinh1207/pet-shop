@@ -1,5 +1,5 @@
-import Button from "../../_components/common/Button/page";
-import Input from "../../_components/common/Input/page";
+import Button from "../../components/common/Button/page";
+import Input from "../../components/common/Input/page";
 
 export default function Login() {
   return (

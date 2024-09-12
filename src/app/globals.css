@@ -2,6 +2,30 @@
 @tailwind components;
 @tailwind utilities;
 
+.text-navbar-size {
+  @apply text-base; /* Bạn có thể áp dụng các lớp Tailwind khác ở đây */
+  font-size: calc(18 * 100vw / 1920);
+}
+
+.top-header-text {
+  @apply text-[13px] font-semibold leading-[1.23] tracking-[0.015em] text-header_text;
+}
+
+.top-header_hover {
+  @apply border-b border-solid border-transparent hover:border-header_text;
+}
+
+.mobile-item-sidebar {
+  @apply py-[15px] text-[17px] font-semibold uppercase leading-[1.23];
+}
+
+.icon_sidebar_animate {
+  @apply transform transition-transform;
+  transition:
+    transform 0.4s ease-in-out,
+    opacity 0.4s ease-in-out;
+}
+
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
@@ -16,15 +40,14 @@
   }
 }
 
-/* body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
-} */
+body {
+  font-family: var(--font-outfit);
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 125%;
+}
 
 @layer utilities {
   .text-balance {
