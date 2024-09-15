@@ -5,9 +5,10 @@ import {
   faPhone,
   faEnvelope,
 } from "@fortawesome/free-solid-svg-icons";
+
 export default function HeaderNotice() {
   return (
-    <div className="small-screen:hidden overflow-hidden bg-header_bg px-[50px] text-white">
+    <div className="overflow-hidden bg-header_bg px-[50px] text-white small-screen:hidden">
       <ul className="top-header-text flex flex-nowrap justify-end gap-[15px] py-[15px]">
         <li className="top-header_hover relative flex flex-nowrap items-center">
           <a href="mailto:petshopdanang@gmail.com">
@@ -18,7 +19,7 @@ export default function HeaderNotice() {
         <li className="top-header_hover relative flex flex-nowrap items-center">
           <a href="tel:+84857123987">
             <FontAwesomeIcon icon={faPhone} className="mr-2" />
-            0857123987
+            +84-857-123-987
           </a>
         </li>
         <li className="top-header_hover relative flex flex-nowrap items-center">

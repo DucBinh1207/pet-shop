@@ -1,41 +1,80 @@
-import { cva } from "class-variance-authority";
-import { ComponentProps, useMemo } from "react";
+"use client";
 
-type ButtonProps = ComponentProps<"button"> & {
-  size?: "small" | "medium" | "large";
-  variant?: "primary" | "secondary" | "third";
-};
+import { cva, VariantProps } from "class-variance-authority";
+import React, { ComponentProps, ReactNode, useMemo } from "react";
 
-const buttonVariants = cva(
-  " inline-block outline-none font-bold text-center uppercase text-white border-solid border-[2px]  cursor-pointer rounded-[25px] tracking-wider",
-  {
-    variants: {
-      size: {
-        small: "px-[28px] py-[6px] text-[11px] leading-[14px]",
-        medium: "px-[30px] py-[8px] text-[13px] leading-[16px]",
-        large: "px-[32px] py-[10px] text-[15px] leading-[18px]",
-      },
-      variant: {
-        primary: "bg-primary text-white border-primary",
-        secondary: "bg-green-500 text-white",
-        third: "bg-red-500 text-white",
-      },
+interface ButtonProps
+  extends Pick<
+      ComponentProps<"button">,
+      "children" | "className" | "disabled" | "type" | "form" | "onClick"
+    >,
+    VariantProps<typeof buttonVariants> {
+  startIcon?: ReactNode;
+
+  endIcon?: ReactNode;
+
+  isActive?: boolean;
+
+  noBorder?: boolean;
+}
+
+const buttonVariants = cva("", {
+  variants: {
+    size: {
+      small:
+        "px-[28px] py-[6px] text-[11px] leading-[14px] font-bold tracking-wider",
+
+      medium:
+        "px-[30px] py-[8px] text-[13px] leading-[16px] font-bold tracking-wider",
+
+      large:
+        "px-[32px] py-[10px] text-[15px] leading-[18px] font-bold tracking-wider",
     },
-    defaultVariants: {
-      size: "medium",
-      variant: "primary",
+    variant: {
+      primary:
+        "bg-primary text-white border-primary hover:bg-white hover:text-primary",
+
+      secondary:
+        "bg-white text-primary border-primary hover:bg-primary hover:text-white",
+
+      third:
+        "bg-white text-primary border-white hover:bg-primary hover:border-primary hover:text-white",
     },
   },
-);
 
-export default function Button({ size, variant, ...rest }: ButtonProps) {
-  const className = useMemo(() => {
-    return buttonVariants({ size, variant });
+  defaultVariants: {
+    size: "medium",
+    variant: "primary",
+  },
+});
+
+export default function Button({
+  size,
+  variant,
+  startIcon,
+  endIcon,
+  className,
+  children,
+  ...rest
+}: ButtonProps) {
+  let btnClassName =
+    "inline-block outline-none border-solid border-[2px] cursor-pointer rounded-[25px] text-center uppercase ";
+
+  const classVariants = useMemo(() => {
+    return buttonVariants({
+      size: size ?? undefined,
+      variant: variant ?? undefined,
+    });
   }, [size, variant]);
 
+  (size || variant) && (btnClassName += ` ${classVariants}`);
+  className && (btnClassName += ` ${className}`);
+
   return (
-    <button {...rest} className={className}>
-      Button
+    <button className={btnClassName} {...rest}>
+      {startIcon}
+      {children}
+      {endIcon}
     </button>
   );
 }

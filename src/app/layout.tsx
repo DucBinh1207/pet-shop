@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { Outfit } from "next/font/google";
 import "./globals.css";
-import Header from "@/components/common/Header/page";
-import Footer from "@/components/common/Footer/page";
-import HeaderNotice from "@/components/common/HeaderNotice/page";
+import Header from "@/app/_components/Header/page";
+import Footer from "@/app/_components/Footer/page";
+import HeaderNotice from "@/app/_components/HeaderNotice/page";
 import ToastNotification from "@/components/common/Toast/ToastNotification";
 import FontAwesomeConfig from "./fontawesome";
 
@@ -51,10 +51,8 @@ export default function RootLayout({
       </head>
       <body className={outfit_init.variable}>
         <div className="root">
-          <div className="header">
-            <HeaderNotice />
-            <Header />
-          </div>
+          <HeaderNotice />
+          <Header />
 
           {children}
           <Footer />

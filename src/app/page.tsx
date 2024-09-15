@@ -1,3 +1,9 @@
+import NotFound from "./not-found";
+
 export default function Home() {
-  return <div></div>;
+  return (
+    <div>
+      <NotFound />
+    </div>
+  );
 }

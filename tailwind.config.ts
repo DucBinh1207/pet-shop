@@ -9,6 +9,9 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      margin: {
+        "nav-item": "calc(27.5px*(100vw-900px)/(1920-900))",
+      },
       screens: {
         "large-screen": "1190px",
         "small-screen": { max: "1189px" },
@@ -22,6 +25,7 @@ const config: Config = {
         header_text_second: "#AE9DB8",
         header_text_third: "#ffffff",
         header_icon: "#623089",
+        text_color: "#776985",
         background_color: "#fcf3ff",
         input_border: "#CBB9DE",
       },

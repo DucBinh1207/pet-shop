@@ -1,15 +1,15 @@
 import { create } from "zustand";
 
 type SidebarStore = {
-  sidebar: boolean;
+  isSideBarOpen: boolean;
   openSidebar: () => void;
   closeSidebar: () => void;
 };
 
 const triggerSidebar = create<SidebarStore>((set) => ({
-  sidebar: false,
-  openSidebar: () => set({ sidebar: true }),
-  closeSidebar: () => set({ sidebar: false }),
+  isSideBarOpen: false,
+  openSidebar: () => set({ isSideBarOpen: true }),
+  closeSidebar: () => set({ isSideBarOpen: false }),
 }));
 
 export default triggerSidebar;

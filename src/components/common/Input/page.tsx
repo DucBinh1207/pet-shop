@@ -1,3 +1,5 @@
+"use client";
+
 import { cva } from "class-variance-authority";
 import { ComponentProps, useMemo } from "react";
 
@@ -6,6 +8,7 @@ type InputProps = ComponentProps<"input"> & {
   variant?: "primary" | "secondary" | "third";
   trimOnBlur?: boolean;
 };
+
 const inputVariants = cva(
   "font-medium border-solid border rounded-[3px] tracking-[0.01em] h-auto",
   {

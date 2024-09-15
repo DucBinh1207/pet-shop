@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .text-navbar-size {
-  @apply text-base; /* Bạn có thể áp dụng các lớp Tailwind khác ở đây */
+  @apply text-base font-semibold uppercase;
   font-size: calc(18 * 100vw / 1920);
 }
 
@@ -26,6 +26,33 @@
     opacity 0.4s ease-in-out;
 }
 
+.tooltip_animate {
+  transition:
+    opacity 0.3s linear,
+    visibility 0.3s linear,
+    transform 0.3s ease-out;
+}
+
+.btn_icon_hover_animate {
+  transition:
+    opacity 0.3s linear,
+    visibility 0.3s linear,
+    color 0.15s linear,
+    border-color 0.15s linear,
+    background-color 0.15s linear,
+    box-shadow 0.15s linear;
+}
+
+.hidden_scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.hidden_scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
@@ -41,12 +68,9 @@
 }
 
 body {
+  @apply bg-background_color;
   font-family: var(--font-outfit);
   box-sizing: border-box;
-}
-
-html {
-  font-size: 125%;
 }
 
 @layer utilities {

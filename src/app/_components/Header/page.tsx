@@ -16,21 +16,35 @@ import Supplies from "/src/assets/icons/supplies_icon.svg";
 import Guide from "/src/assets/icons/guide_icon.svg";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import triggerSidebar from "@/store/trigger-sidebar";
+import useSidebar from "@/store/useSidebar";
 import Sidebar from "../Sidebar/page";
+import { useEffect, useState } from "react";
 
 export default function Header() {
+  const { openSidebar } = useSidebar((state) => state);
+  const [headerSticky, setHeaderSticky] = useState(false);
   const pathName = usePathname();
-  const { openSidebar } = triggerSidebar((state) => state);
+
+  const scrollHandle = () => {
+    if (window.scrollY >= 50) setHeaderSticky(true);
+    else setHeaderSticky(false);
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", scrollHandle);
+    return () => {
+      window.addEventListener("scroll", scrollHandle);
+    };
+  }, []);
 
   return (
     <div className="relative">
-      <div className="sticky top-0 flex min-h-[90px] w-full items-center justify-between bg-header_bg px-[50px] after:absolute after:top-full after:block after:h-[3px] after:w-full after:translate-x-[-50px] after:bg-header_img after:bg-repeat-x after:content-[''] small-screen:min-h-[60px] small-screen:justify-normal small-screen:p-0 small-screen:after:translate-x-0">
+      <div
+        className={`${headerSticky === true ? "fixed" : "large-screen:relative"} top-0 z-[100] flex min-h-[90px] w-full items-center justify-between bg-header_bg px-[50px] after:absolute after:top-full after:block after:h-[3px] after:w-full after:translate-x-[-50px] after:bg-header_img after:bg-repeat-x after:content-[''] small-screen:min-h-[60px] small-screen:justify-normal small-screen:p-0 small-screen:after:translate-x-0`}
+      >
         <button
           className="hidden h-[60px] w-[86px] flex-col gap-[5px] text-white small-screen:block"
-          onClick={() => {
-            openSidebar();
-          }}
+          onClick={openSidebar}
         >
           <FontAwesomeIcon icon={faBars} size="2x" />
         </button>
@@ -39,17 +53,17 @@ export default function Header() {
 
         <Link
           href="/"
-          className="flex items-center gap-[5px] text-[30px] text-header_text small-screen:flex-1"
+          className="flex items-center gap-[10px] text-[38px] font-semibold tracking-wider text-white small-screen:flex-1"
         >
           <Logo alt="pet shop logo" loading="lazy" />
           Whiskers
         </Link>
 
         <ul className="text-navbar-size flex text-header_text small-screen:hidden small-screen:opacity-0">
-          <li className="mx-[27.5px] my-[15px]">
+          <li className="relative mx-[27.5px] my-[15px] text-[18px]">
             <Link
               href="/"
-              className={`group relative flex hover:!text-header_text_third ${
+              className={`text=[18px] group relative flex items-end leading-[1.47] hover:!text-header_text_third ${
                 pathName === "/"
                   ? "after:absolute after:bottom-[-10px] after:left-0 after:h-[1px] after:w-full after:bg-header_text after:content-['']"
                   : ""
@@ -66,13 +80,14 @@ export default function Header() {
               ></span>
             </Link>
           </li>
+          {/* <NavItem /> */}
 
-          <li className="mx-[27.5px] my-[15px]">
+          <li className="relative mx-[27.5px] my-[15px] text-[18px]">
             <Link
               href="/pets"
-              className={`group relative flex hover:!text-header_text_third ${
+              className={`text=[18px] group relative flex items-end leading-[1.47] hover:!text-header_text_third ${
                 pathName === "/pets"
-                  ? "after:absolute after:bottom-[-10px] after:left-0 after:h-[1px] after:w-full after:bg-header_text after:content-['']"
+                  ? "leading-[1.47] after:absolute after:bottom-[-10px] after:left-0 after:h-[1px] after:w-full after:bg-header_text after:content-['']"
                   : ""
               }`}
             >
@@ -88,12 +103,12 @@ export default function Header() {
             </Link>
           </li>
 
-          <li className="mx-[27.5px] my-[15px]">
+          <li className="relative mx-[27.5px] my-[15px] text-[18px]">
             <Link
               href="/foods"
-              className={`group relative flex hover:!text-header_text_third ${
+              className={`text=[18px] group relative flex items-end leading-[1.47] hover:!text-header_text_third ${
                 pathName === "/foods"
-                  ? "after:absolute after:bottom-[-10px] after:left-0 after:h-[1px] after:w-full after:bg-header_text after:content-['']"
+                  ? "leading-[1.47] after:absolute after:bottom-[-10px] after:left-0 after:h-[1px] after:w-full after:bg-header_text after:content-['']"
                   : ""
               }`}
             >
@@ -109,12 +124,12 @@ export default function Header() {
             </Link>
           </li>
 
-          <li className="mx-[27.5px] my-[15px]">
+          <li className="relative mx-[27.5px] my-[15px] text-[18px]">
             <Link
               href="/supplies"
-              className={`group relative flex hover:!text-header_text_third ${
+              className={`text=[18px] group relative flex items-end leading-[1.47] hover:!text-header_text_third ${
                 pathName === "/supplies"
-                  ? "after:absolute after:bottom-[-10px] after:left-0 after:h-[1px] after:w-full after:bg-header_text after:content-['']"
+                  ? "leading-[1.47] after:absolute after:bottom-[-10px] after:left-0 after:h-[1px] after:w-full after:bg-header_text after:content-['']"
                   : ""
               }`}
             >
@@ -130,12 +145,12 @@ export default function Header() {
             </Link>
           </li>
 
-          <li className="mx-[27.5px] my-[15px]">
+          <li className="relative mx-[27.5px] my-[15px] text-[18px]">
             <Link
               href="/guides"
-              className={`group relative flex hover:!text-header_text_third ${
+              className={`text=[18px] group relative flex items-end leading-[1.47] hover:!text-header_text_third ${
                 pathName === "/guides"
-                  ? "after:absolute after:bottom-[-10px] after:left-0 after:h-[1px] after:w-full after:bg-header_text after:content-['']"
+                  ? "leading-[1.47] after:absolute after:bottom-[-10px] after:left-0 after:h-[1px] after:w-full after:bg-header_text after:content-['']"
                   : ""
               }`}
             >
@@ -153,21 +168,31 @@ export default function Header() {
         </ul>
 
         <ul className="flex text-base text-header_text small-screen:mx-[13px] small-screen:pt-[5px]">
-          <li className="p-[15px] small-screen:mx-[8px] small-screen:p-0">
-            <button>
-              <FontAwesomeIcon icon={faMagnifyingGlass} />
+          <li className="group relative flex items-center justify-center p-[15px] hover:scale-110 hover:text-white small-screen:mx-[8px] small-screen:p-0">
+            <button className="flex h-[20px] w-[20px] items-center justify-center">
+              <FontAwesomeIcon
+                icon={faMagnifyingGlass}
+                transform="grow-4"
+                className=""
+              />
             </button>
           </li>
 
-          <li className="p-[15px] small-screen:mx-[8px] small-screen:p-0">
-            <Link href="/user">
-              <FontAwesomeIcon icon={faUser} />
+          <li className="group relative flex items-center justify-center p-[15px] hover:scale-110 hover:text-white small-screen:mx-[8px] small-screen:p-0">
+            <Link
+              href="/user"
+              className="flex h-[20px] w-[20px] items-center justify-center"
+            >
+              <FontAwesomeIcon icon={faUser} transform="grow-4" />
             </Link>
           </li>
 
-          <li className="p-[15px] small-screen:mx-[8px] small-screen:p-0">
-            <Link href="/cart">
-              <FontAwesomeIcon icon={faCartShopping} />
+          <li className="group relative flex items-center justify-center p-[15px] hover:scale-110 hover:text-white small-screen:mx-[8px] small-screen:p-0">
+            <Link
+              href="/cart"
+              className="flex h-[20px] w-[20px] items-center justify-center"
+            >
+              <FontAwesomeIcon icon={faCartShopping} transform="grow-4" />
             </Link>
           </li>
         </ul>
