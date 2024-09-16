@@ -10,40 +10,41 @@ interface ButtonProps
     >,
     VariantProps<typeof buttonVariants> {
   startIcon?: ReactNode;
-
   endIcon?: ReactNode;
-
   isActive?: boolean;
-
   noBorder?: boolean;
 }
 
 const buttonVariants = cva("", {
   variants: {
     size: {
-      small:
-        "px-[28px] py-[6px] text-[11px] leading-[14px] font-bold tracking-wider",
+      sm: "px-[28px] py-[6px] text-[11px] leading-[14px] font-bold tracking-wider",
 
-      medium:
-        "px-[30px] py-[8px] text-[13px] leading-[16px] font-bold tracking-wider",
+      md: "px-[30px] py-[8px] text-[13px] leading-[16px] font-bold tracking-wider",
 
-      large:
-        "px-[32px] py-[10px] text-[15px] leading-[18px] font-bold tracking-wider",
+      lg: "px-[32px] py-[10px] text-[15px] leading-[18px] font-bold tracking-wider",
+
+      cart: "p-[11px] text-[16px] leading-[1]",
+
+      search: "px-[15px] py-[0px] text-[16px] leading-[0px] tracking-[0.025em]",
     },
     variant: {
       primary:
-        "bg-primary text-white border-primary hover:bg-white hover:text-primary",
-
-      secondary:
         "bg-white text-primary border-primary hover:bg-primary hover:text-white",
 
-      third:
+      secondary:
+        "bg-primary text-white border-primary hover:bg-white hover:text-primary",
+
+      Tertiary:
         "bg-white text-primary border-white hover:bg-primary hover:border-primary hover:text-white",
+
+      Discovery:
+        "bg-discover_color text-white border-discover_color hover:bg-white hover:text-discover_color",
     },
   },
 
   defaultVariants: {
-    size: "medium",
+    size: "md",
     variant: "primary",
   },
 });
@@ -62,8 +63,8 @@ export default function Button({
 
   const classVariants = useMemo(() => {
     return buttonVariants({
-      size: size ?? undefined,
-      variant: variant ?? undefined,
+      size,
+      variant ,
     });
   }, [size, variant]);
 

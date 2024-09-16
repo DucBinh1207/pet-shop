@@ -5,7 +5,6 @@ import Header from "@/app/_components/Header/page";
 import Footer from "@/app/_components/Footer/page";
 import HeaderNotice from "@/app/_components/HeaderNotice/page";
 import ToastNotification from "@/components/common/Toast/ToastNotification";
-import FontAwesomeConfig from "./fontawesome";
 
 const outfit_init = Outfit({
   subsets: ["latin"],
@@ -47,7 +46,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <FontAwesomeConfig />
       </head>
       <body className={outfit_init.variable}>
         <div className="root">

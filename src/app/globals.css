@@ -2,47 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-.text-navbar-size {
-  @apply text-base font-semibold uppercase;
-  font-size: calc(18 * 100vw / 1920);
-}
-
-.top-header-text {
-  @apply text-[13px] font-semibold leading-[1.23] tracking-[0.015em] text-header_text;
-}
-
-.top-header_hover {
-  @apply border-b border-solid border-transparent hover:border-header_text;
-}
-
-.mobile-item-sidebar {
-  @apply py-[15px] text-[17px] font-semibold uppercase leading-[1.23];
-}
-
-.icon_sidebar_animate {
-  @apply transform transition-transform;
-  transition:
-    transform 0.4s ease-in-out,
-    opacity 0.4s ease-in-out;
-}
-
-.tooltip_animate {
-  transition:
-    opacity 0.3s linear,
-    visibility 0.3s linear,
-    transform 0.3s ease-out;
-}
-
-.btn_icon_hover_animate {
-  transition:
-    opacity 0.3s linear,
-    visibility 0.3s linear,
-    color 0.15s linear,
-    border-color 0.15s linear,
-    background-color 0.15s linear,
-    box-shadow 0.15s linear;
-}
-
 .hidden_scrollbar::-webkit-scrollbar {
   display: none;
 }
@@ -51,7 +10,6 @@
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
 }
-
 
 :root {
   --foreground-rgb: 0, 0, 0;
@@ -76,6 +34,29 @@ body {
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+
+  .icon_sidebar_animate {
+    transition:
+      transform 0.4s ease-in-out,
+      opacity 0.4s ease-in-out;
+  }
+
+  .tooltip_animate {
+    transition:
+      opacity 0.3s linear,
+      visibility 0.3s linear,
+      transform 0.3s ease-out;
+  }
+
+  .btn_icon_hover_animate {
+    transition:
+      opacity 0.3s linear,
+      visibility 0.3s linear,
+      color 0.15s linear,
+      border-color 0.15s linear,
+      background-color 0.15s linear,
+      box-shadow 0.15s linear;
   }
 }
 

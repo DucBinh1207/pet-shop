@@ -6,10 +6,10 @@ type SidebarStore = {
   closeSidebar: () => void;
 };
 
-const triggerSidebar = create<SidebarStore>((set) => ({
+const useSidebar = create<SidebarStore>((set) => ({
   isSideBarOpen: false,
   openSidebar: () => set({ isSideBarOpen: true }),
   closeSidebar: () => set({ isSideBarOpen: false }),
 }));
 
-export default triggerSidebar;
+export default useSidebar;

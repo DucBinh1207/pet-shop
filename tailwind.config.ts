@@ -13,8 +13,10 @@ const config: Config = {
         "nav-item": "calc(27.5px*(100vw-900px)/(1920-900))",
       },
       screens: {
+        "max-large-screen": { min: "1190px", max: "1920px" },
         "large-screen": "1190px",
         "small-screen": { max: "1189px" },
+        "smallest-screen": { max: "767px" },
       },
       colors: {
         primary: "#531492",
@@ -28,6 +30,7 @@ const config: Config = {
         text_color: "#776985",
         background_color: "#fcf3ff",
         input_border: "#CBB9DE",
+        discover_color: "#EF6F00",
       },
       fontFamily: {
         outfit: ["var(--font-outfit)"],

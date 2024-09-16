@@ -1,54 +1,24 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Link from "next/link";
-import {
-  faXmark,
-  faEnvelope,
-  faPhone,
-  faLocationDot,
-  faBusinessTime,
-} from "@fortawesome/free-solid-svg-icons";
-import {
-  faFacebook,
-  faSquareInstagram,
-  faYoutube,
-  faTiktok,
-} from "@fortawesome/free-brands-svg-icons";
-import Shop from "/src/assets/icons/shop_icon.svg";
-import Pet from "/src/assets/icons/dog_icon.svg";
-import Food from "/src/assets/icons/food_icon.svg";
-import Supplies from "/src/assets/icons/supplies_icon.svg";
-import Guide from "/src/assets/icons/guide_icon.svg";
-import { usePathname } from "next/navigation";
-import triggerSidebar from "@/store/useSidebar";
+import useSidebar from "@/store/useSidebar";
 import { useEffect, useRef } from "react";
+import SidebarItem from "./_components/Sidebar-item/page";
+import SocialItem from "./_components/Social-item/page";
+import SidebarNoticeItem from "./_components/Sidebar-notice-item/page";
+import CancelIcon from "@/components/common/Icons/cancel-icon";
+import useClickOutside from "@/hooks/useClickOutside";
 
 export default function Sidebar() {
-  const pathName = usePathname();
-  const { isSideBarOpen, closeSidebar } = triggerSidebar((state) => ({
+  const { isSideBarOpen, closeSidebar } = useSidebar((state) => ({
     isSideBarOpen: state.isSideBarOpen,
     closeSidebar: state.closeSidebar,
   }));
 
   const sidebarRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (
-        sidebarRef.current &&
-        !sidebarRef.current.contains(event.target as Node)
-      ) {
-        closeSidebar();
-      }
-    };
-
-    if (isSideBarOpen) {
-      document.addEventListener("mousedown", handleClickOutside);
-    }
-
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [isSideBarOpen, closeSidebar]);
+  useClickOutside({
+    ref: sidebarRef,
+    enabled: isSideBarOpen,
+    callback: closeSidebar,
+  });
 
   return (
     <div
@@ -57,148 +27,45 @@ export default function Sidebar() {
     >
       <div className="absolute left-0 top-0 flex h-[60px] w-full items-center justify-end px-[25px]">
         <button>
-          <FontAwesomeIcon icon={faXmark} size="2x" onClick={closeSidebar} />
+          <CancelIcon onClick={closeSidebar} size={32} />
         </button>
       </div>
 
       <div className="absolute bottom-[100px] left-0 right-0 top-[60px] overflow-hidden">
         <div className="hidden_scrollbar h-full w-[100vw] min-w-[320px] max-w-[415px] snap-none overflow-auto px-[25px]">
           <ul className="flex flex-col text-header_text">
-            <li className="mobile-item-sidebar text-navbar-size">
-              <Link
-                href="/"
-                className={`group relative flex hover:!text-header_text_third ${pathName === "/" ? "after:absolute after:right-[30px] after:top-0 after:h-[20px] after:w-[20px] after:bg-arrow_img after:bg-no-repeat after:content-['']" : ""}`}
-              >
-                <Shop
-                  alt="shop page"
-                  loading="lazy"
-                  className={`mr-[16px] brightness-100 group-hover:brightness-[1.5] ${pathName === "/" ? "brightness-[1.5]" : ""} `}
-                />
-                Shop
-                <span
-                  className={`absolute bottom-[-10px] left-0 h-[1px] w-0 bg-header_text transition-all duration-300 group-hover:w-full`}
-                ></span>
-              </Link>
-            </li>
-
-            <li className="mobile-item-sidebar text-navbar-size">
-              <Link
-                href="/pets"
-                className={`group relative flex hover:!text-header_text_third ${pathName === "/pets" ? "after:absolute after:right-[30px] after:top-0 after:h-[20px] after:w-[20px] after:bg-arrow_img after:bg-no-repeat after:content-['']" : ""}`}
-              >
-                <Pet
-                  alt="pet page"
-                  loading="lazy"
-                  className={`mr-[16px] brightness-100 group-hover:brightness-[1.5] ${pathName === "/pets" ? "brightness-[1.5]" : ""} `}
-                />
-                Pets
-                <span
-                  className={`absolute bottom-[-10px] left-0 h-[1px] w-0 bg-header_text transition-all duration-300 group-hover:w-full`}
-                ></span>
-              </Link>
-            </li>
-
-            <li className="mobile-item-sidebar text-navbar-size">
-              <Link
-                href="/foods"
-                className={`} group relative flex hover:!text-header_text_third ${
-                  pathName === "/foods"
-                    ? "after:absolute after:right-[30px] after:top-0 after:h-[20px] after:w-[20px] after:bg-arrow_img after:bg-no-repeat after:content-['']"
-                    : ""
-                }`}
-              >
-                <Food
-                  alt="food page"
-                  loading="lazy"
-                  className={`mr-[16px] brightness-100 group-hover:brightness-[1.5] ${pathName === "/foods" ? "brightness-[1.5]" : ""} `}
-                />
-                Foods
-                <span
-                  className={`absolute bottom-[-10px] left-0 h-[1px] w-0 bg-header_text transition-all duration-300 group-hover:w-full`}
-                ></span>
-              </Link>
-            </li>
-
-            <li className="mobile-item-sidebar text-navbar-size">
-              <Link
-                href="/supplies"
-                className={`group relative flex hover:!text-header_text_third ${
-                  pathName === "/supplies"
-                    ? "after:absolute after:right-[30px] after:top-0 after:h-[20px] after:w-[20px] after:bg-arrow_img after:bg-no-repeat after:content-['']"
-                    : ""
-                }`}
-              >
-                <Supplies
-                  alt="supplies page"
-                  loading="lazy"
-                  className={`mr-[16px] brightness-100 group-hover:brightness-[1.5] ${pathName === "/supplies" ? "brightness-[1.5]" : ""} `}
-                />
-                Supplies
-                <span
-                  className={`absolute bottom-[-10px] left-0 h-[1px] w-0 bg-header_text transition-all duration-300 group-hover:w-full`}
-                ></span>
-              </Link>
-            </li>
-
-            <li className="mobile-item-sidebar text-navbar-size">
-              <Link
-                href="/guides"
-                className={`group relative flex hover:!text-header_text_third ${
-                  pathName === "/guides"
-                    ? "after:absolute after:right-[30px] after:top-0 after:h-[20px] after:w-[20px] after:bg-arrow_img after:bg-no-repeat after:content-['']"
-                    : ""
-                }`}
-              >
-                <Guide
-                  alt="guide page"
-                  loading="lazy"
-                  className={`mr-[16px] brightness-100 group-hover:brightness-[1.5] ${pathName === "/guides" ? "brightness-[1.5]" : ""} `}
-                />
-                Guides
-                <span
-                  className={`absolute bottom-[-10px] left-0 h-[1px] w-0 bg-header_text transition-all duration-300 group-hover:w-full`}
-                ></span>
-              </Link>
-            </li>
+            <SidebarItem name="Shop" path="/" iconName="shop" />
+            <SidebarItem name="Pets" path="/pets" iconName="pets" />
+            <SidebarItem name="Foods" path="/foods" iconName="foods" />
+            <SidebarItem name="Supplies" path="/supplies" iconName="supplies" />
+            <SidebarItem name="Guides" path="/guides" iconName="guides" />
 
             <li className="mt-[22px]">
               <div className="overflow-hidden px-[50px] text-white">
-                <ul className="top-header-text flex flex-col flex-nowrap justify-end gap-[15px] py-[15px]">
-                  <li className="relative flex flex-nowrap items-center justify-center">
-                    <a
-                      href="mailto:petshopdanang@gmail.com"
-                      className="top-header_hover text-center"
-                    >
-                      <FontAwesomeIcon icon={faEnvelope} className="mr-2" />
-                      petshopdanang@gmail.com
-                    </a>
-                  </li>
+                <ul className="flex flex-col flex-nowrap justify-end gap-[15px] py-[15px] text-[13px] font-semibold leading-[1.23] tracking-[0.015em] text-header_text">
+                  <SidebarNoticeItem
+                    name="petshopdanang@gmail.com"
+                    href="mailto:petshopdanang@gmail.com"
+                    iconName="mail"
+                  />
 
-                  <li className="relative flex flex-nowrap items-center justify-center">
-                    <a
-                      href="tel:+84857123987"
-                      className="top-header_hover text-center"
-                    >
-                      <FontAwesomeIcon icon={faPhone} className="mr-2" />
-                      +84-857-123-987
-                    </a>
-                  </li>
+                  <SidebarNoticeItem
+                    name="+84-857-123-987"
+                    href="tel:+84857123987"
+                    iconName="phone"
+                  />
 
-                  <li className="relative flex flex-nowrap items-center justify-center">
-                    <a
-                      href="https://maps.app.goo.gl/Q4P1AhYJGg1qP4Ez5"
-                      target="__blank"
-                      className="top-header_hover text-center"
-                    >
-                      <FontAwesomeIcon icon={faLocationDot} className="mr-2" />
-                      54 Nguyen Luong Bang, Hoa Khanh Bac, Lien Chieu, Da Nang
-                    </a>
-                  </li>
+                  <SidebarNoticeItem
+                    name=" 54 Nguyen Luong Bang, Hoa Khanh Bac, Lien Chieu, Da Nang"
+                    href="https://maps.app.goo.gl/Q4P1AhYJGg1qP4Ez5"
+                    iconName="locate"
+                  />
 
-                  <li className="top-header_hover relative flex flex-nowrap items-center justify-center">
-                    <FontAwesomeIcon icon={faBusinessTime} className="mr-2" />
-                    Mon-Fri: 8:00 AM - 20:00 PM
-                  </li>
+                  <SidebarNoticeItem
+                    name="Mon-Fri: 8:00 AM - 20:00 PM"
+                    href="#"
+                    iconName="businessTime"
+                  />
                 </ul>
               </div>
             </li>
@@ -206,91 +73,12 @@ export default function Sidebar() {
         </div>
       </div>
 
-      <div className="absolute bottom-[50px] left-0 w-full">
+      <div className="absolute bottom-[40px] left-0 w-full">
         <ul className="flex h-full w-full items-center justify-around text-[125%] text-header_text">
-          <li>
-            <Link
-              href="https://www.facebook.com"
-              target="_blank"
-              className="group relative flex h-[50px] w-[50px] flex-col"
-            >
-              <FontAwesomeIcon
-                transform="grow-4"
-                icon={faFacebook}
-                className="icon_sidebar_animate translate-y-[-50%] opacity-0 group-hover:translate-y-[75%] group-hover:opacity-100"
-              />
-
-              <FontAwesomeIcon
-                transform="grow-4"
-                icon={faFacebook}
-                className="icon_sidebar_animate translate-y-[-25%] opacity-100 group-hover:translate-y-[75%] group-hover:opacity-0"
-              />
-              <div className="absolute h-[50px] w-[50px] rounded-[45%] border border-solid border-header_text transition-all duration-300 hover:scale-[110%]"></div>
-            </Link>
-          </li>
-
-          <li>
-            <Link
-              href="https://www.instagram.com"
-              target="_blank"
-              className="group relative flex h-[50px] w-[50px] flex-col"
-            >
-              <FontAwesomeIcon
-                transform="grow-4"
-                icon={faSquareInstagram}
-                className="icon_sidebar_animate translate-y-[-50%] opacity-0 group-hover:translate-y-[75%] group-hover:opacity-100"
-              />
-
-              <FontAwesomeIcon
-                transform="grow-4"
-                icon={faSquareInstagram}
-                className="icon_sidebar_animate translate-y-[-25%] opacity-100 group-hover:translate-y-[75%] group-hover:opacity-0"
-              />
-              <div className="absolute h-[50px] w-[50px] rounded-[45%] border border-solid border-header_text transition-all duration-300 hover:scale-[110%]"></div>
-            </Link>
-          </li>
-
-          <li>
-            <Link
-              href="https://www.youtube.com"
-              target="_blank"
-              className="group relative flex h-[50px] w-[50px] flex-col"
-            >
-              <FontAwesomeIcon
-                transform="grow-4"
-                icon={faYoutube}
-                className="icon_sidebar_animate translate-y-[-50%] opacity-0 group-hover:translate-y-[75%] group-hover:opacity-100"
-              />
-
-              <FontAwesomeIcon
-                transform="grow-4"
-                icon={faYoutube}
-                className="icon_sidebar_animate translate-y-[-25%] opacity-100 group-hover:translate-y-[75%] group-hover:opacity-0"
-              />
-              <div className="absolute h-[50px] w-[50px] rounded-[45%] border border-solid border-header_text transition-all duration-300 hover:scale-[110%]"></div>
-            </Link>
-          </li>
-
-          <li>
-            <Link
-              href="https://www.tiktok.com"
-              target="_blank"
-              className="group relative flex h-[50px] w-[50px] flex-col"
-            >
-              <FontAwesomeIcon
-                transform="grow-4"
-                icon={faTiktok}
-                className="icon_sidebar_animate translate-y-[-50%] opacity-0 group-hover:translate-y-[75%] group-hover:opacity-100"
-              />
-
-              <FontAwesomeIcon
-                transform="grow-4"
-                icon={faTiktok}
-                className="icon_sidebar_animate translate-y-[-25%] opacity-100 group-hover:translate-y-[75%] group-hover:opacity-0"
-              />
-              <div className="absolute h-[50px] w-[50px] rounded-[45%] border border-solid border-header_text transition-all duration-300 hover:scale-[110%]"></div>
-            </Link>
-          </li>
+          <SocialItem href="https://www.facebook.com" iconName="facebook" />
+          <SocialItem href="https://www.instagram.com" iconName="instagram" />
+          <SocialItem href="https://www.youtube.com" iconName="youtube" />
+          <SocialItem href="https://www.tiktok.com" iconName="tiktok" />
         </ul>
       </div>
     </div>

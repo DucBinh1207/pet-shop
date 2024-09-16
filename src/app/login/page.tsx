@@ -1,4 +1,4 @@
-import Button from "@/components/common/Button/page";
+import Button from "@/components/common/Button";
 
 export default function Login() {
   return (

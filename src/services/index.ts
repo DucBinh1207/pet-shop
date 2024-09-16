@@ -1,4 +1,4 @@
-import { getCookie } from "cookies-next";
+import Cookies from "js-cookie";
 import axios, { AxiosRequestConfig } from "axios";
 
 const apiClient = axios.create({
@@ -11,7 +11,7 @@ const apiClient = axios.create({
 
 apiClient.interceptors.request.use(
   (config) => {
-    const token = getCookie("token");
+    const token = Cookies.get("token");
 
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;

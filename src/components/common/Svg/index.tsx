@@ -1,5 +1,5 @@
 import { ComponentProps } from "react";
-import classNameComp from "../Class";
+import classNameComp from "../../../utils/style/cn";
 
 type Size = "small" | "medium" | "large" | number;
 
@@ -15,6 +15,7 @@ type SvgProps = ComponentProps<"svg"> & {
 
 function Svg({ size: sizeProp, className, ...rest }: SvgProps) {
   const size = typeof sizeProp === "string" ? sizesMap[sizeProp] : sizeProp;
+
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
