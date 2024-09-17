@@ -1,7 +1,7 @@
 "use client";
 
 import { cva, VariantProps } from "class-variance-authority";
-import React, { ComponentProps, ReactNode, useMemo } from "react";
+import React, { ComponentProps, forwardRef, ReactNode, useMemo } from "react";
 
 interface ButtonProps
   extends Pick<
@@ -49,33 +49,46 @@ const buttonVariants = cva("", {
   },
 });
 
-export default function Button({
-  size,
-  variant,
-  startIcon,
-  endIcon,
-  className,
-  children,
-  ...rest
-}: ButtonProps) {
-  let btnClassName =
-    "inline-block outline-none border-solid border-[2px] cursor-pointer rounded-[25px] text-center uppercase ";
-
-  const classVariants = useMemo(() => {
-    return buttonVariants({
+const Button = forwardRef<HTMLButtonElement, ButtonProps>(
+  (
+    {
       size,
-      variant ,
-    });
-  }, [size, variant]);
+      variant,
+      startIcon: startIconProp,
+      endIcon: endIconProp,
+      className,
+      children: childrenProp,
+      ...rest
+    },
+    ref,
+  ) => {
+    let btnClassName =
+      "inline-block outline-none border-solid border-[2px] cursor-pointer rounded-[25px] text-center uppercase ";
 
-  (size || variant) && (btnClassName += ` ${classVariants}`);
-  className && (btnClassName += ` ${className}`);
+    const classVariants = useMemo(() => {
+      return buttonVariants({
+        size,
+        variant,
+      });
+    }, [size, variant]);
 
-  return (
-    <button className={btnClassName} {...rest}>
-      {startIcon}
-      {children}
-      {endIcon}
-    </button>
-  );
-}
+    (size || variant) && (btnClassName += ` ${classVariants}`);
+    className && (btnClassName += ` ${className}`);
+    const startIcon = startIconProp || "";
+    const children = childrenProp || "";
+    const endIcon = endIconProp || "";
+
+    return (
+      <button className={btnClassName} ref={ref} {...rest}>
+        {startIcon}
+        {children}
+        {endIcon}
+      </button>
+    );
+  },
+);
+
+Button.displayName = "Button";
+
+
+export default Button;

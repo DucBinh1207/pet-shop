@@ -1,8 +1,8 @@
-import FoodIcon from "@/components/common/Icons/food-icon";
-import GuideIcon from "@/components/common/Icons/guide-icon";
-import PetIcon from "@/components/common/Icons/pet-icon";
-import ShopIcon from "@/components/common/Icons/shop-icon";
-import SupplyIcon from "@/components/common/Icons/supply-icon";
+import FoodIcon from "@/components/common/icons/food-icon";
+import GuideIcon from "@/components/common/icons/guide-icon";
+import PetIcon from "@/components/common/icons/pet-icon";
+import ShopIcon from "@/components/common/icons/shop-icon";
+import SupplyIcon from "@/components/common/icons/supply-icon";
 import cn from "@/utils/style/cn";
 import Link from "next/link";
 import { usePathname } from "next/navigation";

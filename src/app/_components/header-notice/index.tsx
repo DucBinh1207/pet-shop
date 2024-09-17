@@ -1,4 +1,4 @@
-import NoticeItem from "./_components/Notice-item/page";
+import NoticeItem from "./_components/notice-item";
 
 export default function HeaderNotice() {
   return (

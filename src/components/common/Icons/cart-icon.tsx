@@ -1,4 +1,4 @@
-import { Svg, SvgProps } from "../Svg";
+import { Svg, SvgProps } from "../svg";
 
 export default function CartIcon(props: SvgProps) {
   return (

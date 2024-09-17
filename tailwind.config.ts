@@ -31,6 +31,7 @@ const config: Config = {
         background_color: "#fcf3ff",
         input_border: "#CBB9DE",
         discover_color: "#EF6F00",
+        overlay: "rgba(252, 243, 255,0.8)",
       },
       fontFamily: {
         outfit: ["var(--font-outfit)"],

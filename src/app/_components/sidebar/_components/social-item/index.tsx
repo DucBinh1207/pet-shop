@@ -1,7 +1,7 @@
-import FacebookIcon from "@/components/common/Icons/facebook-icon";
-import InstagramIcon from "@/components/common/Icons/instagram-icon";
-import TiktokIcon from "@/components/common/Icons/tiktok-icon";
-import YoutubeIcon from "@/components/common/Icons/youtube-icon";
+import FacebookIcon from "@/components/common/icons/facebook-icon";
+import InstagramIcon from "@/components/common/icons/instagram-icon";
+import TiktokIcon from "@/components/common/icons/tiktok-icon";
+import YoutubeIcon from "@/components/common/icons/youtube-icon";
 import Link from "next/link";
 
 type socialItemProps = {

@@ -1,11 +1,10 @@
-import Input from "@/components/common/Input/index";
-import Button from "@/components/common/Button/index";
-import ToolTip from "@/components/common/Tooltip/page";
-import SearchIcon from "@/components/common/Icons/search-icon";
+import Button from "@/components/common/button";
+import SearchIcon from "@/components/common/icons/search-icon";
+import Input from "@/components/common/input";
 
 export default function NotFound() {
   return (
-    <div className="smallest-screen:w-full mx-auto mb-[40px] mt-[30px] w-[1160px] rounded-[4px] small-screen:w-[calc(100%-60px)]">
+    <div className="mx-auto mb-[40px] mt-[30px] w-[1160px] rounded-[4px] small-screen:w-[calc(100%-60px)] smallest-screen:w-full">
       <div className="flex h-full w-full flex-col items-center justify-between bg-white px-[60px] py-[125px]">
         <div className="relative inline-block">
           <SearchIcon size={90} className="fill-current text-primary" />

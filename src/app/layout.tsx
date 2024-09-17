@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import { Outfit } from "next/font/google";
 import "./globals.css";
-import Header from "@/app/_components/Header/page";
-import Footer from "@/app/_components/Footer/page";
-import HeaderNotice from "@/app/_components/HeaderNotice/page";
-import ToastNotification from "@/components/common/Toast/ToastNotification";
+import Header from "@/app/_components/header";
+import Footer from "@/app/_components/footer";
+import HeaderNotice from "./_components/header-notice";
+import ToastNotification from "@/components/common/toast";
 
 const outfit_init = Outfit({
   subsets: ["latin"],
@@ -45,8 +45,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <head>
-      </head>
+      <head></head>
       <body className={outfit_init.variable}>
         <div className="root">
           <HeaderNotice />

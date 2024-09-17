@@ -2,13 +2,13 @@
 
 import Link from "next/link";
 import cn from "@/utils/style/cn";
-import Sidebar from "../Sidebar/page";
+import Sidebar from "../sidebar";
 import { useEffect, useState } from "react";
-import useSidebar from "@/store/useSidebar";
-import NavItem from "./_components/Nav-item/page";
-import BarIcon from "@/components/common/Icons/bar-icon";
-import ActionItem from "./_components/Action-item/page";
-import LogoIcon from "@/components/common/Icons/logo-icon";
+import NavItem from "./_components/nav-item";
+import BarIcon from "@/components/common/icons/bar-icon";
+import ActionItem from "./_components/action-item";
+import LogoIcon from "@/components/common/icons/logo-icon";
+import useSidebar from "@/store/use-sidebar";
 
 export default function Header() {
   const { openSidebar } = useSidebar((state) => state);
@@ -32,8 +32,8 @@ export default function Header() {
         className={cn(
           "top-0 z-[100] flex min-h-[90px] w-full items-center justify-between bg-header_bg px-[50px] after:absolute after:top-full after:block after:h-[3px] after:w-full after:translate-x-[-50px] after:bg-header_img after:bg-repeat-x after:content-[''] small-screen:min-h-[60px] small-screen:justify-normal small-screen:p-0 small-screen:after:translate-x-0",
           {
-            ["fixed"]: headerSticky === true,
-            ["large-screen:relative"]: headerSticky === false,
+            fixed: headerSticky === true,
+            "large-screen:relative": headerSticky === false,
           },
         )}
       >

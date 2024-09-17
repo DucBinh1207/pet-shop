@@ -1,6 +1,6 @@
-import SearchIcon from "@/components/common/Icons/search-icon";
-import UserIcon from "@/components/common/Icons/user-icon";
-import CartIcon from "@/components/common/Icons/cart-icon";
+import SearchIcon from "@/components/common/icons/search-icon";
+import UserIcon from "@/components/common/icons/user-icon";
+import CartIcon from "@/components/common/icons/cart-icon";
 import Link from "next/link";
 
 type ActionProps = {
@@ -15,9 +15,9 @@ const IconsMap = {
   cart: CartIcon,
 };
 
-export default function ActionItem({ type, iconName, href }: ActionProps) {
+export default function ActionItem({ type, iconName, href: hrefProp }: ActionProps) {
   const Icon = IconsMap[iconName];
-  href = href !== undefined ? href : "";
+  const href = hrefProp ?? "";
 
   const btn = (
     <button className="flex h-[20px] w-[20px] items-center justify-center">
