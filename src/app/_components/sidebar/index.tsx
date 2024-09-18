@@ -26,7 +26,7 @@ export default function Sidebar() {
       <div
         ref={sidebarRef}
         className={cn(
-          "fixed top-0 z-[1000] h-full w-full min-w-[320px] max-w-[415px] bg-header_bg_second text-header_text large-screen:hidden large-screen:opacity-0",
+          "fixed top-0 z-[1000] h-full max-h-full w-full min-w-[320px] max-w-[415px] bg-header_bg_second text-header_text large-screen:hidden large-screen:opacity-0",
           {
             "translate-x-[0] opacity-100 duration-300 ease-in-out":
               isSideBarOpen === true,
@@ -98,7 +98,7 @@ export default function Sidebar() {
       </div>
       <div
         className={cn(
-          "bg-overlay fixed inset-0 z-[999] h-[100vh] w-[100vw] transition-opacity",
+          "fixed inset-0 z-[999] h-[100vh] w-[100vw] bg-overlay transition-opacity",
           {
             "block opacity-100": isSideBarOpen,
             "hidden opacity-0": !isSideBarOpen,
