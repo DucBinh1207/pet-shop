@@ -47,11 +47,11 @@ export default function RootLayout({
     <html lang="en">
       <head></head>
       <body className={outfit_init.variable}>
-        <div className="root">
+        <div className="root flex h-[100vh] flex-col bg-background_color">
           <HeaderNotice />
           <Header />
 
-          {children}
+          <div className="flex-1">{children}</div>
           <Footer />
           <ToastNotification />
         </div>

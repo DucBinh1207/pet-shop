@@ -23,7 +23,7 @@ export default function NotFound() {
           </div>
           <Button
             size="search"
-            className="btn_icon_hover_animate group relative flex-1"
+            className="hover_animate group relative flex-1"
             startIcon={<SearchIcon size="small" className="fill-current" />}
           />
         </div>

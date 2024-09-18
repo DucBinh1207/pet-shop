@@ -8,7 +8,7 @@ type ToolTipProps = {
 
 export default function ToolTip({ value, button }: ToolTipProps) {
   return (
-    <div className="relative flex flex-1">
+    <div className="group relative flex flex-1">
       {button}
       <TooltipNode value={value} />
     </div>

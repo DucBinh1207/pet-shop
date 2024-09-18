@@ -25,8 +25,11 @@
   }
 }
 
+html {
+  height: 100%;
+}
+
 body {
-  @apply bg-background_color;
   font-family: var(--font-outfit);
   box-sizing: border-box;
 }
@@ -49,7 +52,7 @@ body {
       transform 0.3s ease-out;
   }
 
-  .btn_icon_hover_animate {
+  .hover_animate {
     transition:
       opacity 0.3s linear,
       visibility 0.3s linear,
