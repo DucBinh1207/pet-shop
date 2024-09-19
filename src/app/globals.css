@@ -2,6 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+.hidden_scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.hidden_scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
@@ -16,19 +25,49 @@
   }
 }
 
-/* body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
-} */
+html {
+  height: 100%;
+  overflow: -moz-scrollbars-none;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  
+}
+
+body {
+  font-family: var(--font-outfit);
+  box-sizing: border-box;
+}
+
+body::-webkit-scrollbar {
+  display: none;
+}
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+
+  .icon_sidebar_animate {
+    transition:
+      transform 0.4s ease-in-out,
+      opacity 0.4s ease-in-out;
+  }
+
+  .tooltip_animate {
+    transition:
+      opacity 0.3s linear,
+      visibility 0.3s linear,
+      transform 0.3s ease-out;
+  }
+
+  .hover_animate {
+    transition:
+      opacity 0.3s linear,
+      visibility 0.3s linear,
+      color 0.15s linear,
+      border-color 0.15s linear,
+      background-color 0.15s linear,
+      box-shadow 0.15s linear;
   }
 }
 
