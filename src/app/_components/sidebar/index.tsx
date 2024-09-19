@@ -44,15 +44,15 @@ export default function Sidebar() {
         <div className="absolute bottom-[100px] left-0 right-0 top-[60px] overflow-hidden">
           <div className="hidden_scrollbar h-full w-[100vw] min-w-[320px] max-w-[415px] snap-none overflow-auto px-[25px]">
             <ul className="flex flex-col text-header_text">
-              <SidebarItem name="Shop" path="/" iconName="shop" />
-              <SidebarItem name="Pets" path="/pets" iconName="pets" />
-              <SidebarItem name="Foods" path="/foods" iconName="foods" />
+              <SidebarItem name="Shop" path="/" iconName="SHOP" />
+              <SidebarItem name="Pets" path="/pets" iconName="PETS" />
+              <SidebarItem name="Foods" path="/foods" iconName="FOODS" />
               <SidebarItem
                 name="Supplies"
                 path="/supplies"
-                iconName="supplies"
+                iconName="SUPPLIES"
               />
-              <SidebarItem name="Guides" path="/guides" iconName="guides" />
+              <SidebarItem name="Guides" path="/guides" iconName="GUIDES" />
 
               <li className="mt-[22px]">
                 <div className="overflow-hidden px-[50px] text-white">
@@ -60,25 +60,25 @@ export default function Sidebar() {
                     <SidebarNoticeItem
                       name="petshopdanang@gmail.com"
                       href="mailto:petshopdanang@gmail.com"
-                      iconName="mail"
+                      iconName="MAIL"
                     />
 
                     <SidebarNoticeItem
                       name="+84-857-123-987"
                       href="tel:+84857123987"
-                      iconName="phone"
+                      iconName="PHONE"
                     />
 
                     <SidebarNoticeItem
                       name=" 54 Nguyen Luong Bang, Hoa Khanh Bac, Lien Chieu, Da Nang"
                       href="https://maps.app.goo.gl/Q4P1AhYJGg1qP4Ez5"
-                      iconName="locate"
+                      iconName="LOCATE"
                     />
 
                     <SidebarNoticeItem
                       name="Mon-Fri: 8:00 AM - 20:00 PM"
                       href="#"
-                      iconName="businessTime"
+                      iconName="BUSINESS_TIME"
                     />
                   </ul>
                 </div>
@@ -89,10 +89,10 @@ export default function Sidebar() {
 
         <div className="absolute bottom-[40px] left-0 w-full">
           <ul className="flex h-full w-full items-center justify-around text-[125%] text-header_text">
-            <SocialItem href="https://www.facebook.com" iconName="facebook" />
-            <SocialItem href="https://www.instagram.com" iconName="instagram" />
-            <SocialItem href="https://www.youtube.com" iconName="youtube" />
-            <SocialItem href="https://www.tiktok.com" iconName="tiktok" />
+            <SocialItem href="https://www.facebook.com" iconName="FACEBOOK" />
+            <SocialItem href="https://www.instagram.com" iconName="INSTAGRAM" />
+            <SocialItem href="https://www.youtube.com" iconName="YOUTUBE" />
+            <SocialItem href="https://www.tiktok.com" iconName="TIKTOK" />
           </ul>
         </div>
       </div>

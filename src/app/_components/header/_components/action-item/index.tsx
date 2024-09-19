@@ -5,14 +5,14 @@ import Link from "next/link";
 
 type ActionProps = {
   type: "button" | "link";
-  iconName: "search" | "user" | "cart";
+  iconName: "SEARCH" | "USER" | "CART";
   href?: string;
 };
 
 const IconsMap = {
-  search: SearchIcon,
-  user: UserIcon,
-  cart: CartIcon,
+  SEARCH: SearchIcon,
+  USER: UserIcon,
+  CART: CartIcon,
 };
 
 export default function ActionItem({ type, iconName, href: hrefProp }: ActionProps) {

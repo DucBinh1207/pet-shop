@@ -2,19 +2,18 @@ import BusinessTimeIcon from "@/components/common/icons/business-time-icon";
 import LocateIcon from "@/components/common/icons/locate-icon";
 import MailIcon from "@/components/common/icons/mail-icon";
 import PhoneIcon from "@/components/common/icons/phone-icon";
-import cn from "@/utils/style/cn";
 
 type noticeItemProps = {
   name: string;
   href: string;
-  iconName: "mail" | "phone" | "locate" | "businessTime";
+  iconName: "MAIL" | "PHONE" | "LOCATE" | "BUSINESS_TIME";
 };
 
 const IconsMap = {
-  mail: MailIcon,
-  phone: PhoneIcon,
-  locate: LocateIcon,
-  businessTime: BusinessTimeIcon,
+  MAIL: MailIcon,
+  PHONE: PhoneIcon,
+  LOCATE: LocateIcon,
+  BUSINESS_TIME: BusinessTimeIcon,
 };
 
 export default function SidebarNoticeItem({
@@ -24,21 +23,28 @@ export default function SidebarNoticeItem({
 }: noticeItemProps) {
   const Icon = IconsMap[iconName];
 
-  return (
-    <li className="relative flex flex-nowrap items-center justify-center">
-      <a
-        href={href}
-        className={cn(
-          "inline-flex border-b border-solid border-transparent text-[13px] font-semibold leading-[1.23] tracking-[0.015em] text-header_text hover:border-header_text",
-          {
-            "pointer-events-none": iconName === "businessTime",
-          },
-        )}
-        target="_blank"
-      >
-        <Icon className="mr-[9px] fill-current" size={14} />
-        {name}
-      </a>
-    </li>
-  );
+  //If iconName is "BUSINESS_TIME", render a <span> element; otherwise, render an <a> element with an href attribute
+  if (iconName !== "BUSINESS_TIME") {
+    return (
+      <li className="relative flex flex-nowrap items-center justify-center">
+        <a
+          href={href}
+          className="inline-flex border-b border-solid border-transparent text-[13px] font-semibold leading-[1.23] tracking-[0.015em] text-header_text hover:border-header_text"
+          target="_blank"
+        >
+          <Icon className="mr-[9px] fill-current" size={14} />
+          {name}
+        </a>
+      </li>
+    );
+  } else {
+    return (
+      <li className="relative flex flex-nowrap items-center justify-center">
+        <span className="inline-flex border-b border-solid border-transparent text-[13px] font-semibold leading-[1.23] tracking-[0.015em] text-header_text hover:border-header_text">
+          <Icon className="mr-[9px] fill-current" size={14} />
+          {name}
+        </span>
+      </li>
+    );
+  }
 }

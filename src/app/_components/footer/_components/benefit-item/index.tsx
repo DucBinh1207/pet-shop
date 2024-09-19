@@ -4,13 +4,13 @@ import QuestionMarkIcon from "@/components/common/icons/question-mark-icon";
 
 type props = {
   value: string;
-  icon: "car" | "question" | "money";
+  icon: "CAR" | "QUESTION" | "MONEY";
 };
 
 const IconsMap = {
-  car: CarIcon,
-  question: QuestionMarkIcon,
-  money: MoneyIcon,
+  CAR: CarIcon,
+  QUESTION: QuestionMarkIcon,
+  MONEY: MoneyIcon,
 };
 
 export default function BenefitItem({ value, icon }: props) {

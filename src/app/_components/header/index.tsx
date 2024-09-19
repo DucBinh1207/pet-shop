@@ -30,7 +30,7 @@ export default function Header() {
     <div className="relative">
       <div
         className={cn(
-          "top-0 z-[100] flex min-h-[90px] w-full items-center justify-between bg-header_bg px-[50px] after:absolute after:top-full after:block after:h-[3px] after:w-full after:translate-x-[-50px] after:bg-header_img after:bg-repeat-x after:content-[''] small-screen:min-h-[60px] small-screen:justify-normal small-screen:p-0 small-screen:after:translate-x-0",
+          "top-0 z-[100] flex min-h-[90px] w-full items-center justify-between bg-header_bg px-[50px] after:absolute after:top-full after:block after:h-[3px] after:w-full after:translate-x-[-50px] after:translate-y-[-1px] after:bg-header_img after:bg-repeat-x after:content-[''] small-screen:min-h-[60px] small-screen:justify-normal small-screen:p-0 small-screen:after:translate-x-0",
           {
             fixed: headerSticky === true,
             "large-screen:relative": headerSticky === false,
@@ -55,17 +55,17 @@ export default function Header() {
         </Link>
 
         <ul className="flex text-header_text small-screen:hidden small-screen:opacity-0">
-          <NavItem name="Shop" path="/" iconName="shop" />
-          <NavItem name="Pets" path="/pets" iconName="pets" />
-          <NavItem name="Foods" path="/foods" iconName="foods" />
-          <NavItem name="Supplies" path="/supplies" iconName="supplies" />
-          <NavItem name="Guides" path="/guides" iconName="guides" />
+          <NavItem name="Shop" path="/" iconName="SHOP" />
+          <NavItem name="Pets" path="/pets" iconName="PETS" />
+          <NavItem name="Foods" path="/foods" iconName="FOODS" />
+          <NavItem name="Supplies" path="/supplies" iconName="SUPPLIES" />
+          <NavItem name="Guides" path="/guides" iconName="GUIDES" />
         </ul>
 
         <ul className="flex text-base text-header_text small-screen:mx-[13px] small-screen:pt-[5px]">
-          <ActionItem type="button" iconName="search" />
-          <ActionItem type="link" iconName="user" href="/user" />
-          <ActionItem type="link" iconName="cart" href="/cart" />
+          <ActionItem type="button" iconName="SEARCH" />
+          <ActionItem type="link" iconName="USER" href="/user" />
+          <ActionItem type="link" iconName="CART" href="/cart" />
         </ul>
       </div>
     </div>

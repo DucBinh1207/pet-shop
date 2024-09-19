@@ -12,15 +12,15 @@ import { usePathname } from "next/navigation";
 type navItemProps = {
   name: string;
   path: string;
-  iconName: "shop" | "pets" | "foods" | "supplies" | "guides";
+  iconName: "SHOP" | "PETS" | "FOODS" | "SUPPLIES" | "GUIDES";
 };
 
 const IconsMap = {
-  shop: ShopIcon,
-  pets: PetIcon,
-  foods: FoodIcon,
-  supplies: SupplyIcon,
-  guides: GuideIcon,
+  SHOP: ShopIcon,
+  PETS: PetIcon,
+  FOODS: FoodIcon,
+  SUPPLIES: SupplyIcon,
+  GUIDES: GuideIcon,
 };
 
 export default function NavItem({ name, path, iconName }: navItemProps) {

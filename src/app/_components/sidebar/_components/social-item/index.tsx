@@ -6,14 +6,14 @@ import Link from "next/link";
 
 type socialItemProps = {
   href: string;
-  iconName: "facebook" | "instagram" | "youtube" | "tiktok";
+  iconName: "FACEBOOK" | "INSTAGRAM" | "YOUTUBE" | "TIKTOK";
 };
 
 const IconsMap = {
-  facebook: FacebookIcon,
-  instagram: InstagramIcon,
-  youtube: YoutubeIcon,
-  tiktok: TiktokIcon,
+  FACEBOOK: FacebookIcon,
+  INSTAGRAM: InstagramIcon,
+  YOUTUBE: YoutubeIcon,
+  TIKTOK: TiktokIcon,
 };
 
 export default function SocialItem({ href, iconName }: socialItemProps) {

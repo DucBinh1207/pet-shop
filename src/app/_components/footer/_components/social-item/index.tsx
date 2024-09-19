@@ -5,14 +5,14 @@ import YoutubeIcon from "@/components/common/icons/youtube-icon";
 
 type props = {
   href: string;
-  icon: "facebook" | "instagram" | "youtube" | "tiktok";
+  icon: "FACEBOOK" | "INSTAGRAM" | "YOUTUBE" | "TIKTOK";
 };
 
 const IconsMap = {
-  facebook: FacebookFilledIcon,
-  instagram: InstagramFilledIcon,
-  youtube: YoutubeIcon,
-  tiktok: TiktokIcon,
+  FACEBOOK: FacebookFilledIcon,
+  INSTAGRAM: InstagramFilledIcon,
+  YOUTUBE: YoutubeIcon,
+  TIKTOK: TiktokIcon,
 };
 
 export default function SocialItem({ href, icon }: props) {
