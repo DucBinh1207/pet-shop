@@ -32,7 +32,7 @@ export default function SocialItem({ href, iconName }: socialItemProps) {
           <Icon size={20} className="scale-125" />
         </div>
 
-        <div className="absolute h-[50px] w-[50px] rounded-[45%] border border-solid border-header_text transition-all duration-300 hover:scale-[110%]"></div>
+        <div className="border-text_color_second absolute h-[50px] w-[50px] rounded-[45%] border border-solid transition-all duration-300 hover:scale-[110%]"></div>
       </Link>
     </li>
   );

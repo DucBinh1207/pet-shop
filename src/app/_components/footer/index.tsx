@@ -10,7 +10,7 @@ import ContactItem from "./_components/contact-item";
 export default function Footer() {
   return (
     <div className="mt-auto">
-      <div className="flex w-full justify-center bg-benefit_color">
+      <div className="flex w-full justify-center bg-light_gray_color">
         <ul className="flex min-h-[90px] w-full max-w-[1160px] items-center justify-around smallest-screen:flex-col">
           <BenefitItem value="Free Shipping" icon="CAR" />
           <BenefitItem value="24/7 Support" icon="QUESTION" />
@@ -31,36 +31,36 @@ export default function Footer() {
                 </div>
                 Whiskers
               </Link>
-              <p className="font-normal tracking-[0.4px] text-footer_text small-screen:text-[14px]">
+              <p className="font-normal tracking-[0.4px] text-blue_gray_color small-screen:text-[14px]">
                 © 2022 Ricky Theme. All rights reserved.
               </p>
               <div className="mt-[30px] flex w-full flex-wrap items-center justify-start text-[12px] smallest-screen:justify-center">
                 <span className="smallest-screen:mr-[15px mb-[12px] mr-[10px] smallest-screen:mb-[18px]">
-                  <a href="#" className="hover_animate hover:text-secondary">
+                  <Link href="#" className="hover_animate hover:text-secondary">
                     Privacy Policy
-                  </a>
+                  </Link>
                 </span>
 
                 <DotIcon
-                  className="mb-[12px] mr-[10px] fill-current text-footer_text smallest-screen:mb-[18px] smallest-screen:mr-[15px]"
+                  className="mb-[12px] mr-[10px] fill-current text-blue_gray_color smallest-screen:mb-[18px] smallest-screen:mr-[15px]"
                   size={3}
                 />
 
                 <span className="smallest-screen:mr-[15px mb-[12px] mr-[10px] smallest-screen:mb-[18px]">
-                  <a href="#" className="hover_animate hover:text-secondary">
+                  <Link href="#" className="hover_animate hover:text-secondary">
                     Terms
-                  </a>
+                  </Link>
                 </span>
 
                 <DotIcon
-                  className="mb-[12px] mr-[10px] fill-current text-footer_text smallest-screen:mb-[18px] smallest-screen:mr-[15px]"
+                  className="mb-[12px] mr-[10px] fill-current text-blue_gray_color smallest-screen:mb-[18px] smallest-screen:mr-[15px]"
                   size={3}
                 />
 
                 <span className="smallest-screen:mr-[15px mb-[12px] mr-[10px] smallest-screen:mb-[18px]">
-                  <a href="#" className="hover_animate hover:text-secondary">
+                  <Link href="#" className="hover_animate hover:text-secondary">
                     SiteMap
-                  </a>
+                  </Link>
                 </span>
               </div>
             </div>
@@ -89,7 +89,7 @@ export default function Footer() {
               </ul>
             </div>
             <div className="mt-[15px] flex items-center smallest-screen:justify-center">
-              <span className="text-footer_text">Follow Us :</span>
+              <span className="text-blue_gray_color">Follow Us :</span>
               <div className="flex">
                 <SocialItem href="https://www.facebook.com" icon="FACEBOOK" />
                 <SocialItem href="https://www.instagram.com" icon="INSTAGRAM" />

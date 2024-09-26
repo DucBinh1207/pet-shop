@@ -1,4 +1,5 @@
 import FooterArrowIcon from "@/components/common/icons/footer-arrow-icon";
+import Link from "next/link";
 
 type props = {
   value: string;
@@ -9,12 +10,12 @@ export default function ShopInfoItem({ value, href }: props) {
   return (
     <li className="flex items-center gap-[13px]">
       <span>
-        <FooterArrowIcon size={10} className="text-footer_icon fill-current" />
+        <FooterArrowIcon size={10} className="text-green_color fill-current" />
       </span>
       <span>
-        <a href={href} className="hover_animate hover:text-secondary">
+        <Link href={href} className="hover_animate hover:text-secondary">
           {value}
-        </a>
+        </Link>
       </span>
     </li>
   );

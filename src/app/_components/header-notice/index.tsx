@@ -2,7 +2,7 @@ import NoticeItem from "./_components/notice-item";
 
 export default function HeaderNotice() {
   return (
-    <div className="bg-header_bg px-[50px] text-white small-screen:hidden">
+    <div className="bg-header_bg_color px-[50px] text-white small-screen:hidden">
       <ul className="flex flex-nowrap justify-end gap-[15px] py-[15px]">
         <NoticeItem
           name="petshopdanang@gmail.com"

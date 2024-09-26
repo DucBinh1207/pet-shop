@@ -3,13 +3,13 @@ import TooltipNode from "./_components";
 
 type ToolTipProps = {
   value?: string;
-  button?: ReactNode;
+  elmNode?: ReactNode;
 };
 
-export default function ToolTip({ value, button }: ToolTipProps) {
+export default function ToolTip({ value, elmNode }: ToolTipProps) {
   return (
-    <div className="group relative flex flex-1">
-      {button}
+    <div className="group relative inline-block">
+      {elmNode}
       <TooltipNode value={value} />
     </div>
   );

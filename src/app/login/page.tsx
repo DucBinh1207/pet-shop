@@ -5,7 +5,7 @@ export default function Login() {
     <div className="font-outfit">
       eiyo wtf
       <Button> Test </Button>
-      <Button size="md" variant="Discovery" />
+      <Button size="md" variant="discovery" />
     </div>
   );
 }

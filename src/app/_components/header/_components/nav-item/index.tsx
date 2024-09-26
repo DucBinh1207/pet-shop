@@ -33,16 +33,16 @@ export default function NavItem({ name, path, iconName }: navItemProps) {
       <Link
         href={path}
         className={cn(
-          "group relative flex items-end text-base font-semibold uppercase leading-[1.47] hover:!text-header_text_third max-large-screen:!text-[calc(18*100vw/1920)] large-screen:text-[18px]",
+          "hover:!text-text_color_fourth group relative flex items-end text-base font-semibold uppercase leading-[1.47] max-large-screen:!text-[calc(18*100vw/1920)] large-screen:text-[18px]",
           {
-            "after:absolute after:bottom-[-10px] after:left-0 after:h-[1px] after:w-full after:bg-header_text after:content-['']":
+            "after:bg-text_color_second after:absolute after:bottom-[-10px] after:left-0 after:h-[1px] after:w-full after:content-['']":
               pathName === path,
           },
         )}
       >
         <Icon
           className={cn(
-            "mr-[10px] fill-current text-header_icon brightness-100 group-hover:brightness-[1.5]",
+            "text-dark_purple_color mr-[10px] fill-current brightness-100 group-hover:brightness-[1.5]",
             {
               "brightness-[1.5]": pathName === path,
             },
@@ -54,7 +54,7 @@ export default function NavItem({ name, path, iconName }: navItemProps) {
 
         <span
           className={
-            "absolute bottom-[-10px] left-[50%] h-[1px] w-0 origin-center translate-x-[-50%] bg-header_text transition-all duration-300 group-hover:w-full"
+            "bg-text_color_second absolute bottom-[-10px] left-[50%] h-[1px] w-0 origin-center translate-x-[-50%] transition-all duration-300 group-hover:w-full"
           }
         ></span>
       </Link>

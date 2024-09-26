@@ -18,7 +18,7 @@ export default function BenefitItem({ value, icon }: props) {
 
   return (
     <li className="my-[25px] flex items-center px-[25px] font-sans text-[21px] font-bold leading-[1.19] tracking-[-0.01em] text-primary large-screen:w-[370px] small-screen:w-[226px] small-screen:text-[18px] smallest-screen:w-full">
-      <Icon size={26} className="text-footer_icon mr-[15px] fill-current" />
+      <Icon size={26} className="text-green_color mr-[15px] fill-current" />
       {value}
     </li>
   );

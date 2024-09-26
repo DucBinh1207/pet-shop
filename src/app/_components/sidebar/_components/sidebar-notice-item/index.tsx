@@ -2,6 +2,7 @@ import BusinessTimeIcon from "@/components/common/icons/business-time-icon";
 import LocateIcon from "@/components/common/icons/locate-icon";
 import MailIcon from "@/components/common/icons/mail-icon";
 import PhoneIcon from "@/components/common/icons/phone-icon";
+import Link from "next/link";
 
 type noticeItemProps = {
   name: string;
@@ -27,20 +28,20 @@ export default function SidebarNoticeItem({
   if (iconName !== "BUSINESS_TIME") {
     return (
       <li className="relative flex flex-nowrap items-center justify-center">
-        <a
+        <Link
           href={href}
-          className="inline-flex border-b border-solid border-transparent text-[13px] font-semibold leading-[1.23] tracking-[0.015em] text-header_text hover:border-header_text"
+          className="text-text_color_second hover:border-text_color_second inline-flex border-b border-solid border-transparent text-[13px] font-semibold leading-[1.23] tracking-[0.015em]"
           target="_blank"
         >
           <Icon className="mr-[9px] fill-current" size={14} />
           {name}
-        </a>
+        </Link>
       </li>
     );
   } else {
     return (
       <li className="relative flex flex-nowrap items-center justify-center">
-        <span className="inline-flex border-b border-solid border-transparent text-[13px] font-semibold leading-[1.23] tracking-[0.015em] text-header_text hover:border-header_text">
+        <span className="text-text_color_second hover:border-text_color_second inline-flex border-b border-solid border-transparent text-[13px] font-semibold leading-[1.23] tracking-[0.015em]">
           <Icon className="mr-[9px] fill-current" size={14} />
           {name}
         </span>

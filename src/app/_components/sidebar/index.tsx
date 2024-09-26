@@ -1,4 +1,5 @@
-import { useRef } from "react";
+"use client";
+import { useEffect, useRef } from "react";
 import SidebarItem from "./_components/sidebar-item";
 import SocialItem from "./_components/social-item";
 import SidebarNoticeItem from "./_components/sidebar-notice-item";
@@ -21,12 +22,24 @@ export default function Sidebar() {
     callback: closeSidebar,
   });
 
+  useEffect(() => {
+    if (isSideBarOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [isSideBarOpen]);
+
   return (
     <>
       <div
         ref={sidebarRef}
         className={cn(
-          "fixed top-0 z-[1000] h-full max-h-full w-full min-w-[320px] max-w-[415px] bg-header_bg_second text-header_text large-screen:hidden large-screen:opacity-0",
+          "fixed top-0 z-[1000] h-full max-h-full w-full min-w-[320px] max-w-[415px] bg-header_bg_color_second text-text_color_second large-screen:hidden large-screen:opacity-0",
           {
             "translate-x-[0] opacity-100 duration-300 ease-in-out":
               isSideBarOpen === true,
@@ -43,7 +56,7 @@ export default function Sidebar() {
 
         <div className="absolute bottom-[100px] left-0 right-0 top-[60px] overflow-hidden">
           <div className="hidden_scrollbar h-full w-[100vw] min-w-[320px] max-w-[415px] snap-none overflow-auto px-[25px]">
-            <ul className="flex flex-col text-header_text">
+            <ul className="flex flex-col text-text_color_second">
               <SidebarItem name="Shop" path="/" iconName="SHOP" />
               <SidebarItem name="Pets" path="/pets" iconName="PETS" />
               <SidebarItem name="Foods" path="/foods" iconName="FOODS" />
@@ -56,7 +69,7 @@ export default function Sidebar() {
 
               <li className="mt-[22px]">
                 <div className="overflow-hidden px-[50px] text-white">
-                  <ul className="flex flex-col flex-nowrap justify-end gap-[15px] py-[15px] text-[13px] font-semibold leading-[1.23] tracking-[0.015em] text-header_text">
+                  <ul className="flex flex-col flex-nowrap justify-end gap-[15px] py-[15px] text-[13px] font-semibold leading-[1.23] tracking-[0.015em] text-text_color_second">
                     <SidebarNoticeItem
                       name="petshopdanang@gmail.com"
                       href="mailto:petshopdanang@gmail.com"
@@ -88,7 +101,7 @@ export default function Sidebar() {
         </div>
 
         <div className="absolute bottom-[40px] left-0 w-full">
-          <ul className="flex h-full w-full items-center justify-around text-[125%] text-header_text">
+          <ul className="flex h-full w-full items-center justify-around text-[125%] text-text_color_second">
             <SocialItem href="https://www.facebook.com" iconName="FACEBOOK" />
             <SocialItem href="https://www.instagram.com" iconName="INSTAGRAM" />
             <SocialItem href="https://www.youtube.com" iconName="YOUTUBE" />
@@ -98,7 +111,7 @@ export default function Sidebar() {
       </div>
       <div
         className={cn(
-          "fixed inset-0 z-[999] h-[100vh] w-[100vw] bg-overlay transition-opacity",
+          "fixed inset-0 z-[999] h-[100vh] w-[100vw] bg-overlay_color transition-opacity",
           {
             "block opacity-100": isSideBarOpen,
             "hidden opacity-0": !isSideBarOpen,

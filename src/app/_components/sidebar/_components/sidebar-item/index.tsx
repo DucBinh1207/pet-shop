@@ -29,14 +29,14 @@ export default function SidebarItem({ name, path, iconName }: navItemProps) {
     <li className="py-[15px] text-[calc(18*100vw/1920)] text-base font-semibold uppercase leading-[1.23]">
       <Link
         href={path}
-        className={cn("group relative flex hover:!text-header_text_third", {
+        className={cn("hover:!text-text_color_fourth group relative flex", {
           "after:absolute after:right-[30px] after:top-0 after:h-[20px] after:w-[20px] after:bg-arrow_img after:bg-no-repeat after:content-['']":
             pathName === path,
         })}
       >
         <Icon
           className={cn(
-            "mr-[16px] fill-current text-header_icon brightness-100 group-hover:brightness-[1.5]",
+            "text-dark_purple_color mr-[16px] fill-current brightness-100 group-hover:brightness-[1.5]",
             { "brightness-[1.5]": pathName === path },
           )}
           size={26.4}
@@ -46,7 +46,7 @@ export default function SidebarItem({ name, path, iconName }: navItemProps) {
 
         <span
           className={cn(
-            "absolute bottom-[-10px] left-0 h-[1px] w-0 bg-header_text transition-all duration-300 group-hover:w-[80%]",
+            "bg-text_color_second absolute bottom-[-10px] left-0 h-[1px] w-0 transition-all duration-300 group-hover:w-[80%]",
           )}
         ></span>
       </Link>
