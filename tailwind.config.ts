@@ -54,7 +54,8 @@ const config: Config = {
         dark_purple_color: "#623089",
         background_color: "#fcf3ff",
         form_color: "#fcf3ff",
-        footer_color: "#022D6D",
+        dark_blue_color: "#022D6D",
+        soft_dark_blue_color: "rgba(0, 35, 75, 0.15)",
         dark_yellow_color: "#ffa61e",
       },
       fontFamily: {
