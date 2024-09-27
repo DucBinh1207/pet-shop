@@ -1,0 +1,25 @@
+     <svg
+          width="150"
+          height="150"
+          viewBox="0 0 150 150"
+          fill="#ffffff"
+          xmlns="http://www.w3.org/2000/svg"
+          className="bg-white rounded-[50%]"
+        >
+          <defs>
+            <path
+              id="curve1"
+              d="
+        M 75, 75
+        m -57.3, 0
+        a 57.3,57.3 0 1,1 114.6,0
+        a 57.3,57.3 0 1,1 -114.6,0"
+              fill="#ffffff"
+            ></path>
+          </defs>
+          <text className="origin-center animate-text_rotation tracking-[0.5px]">
+            <textPath href="#curve1" className="text-[12px]" fill="#372384">
+              10 YEARS OF EXPERIENCE・BEST EXPERTS & DOCTORS・
+            </textPath>
+          </text>
+        </svg>

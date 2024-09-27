@@ -16,20 +16,34 @@ interface ButtonProps
 }
 
 const buttonVariants = cva(
-  "inline-block outline-none border-solid border-[2px] cursor-pointer rounded-[25px] text-center uppercase ",
+  "inline-block outline-none border-solid border-[2px] cursor-pointer rounded-[25px] text-center uppercase hover_animate ",
   {
     variants: {
       size: {
+        xsm: "px-[25px] py-[15px]",
+
         sm: "px-[28px] py-[6px] text-[11px] leading-[14px] font-bold tracking-wider",
 
         md: "px-[30px] py-[8px] text-[13px] leading-[16px] font-bold tracking-wider",
 
         lg: "px-[32px] py-[10px] text-[15px] leading-[18px] font-bold tracking-wider",
 
-        cart: "p-[11px] text-[16px] leading-[1]",
+        circle_xsm: "p-[3px] text-[7px] leading-[1]",
+
+        circle_sm: "p-[7px] text-[11px] leading-[1]",
+
+        circle_md: "p-[11px] text-[16px] leading-[1]",
+
+        circle_lg: "p-[12px]",
+
+        circle_xlg: "p-[15px] text-[21px] leading-[1]",
+
+        circle_xxl: "p-[33px]",
 
         search:
           "px-[15px] py-[0px] text-[16px] leading-[0px] tracking-[0.025em]",
+
+        none: "p-0",
       },
       variant: {
         primary:
@@ -38,11 +52,13 @@ const buttonVariants = cva(
         secondary:
           "bg-primary text-white border-primary hover:bg-white hover:text-primary",
 
-        Tertiary:
+        tertiary:
           "bg-white text-primary border-white hover:bg-primary hover:border-primary hover:text-white",
 
-        Discovery:
-          "bg-discover_color text-white border-discover_color hover:bg-white hover:text-discover_color",
+        discovery:
+          "bg-dark_orange_color text-white border-dark_orange_color hover:bg-white hover:text-dark_orange_color",
+
+        none: "bg-transparent border-transparent text-black hover:opacity-[0.85]",
       },
     },
 
@@ -58,9 +74,11 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     {
       size,
       variant,
+      children,
       startIcon: startIconProp,
       endIcon: endIconProp,
       className: classProps,
+      onClick: onClickProps,
       ...rest
     },
     ref,
@@ -81,10 +99,12 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 
     const startIcon = startIconProp && <span> {startIconProp} </span>;
     const endIcon = endIconProp && <span> {endIconProp} </span>;
+    const onClick = onClickProps && onClickProps;
 
     return (
-      <button className={className} ref={ref} {...rest}>
+      <button className={className} ref={ref} {...rest} onClick={onClick}>
         {startIcon}
+        {children}
         {endIcon}
       </button>
     );

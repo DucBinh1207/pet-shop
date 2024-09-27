@@ -1,5 +1,5 @@
-import NotFound from "./not-found";
+import PageContent from "./_components/home/page-content";
 
 export default function Home() {
-  return <NotFound />;
+  return <PageContent />;
 }

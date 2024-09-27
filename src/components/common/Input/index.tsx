@@ -19,7 +19,7 @@ const inputVariants = cva(
         large: "px-[14px] py-[10px] text-[15px] leading-[18px]",
       },
       variant: {
-        primary: "text-primary border-input_border bg-background_color ",
+        primary: "text-primary border-input_border_color bg-background_color ",
         secondary: "bg-green-500 text-white",
         third: "bg-red-500 text-white",
       },

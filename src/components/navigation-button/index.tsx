@@ -1,0 +1,18 @@
+type props = {
+  prevClass: string;
+  nextClass: string;
+};
+
+export default function NavigationButton({ prevClass, nextClass }: props) {
+  return (
+    <div className="hidden opacity-0 hover:block hover:!opacity-100 group-hover:block group-hover:opacity-100">
+      <div
+        className={`${prevClass} absolute left-[-27px] top-[50%] h-[54px] w-[54px] translate-y-[-50%] cursor-pointer rounded-[50%] bg-white bg-arrow_prev bg-[length:40px_40px] bg-center bg-no-repeat p-[17.5px] text-primary shadow-item_next after:content-['']`}
+      ></div>
+
+      <div
+        className={`${nextClass} absolute right-[-27px] top-[50%] h-[54px] w-[54px] translate-y-[-50%] cursor-pointer rounded-[50%] bg-white bg-arrow_next bg-[length:40px_40px] bg-center bg-no-repeat p-[17.5px] text-primary shadow-item_next after:content-['']`}
+      ></div>
+    </div>
+  );
+}
