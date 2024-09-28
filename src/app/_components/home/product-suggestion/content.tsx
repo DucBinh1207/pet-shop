@@ -153,7 +153,7 @@ export default function Content({ id, isSelected }: props) {
               {[...Array(5)].map((_, index) => (
                 <SwiperSlide
                   key={index}
-                  className="border-box flex min-w-[232px] flex-1 transform flex-col border border-solid border-light_gray_color_second bg-white small-screen:min-w-[25%] xs-small-screen:min-w-[calc(100%/3)] xs-smallest-screen:min-w-[50%]"
+                  className="border-box x-smallest-screen:min-w-[50%] x-small-screen:min-w-[calc(100%/3)] flex min-w-[232px] flex-1 transform flex-col border border-solid border-light_gray_color_second bg-white small-screen:min-w-[25%]"
                 >
                   <FoodCard />
                   <FoodCard />
@@ -166,6 +166,7 @@ export default function Content({ id, isSelected }: props) {
         <NavigationButton
           prevClass="product-suggestion-swiper-button-prev"
           nextClass="product-suggestion-swiper-button-next"
+          typeReference="peer"
         />
       </div>
     </div>

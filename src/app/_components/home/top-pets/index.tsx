@@ -62,14 +62,14 @@ export default function TopPets() {
           >
             {[...Array(8)].map((_, index) => (
               <SwiperSlide
-                className="border-box flex min-w-[232px] flex-1 transform flex-col border border-solid border-light_gray_color_second bg-white small-screen:min-w-[25%] xs-small-screen:min-w-[calc(100%/3)] xs-smallest-screen:min-w-[50%]"
+                className="border-box x-smallest-screen:min-w-[50%] x-small-screen:min-w-[calc(100%/3)] flex min-w-[232px] flex-1 transform flex-col border border-solid border-light_gray_color_second bg-white small-screen:min-w-[25%]"
                 key={index}
               >
                 <PetCard />
               </SwiperSlide>
             ))}
             <SwiperSlide
-              className="border-box flex min-w-[232px] flex-1 transform items-center justify-center border border-solid border-light_gray_color_second bg-white small-screen:min-w-[25%] xs-small-screen:min-w-[calc(100%/3)] xs-smallest-screen:min-w-[50%]"
+              className="border-box x-smallest-screen:min-w-[50%] x-small-screen:min-w-[calc(100%/3)] flex min-w-[232px] flex-1 transform items-center justify-center border border-solid border-light_gray_color_second bg-white small-screen:min-w-[25%]"
               key={8}
             >
               <Button
@@ -86,6 +86,7 @@ export default function TopPets() {
       <NavigationButton
         prevClass="top-pets-swiper-button-prev"
         nextClass="top-pets-swiper-button-next"
+        typeReference="peer"
       />
 
       <div className="swiper-pagination !relative mt-[25px]"></div>

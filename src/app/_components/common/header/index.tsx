@@ -19,7 +19,7 @@ export default function Header() {
       )}
     >
       <button
-        className="hidden h-[60px] w-[86px] flex-col gap-[5px] text-white small-screen:block"
+        className="hidden h-[60px] w-[86px] flex-col gap-[5px] text-text_color_second small-screen:block"
         onClick={openSidebar}
       >
         <BarIcon size={32} className="m-auto" />
@@ -29,7 +29,7 @@ export default function Header() {
 
       <Link
         href="/"
-        className="flex items-center gap-[10px] text-[38px] font-semibold tracking-wider text-white small-screen:flex-1"
+        className="flex items-center gap-[10px] font-quicksand text-[38px] font-bold tracking-wider text-white small-screen:flex-1"
       >
         <LogoIcon size={40} fill="#ffffff" />
         Whiskers
@@ -45,7 +45,7 @@ export default function Header() {
 
       <ul className="flex text-base text-text_color_second small-screen:mx-[13px] small-screen:pt-[5px]">
         <Action type="button" iconName="SEARCH" />
-        <Action type="link" iconName="USER" href="/user" />
+        <Action type="link" iconName="USER" href="/profile" />
         <Action type="link" iconName="CART" href="/cart" />
       </ul>
     </div>

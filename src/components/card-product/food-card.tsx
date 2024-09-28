@@ -31,7 +31,7 @@ export default function FoodCard() {
   };
 
   return (
-    <div className="border-box flex min-w-[232px] flex-1 transform flex-col border border-solid border-light_gray_color_second bg-white small-screen:min-w-[25%] xs-small-screen:min-w-[calc(100%/3)] xs-smallest-screen:min-w-[50%]">
+    <div className="border-box x-smallest-screen:min-w-[50%] x-small-screen:min-w-[calc(100%/3)] flex min-w-[232px] flex-1 transform flex-col border border-solid border-light_gray_color_second bg-white small-screen:min-w-[25%]">
       <div className="relative w-full overflow-hidden pb-[85%]">
         <Link href="#" className="h-full w-full">
           <Image
@@ -106,7 +106,7 @@ export default function FoodCard() {
             >
               <span
                 className={cn(
-                  "border-soft_dark_blue_color block h-[20px] w-[20px] rounded-[50%] border border-solid",
+                  "block h-[20px] w-[20px] rounded-[50%] border border-solid border-soft_dark_blue_color",
                   {
                     "bg-red-600": true,
                     "bg-blue-600": false,
@@ -134,7 +134,7 @@ export default function FoodCard() {
             >
               <span
                 className={cn(
-                  "border-soft_dark_blue_color block h-[20px] w-[20px] rounded-[50%] border border-solid",
+                  "block h-[20px] w-[20px] rounded-[50%] border border-solid border-soft_dark_blue_color",
                   {
                     "bg-red-600": false,
                     "bg-blue-600": false,

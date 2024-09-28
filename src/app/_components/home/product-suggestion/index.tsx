@@ -11,7 +11,7 @@ export default function ProductSuggestion() {
   });
 
   return (
-    <div className="mx-auto mb-[30px] mt-[20px] large-screen:max-w-[1160px] small-screen:w-[calc(100%-60px)] xxs-smallest-screen:w-[calc(100%-40px)]">
+    <div className="xx-smallest-screen:w-[calc(100%-40px)] mx-auto mb-[30px] mt-[20px] large-screen:max-w-[1160px] small-screen:w-[calc(100%-60px)]">
       <div className="mb-[25px] flex justify-center">
         <div className="relative mx-auto flex items-center gap-[40px] after:absolute after:bottom-0 after:h-[2px] after:w-full after:bg-light_gray_color_second after:content-['']">
           <Tab name="Dogs" order={1} tab={tab} setTab={setTab} />

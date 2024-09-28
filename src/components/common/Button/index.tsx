@@ -59,6 +59,8 @@ const buttonVariants = cva(
           "bg-dark_orange_color text-white border-dark_orange_color hover:bg-white hover:text-dark_orange_color",
 
         none: "bg-transparent border-transparent text-black hover:opacity-[0.85]",
+
+        icon: "text-primary hover:text-secondary border-none",
       },
     },
 
