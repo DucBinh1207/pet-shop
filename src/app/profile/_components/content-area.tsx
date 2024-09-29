@@ -5,40 +5,21 @@ import Input from "@/components/common/input";
 import ToolTip from "@/components/common/tooltip";
 import useOrder from "@/store/use-order";
 import Link from "next/link";
-import { Dispatch, SetStateAction, useMemo } from "react";
+import { Dispatch, SetStateAction } from "react";
 import OrderCard from "./order-card";
 import { useShallow } from "zustand/react/shallow";
-import { TABS } from "@/constants/profile-tabs";
+import { Tabs } from "@/constants/profile-tabs";
 import { order } from "@/types/order";
 import OrderSection from "./order-section";
 import { useRouter } from "next/navigation";
 
 type props = {
-  section: (typeof TABS)[number];
-  setSection: Dispatch<SetStateAction<(typeof TABS)[number]>>;
+  tabActive: (typeof Tabs)[keyof typeof Tabs];
+  setTabActive: Dispatch<SetStateAction<(typeof Tabs)[keyof typeof Tabs]>>;
 };
 
-export default function ContentArea({ section, setSection }: props) {
-  const initialOrder: order = {
-    id: "unknown",
-    product: "unknown",
-    quantity: "unknown",
-    name: "unknown",
-    telephone: 0,
-    total: 0,
-  };
-
+export default function ContentArea({ tabActive, setTabActive }: props) {
   const router = useRouter();
-
-  // Set isVisible to true for the selected section from TABS, and false for others
-  const isVisible = useMemo(
-    () =>
-      TABS.map((value) => {
-        return value === section;
-      }),
-    [section],
-  );
-
   const { order, setOrder, clearOrder } = useOrder(
     useShallow((state) => ({
       order: state.order,
@@ -46,24 +27,38 @@ export default function ContentArea({ section, setSection }: props) {
       clearOrder: state.clearOrder,
     })),
   );
+  const initialOrder: order = {
+    id: "",
+    product: "",
+    quantity: "",
+    name: "",
+    telephone: null,
+    total: null,
+  };
 
+  // This will be the place to fetch order data
+  const orderList: order[] = [initialOrder];
+  const orderNum = orderList.length;
+
+  // This is where we will pass the order data that needs to be viewed in detail
+  // and redirect the user to the orders page
   const RedirectOrderDetail = () => {
-    setSection(TABS[1]);
+    setTabActive(Tabs.ORDERS);
     setOrder(initialOrder);
   };
 
   return (
     <div className="flex-1 px-[50px] py-[35px] text-[14px] leading-[1.5] tracking-[0.02em] text-text_color">
       {/* Dashboard Section */}
-      {isVisible[0] && (
+      {tabActive === Tabs.DASHBOARD && (
         <>
           <div className="mb-[25px] mt-[10px] flex flex-col xxx-smallest-screen:text-center">
             <h2 className="text-[22px] font-medium leading-[28px] text-primary">
               Recent Orders
             </h2>
 
-            {/*Set to true if there are recent orders; set to false if there are no recent orders.*/}
-            {true ? (
+            {/*If the number of orders is greater than 0, render the order table; otherwise, render the "browse products" button.*/}
+            {orderNum > 0 ? (
               <>
                 <table className="mt-[20px] w-full xxx-smallest-screen:block">
                   <thead className="w-full border-b border-solid border-light_gray_color_second xxx-smallest-screen:hidden">
@@ -92,7 +87,7 @@ export default function ContentArea({ section, setSection }: props) {
                     size="xsm"
                     className="text-center text-[13px] font-bold uppercase leading-[16px] tracking-[0.05em]"
                     onClick={() => {
-                      setSection(TABS[1]);
+                      setTabActive(Tabs.ORDERS);
                       clearOrder();
                     }}
                   >
@@ -141,7 +136,7 @@ export default function ContentArea({ section, setSection }: props) {
                       <PenIcon size={20} className="ml-[5px] fill-current" />
                     }
                     onClick={() => {
-                      setSection(TABS[2]);
+                      setTabActive(Tabs.ADDRESS);
                     }}
                   ></Button>
                 }
@@ -194,7 +189,7 @@ export default function ContentArea({ section, setSection }: props) {
                 size="xsm"
                 className="text-center text-[13px] font-bold uppercase leading-[16px] tracking-[0.05em]"
                 onClick={() => {
-                  setSection(TABS[3]);
+                  setTabActive(Tabs.ACCOUNT_DETAILS);
                 }}
               >
                 Edit
@@ -205,7 +200,7 @@ export default function ContentArea({ section, setSection }: props) {
       )}
 
       {/* Order Section */}
-      {isVisible[1] && (
+      {tabActive === Tabs.ORDERS && (
         <div className="mt-[10px] flex flex-col">
           {/* 
             If there is an order to display, render the order details. 
@@ -381,7 +376,7 @@ export default function ContentArea({ section, setSection }: props) {
       )}
 
       {/* Address Section */}
-      {isVisible[2] && (
+      {tabActive === Tabs.ADDRESS && (
         <div className="mt-[10px] flex max-w-[430px] flex-col">
           <h2 className="text-[22px] font-medium leading-[28px] text-primary xxx-smallest-screen:text-center">
             Address
@@ -429,7 +424,7 @@ export default function ContentArea({ section, setSection }: props) {
       )}
 
       {/* Account Details Section */}
-      {isVisible[3] && (
+      {tabActive === Tabs.ACCOUNT_DETAILS && (
         <div
           className="mt-[10px] flex max-w-[430px] flex-col"
           id="account_details"

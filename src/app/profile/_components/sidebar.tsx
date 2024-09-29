@@ -1,5 +1,5 @@
 import LogOutIcon from "@/components/common/icons/log-out-icon";
-import { TABS } from "@/constants/profile-tabs";
+import { Tabs } from "@/constants/profile-tabs";
 import useOrder from "@/store/use-order";
 import cn from "@/utils/style/cn";
 import Image from "next/image";
@@ -8,11 +8,11 @@ import { Dispatch, SetStateAction } from "react";
 import { useShallow } from "zustand/react/shallow";
 
 type props = {
-  section: (typeof TABS)[number];
-  setSection: Dispatch<SetStateAction<(typeof TABS)[number]>>;
+  tabActive: (typeof Tabs)[keyof typeof Tabs];
+  setTabActive: Dispatch<SetStateAction<(typeof Tabs)[keyof typeof Tabs]>>;
 };
 
-export default function Sidebar({ section, setSection }: props) {
+export default function Sidebar({ tabActive, setTabActive }: props) {
   const router = useRouter();
 
   const { clearOrder } = useOrder(
@@ -40,11 +40,11 @@ export default function Sidebar({ section, setSection }: props) {
             className={cn(
               "cursor-pointer hover:text-secondary smallest-screen:text-center",
               {
-                "text-text_color": section === TABS[0],
+                "text-text_color": tabActive === Tabs.DASHBOARD,
               },
             )}
             onClick={() => {
-              if (section !== TABS[0]) setSection(TABS[0]);
+              if (tabActive !== Tabs.DASHBOARD) setTabActive(Tabs.DASHBOARD);
             }}
           >
             dashboard
@@ -53,11 +53,11 @@ export default function Sidebar({ section, setSection }: props) {
             className={cn(
               "cursor-pointer hover:text-secondary smallest-screen:text-center",
               {
-                "text-text_color": section === TABS[1],
+                "text-text_color": tabActive === Tabs.ORDERS,
               },
             )}
             onClick={() => {
-              if (section !== TABS[1]) setSection(TABS[1]);
+              if (tabActive !== Tabs.ORDERS) setTabActive(Tabs.ORDERS);
               clearOrder();
             }}
           >
@@ -67,11 +67,11 @@ export default function Sidebar({ section, setSection }: props) {
             className={cn(
               "cursor-pointer hover:text-secondary smallest-screen:text-center",
               {
-                "text-text_color": section === TABS[2],
+                "text-text_color": tabActive === Tabs.ADDRESS,
               },
             )}
             onClick={() => {
-              if (section !== TABS[2]) setSection(TABS[2]);
+              if (tabActive !== Tabs.ADDRESS) setTabActive(Tabs.ADDRESS);
             }}
           >
             address
@@ -80,11 +80,12 @@ export default function Sidebar({ section, setSection }: props) {
             className={cn(
               "cursor-pointer hover:text-secondary smallest-screen:text-center",
               {
-                "text-text_color": section === TABS[3],
+                "text-text_color": tabActive === Tabs.ACCOUNT_DETAILS,
               },
             )}
             onClick={() => {
-              if (section !== TABS[3]) setSection(TABS[3]);
+              if (tabActive !== Tabs.ACCOUNT_DETAILS)
+                setTabActive(Tabs.ACCOUNT_DETAILS);
             }}
           >
             account details
