@@ -1,10 +1,10 @@
-import { Order } from "@/types/order";
+import { OrderType } from "@/types/order";
 import OrderCard from "./order-card";
 import Button from "@/components/common/button";
 import { useRouter } from "next/navigation";
 
 type props = {
-  orderList: Order[];
+  orderList: OrderType[];
   RedirectOrderDetail: () => void;
 };
 

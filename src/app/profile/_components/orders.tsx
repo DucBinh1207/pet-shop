@@ -4,7 +4,7 @@ import { Tabs } from "@/constants/profile-tabs";
 import { Dispatch, SetStateAction } from "react";
 import OrderList from "./order-list";
 import OrderDetail from "./order-detail";
-import { Order as OrderType } from "@/types/order";
+import { OrderType } from "@/types/order";
 import { TabsType } from "../page";
 
 type props = {

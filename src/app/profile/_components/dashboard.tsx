@@ -1,5 +1,5 @@
 import Button from "@/components/common/button";
-import { Order } from "@/types/order";
+import { OrderType } from "@/types/order";
 import OrderCard from "./order-card";
 import useOrder from "@/store/use-order";
 import { useShallow } from "zustand/react/shallow";
@@ -16,7 +16,7 @@ type props = {
 };
 
 export default function Dashboard({ setTabActive }: props) {
-  const initialOrder: Order = {
+  const initialOrder: OrderType = {
     id: "",
     product: "",
     quantity: "",
@@ -34,7 +34,7 @@ export default function Dashboard({ setTabActive }: props) {
   );
 
   // This will be the place to fetch order data
-  const orderList: Order[] = [initialOrder];
+  const orderList: OrderType[] = [initialOrder];
   const orderNum = orderList.length;
 
   // This is where we will pass the order data that needs to be viewed in detail
