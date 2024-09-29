@@ -1,14 +1,14 @@
-import { order } from "@/types/order";
+import { Order } from "@/types/order";
 import { create } from "zustand";
 
 type OrderStore = {
-  order: order | null;
-  setOrder: (order: order) => void;
+  order: Order | null;
+  setOrder: (order: Order) => void;
   clearOrder: () => void;
   resetOrder: () => void;
 };
 
-const defaultOrder: order = {
+const defaultOrder: Order = {
   id: "",
   product: "",
   quantity: "",

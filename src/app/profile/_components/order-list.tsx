@@ -1,17 +1,14 @@
-import { order } from "@/types/order";
+import { Order } from "@/types/order";
 import OrderCard from "./order-card";
 import Button from "@/components/common/button";
 import { useRouter } from "next/navigation";
 
 type props = {
-  orderList: order[];
+  orderList: Order[];
   RedirectOrderDetail: () => void;
 };
 
-export default function OrderSection({
-  RedirectOrderDetail,
-  orderList,
-}: props) {
+export default function OrderList({ RedirectOrderDetail, orderList }: props) {
   const orderNum = orderList.length;
   const router = useRouter();
 

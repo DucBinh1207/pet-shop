@@ -1,8 +1,8 @@
-export type order = {
-  id: string | null;
-  product: string | null;
-  quantity: string | null;
-  name: string | null;
+export type Order = {
+  id: string;
+  product: string;
+  quantity: string;
+  name: string;
   telephone: number | null;
   total: number | null;
 };

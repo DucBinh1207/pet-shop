@@ -6,10 +6,11 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { Dispatch, SetStateAction } from "react";
 import { useShallow } from "zustand/react/shallow";
+import { TabsType } from "../page";
 
 type props = {
-  tabActive: (typeof Tabs)[keyof typeof Tabs];
-  setTabActive: Dispatch<SetStateAction<(typeof Tabs)[keyof typeof Tabs]>>;
+  tabActive: TabsType;
+  setTabActive: Dispatch<SetStateAction<TabsType>>;
 };
 
 export default function Sidebar({ tabActive, setTabActive }: props) {

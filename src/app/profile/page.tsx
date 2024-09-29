@@ -6,11 +6,11 @@ import { useState } from "react";
 import ContentArea from "./_components/content-area";
 import { Tabs } from "@/constants/profile-tabs";
 
+export type TabsType = (typeof Tabs)[keyof typeof Tabs];
+
 export default function Profile() {
   //set default section and tab is DASHBOARD
-  const [tabActive, setTabActive] = useState<(typeof Tabs)[keyof typeof Tabs]>(
-    Tabs.DASHBOARD,
-  );
+  const [tabActive, setTabActive] = useState<TabsType>(Tabs.DASHBOARD);
 
   return (
     <>
