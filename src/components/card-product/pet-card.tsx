@@ -11,7 +11,7 @@ import Link from "next/link";
 
 export default function PetCard() {
   return (
-    <>
+    <div className="border-box flex min-w-[232px] flex-1 transform flex-col border border-solid border-light_gray_color_second bg-white small-screen:min-w-[25%] x-small-screen:min-w-[calc(100%/3)] x-smallest-screen:min-w-[50%]">
       <div className="relative w-full overflow-hidden pb-[85%]">
         <Link href="#" className="h-full w-full">
           <Image
@@ -72,6 +72,6 @@ export default function PetCard() {
           />
         </div>
       </form>
-    </>
+    </div>
   );
 }
