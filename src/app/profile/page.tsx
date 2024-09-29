@@ -4,9 +4,11 @@ import BreadCrumb from "@/components/bread-crumb";
 import Sidebar from "./_components/sidebar";
 import { useState } from "react";
 import ContentArea from "./_components/content-area";
+import { TABS } from "@/constants/profile-tabs";
 
 export default function Profile() {
-  const [section, setSection] = useState(1);
+  //set default section and tab is Dashboard
+  const [section, setSection] = useState<(typeof TABS)[number]>(TABS[0]);
 
   return (
     <>

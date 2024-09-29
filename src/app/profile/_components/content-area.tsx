@@ -1,93 +1,125 @@
 import Button from "@/components/common/button";
-import EyeIcon from "@/components/common/icons/eye-icon";
 import LocateIcon from "@/components/common/icons/locate-icon";
 import PenIcon from "@/components/common/icons/pen-icon";
 import Input from "@/components/common/input";
 import ToolTip from "@/components/common/tooltip";
 import useOrder from "@/store/use-order";
 import Link from "next/link";
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useMemo } from "react";
 import OrderCard from "./order-card";
+import { useShallow } from "zustand/react/shallow";
+import { TABS } from "@/constants/profile-tabs";
+import { order } from "@/types/order";
+import OrderSection from "./order-section";
+import { useRouter } from "next/navigation";
 
 type props = {
-  section: number;
-  setSection: Dispatch<SetStateAction<number>>;
+  section: (typeof TABS)[number];
+  setSection: Dispatch<SetStateAction<(typeof TABS)[number]>>;
 };
 
 export default function ContentArea({ section, setSection }: props) {
-  const isVisible = [1, 2, 3, 4].map((value) => {
-    return value === section;
-  });
+  const initialOrder: order = {
+    id: "unknown",
+    product: "unknown",
+    quantity: "unknown",
+    name: "unknown",
+    telephone: 0,
+    total: 0,
+  };
 
-  const { order, setOrder, clearOrder } = useOrder((state) => ({
-    order: state.order,
-    setOrder: state.setOrder,
-    clearOrder: state.clearOrder,
-  }));
+  const router = useRouter();
+
+  // Set isVisible to true for the selected section from TABS, and false for others
+  const isVisible = useMemo(
+    () =>
+      TABS.map((value) => {
+        return value === section;
+      }),
+    [section],
+  );
+
+  const { order, setOrder, clearOrder } = useOrder(
+    useShallow((state) => ({
+      order: state.order,
+      setOrder: state.setOrder,
+      clearOrder: state.clearOrder,
+    })),
+  );
 
   const RedirectOrderDetail = () => {
-    setSection(2);
-    setOrder();
+    setSection(TABS[1]);
+    setOrder(initialOrder);
   };
 
   return (
     <div className="flex-1 px-[50px] py-[35px] text-[14px] leading-[1.5] tracking-[0.02em] text-text_color">
+      {/* Dashboard Section */}
       {isVisible[0] && (
         <>
-          <div className="mb-[25px] mt-[10px] flex flex-col">
-            <h2 className="xxx-smallest-screen:text-center text-[22px] font-medium leading-[28px] text-primary">
+          <div className="mb-[25px] mt-[10px] flex flex-col xxx-smallest-screen:text-center">
+            <h2 className="text-[22px] font-medium leading-[28px] text-primary">
               Recent Orders
             </h2>
 
-            <table className="xxx-smallest-screen:block mt-[20px] w-full">
-              <thead className="xxx-smallest-screen:hidden w-full border-b border-solid border-light_gray_color_second">
-                <tr className="xxx-smallest-screen:block w-full text-left text-[13px] uppercase leading-[1] tracking-[0.02em] text-text_color">
-                  <th className="w-[20%] pb-[15px] font-normal">Order</th>
-                  <th className="w-[10%] pb-[15px] font-normal">Items</th>
-                  <th className="w-[40%] pb-[15px] font-normal">Date</th>
-                  <th className="w-[15%] pb-[15px] font-normal">Total</th>
-                  <th className="w-[15%] pb-[15px] font-normal">Status</th>
-                  <th className="w-[10%] pb-[15px] font-normal">Action</th>
-                </tr>
-              </thead>
+            {/*Set to true if there are recent orders; set to false if there are no recent orders.*/}
+            {false ? (
+              <>
+                <table className="mt-[20px] w-full xxx-smallest-screen:block">
+                  <thead className="w-full border-b border-solid border-light_gray_color_second xxx-smallest-screen:hidden">
+                    <tr className="w-full text-left text-[13px] uppercase leading-[1] tracking-[0.02em] text-text_color xxx-smallest-screen:block">
+                      <th className="w-[20%] pb-[15px] font-normal">Order</th>
+                      <th className="w-[10%] pb-[15px] font-normal">Items</th>
+                      <th className="w-[40%] pb-[15px] font-normal">Date</th>
+                      <th className="w-[15%] pb-[15px] font-normal">Total</th>
+                      <th className="w-[15%] pb-[15px] font-normal">Status</th>
+                      <th className="w-[10%] pb-[15px] font-normal">Action</th>
+                    </tr>
+                  </thead>
 
-              <tbody className="xxx-smallest-screen:block w-full text-left">
-                <OrderCard
-                  RedirectOrderDetail={() => {
-                    RedirectOrderDetail();
-                  }}
-                />
+                  <tbody className="w-full text-left xxx-smallest-screen:block">
+                    <OrderCard RedirectOrderDetail={RedirectOrderDetail} />
 
-                <OrderCard
-                  RedirectOrderDetail={() => {
-                    RedirectOrderDetail();
-                  }}
-                />
+                    <OrderCard RedirectOrderDetail={RedirectOrderDetail} />
 
-                <OrderCard
-                  RedirectOrderDetail={() => {
-                    RedirectOrderDetail();
-                  }}
-                />
-              </tbody>
-            </table>
+                    <OrderCard RedirectOrderDetail={RedirectOrderDetail} />
+                  </tbody>
+                </table>
 
-            <div className="mt-[20px] flex justify-center">
-              <Button
-                variant="primary"
-                size="xsm"
-                className="text-center text-[13px] font-bold uppercase leading-[16px] tracking-[0.05em]"
-                onClick={() => {
-                  setSection(2);
-                  clearOrder();
-                }}
-              >
-                View All
-              </Button>
-            </div>
+                <div className="mt-[20px] flex justify-center">
+                  <Button
+                    variant="primary"
+                    size="xsm"
+                    className="text-center text-[13px] font-bold uppercase leading-[16px] tracking-[0.05em]"
+                    onClick={() => {
+                      setSection(TABS[1]);
+                      clearOrder();
+                    }}
+                  >
+                    View All
+                  </Button>
+                </div>
+              </>
+            ) : (
+              <div className="mt-[20px] flex flex-col items-center gap-[20px]">
+                <h3 className="mb-[10px]">No order has been made yet.</h3>
+                <div>
+                  <Button
+                    variant="primary"
+                    size="xsm"
+                    className="text-center text-[13px] font-bold uppercase leading-[16px] tracking-[0.05em]"
+                    onClick={() => {
+                      router.push("/");
+                    }}
+                  >
+                    browser products
+                  </Button>
+                </div>
+              </div>
+            )}
           </div>
 
-          <div className="mb-[25px] flex flex-col">
+          <div className="mb-[25px] flex flex-col xxx-smallest-screen:text-center">
             <h2 className="text-[22px] font-medium leading-[28px] text-primary">
               Your Shipping Address
             </h2>
@@ -109,7 +141,7 @@ export default function ContentArea({ section, setSection }: props) {
                       <PenIcon size={20} className="ml-[5px] fill-current" />
                     }
                     onClick={() => {
-                      setSection(3);
+                      setSection(TABS[2]);
                     }}
                   ></Button>
                 }
@@ -117,36 +149,36 @@ export default function ContentArea({ section, setSection }: props) {
             </div>
           </div>
 
-          <div className="flex flex-col">
+          <div className="flex flex-col xxx-smallest-screen:text-center">
             <h2 className="text-[22px] font-medium leading-[28px] text-primary">
               Account Details
             </h2>
 
             <div className="mt-[20px] flex items-center justify-center gap-[10px]">
-              <table className="xxx-smallest-screen:block min-w-[50%]">
-                <tbody className="xxx-smallest-screen:block flex w-full flex-col items-center">
-                  <tr className="xxx-smallest-screen:block flex w-full border-b border-solid border-light_gray_color_second text-left">
+              <table className="min-w-[50%] xxx-smallest-screen:block">
+                <tbody className="flex w-full flex-col items-center xxx-smallest-screen:block">
+                  <tr className="flex w-full border-b border-solid border-light_gray_color_second text-left xxx-smallest-screen:block">
                     <th className="min-w-[50%] py-[14px] font-medium text-primary">
                       Name :
                     </th>
                     <td className="min-w-[50%] py-[14px]">Tran Duc Binh</td>
                   </tr>
 
-                  <tr className="xxx-smallest-screen:block flex w-full border-b border-solid border-light_gray_color_second text-left">
+                  <tr className="flex w-full border-b border-solid border-light_gray_color_second text-left xxx-smallest-screen:block">
                     <th className="min-w-[50%] py-[14px] font-medium text-primary">
                       Telephone :
                     </th>
                     <td className="min-w-[50%] py-[14px]">0123 987 456</td>
                   </tr>
 
-                  <tr className="xxx-smallest-screen:block flex w-full border-b border-solid border-light_gray_color_second text-left">
+                  <tr className="flex w-full border-b border-solid border-light_gray_color_second text-left xxx-smallest-screen:block">
                     <th className="min-w-[50%] py-[14px] font-medium text-primary">
                       Email :
                     </th>
                     <td className="min-w-[50%] py-[14px]">example@gmail.com</td>
                   </tr>
 
-                  <tr className="xxx-smallest-screen:block flex w-full border-b border-solid border-light_gray_color_second text-left">
+                  <tr className="flex w-full border-b border-solid border-light_gray_color_second text-left xxx-smallest-screen:block">
                     <th className="min-w-[50%] py-[14px] font-medium text-primary">
                       Nationality :
                     </th>
@@ -162,7 +194,7 @@ export default function ContentArea({ section, setSection }: props) {
                 size="xsm"
                 className="text-center text-[13px] font-bold uppercase leading-[16px] tracking-[0.05em]"
                 onClick={() => {
-                  setSection(4);
+                  setSection(TABS[3]);
                 }}
               >
                 Edit
@@ -172,8 +204,13 @@ export default function ContentArea({ section, setSection }: props) {
         </>
       )}
 
+      {/* Order Section */}
       {isVisible[1] && (
         <div className="mt-[10px] flex flex-col">
+          {/* 
+            If there is an order to display, render the order details. 
+            Otherwise, render the order table.
+          */}
           {order ? (
             <div className="flex flex-col">
               <h3 className="mb-[10px]">
@@ -199,7 +236,7 @@ export default function ContentArea({ section, setSection }: props) {
 
                 <table className="xxx-smallest-screen:block">
                   <thead className="xxx-smallest-screen:hidden">
-                    <tr className="xxx-smallest-screen:block uppercase">
+                    <tr className="uppercase xxx-smallest-screen:block">
                       <th className="w-[70%] border-b border-solid border-light_gray_color_second pb-[15px] text-left text-[13px] font-normal leading-[1]">
                         product
                       </th>
@@ -262,7 +299,7 @@ export default function ContentArea({ section, setSection }: props) {
                   </tbody>
 
                   <tfoot>
-                    <tr className="xxx-smallest-screen:block uppercase">
+                    <tr className="uppercase xxx-smallest-screen:block">
                       <th className="w-[70%] border-b border-solid border-light_gray_color_second text-left text-[13px] font-normal leading-[1]">
                         subtotal :
                       </th>
@@ -271,7 +308,7 @@ export default function ContentArea({ section, setSection }: props) {
                       </td>
                     </tr>
 
-                    <tr className="xxx-smallest-screen:block uppercase">
+                    <tr className="uppercase xxx-smallest-screen:block">
                       <th className="w-[70%] border-b border-solid border-light_gray_color_second text-left text-[13px] font-normal leading-[1]">
                         Shipping :
                       </th>
@@ -335,56 +372,18 @@ export default function ContentArea({ section, setSection }: props) {
               </div>
             </div>
           ) : (
-            <table className="xxx-smallest-screen:block mt-[20px] w-full">
-              <thead className="xxx-smallest-screen:hidden w-full border-b border-solid border-light_gray_color_second">
-                <tr className="xxx-smallest-screen:block w-full text-left text-[13px] uppercase leading-[1] tracking-[0.02em] text-text_color">
-                  <th className="w-[20%] pb-[15px] font-normal">Order</th>
-                  <th className="w-[10%] pb-[15px] font-normal">Items</th>
-                  <th className="w-[40%] pb-[15px] font-normal">Date</th>
-                  <th className="w-[15%] pb-[15px] font-normal">Total</th>
-                  <th className="w-[15%] pb-[15px] font-normal">Status</th>
-                  <th className="w-[10%] pb-[15px] font-normal">Action</th>
-                </tr>
-              </thead>
-              <tbody className="xxx-smallest-screen:block w-full text-left">
-                <OrderCard
-                  RedirectOrderDetail={() => {
-                    RedirectOrderDetail();
-                  }}
-                />
-
-                <OrderCard
-                  RedirectOrderDetail={() => {
-                    RedirectOrderDetail();
-                  }}
-                />
-
-                <OrderCard
-                  RedirectOrderDetail={() => {
-                    RedirectOrderDetail();
-                  }}
-                />
-
-                <OrderCard
-                  RedirectOrderDetail={() => {
-                    RedirectOrderDetail();
-                  }}
-                />
-
-                <OrderCard
-                  RedirectOrderDetail={() => {
-                    RedirectOrderDetail();
-                  }}
-                />
-              </tbody>
-            </table>
+            <OrderSection
+              RedirectOrderDetail={RedirectOrderDetail}
+              orderList={[initialOrder]}
+            />
           )}
         </div>
       )}
 
+      {/* Address Section */}
       {isVisible[2] && (
         <div className="mt-[10px] flex max-w-[430px] flex-col">
-          <h2 className="text-[22px] font-medium leading-[28px] text-primary">
+          <h2 className="text-[22px] font-medium leading-[28px] text-primary xxx-smallest-screen:text-center">
             Address
           </h2>
 
@@ -429,9 +428,13 @@ export default function ContentArea({ section, setSection }: props) {
         </div>
       )}
 
+      {/* Account Details Section */}
       {isVisible[3] && (
-        <div className="mt-[10px] flex max-w-[430px] flex-col">
-          <h2 className="text-[22px] font-medium leading-[28px] text-primary">
+        <div
+          className="mt-[10px] flex max-w-[430px] flex-col"
+          id="account_details"
+        >
+          <h2 className="text-[22px] font-medium leading-[28px] text-primary xxx-smallest-screen:text-center">
             Account Details
           </h2>
 

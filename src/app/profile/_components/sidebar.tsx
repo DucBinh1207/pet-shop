@@ -1,24 +1,28 @@
 import LogOutIcon from "@/components/common/icons/log-out-icon";
+import { TABS } from "@/constants/profile-tabs";
 import useOrder from "@/store/use-order";
 import cn from "@/utils/style/cn";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { Dispatch, SetStateAction } from "react";
+import { useShallow } from "zustand/react/shallow";
 
 type props = {
-  section: number;
-  setSection: Dispatch<SetStateAction<number>>;
+  section: (typeof TABS)[number];
+  setSection: Dispatch<SetStateAction<(typeof TABS)[number]>>;
 };
 
 export default function Sidebar({ section, setSection }: props) {
   const router = useRouter();
-  const { clearOrder } = useOrder((state) => ({
-    order: state.order,
-    clearOrder: state.clearOrder,
-  }));
+
+  const { clearOrder } = useOrder(
+    useShallow((state) => ({
+      clearOrder: state.clearOrder,
+    })),
+  );
 
   return (
-    <div className="flex basis-[260px] flex-col border-r border-solid border-light_gray_color_second p-[40px] smallest-screen:border-r-0 smallest-screen:border-b">
+    <div className="flex basis-[260px] flex-col border-r border-solid border-light_gray_color_second p-[40px] smallest-screen:border-b smallest-screen:border-r-0">
       <div className="mb-[25px] flex items-center gap-[20px] text-start smallest-screen:flex-col">
         <div className="relative h-[70px] w-[70px] overflow-clip object-cover">
           <Image src="/assets/images/avatar.jpg" fill alt="avatar" />
@@ -36,11 +40,11 @@ export default function Sidebar({ section, setSection }: props) {
             className={cn(
               "cursor-pointer hover:text-secondary smallest-screen:text-center",
               {
-                "text-text_color": section === 1,
+                "text-text_color": section === TABS[0],
               },
             )}
             onClick={() => {
-              if (section !== 1) setSection(1);
+              if (section !== TABS[0]) setSection(TABS[0]);
             }}
           >
             dashboard
@@ -49,11 +53,11 @@ export default function Sidebar({ section, setSection }: props) {
             className={cn(
               "cursor-pointer hover:text-secondary smallest-screen:text-center",
               {
-                "text-text_color": section === 2,
+                "text-text_color": section === TABS[1],
               },
             )}
             onClick={() => {
-              if (section !== 2) setSection(2);
+              if (section !== TABS[1]) setSection(TABS[1]);
               clearOrder();
             }}
           >
@@ -63,11 +67,11 @@ export default function Sidebar({ section, setSection }: props) {
             className={cn(
               "cursor-pointer hover:text-secondary smallest-screen:text-center",
               {
-                "text-text_color": section === 3,
+                "text-text_color": section === TABS[2],
               },
             )}
             onClick={() => {
-              if (section !== 3) setSection(3);
+              if (section !== TABS[2]) setSection(TABS[2]);
             }}
           >
             address
@@ -76,11 +80,11 @@ export default function Sidebar({ section, setSection }: props) {
             className={cn(
               "cursor-pointer hover:text-secondary smallest-screen:text-center",
               {
-                "text-text_color": section === 4,
+                "text-text_color": section === TABS[3],
               },
             )}
             onClick={() => {
-              if (section !== 4) setSection(4);
+              if (section !== TABS[3]) setSection(TABS[3]);
             }}
           >
             account details
