@@ -63,7 +63,7 @@ export default function ContentArea({ section, setSection }: props) {
             </h2>
 
             {/*Set to true if there are recent orders; set to false if there are no recent orders.*/}
-            {false ? (
+            {true ? (
               <>
                 <table className="mt-[20px] w-full xxx-smallest-screen:block">
                   <thead className="w-full border-b border-solid border-light_gray_color_second xxx-smallest-screen:hidden">
