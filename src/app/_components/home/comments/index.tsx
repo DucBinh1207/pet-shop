@@ -48,7 +48,7 @@ export default function Comments() {
           >
             {[...Array(4)].map((_, index) => (
               <SwiperSlide
-                className="min-w-[calc(100%/3)] rounded-[8px] px-[60px] pb-[49px] pt-[47px] small-screen:min-w-[50%] small-screen:px-[30px] small-screen:py-[20px] xs-smallest-screen:min-w-full"
+                className="x-smallest-screen:min-w-full min-w-[calc(100%/3)] rounded-[8px] px-[60px] pb-[49px] pt-[47px] small-screen:min-w-[50%] small-screen:px-[30px] small-screen:py-[20px]"
                 key={index}
               >
                 <Item />
@@ -60,6 +60,7 @@ export default function Comments() {
         <NavigationButton
           prevClass="about-us-swiper-button-prev"
           nextClass="about-us-swiper-button-next"
+          typeReference="group"
         />
       </div>
     </div>

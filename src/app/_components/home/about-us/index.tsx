@@ -120,7 +120,7 @@ export default function AboutUs() {
             >
               {[...Array(5)].map((_, index) => (
                 <SwiperSlide
-                  className="min-w-[360px] rounded-[8px] border border-solid border-light_gray_color bg-white px-[35px] pb-[44px] pt-[35px] small-screen:min-w-[calc((100%-80px)/3)] small-screen:p-[25px] xs-small-screen:min-w-[calc((100%-20px)/3)] xs-smallest-screen:min-w-[calc((100%-20px)/2)]"
+                  className="x-smallest-screen:min-w-[calc((100%-20px)/2)] x-small-screen:min-w-[calc((100%-20px)/3)] min-w-[360px] rounded-[8px] border border-solid border-light_gray_color bg-white px-[35px] pb-[44px] pt-[35px] small-screen:min-w-[calc((100%-80px)/3)] small-screen:p-[25px]"
                   key={index}
                 >
                   <Item />

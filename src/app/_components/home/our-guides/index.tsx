@@ -72,7 +72,7 @@ export default function OurGuides() {
             wrapperClass="swiper-wrapper mb-[33px] large-screen:grid max-w-full large-screen:grid-cols-4 large-screen:grid-rows-2 large-screen:gap-x-[40px] large-screen:gap-y-[30px] "
           >
             <SwiperSlide
-              className="small-screen:swiper-slide small-screen:swiper-slide-visible small-screen:swiper-slide-fully-visible small-screen:swiper-slide-active overflow-hidden rounded-[8px] border border-solid border-light_gray_color_second large-screen:col-span-2 large-screen:row-span-2 large-screen:min-w-[560px] small-screen:min-w-[calc((100%-60px)/4)] xs-small-screen:min-w-[calc((100%-40px)/3)] xs-smallest-screen:min-w-[calc((100%-20px)/2)]"
+              className="small-screen:swiper-slide small-screen:swiper-slide-visible small-screen:swiper-slide-fully-visible small-screen:swiper-slide-active x-smallest-screen:min-w-[calc((100%-20px)/2)] x-small-screen:min-w-[calc((100%-40px)/3)] overflow-hidden rounded-[8px] border border-solid border-light_gray_color_second large-screen:col-span-2 large-screen:row-span-2 large-screen:min-w-[560px] small-screen:min-w-[calc((100%-60px)/4)]"
               key={0}
             >
               <Link href="/guides" className="relative block pb-[61.53%]">
@@ -112,7 +112,7 @@ export default function OurGuides() {
             </SwiperSlide>
             {[...Array(4)].map((_, index) => (
               <SwiperSlide
-                className="small-screen:swiper-slide small-screen:swiper-slide-visible small-screen:swiper-slide-fully-visible small-screen:swiper-slide-active overflow-hidden rounded-[8px] border border-solid border-light_gray_color_second large-screen:col-span-1 large-screen:row-span-1 large-screen:max-w-[260px] small-screen:min-w-[calc((100%-60px)/4)] xs-small-screen:min-w-[calc((100%-40px)/3)] xs-smallest-screen:min-w-[calc((100%-20px)/2)]"
+                className="small-screen:swiper-slide small-screen:swiper-slide-visible small-screen:swiper-slide-fully-visible small-screen:swiper-slide-active x-smallest-screen:min-w-[calc((100%-20px)/2)] x-small-screen:min-w-[calc((100%-40px)/3)] overflow-hidden rounded-[8px] border border-solid border-light_gray_color_second large-screen:col-span-1 large-screen:row-span-1 large-screen:max-w-[260px] small-screen:min-w-[calc((100%-60px)/4)]"
                 key={index + 1}
               >
                 <Item />
