@@ -1,5 +1,5 @@
 import PageContent from "./_components/page-content";
 
-export default function Profile() {
+export default function Cart() {
   return <PageContent />;
 }

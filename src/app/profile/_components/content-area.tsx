@@ -4,7 +4,7 @@ import Dashboard from "./dashboard";
 import Address from "./address";
 import AccountDetail from "./account-detail";
 import Order from "./orders";
-import { TabsType } from "../page";
+import { TabsType } from "./page-content";
 
 type props = {
   tabActive: TabsType;

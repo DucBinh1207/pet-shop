@@ -31,7 +31,7 @@ export default function FoodCard() {
   };
 
   return (
-    <div className="border-box x-smallest-screen:min-w-[50%] x-small-screen:min-w-[calc(100%/3)] flex min-w-[232px] flex-1 transform flex-col border border-solid border-light_gray_color_second bg-white small-screen:min-w-[25%]">
+    <div className="border-box flex min-w-[232px] flex-1 transform flex-col border border-solid border-light_gray_color_second bg-white small-screen:min-w-[25%] x-small-screen:min-w-[calc(100%/3)] x-smallest-screen:min-w-[50%]">
       <div className="relative w-full overflow-hidden pb-[85%]">
         <Link href="#" className="h-full w-full">
           <Image
@@ -118,7 +118,7 @@ export default function FoodCard() {
 
             <li
               aria-checked={true}
-              tabIndex={0}
+              tabIndex={1}
               data-wvstooltip="8lbs"
               className={cn(
                 "m-[2.5px] flex h-[24px] w-[24px] cursor-pointer list-none items-center justify-center rounded-[50%] border border-solid bg-white",

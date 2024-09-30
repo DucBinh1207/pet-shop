@@ -1,0 +1,95 @@
+"use client";
+
+import Button from "@/components/common/button";
+import AngleIcon from "@/components/common/icons/angle-icon";
+import CartIcon from "@/components/common/icons/cart-icon";
+import CircleInfoIcon from "@/components/common/icons/circle-info";
+import MinusIcon from "@/components/common/icons/minus-icon";
+import PlusIcon from "@/components/common/icons/plus-icon";
+import Input from "@/components/common/input";
+import cn from "@/utils/style/cn";
+import Image from "next/image";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import ProductItem from "./product-item";
+import CheckoutForm from "./checkout-form";
+
+export default function CartContent() {
+  const router = useRouter();
+
+  //Handle fetching order data
+  const orderList = new Array(3);
+  const orderNum = orderList.length;
+
+  if (orderNum === 0) {
+    return (
+      <div className="mx-auto mb-[40px] mt-[30px] w-[1160px] min-w-[320px] rounded-[4px] border border-solid border-light_gray_color_second bg-white small-screen:mb-[30px] small-screen:mt-[15px] small-screen:w-[calc(100%-60px)] smallest-screen:mb-[20px] smallest-screen:mt-[10px] xx-smallest-screen:w-full">
+        <div className="flex h-full flex-col items-center px-[60px] py-[125px] small-screen:py-[85px]">
+          <div>
+            <CartIcon size={90} className="fill-current text-primary" />
+          </div>
+          <h2 className="mt-[35px] max-w-[800px] text-center font-quicksand text-[27px] font-bold leading-[1.27] tracking-[-0.01em] text-primary xxx-smallest-screen:text-[22px]">
+            Your cart is currently empty
+          </h2>
+          <div className="mt-[45px]">
+            <Button
+              onClick={() => {
+                router.push("/");
+              }}
+            >
+              return to home
+            </Button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="mx-auto mb-[40px] mt-[30px] w-[1160px] min-w-[320px] rounded-[4px] border border-solid border-light_gray_color_second bg-white small-screen:mb-[30px] small-screen:mt-[15px] small-screen:w-[calc(100%-60px)] smallest-screen:mb-[20px] smallest-screen:mt-[10px] xx-smallest-screen:w-full">
+      <div className="flex h-full text-text_color small-screen:items-center small-screen:px-[20px] small-screen:pb-[20px] smallest-screen:flex-col">
+        <div className="medium-screen:px-[30px] flex-1 px-[40px] py-[20px]">
+          <form action="" className="py-[15px]">
+            <table className="medium-screen:block w-full">
+              <thead className="medium-screen:block medium-screen:w-full">
+                <tr className="medium-screen:flex text-[13px] uppercase leading-[18px] tracking-[0.02em]">
+                  <th
+                    className="medium-screen:flex-1 text-left font-normal"
+                    colSpan={2}
+                  >
+                    product
+                  </th>
+                  <th className="medium-screen:hidden pr-[25px] text-center font-normal">
+                    quantity
+                  </th>
+                  <th className="text-right font-normal">subtotal</th>
+                </tr>
+              </thead>
+
+              <tbody className="medium-screen:block medium-screen:w-full">
+                <ProductItem />
+
+                <tr>
+                  <td colSpan={5} className="pt-[25px]">
+                    <div className="flex justify-end">
+                      <Button
+                        type="submit"
+                        className="pointer-events-none cursor-not-allowed opacity-20"
+                        disabled
+                      >
+                        Update Cart
+                      </Button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </form>
+        </div>
+
+        <CheckoutForm />
+      </div>
+    </div>
+  );
+}

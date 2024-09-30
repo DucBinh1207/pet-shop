@@ -9,7 +9,7 @@ import { Tabs } from "@/constants/profile-tabs";
 import LocateIcon from "@/components/common/icons/locate-icon";
 import { Dispatch, SetStateAction } from "react";
 import { useRouter } from "next/navigation";
-import { TabsType } from "../page";
+import { TabsType } from "./page-content";
 
 type props = {
   setTabActive: Dispatch<SetStateAction<TabsType>>;
