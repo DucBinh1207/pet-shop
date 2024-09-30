@@ -5,7 +5,7 @@ import { Dispatch, SetStateAction } from "react";
 import OrderList from "./order-list";
 import OrderDetail from "./order-detail";
 import { OrderType } from "@/types/order";
-import { TabsType } from "../page";
+import { TabsType } from "./page-content";
 
 type props = {
   setTabActive: Dispatch<SetStateAction<TabsType>>;

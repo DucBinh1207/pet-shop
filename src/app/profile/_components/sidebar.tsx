@@ -6,7 +6,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { Dispatch, SetStateAction } from "react";
 import { useShallow } from "zustand/react/shallow";
-import { TabsType } from "../page";
+import { TabsType } from "./page-content";
 
 type props = {
   tabActive: TabsType;
