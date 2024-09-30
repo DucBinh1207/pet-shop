@@ -1,17 +1,8 @@
 "use client";
 
 import Button from "@/components/common/button";
-import AngleIcon from "@/components/common/icons/angle-icon";
 import CartIcon from "@/components/common/icons/cart-icon";
-import CircleInfoIcon from "@/components/common/icons/circle-info";
-import MinusIcon from "@/components/common/icons/minus-icon";
-import PlusIcon from "@/components/common/icons/plus-icon";
-import Input from "@/components/common/input";
-import cn from "@/utils/style/cn";
-import Image from "next/image";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
 import ProductItem from "./product-item";
 import CheckoutForm from "./checkout-form";
 
@@ -49,18 +40,18 @@ export default function CartContent() {
   return (
     <div className="mx-auto mb-[40px] mt-[30px] w-[1160px] min-w-[320px] rounded-[4px] border border-solid border-light_gray_color_second bg-white small-screen:mb-[30px] small-screen:mt-[15px] small-screen:w-[calc(100%-60px)] smallest-screen:mb-[20px] smallest-screen:mt-[10px] xx-smallest-screen:w-full">
       <div className="flex h-full text-text_color small-screen:items-center small-screen:px-[20px] small-screen:pb-[20px] smallest-screen:flex-col">
-        <div className="medium-screen:px-[30px] flex-1 px-[40px] py-[20px]">
+        <div className="flex-1 px-[40px] py-[20px] medium-screen:px-[30px]">
           <form action="" className="py-[15px]">
-            <table className="medium-screen:block w-full">
+            <table className="w-full medium-screen:block">
               <thead className="medium-screen:block medium-screen:w-full">
-                <tr className="medium-screen:flex text-[13px] uppercase leading-[18px] tracking-[0.02em]">
+                <tr className="text-[13px] uppercase leading-[18px] tracking-[0.02em] medium-screen:flex">
                   <th
-                    className="medium-screen:flex-1 text-left font-normal"
+                    className="text-left font-normal medium-screen:flex-1"
                     colSpan={2}
                   >
                     product
                   </th>
-                  <th className="medium-screen:hidden pr-[25px] text-center font-normal">
+                  <th className="pr-[25px] text-center font-normal medium-screen:hidden">
                     quantity
                   </th>
                   <th className="text-right font-normal">subtotal</th>

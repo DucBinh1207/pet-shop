@@ -1,16 +1,28 @@
 "use client";
 
-import { cva } from "class-variance-authority";
-import { ComponentProps, useMemo } from "react";
+import { cva, VariantProps } from "class-variance-authority";
+import { ComponentProps, forwardRef, useMemo } from "react";
 
-type InputProps = ComponentProps<"input"> & {
-  inputSize?: "small" | "medium" | "large" | "quantity";
-  variant?: "primary" | "secondary" | "third" | "quantity";
+interface InputProps
+  extends Pick<
+      ComponentProps<"input">,
+      | "className"
+      | "onChange"
+      | "onBlur"
+      | "type"
+      | "placeholder"
+      | "id"
+      | "name"
+      | "value"
+      | "checked"
+      | "onClick"
+    >,
+    VariantProps<typeof inputVariants> {
   trimOnBlur?: boolean;
-};
+}
 
 const inputVariants = cva(
-  "font-medium border-solid border rounded-[3px] tracking-[0.01em] h-auto",
+  "font-medium border-solid border rounded-[3px] tracking-[0.01em]",
   {
     variants: {
       inputSize: {
@@ -18,6 +30,9 @@ const inputVariants = cva(
         medium: "px-[12px] py-[9px] text-[13px] leading-[16px]",
         large: "px-[14px] py-[10px] text-[15px] leading-[18px]",
         quantity: "w-[50px]",
+        medium_full_width:
+          "px-[12px] py-[9px] text-[13px] leading-[16px] w-full font-quicksand ",
+        form_controls: "w-[18px]  h-[18px] ",
       },
       variant: {
         primary: "text-primary border-input_border_color bg-background_color ",
@@ -49,31 +64,50 @@ const inputVariants = cva(
   },
 );
 
-export default function Input({
-  inputSize,
-  variant,
-  trimOnBlur,
-  onChange: onChangeProp,
-  onBlur: onBlurProp,
-  ...rest
-}: InputProps) {
-  const className = useMemo(() => {
-    return inputVariants({ inputSize, variant });
-  }, [inputSize, variant]);
+const Input = forwardRef<HTMLInputElement, InputProps>(
+  (
+    {
+      inputSize,
+      variant,
+      trimOnBlur,
+      className: classProps,
+      onChange: onChangeProp,
+      onBlur: onBlurProp,
+      ...rest
+    },
+    ref,
+  ) => {
+    const classVariants = useMemo(() => {
+      return inputVariants({ inputSize, variant });
+    }, [inputSize, variant]);
 
-  const handleBlur = (event: React.FocusEvent<HTMLInputElement, Element>) => {
-    if (trimOnBlur) {
-      const trimmedValue = event.target.value.trim();
-      onChangeProp?.({
-        ...event,
-        target: {
-          ...event.target,
-          value: trimmedValue,
-        },
-      });
-      onBlurProp?.(event);
+    let className = classVariants;
+
+    // If classProps exists add it to className
+    if (classProps) {
+      className += " " + classProps;
     }
-  };
 
-  return <input {...rest} className={className} onBlur={handleBlur} />;
-}
+    const handleBlur = (event: React.FocusEvent<HTMLInputElement, Element>) => {
+      if (trimOnBlur) {
+        const trimmedValue = event.target.value.trim();
+        onChangeProp?.({
+          ...event,
+          target: {
+            ...event.target,
+            value: trimmedValue,
+          },
+        });
+        onBlurProp?.(event);
+      }
+    };
+
+    return (
+      <input ref={ref} className={className} {...rest} onBlur={handleBlur} />
+    );
+  },
+);
+
+Input.displayName = "Input";
+
+export default Input;

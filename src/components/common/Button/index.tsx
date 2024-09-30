@@ -6,7 +6,7 @@ import React, { ComponentProps, forwardRef, ReactNode, useMemo } from "react";
 interface ButtonProps
   extends Pick<
       ComponentProps<"button">,
-      "children" | "className" | "disabled" | "type" | "form" | "onClick"
+      "children" | "className" | "disabled" | "type" | "form" | "onClick" 
     >,
     VariantProps<typeof buttonVariants> {
   startIcon?: ReactNode;
