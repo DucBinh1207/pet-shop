@@ -2,7 +2,7 @@
 
 import CircleBtn from "@/components/common/icons/circle-btn";
 import HeartWithDogIcon from "@/components/common/icons/heart_with_dog";
-import SyringeIcon from "@/components/common/icons/plus-circle-icon";
+import PlusCircleIcon from "@/components/common/icons/plus-circle-icon";
 import PlayVideo from "./play-video";
 import Item from "./item";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -58,7 +58,7 @@ export default function AboutUs() {
               <div>
                 <div className="mb-[25px] flex w-full pr-[20px] smallest-screen:flex-col smallest-screen:items-start">
                   <div className="mr-[20px] mt-[3px]">
-                    <SyringeIcon
+                    <PlusCircleIcon
                       size={35}
                       className="relative fill-current text-green_color smallest-screen:mb-[10px] smallest-screen:mt-[5px]"
                     />
@@ -120,7 +120,7 @@ export default function AboutUs() {
             >
               {[...Array(5)].map((_, index) => (
                 <SwiperSlide
-                  className="x-smallest-screen:min-w-[calc((100%-20px)/2)] x-small-screen:min-w-[calc((100%-20px)/3)] min-w-[360px] rounded-[8px] border border-solid border-light_gray_color bg-white px-[35px] pb-[44px] pt-[35px] small-screen:min-w-[calc((100%-80px)/3)] small-screen:p-[25px]"
+                  className="min-w-[360px] rounded-[8px] border border-solid border-light_gray_color bg-white px-[35px] pb-[44px] pt-[35px] small-screen:min-w-[calc((100%-80px)/3)] small-screen:p-[25px] x-small-screen:min-w-[calc((100%-20px)/3)] x-smallest-screen:min-w-[calc((100%-20px)/2)]"
                   key={index}
                 >
                   <Item />

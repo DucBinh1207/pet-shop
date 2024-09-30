@@ -68,7 +68,13 @@ export default function RecentlyViewed() {
               "justify-center": pNum === 1,
             })}
           >
-            {[...Array(5)].map((_, index) => (
+            <SwiperSlide
+              className="border-box flex min-w-[232px] transform flex-col border border-solid border-light_gray_color_second bg-white small-screen:min-w-[25%] x-small-screen:min-w-[calc(100%/3)] x-smallest-screen:min-w-[50%]"
+              key={4}
+            >
+              <SupplyCard />
+            </SwiperSlide>
+            {[...Array(3)].map((_, index) => (
               <SwiperSlide
                 className="border-box flex min-w-[232px] transform flex-col border border-solid border-light_gray_color_second bg-white small-screen:min-w-[25%] x-small-screen:min-w-[calc(100%/3)] x-smallest-screen:min-w-[50%]"
                 key={index}
@@ -76,6 +82,12 @@ export default function RecentlyViewed() {
                 <PetCard />
               </SwiperSlide>
             ))}
+            <SwiperSlide
+              className="border-box flex min-w-[232px] transform flex-col border border-solid border-light_gray_color_second bg-white small-screen:min-w-[25%] x-small-screen:min-w-[calc(100%/3)] x-smallest-screen:min-w-[50%]"
+              key={3}
+            >
+              <FoodCard />
+            </SwiperSlide>
           </Swiper>
         </div>
       </div>

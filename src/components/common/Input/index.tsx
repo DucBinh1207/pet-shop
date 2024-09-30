@@ -4,8 +4,8 @@ import { cva } from "class-variance-authority";
 import { ComponentProps, useMemo } from "react";
 
 type InputProps = ComponentProps<"input"> & {
-  size?: "small" | "medium" | "large";
-  variant?: "primary" | "secondary" | "third";
+  inputSize?: "small" | "medium" | "large" | "quantity";
+  variant?: "primary" | "secondary" | "third" | "quantity";
   trimOnBlur?: boolean;
 };
 
@@ -13,15 +13,18 @@ const inputVariants = cva(
   "font-medium border-solid border rounded-[3px] tracking-[0.01em] h-auto",
   {
     variants: {
-      size: {
+      inputSize: {
         small: "px-[10px] py-[8px] text-[11px] leading-[14px]",
         medium: "px-[12px] py-[9px] text-[13px] leading-[16px]",
         large: "px-[14px] py-[10px] text-[15px] leading-[18px]",
+        quantity: "w-[50px]",
       },
       variant: {
         primary: "text-primary border-input_border_color bg-background_color ",
         secondary: "bg-green-500 text-white",
         third: "bg-red-500 text-white",
+        quantity:
+          "text-center text-[18px] font-medium leading-[1] tracking-[0.015em] text-primary bg-white border-none outline-none appearance-none",
       },
     },
     compoundVariants: [
@@ -40,14 +43,14 @@ const inputVariants = cva(
       },
     ],
     defaultVariants: {
-      size: "medium",
+      inputSize: "medium",
       variant: "primary",
     },
   },
 );
 
 export default function Input({
-  size,
+  inputSize,
   variant,
   trimOnBlur,
   onChange: onChangeProp,
@@ -55,8 +58,8 @@ export default function Input({
   ...rest
 }: InputProps) {
   const className = useMemo(() => {
-    return inputVariants({ size, variant });
-  }, [size, variant]);
+    return inputVariants({ inputSize, variant });
+  }, [inputSize, variant]);
 
   const handleBlur = (event: React.FocusEvent<HTMLInputElement, Element>) => {
     if (trimOnBlur) {

@@ -25,12 +25,22 @@ export default function PetCard() {
       </div>
       <div className="relative flex flex-auto flex-col justify-between px-[30px] pt-[20px]">
         <div className="flex flex-col">
-          <span className="mb-[10px] font-quicksand text-[17px] font-bold capitalize leading-[1.35] tracking-[-0.01em] text-primary">
-            True Acre Foods Grain
-          </span>
-          <span className="mb-[10px] max-w-full overflow-hidden text-ellipsis font-quicksand text-[13px] font-normal capitalize leading-[1.46] tracking-[0.02em] text-text_color">
-            Bring some grain-free goodness to your pup’s bowl.
-          </span>
+          <ToolTip
+            element={
+              <span className="mb-[10px] line-clamp-2 max-h-[46px] w-full overflow-hidden font-quicksand text-[17px] font-bold capitalize leading-[1.35] tracking-[-0.01em] text-primary">
+                True Acre Foods Grain
+              </span>
+            }
+            value="True Acre Foods Grain"
+          />
+          <ToolTip
+            element={
+              <span className="mb-[10px] line-clamp-4 max-h-[76px] w-full overflow-hidden font-quicksand text-[13px] font-normal capitalize leading-[1.46] tracking-[0.02em] text-text_color">
+                Bring some grain-free goodness to your pup’s bowl.
+              </span>
+            }
+            value="Bring some grain-free goodness to your pup’s bowl."
+          />
           <span className="flex gap-[2px]">
             {[...Array(4)].map((_, index) => (
               <StarIcon

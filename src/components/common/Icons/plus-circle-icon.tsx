@@ -1,6 +1,6 @@
 import { Svg, SvgProps } from "../svg";
 
-export default function SyringeIcon(props: SvgProps) {
+export default function PlusCircleIcon(props: SvgProps) {
   return (
     <Svg x="0px" y="0px" viewBox="0 0 40 40" fill="currentColor" {...props}>
       <path

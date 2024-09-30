@@ -25,6 +25,8 @@ const config: Config = {
         "x-large-screen": { max: "1340px" },
         "up-large-screen": { min: "768px", max: "1260px" },
         "large-screen": "1190px",
+        "up-medium-screen": { min: "1024px" },
+        "medium-screen": { max: "1023px" },
         "small-screen": { max: "1189px" },
         "up-x-small-screen": { min: "988px", max: "1189px" },
         "x-small-screen": { max: "987px" },
@@ -112,6 +114,9 @@ const config: Config = {
         arrow_next: 'url("/assets/icons/angle-right-icon.svg")',
         comments_bg: 'url("/assets/images/comments_bg.svg")',
         about_us: 'url("/assets/images/about_us_bg.jpg")',
+      },
+      transitionProperty: {
+        "max-height": "max-height",
       },
     },
   },
