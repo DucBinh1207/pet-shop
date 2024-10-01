@@ -3,14 +3,16 @@ import AngleIcon from "@/components/common/icons/angle-icon";
 import CircleInfoIcon from "@/components/common/icons/circle-info";
 import Input from "@/components/common/input";
 import cn from "@/utils/style/cn";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 export default function CheckoutForm() {
   const [isCouponOpen, setIsCouponOpen] = useState(false);
+  const router = useRouter();
 
   return (
-    <div className="flex-0 medium-screen:w-[339px] m-[20px] ml-0 w-[400px] max-w-[100%]">
-      <div className="medium-screen:px-[25px] medium-screen:pt-[20px] medium-screen:pb-[25px] rounded-[4px] border border-solid border-primary px-[35px] pb-[30px] pt-[25px]">
+    <div className="flex-0 m-[20px] ml-0 w-[400px] max-w-[100%] medium-screen:w-[339px]">
+      <div className="rounded-[4px] border border-solid border-primary px-[35px] pb-[30px] pt-[25px] medium-screen:px-[25px] medium-screen:pb-[25px] medium-screen:pt-[20px]">
         <div className="flex flex-col">
           <div className="relative mb-[21px] pb-[25px] after:absolute after:bottom-0 after:h-[1px] after:w-full after:bg-light_gray_color_second after:content-['']">
             <div className="flex flex-col">
@@ -37,7 +39,7 @@ export default function CheckoutForm() {
 
               <div
                 className={cn(
-                  "transition-max-height overflow-hidden duration-300 ease-linear",
+                  "overflow-hidden transition-max-height duration-300 ease-linear",
                   {
                     "max-h-[150px]": isCouponOpen,
                     "max-h-0": !isCouponOpen,
@@ -87,7 +89,7 @@ export default function CheckoutForm() {
 
                   <div
                     className={cn(
-                      "transition-max-height absolute left-[10px] flex max-h-0 flex-col overflow-hidden bg-white duration-100 ease-linear peer-hover:max-h-[200px]",
+                      "absolute left-[10px] flex max-h-0 flex-col overflow-hidden bg-white transition-max-height duration-100 ease-linear peer-hover:max-h-[200px]",
                     )}
                   >
                     <ul className="z-20 rounded-[4px] border border-solid border-light_gray_color_second p-[5px] text-[13px]">
@@ -120,6 +122,9 @@ export default function CheckoutForm() {
                     variant="secondary"
                     size="xsm"
                     className="mt-[20px] w-full text-[13px] font-bold leading-[16px] tracking-[0.025em]"
+                    onClick={() => {
+                      router.push("/checkout");
+                    }}
                   >
                     Checkout
                   </Button>
