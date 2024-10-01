@@ -48,7 +48,7 @@ export default function CheckoutForm() {
               >
                 <div className="flex gap-[10px] pt-[25px]">
                   <Input
-                    className="flex-1"
+                    className="flex-1 basis-auto min-w-0"
                     placeholder="Input coupon code"
                   ></Input>
                   <Button>Apply</Button>
@@ -123,7 +123,7 @@ export default function CheckoutForm() {
                     size="xsm"
                     className="mt-[20px] w-full text-[13px] font-bold leading-[16px] tracking-[0.025em]"
                     onClick={() => {
-                      router.push("/checkout");
+                      router.push("/cart/checkout");
                     }}
                   >
                     Checkout
