@@ -2,18 +2,23 @@
 
 import Button from "@/components/common/button";
 import Input from "@/components/common/input";
+import { Payment_Method } from "@/constants/payment-method";
 import cn from "@/utils/style/cn";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
+type PaymentType = (typeof Payment_Method)[keyof typeof Payment_Method];
+
 export default function OrderSummary() {
-  const [paymentMethod, setPaymentMethod] = useState("cod");
+  const [paymentMethod, setPaymentMethod] = useState<PaymentType>(
+    Payment_Method.COD,
+  );
   const [isTermChecked, setIsTermChecked] = useState(false);
   const router = useRouter();
 
   return (
-    <div className="flex-0 down-medium-screen:w-[339px] m-[20px] ml-0 w-[400px] max-w-[100%]">
+    <div className="flex-0 m-[20px] ml-0 w-[400px] max-w-[100%] down-medium-screen:w-[339px]">
       <div className="rounded-[4px] border border-solid border-primary px-[35px] pb-[30px] pt-[25px] medium-screen:px-[25px] medium-screen:pb-[25px] medium-screen:pt-[20px]">
         <div className="flex flex-col">
           <h2 className="text-[22px] font-medium leading-[1.27] text-primary">
@@ -22,8 +27,8 @@ export default function OrderSummary() {
 
           <div className="mt-[12px]">
             <table className="w-full">
-              <tbody>
-                <tr>
+              <tbody className="w-full medium-screen:block">
+                <tr className="mb-[10px] medium-screen:block">
                   <td className="flex flex-col pb-[12px]">
                     <span className="w-full text-[14px] font-normal leading-[1.27] tracking-[0.02em] text-primary">
                       True Acre Foods Grain
@@ -48,95 +53,119 @@ export default function OrderSummary() {
                       </li>
                     </ul>
                   </td>
-                  <td className="whitespace-nowrap pb-[12px] text-right text-[17px] font-bold leading-[21px] tracking-[-0.01em] text-primary">
-                    100
-                    <span className="text-[22px] text-primary">&#8363;</span>
-                  </td>
-                </tr>
 
-                <tr>
-                  <td className="flex flex-col pb-[12px]">
-                    <span className="w-full text-[14px] font-normal leading-[1.27] tracking-[0.02em] text-primary">
-                      True Acre Foods Grain
-                      <strong className="whitespace-nowrap font-normal">
-                        ×&nbsp;1
-                      </strong>
-                    </span>
-                    <ul className="font-text mt-[10px] flex gap-[10px] p-0 text-[13px] font-normal leading-[16px] tracking-[0.005em]">
-                      <li className="flex items-center whitespace-nowrap">
-                        <span className="capitalize">Weight :&nbsp;</span>
-                        <span className="capitalize text-primary">8lbs</span>
-                      </li>
-
-                      <li className="flex items-center whitespace-nowrap">
-                        <span className="capitalize">Color :&nbsp;</span>
-                        <span className="capitalize text-primary">blue</span>
-                      </li>
-
-                      <li className="flex items-center whitespace-nowrap">
-                        <span className="capitalize">Size :&nbsp;</span>
-                        <span className="capitalize text-primary"> big </span>
-                      </li>
-                    </ul>
-                  </td>
-                  <td className="whitespace-nowrap pb-[12px] text-right text-[17px] font-bold leading-[21px] tracking-[-0.01em] text-primary">
-                    100
-                    <span className="text-[22px] text-primary">&#8363;</span>
-                  </td>
-                </tr>
-
-                <tr>
-                  <td className="flex flex-col pb-[12px]">
-                    <span className="w-full text-[14px] font-normal leading-[1.27] tracking-[0.02em] text-primary">
-                      True Acre Foods Grain
-                      <strong className="whitespace-nowrap font-normal">
-                        ×&nbsp;1
-                      </strong>
-                    </span>
-                    <ul className="font-text mt-[10px] flex gap-[10px] p-0 text-[13px] font-normal leading-[16px] tracking-[0.005em]">
-                      <li className="flex items-center whitespace-nowrap">
-                        <span className="capitalize">Weight :&nbsp;</span>
-                        <span className="capitalize text-primary">8lbs</span>
-                      </li>
-
-                      <li className="flex items-center whitespace-nowrap">
-                        <span className="capitalize">Color :&nbsp;</span>
-                        <span className="capitalize text-primary">blue</span>
-                      </li>
-
-                      <li className="flex items-center whitespace-nowrap">
-                        <span className="capitalize">Size :&nbsp;</span>
-                        <span className="capitalize text-primary"> big </span>
-                      </li>
-                    </ul>
-                  </td>
-                  <td className="whitespace-nowrap pb-[12px] text-right text-[17px] font-bold leading-[21px] tracking-[-0.01em] text-primary">
-                    100
-                    <span className="text-[22px] text-primary">&#8363;</span>
-                  </td>
-                </tr>
-
-                <tr>
-                  <td className="flex flex-col pb-[12px]">
-                    <span className="w-full font-quicksand text-[14px] font-bold leading-[20px] tracking-[0.005em] text-primary">
+                  <td className="whitespace-nowrap pb-[12px] text-right text-[17px] font-bold leading-[21px] tracking-[-0.01em] text-primary medium-screen:flex medium-screen:justify-between">
+                    <div className="hidden font-medium medium-screen:block">
                       Subtotal
-                    </span>
+                    </div>
+                    <div>
+                      100
+                      <span className="text-[22px] text-primary">&#8363;</span>
+                    </div>
                   </td>
+                </tr>
+
+                <tr className="mb-[10px] medium-screen:block">
+                  <td className="flex flex-col pb-[12px]">
+                    <span className="w-full text-[14px] font-normal leading-[1.27] tracking-[0.02em] text-primary">
+                      True Acre Foods Grain
+                      <strong className="whitespace-nowrap font-normal">
+                        ×&nbsp;1
+                      </strong>
+                    </span>
+                    <ul className="font-text mt-[10px] flex gap-[10px] p-0 text-[13px] font-normal leading-[16px] tracking-[0.005em]">
+                      <li className="flex items-center whitespace-nowrap">
+                        <span className="capitalize">Weight :&nbsp;</span>
+                        <span className="capitalize text-primary">8lbs</span>
+                      </li>
+
+                      <li className="flex items-center whitespace-nowrap">
+                        <span className="capitalize">Color :&nbsp;</span>
+                        <span className="capitalize text-primary">blue</span>
+                      </li>
+
+                      <li className="flex items-center whitespace-nowrap">
+                        <span className="capitalize">Size :&nbsp;</span>
+                        <span className="capitalize text-primary"> big </span>
+                      </li>
+                    </ul>
+                  </td>
+
+                  <td className="whitespace-nowrap pb-[12px] text-right text-[17px] font-bold leading-[21px] tracking-[-0.01em] text-primary medium-screen:flex medium-screen:justify-between">
+                    <div className="hidden font-medium medium-screen:block">
+                      Subtotal
+                    </div>
+                    <div>
+                      100
+                      <span className="text-[22px] text-primary">&#8363;</span>
+                    </div>
+                  </td>
+                </tr>
+
+                <tr className="mb-[10px] medium-screen:block">
+                  <td className="flex flex-col pb-[12px]">
+                    <span className="w-full text-[14px] font-normal leading-[1.27] tracking-[0.02em] text-primary">
+                      True Acre Foods Grain
+                      <strong className="whitespace-nowrap font-normal">
+                        ×&nbsp;1
+                      </strong>
+                    </span>
+                    <ul className="font-text mt-[10px] flex gap-[10px] p-0 text-[13px] font-normal leading-[16px] tracking-[0.005em]">
+                      <li className="flex items-center whitespace-nowrap">
+                        <span className="capitalize">Weight :&nbsp;</span>
+                        <span className="capitalize text-primary">8lbs</span>
+                      </li>
+
+                      <li className="flex items-center whitespace-nowrap">
+                        <span className="capitalize">Color :&nbsp;</span>
+                        <span className="capitalize text-primary">blue</span>
+                      </li>
+
+                      <li className="flex items-center whitespace-nowrap">
+                        <span className="capitalize">Size :&nbsp;</span>
+                        <span className="capitalize text-primary"> big </span>
+                      </li>
+                    </ul>
+                  </td>
+
+                  <td className="whitespace-nowrap pb-[12px] text-right text-[17px] font-bold leading-[21px] tracking-[-0.01em] text-primary medium-screen:flex medium-screen:justify-between">
+                    <div className="hidden font-medium medium-screen:block">
+                      Subtotal
+                    </div>
+                    <div>
+                      100
+                      <span className="text-[22px] text-primary">&#8363;</span>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+
+              <tfoot className="w-full medium-screen:block">
+                <tr className="medium-screen:flex">
+                  <td
+                    colSpan={2}
+                    className="relative w-full py-[20px] after:absolute after:left-0 after:right-0 after:top-[50%] after:h-[1px] after:bg-light_gray_color_second after:content-['']"
+                  ></td>
+                </tr>
+
+                <tr className="medium-screen:flex medium-screen:justify-between">
+                  <th className="text-left text-[22px] font-medium leading-[1.27] text-primary">
+                    Subtotal
+                  </th>
                   <td className="whitespace-nowrap pb-[12px] text-right text-[17px] font-bold leading-[21px] tracking-[-0.01em] text-secondary">
                     300
                     <span className="text-[22px] text-secondary">&#8363;</span>
                   </td>
                 </tr>
-              </tbody>
-              <tfoot>
-                <tr>
+
+                <tr className="medium-screen:flex">
                   <td
                     colSpan={2}
-                    className="relative py-[20px] after:absolute after:left-0 after:right-0 after:top-[50%] after:h-[1px] after:bg-light_gray_color_second after:content-['']"
+                    className="relative w-full py-[20px] after:absolute after:left-0 after:right-0 after:top-[50%] after:h-[1px] after:bg-light_gray_color_second after:content-['']"
                   ></td>
                 </tr>
 
-                <tr>
+                <tr className="medium-screen:flex medium-screen:justify-between">
                   <th className="text-left text-[22px] font-medium leading-[1.27] text-primary">
                     Shipping
                   </th>
@@ -146,14 +175,14 @@ export default function OrderSummary() {
                   </td>
                 </tr>
 
-                <tr>
+                <tr className="medium-screen:flex">
                   <td
                     colSpan={2}
-                    className="relative py-[20px] after:absolute after:left-0 after:right-0 after:top-[50%] after:h-[1px] after:bg-light_gray_color_second after:content-['']"
+                    className="relative w-full py-[20px] after:absolute after:left-0 after:right-0 after:top-[50%] after:h-[1px] after:bg-light_gray_color_second after:content-['']"
                   ></td>
                 </tr>
 
-                <tr>
+                <tr className="medium-screen:flex medium-screen:justify-between">
                   <th className="w-[50%] text-left text-[22px] font-medium leading-[1.27] text-primary">
                     Total
                   </th>
@@ -163,10 +192,10 @@ export default function OrderSummary() {
                   </td>
                 </tr>
 
-                <tr>
+                <tr className="medium-screen:flex">
                   <td
                     colSpan={2}
-                    className="relative py-[20px] after:absolute after:left-0 after:right-0 after:top-[50%] after:h-[1px] after:bg-light_gray_color_second after:content-['']"
+                    className="relative w-full py-[20px] after:absolute after:left-0 after:right-0 after:top-[50%] after:h-[1px] after:bg-light_gray_color_second after:content-['']"
                   ></td>
                 </tr>
               </tfoot>
@@ -183,18 +212,19 @@ export default function OrderSummary() {
                 <Input
                   id="cod"
                   type="radio"
-                  value="cod"
+                  value={Payment_Method.COD}
                   inputSize="form_controls"
-                  checked={paymentMethod === "cod"}
+                  checked={paymentMethod === Payment_Method.COD}
                   name="payment_method"
                   className={cn(
                     "relative mr-[14px] cursor-pointer appearance-none rounded-[50%] after:absolute after:left-[50%] after:top-[50%] after:block after:h-[10px] after:w-[10px] after:translate-x-[-50%] after:translate-y-[-50%] after:rounded-[50%] after:bg-primary after:content-['']",
                     {
-                      "after:hidden after:opacity-0": paymentMethod !== "cod",
+                      "after:hidden after:opacity-0":
+                        paymentMethod !== Payment_Method.COD,
                     },
                   )}
                   onClick={() => {
-                    setPaymentMethod("cod");
+                    setPaymentMethod(Payment_Method.COD);
                   }}
                 />
                 <label
@@ -208,7 +238,7 @@ export default function OrderSummary() {
                   className={cn(
                     "mt-[5px] max-h-0 max-w-full flex-1 overflow-hidden pl-[32px] text-[13px] font-normal leading-[18px] tracking-[0.02] transition-max-height duration-300 ease-linear",
                     {
-                      "max-h-[150px]": paymentMethod === "cod",
+                      "max-h-[150px]": paymentMethod === Payment_Method.COD,
                     },
                   )}
                 >
@@ -220,19 +250,19 @@ export default function OrderSummary() {
                 <Input
                   id="online"
                   type="radio"
-                  value="online"
+                  value={Payment_Method.ONLINE}
                   inputSize="form_controls"
-                  checked={paymentMethod === "online"}
+                  checked={paymentMethod === Payment_Method.ONLINE}
                   name="payment_method"
                   className={cn(
                     "relative mr-[14px] cursor-pointer appearance-none rounded-[50%] after:absolute after:left-[50%] after:top-[50%] after:block after:h-[10px] after:w-[10px] after:translate-x-[-50%] after:translate-y-[-50%] after:rounded-[50%] after:bg-primary after:content-['']",
                     {
                       "after:hidden after:opacity-0":
-                        paymentMethod !== "online",
+                        paymentMethod !== Payment_Method.ONLINE,
                     },
                   )}
                   onClick={() => {
-                    setPaymentMethod("online");
+                    setPaymentMethod(Payment_Method.ONLINE);
                   }}
                 />
                 <label
@@ -246,7 +276,7 @@ export default function OrderSummary() {
                   className={cn(
                     "mt-[5px] max-h-0 max-w-full flex-1 overflow-hidden pl-[32px] text-[13px] font-normal leading-[18px] tracking-[0.02] transition-max-height duration-300 ease-linear",
                     {
-                      "max-h-[50px]": paymentMethod === "online",
+                      "max-h-[50px]": paymentMethod === Payment_Method.ONLINE,
                     },
                   )}
                 >
