@@ -4,10 +4,10 @@ import Item from "./item";
 import Notice from "./notice";
 import Social from "./social";
 import CancelIcon from "@/components/common/icons/cancel-icon";
-import useClickOutside from "@/hooks/use-click-outside";
 import useSidebar from "@/store/use-sidebar";
 import cn from "@/utils/style/cn";
 import useBlockScroll from "@/hooks/use-block-scroll";
+import useClickOutside from "@/hooks/use-click-outside";
 
 export default function Sidebar() {
   const { isSideBarOpen, closeSidebar } = useSidebar((state) => ({

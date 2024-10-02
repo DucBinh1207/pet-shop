@@ -13,8 +13,8 @@ import {
 } from "swiper/modules";
 import { useRef } from "react";
 import cn from "@/utils/style/cn";
+import FoodCard from "@/components/food-card";
 import NavigationButton from "@/components/navigation-button";
-import FoodCard from "@/components/card-product/food-card";
 
 type props = {
   id: string;
@@ -153,7 +153,7 @@ export default function Content({ id, isSelected }: props) {
               {[...Array(5)].map((_, index) => (
                 <SwiperSlide
                   key={index}
-                  className="border-box x-smallest-screen:min-w-[50%] x-small-screen:min-w-[calc(100%/3)] flex min-w-[232px] flex-1 transform flex-col border border-solid border-light_gray_color_second bg-white small-screen:min-w-[25%]"
+                  className="border-box flex min-w-[232px] flex-1 transform flex-col border border-solid border-light_gray_color_second bg-white small-screen:min-w-[25%] x-small-screen:min-w-[calc(100%/3)] x-smallest-screen:min-w-[50%]"
                 >
                   <FoodCard />
                   <FoodCard />

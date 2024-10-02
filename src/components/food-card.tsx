@@ -1,15 +1,15 @@
 "use client";
 
-import Button from "@/components/common/button";
 import CartIcon from "@/components/common/icons/cart-icon";
 import DotIcon from "@/components/common/icons/dot-icon";
 import StarIcon from "@/components/common/icons/star-icon";
-import ToolTip from "@/components/common/tooltip";
 import cn from "@/utils/style/cn";
 import Image from "next/image";
 
 import Link from "next/link";
 import { useState } from "react";
+import Button from "./common/button";
+import ToolTip from "./common/tooltip";
 
 export default function FoodCard() {
   const [bgSelect, setBgSelect] = useState("/assets/icons/angle-down-icon.svg");

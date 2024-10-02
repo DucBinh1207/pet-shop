@@ -2,17 +2,17 @@
 
 import Button from "@/components/common/button";
 import Input from "@/components/common/input";
-import { Payment_Method } from "@/constants/payment-method";
+import { PaymentMethod } from "@/constants/payment-method";
 import cn from "@/utils/style/cn";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
-type PaymentType = (typeof Payment_Method)[keyof typeof Payment_Method];
+type PaymentType = (typeof PaymentMethod)[keyof typeof PaymentMethod];
 
 export default function OrderSummary() {
   const [paymentMethod, setPaymentMethod] = useState<PaymentType>(
-    Payment_Method.COD,
+    PaymentMethod.COD,
   );
   const [isTermChecked, setIsTermChecked] = useState(false);
   const router = useRouter();
@@ -200,19 +200,19 @@ export default function OrderSummary() {
                 <Input
                   id="cod"
                   type="radio"
-                  value={Payment_Method.COD}
+                  value={PaymentMethod.COD}
                   inputSize="form_controls"
-                  // checked={paymentMethod === Payment_Method.COD}
+                  // checked={paymentMethod === PaymentMethod.COD}
                   name="payment_method"
                   className={cn(
                     "relative mr-[14px] cursor-pointer appearance-none rounded-[50%] after:absolute after:left-[50%] after:top-[50%] after:block after:h-[10px] after:w-[10px] after:translate-x-[-50%] after:translate-y-[-50%] after:rounded-[50%] after:bg-primary after:content-['']",
                     {
                       "after:hidden after:opacity-0":
-                        paymentMethod !== Payment_Method.COD,
+                        paymentMethod !== PaymentMethod.COD,
                     },
                   )}
                   onClick={() => {
-                    setPaymentMethod(Payment_Method.COD);
+                    setPaymentMethod(PaymentMethod.COD);
                   }}
                 />
                 <label
@@ -226,7 +226,7 @@ export default function OrderSummary() {
                   className={cn(
                     "mt-[5px] max-h-0 max-w-full flex-1 overflow-hidden pl-[32px] text-[13px] font-normal leading-[18px] tracking-[0.02] transition-max-height duration-300 ease-linear",
                     {
-                      "max-h-[150px]": paymentMethod === Payment_Method.COD,
+                      "max-h-[150px]": paymentMethod === PaymentMethod.COD,
                     },
                   )}
                 >
@@ -238,19 +238,19 @@ export default function OrderSummary() {
                 <Input
                   id="online"
                   type="radio"
-                  value={Payment_Method.ONLINE}
+                  value={PaymentMethod.ONLINE}
                   inputSize="form_controls"
-                  // checked={paymentMethod === Payment_Method.ONLINE}
+                  // checked={paymentMethod === PaymentMethod.ONLINE}
                   name="payment_method"
                   className={cn(
                     "relative mr-[14px] cursor-pointer appearance-none rounded-[50%] after:absolute after:left-[50%] after:top-[50%] after:block after:h-[10px] after:w-[10px] after:translate-x-[-50%] after:translate-y-[-50%] after:rounded-[50%] after:bg-primary after:content-['']",
                     {
                       "after:hidden after:opacity-0":
-                        paymentMethod !== Payment_Method.ONLINE,
+                        paymentMethod !== PaymentMethod.ONLINE,
                     },
                   )}
                   onClick={() => {
-                    setPaymentMethod(Payment_Method.ONLINE);
+                    setPaymentMethod(PaymentMethod.ONLINE);
                   }}
                 />
                 <label
@@ -264,7 +264,7 @@ export default function OrderSummary() {
                   className={cn(
                     "mt-[5px] max-h-0 max-w-full flex-1 overflow-hidden pl-[32px] text-[13px] font-normal leading-[18px] tracking-[0.02] transition-max-height duration-300 ease-linear",
                     {
-                      "max-h-[150px]": paymentMethod === Payment_Method.ONLINE,
+                      "max-h-[150px]": paymentMethod === PaymentMethod.ONLINE,
                     },
                   )}
                 >

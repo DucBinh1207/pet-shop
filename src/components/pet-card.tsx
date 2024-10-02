@@ -1,13 +1,13 @@
 "use client";
 
-import Button from "@/components/common/button";
 import CartIcon from "@/components/common/icons/cart-icon";
 import DotIcon from "@/components/common/icons/dot-icon";
 import StarIcon from "@/components/common/icons/star-icon";
-import ToolTip from "@/components/common/tooltip";
 import Image from "next/image";
 
 import Link from "next/link";
+import ToolTip from "./common/tooltip";
+import Button from "./common/button";
 
 export default function PetCard() {
   return (

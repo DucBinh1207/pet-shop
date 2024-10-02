@@ -1,5 +1,5 @@
 import { ComponentProps } from "react";
-import classNameComp from "../../../utils/style/cn";
+import classNameComp from "../../utils/style/cn";
 
 type Size = "small" | "medium" | "large" | number;
 

@@ -5,7 +5,6 @@ import Header from "@/app/_components/common/header";
 import Footer from "@/app/_components/common/footer";
 import HeaderNotice from "./_components/common/header-notice";
 import ToastNotification from "@/components/common/toast";
-import BreadCrumb from "@/components/bread-crumb";
 
 const outfit_init = Outfit({
   subsets: ["latin"],
@@ -47,12 +46,8 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-  pathName,
-  pathLink,
 }: Readonly<{
   children: React.ReactNode;
-  pathLink?: string[];
-  pathName?: string[];
 }>) {
   return (
     <html lang="en ">
@@ -63,9 +58,6 @@ export default function RootLayout({
         <div className="root flex h-[100vh] flex-col font-outfit">
           <HeaderNotice />
           <Header />
-          {pathLink && pathName && (
-            <BreadCrumb pathLink={pathLink} pathName={pathName} />
-          )}
 
           <div className="flex-1">{children}</div>
           <Footer />

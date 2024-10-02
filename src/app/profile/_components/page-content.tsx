@@ -1,10 +1,10 @@
 "use client";
 
-import BreadCrumb from "@/components/bread-crumb";
 import { useState } from "react";
 import { Tabs } from "@/constants/profile-tabs";
 import Sidebar from "./sidebar";
 import ContentArea from "./content-area";
+import BreadCrumb from "@/components/bread-crumb";
 
 export type TabsType = (typeof Tabs)[keyof typeof Tabs];
 

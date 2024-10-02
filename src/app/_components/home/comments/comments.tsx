@@ -48,7 +48,7 @@ export default function Comments() {
           >
             {[...Array(4)].map((_, index) => (
               <SwiperSlide
-                className="x-smallest-screen:min-w-full min-w-[calc(100%/3)] rounded-[8px] px-[60px] pb-[49px] pt-[47px] small-screen:min-w-[50%] small-screen:px-[30px] small-screen:py-[20px]"
+                className="min-w-[calc(100%/3)] rounded-[8px] px-[60px] pb-[49px] pt-[47px] small-screen:min-w-[50%] small-screen:px-[30px] small-screen:py-[20px] x-smallest-screen:min-w-full"
                 key={index}
               >
                 <Item />

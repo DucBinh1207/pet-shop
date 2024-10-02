@@ -1,5 +1,5 @@
 import Link from "next/link";
-import AngleIcon from "../common/icons/angle-icon";
+import AngleIcon from "./common/icons/angle-icon";
 
 type props = {
   pathLink: string[];
@@ -7,8 +7,6 @@ type props = {
 };
 
 export default function BreadCrumb({ pathLink, pathName }: props) {
-  let url = "/";
-
   if (pathLink.length === 1)
     return (
       <div className="w-full min-w-[320px] bg-white px-[50px] pb-[35px] pt-[30px] text-center text-primary">
@@ -46,25 +44,21 @@ export default function BreadCrumb({ pathLink, pathName }: props) {
             </Link>
           </li>
 
-          {pathLink.slice(0, -1).map((item, index) => {
-            url = url + item + "/";
+          {pathLink.slice(0, -1).map((linkItem, index) => {
             return (
-              <>
-                <li className="mx-[7px]">
-                  <AngleIcon
-                    size={7}
-                    className="translate-y-[1px] rotate-[90deg] fill-current"
-                  />
-                </li>
-                <li>
-                  <Link
-                    href={url}
-                    className="hover_animate hover:text-secondary"
-                  >
-                    {pathName[index]}
-                  </Link>
-                </li>
-              </>
+              <li className="flex items-center" key={index}>
+                <AngleIcon
+                  size={7}
+                  className="mx-[7px] translate-y-[1px] rotate-[90deg] fill-current"
+                />
+
+                <Link
+                  href={linkItem}
+                  className="hover_animate hover:text-secondary"
+                >
+                  {pathName[index]}
+                </Link>
+              </li>
             );
           })}
 

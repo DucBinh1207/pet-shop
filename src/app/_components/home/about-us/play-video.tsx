@@ -46,7 +46,7 @@ export default function PlayVideo() {
               setIsOpen(false);
             }}
           ></Button>
-          
+
           <div
             className={cn(
               "fixed inset-0 z-[89] h-[100vh] w-[100vw] bg-overlay_color transition-opacity",
