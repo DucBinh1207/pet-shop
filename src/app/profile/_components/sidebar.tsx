@@ -1,12 +1,12 @@
 import LogOutIcon from "@/components/common/icons/log-out-icon";
 import { Tabs } from "@/constants/profile-tabs";
-import useOrder from "@/store/use-order";
 import cn from "@/utils/style/cn";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { Dispatch, SetStateAction } from "react";
 import { useShallow } from "zustand/react/shallow";
 import { TabsType } from "./page-content";
+import useOrder from "../_shared/use-order";
 
 type props = {
   tabActive: TabsType;

@@ -1,10 +1,10 @@
-import Button from "@/components/common/button";
 import AngleIcon from "@/components/common/icons/angle-icon";
 import CircleInfoIcon from "@/components/common/icons/circle-info";
-import Input from "@/components/common/input";
 import cn from "@/utils/style/cn";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import Button from "@/components/common/button";
+import Input from "@/components/common/input";
 
 export default function CheckoutForm() {
   const [isCouponOpen, setIsCouponOpen] = useState(false);
@@ -48,8 +48,8 @@ export default function CheckoutForm() {
               >
                 <div className="flex gap-[10px] pt-[25px]">
                   <Input
-                    className="flex-1"
                     placeholder="Input coupon code"
+                    className="w-full"
                   ></Input>
                   <Button>Apply</Button>
                 </div>
@@ -123,7 +123,7 @@ export default function CheckoutForm() {
                     size="xsm"
                     className="mt-[20px] w-full text-[13px] font-bold leading-[16px] tracking-[0.025em]"
                     onClick={() => {
-                      router.push("/checkout");
+                      router.push("/cart/checkout");
                     }}
                   >
                     Checkout

@@ -1,5 +1,5 @@
 import PageContent from "./_components/page-content";
 
-export default function Checkout() {
+export default function Page() {
   return <PageContent />;
 }

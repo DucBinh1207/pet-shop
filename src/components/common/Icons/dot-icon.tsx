@@ -7,4 +7,3 @@ export default function DotIcon(props: SvgProps) {
     </Svg>
   );
 }
-

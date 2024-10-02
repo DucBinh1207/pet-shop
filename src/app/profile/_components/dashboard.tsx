@@ -1,15 +1,15 @@
 import Button from "@/components/common/button";
 import { OrderType } from "@/types/order";
 import OrderCard from "./order-card";
-import useOrder from "@/store/use-order";
 import { useShallow } from "zustand/react/shallow";
-import ToolTip from "@/components/common/tooltip";
 import PenIcon from "@/components/common/icons/pen-icon";
 import { Tabs } from "@/constants/profile-tabs";
 import LocateIcon from "@/components/common/icons/locate-icon";
 import { Dispatch, SetStateAction } from "react";
 import { useRouter } from "next/navigation";
 import { TabsType } from "./page-content";
+import ToolTip from "@/components/common/tooltip";
+import useOrder from "../_shared/use-order";
 
 type props = {
   setTabActive: Dispatch<SetStateAction<TabsType>>;

@@ -55,7 +55,7 @@ export default function RootLayout({
       <body
         className={`${outfit_init.variable} ${quicksand_init.variable} bg-background_color`}
       >
-        <div className="root flex h-[100vh] flex-col font-outfit ">
+        <div className="root flex h-[100vh] flex-col font-outfit">
           <HeaderNotice />
           <Header />
 

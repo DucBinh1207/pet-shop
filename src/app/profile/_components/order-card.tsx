@@ -8,8 +8,8 @@ type props = {
 
 export default function OrderCard({ RedirectOrderDetail }: props) {
   return (
-    <tr className="xxx-smallest-screen:block mb-[10px]">
-      <td className="xxx-smallest-screen:flex xxx-smallest-screen:justify-center py-[7px] pr-[15px]">
+    <tr className="mb-[10px] xxx-smallest-screen:block">
+      <td className="py-[7px] pr-[15px] xxx-smallest-screen:flex xxx-smallest-screen:justify-center">
         <div
           onClick={RedirectOrderDetail}
           className="cursor-pointer font-bold text-primary hover:text-secondary"
@@ -18,11 +18,19 @@ export default function OrderCard({ RedirectOrderDetail }: props) {
         </div>
       </td>
 
-      <td className="xxx-smallest-screen:flex xxx-smallest-screen:justify-center py-[7px] pr-[15px]">3</td>
-      <td className="xxx-smallest-screen:flex xxx-smallest-screen:justify-center py-[7px] pr-[15px]">Sunday,April 21,2024</td>
-      <td className="xxx-smallest-screen:flex xxx-smallest-screen:justify-center py-[7px] pr-[15px]">$330</td>
-      <td className="xxx-smallest-screen:flex xxx-smallest-screen:justify-center py-[7px] pr-[15px]">Processing</td>
-      <td className="xxx-smallest-screen:flex xxx-smallest-screen:justify-center py-[7px] text-center">
+      <td className="py-[7px] pr-[15px] xxx-smallest-screen:flex xxx-smallest-screen:justify-center">
+        3
+      </td>
+      <td className="py-[7px] pr-[15px] xxx-smallest-screen:flex xxx-smallest-screen:justify-center">
+        Sunday,April 21,2024
+      </td>
+      <td className="py-[7px] pr-[15px] xxx-smallest-screen:flex xxx-smallest-screen:justify-center">
+        $330
+      </td>
+      <td className="py-[7px] pr-[15px] xxx-smallest-screen:flex xxx-smallest-screen:justify-center">
+        Processing
+      </td>
+      <td className="py-[7px] text-center xxx-smallest-screen:flex xxx-smallest-screen:justify-center">
         <ToolTip
           value="View Order"
           element={

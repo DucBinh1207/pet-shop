@@ -1,4 +1,3 @@
-import useOrder from "@/store/use-order";
 import { useShallow } from "zustand/react/shallow";
 import { Tabs } from "@/constants/profile-tabs";
 import { Dispatch, SetStateAction } from "react";
@@ -6,6 +5,7 @@ import OrderList from "./order-list";
 import OrderDetail from "./order-detail";
 import { OrderType } from "@/types/order";
 import { TabsType } from "./page-content";
+import useOrder from "../_shared/use-order";
 
 type props = {
   setTabActive: Dispatch<SetStateAction<TabsType>>;

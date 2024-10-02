@@ -2,17 +2,17 @@
 
 import Button from "@/components/common/button";
 import Input from "@/components/common/input";
-import { Payment_Method } from "@/constants/payment-method";
+import { PaymentMethod } from "@/constants/payment-method";
 import cn from "@/utils/style/cn";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
-type PaymentType = (typeof Payment_Method)[keyof typeof Payment_Method];
+type PaymentType = (typeof PaymentMethod)[keyof typeof PaymentMethod];
 
 export default function OrderSummary() {
   const [paymentMethod, setPaymentMethod] = useState<PaymentType>(
-    Payment_Method.COD,
+    PaymentMethod.COD,
   );
   const [isTermChecked, setIsTermChecked] = useState(false);
   const router = useRouter();
@@ -58,10 +58,7 @@ export default function OrderSummary() {
                     <div className="hidden font-medium medium-screen:block">
                       Subtotal
                     </div>
-                    <div>
-                      100
-                      <span className="text-[22px] text-primary">&#8363;</span>
-                    </div>
+                    <div>100</div>
                   </td>
                 </tr>
 
@@ -95,10 +92,7 @@ export default function OrderSummary() {
                     <div className="hidden font-medium medium-screen:block">
                       Subtotal
                     </div>
-                    <div>
-                      100
-                      <span className="text-[22px] text-primary">&#8363;</span>
-                    </div>
+                    <div>100</div>
                   </td>
                 </tr>
 
@@ -132,10 +126,7 @@ export default function OrderSummary() {
                     <div className="hidden font-medium medium-screen:block">
                       Subtotal
                     </div>
-                    <div>
-                      100
-                      <span className="text-[22px] text-primary">&#8363;</span>
-                    </div>
+                    <div>100</div>
                   </td>
                 </tr>
               </tbody>
@@ -154,7 +145,6 @@ export default function OrderSummary() {
                   </th>
                   <td className="whitespace-nowrap pb-[12px] text-right text-[17px] font-bold leading-[21px] tracking-[-0.01em] text-secondary">
                     300
-                    <span className="text-[22px] text-secondary">&#8363;</span>
                   </td>
                 </tr>
 
@@ -171,7 +161,6 @@ export default function OrderSummary() {
                   </th>
                   <td className="leading-[21px]text-secondary whitespace-nowrap text-right text-[17px] font-bold tracking-[-0.01em] text-secondary">
                     50
-                    <span className="text-[22px] text-secondary">&#8363;</span>
                   </td>
                 </tr>
 
@@ -188,7 +177,6 @@ export default function OrderSummary() {
                   </th>
                   <td className="w-[50%] whitespace-nowrap text-right text-[24px] font-bold leading-[30px] tracking-[-0.02em] text-secondary">
                     350
-                    <span className="text-[26px] text-secondary">&#8363;</span>
                   </td>
                 </tr>
 
@@ -212,19 +200,19 @@ export default function OrderSummary() {
                 <Input
                   id="cod"
                   type="radio"
-                  value={Payment_Method.COD}
+                  value={PaymentMethod.COD}
                   inputSize="form_controls"
-                  checked={paymentMethod === Payment_Method.COD}
+                  // checked={paymentMethod === PaymentMethod.COD}
                   name="payment_method"
                   className={cn(
                     "relative mr-[14px] cursor-pointer appearance-none rounded-[50%] after:absolute after:left-[50%] after:top-[50%] after:block after:h-[10px] after:w-[10px] after:translate-x-[-50%] after:translate-y-[-50%] after:rounded-[50%] after:bg-primary after:content-['']",
                     {
                       "after:hidden after:opacity-0":
-                        paymentMethod !== Payment_Method.COD,
+                        paymentMethod !== PaymentMethod.COD,
                     },
                   )}
                   onClick={() => {
-                    setPaymentMethod(Payment_Method.COD);
+                    setPaymentMethod(PaymentMethod.COD);
                   }}
                 />
                 <label
@@ -238,7 +226,7 @@ export default function OrderSummary() {
                   className={cn(
                     "mt-[5px] max-h-0 max-w-full flex-1 overflow-hidden pl-[32px] text-[13px] font-normal leading-[18px] tracking-[0.02] transition-max-height duration-300 ease-linear",
                     {
-                      "max-h-[150px]": paymentMethod === Payment_Method.COD,
+                      "max-h-[150px]": paymentMethod === PaymentMethod.COD,
                     },
                   )}
                 >
@@ -250,19 +238,19 @@ export default function OrderSummary() {
                 <Input
                   id="online"
                   type="radio"
-                  value={Payment_Method.ONLINE}
+                  value={PaymentMethod.ONLINE}
                   inputSize="form_controls"
-                  checked={paymentMethod === Payment_Method.ONLINE}
+                  // checked={paymentMethod === PaymentMethod.ONLINE}
                   name="payment_method"
                   className={cn(
                     "relative mr-[14px] cursor-pointer appearance-none rounded-[50%] after:absolute after:left-[50%] after:top-[50%] after:block after:h-[10px] after:w-[10px] after:translate-x-[-50%] after:translate-y-[-50%] after:rounded-[50%] after:bg-primary after:content-['']",
                     {
                       "after:hidden after:opacity-0":
-                        paymentMethod !== Payment_Method.ONLINE,
+                        paymentMethod !== PaymentMethod.ONLINE,
                     },
                   )}
                   onClick={() => {
-                    setPaymentMethod(Payment_Method.ONLINE);
+                    setPaymentMethod(PaymentMethod.ONLINE);
                   }}
                 />
                 <label
@@ -276,7 +264,7 @@ export default function OrderSummary() {
                   className={cn(
                     "mt-[5px] max-h-0 max-w-full flex-1 overflow-hidden pl-[32px] text-[13px] font-normal leading-[18px] tracking-[0.02] transition-max-height duration-300 ease-linear",
                     {
-                      "max-h-[50px]": paymentMethod === Payment_Method.ONLINE,
+                      "max-h-[150px]": paymentMethod === PaymentMethod.ONLINE,
                     },
                   )}
                 >
@@ -296,13 +284,13 @@ export default function OrderSummary() {
                 <p>
                   Your personal data will be used to process your order, support
                   your experience throughout this website, and for other
-                  purposes described in our{" "}
+                  purposes described in our
                   <Link
                     href="/privacy-policy"
                     className="underline decoration-light_gray_color_second hover:text-secondary"
                     target="_blank"
                   >
-                    privacy policy
+                    &nbsp;privacy policy
                   </Link>
                   .
                 </p>
@@ -330,10 +318,10 @@ export default function OrderSummary() {
                     I have read and agree to the website
                     <Link
                       href="/refund"
-                      className="rounded-[3px]"
+                      className="rounded-[3px] hover:text-secondary"
                       target="_blank"
                     >
-                      terms and conditions
+                      &nbsp;terms and conditions
                     </Link>
                   </span>
                   &nbsp;*
@@ -348,7 +336,7 @@ export default function OrderSummary() {
             size="xsm"
             className="mt-[37px] text-[13px] font-bold leading-[16px] tracking-wider"
             onClick={() => {
-              router.push("/order-success");
+              router.push("/cart/order-success");
             }}
           >
             Place Order

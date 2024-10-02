@@ -1,8 +1,8 @@
 "use client";
 
-import FoodCard from "@/components/card-product/food-card";
-import PetCard from "@/components/card-product/pet-card";
-import SupplyCard from "@/components/card-product/supply-card";
+import FoodCard from "@/components/food-card";
+import PetCard from "@/components/pet-card";
+import SupplyCard from "@/components/supply-card";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css/pagination";
 import { Pagination, Navigation, EffectCoverflow } from "swiper/modules";

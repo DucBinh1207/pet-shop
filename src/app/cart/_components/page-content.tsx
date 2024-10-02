@@ -5,7 +5,7 @@ import RecentlyViewed from "./recently-viewed";
 export default function PageContent() {
   return (
     <>
-      <BreadCrumb page="Cart" key="cart" />
+      <BreadCrumb pathLink={["cart"]} pathName={["Cart"]} />
       <CartContent />
       <RecentlyViewed />
     </>

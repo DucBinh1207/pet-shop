@@ -1,15 +1,15 @@
 "use client";
 
-import Button from "@/components/common/button";
 import CartIcon from "@/components/common/icons/cart-icon";
 import DotIcon from "@/components/common/icons/dot-icon";
 import StarIcon from "@/components/common/icons/star-icon";
-import ToolTip from "@/components/common/tooltip";
 import cn from "@/utils/style/cn";
 import Image from "next/image";
 
 import Link from "next/link";
 import { useState } from "react";
+import ToolTip from "./common/tooltip";
+import Button from "./common/button";
 
 export default function SupplyCard() {
   const [bgSelect, setBgSelect] = useState("/assets/icons/angle-down-icon.svg");
@@ -31,7 +31,7 @@ export default function SupplyCard() {
   };
 
   return (
-    <div className="border-box x-smallest-screen:min-w-[50%] x-small-screen:min-w-[calc(100%/3)] flex min-w-[232px] flex-1 transform flex-col border border-solid border-light_gray_color_second bg-white small-screen:min-w-[25%]">
+    <div className="border-box flex min-w-[232px] flex-1 transform flex-col border border-solid border-light_gray_color_second bg-white small-screen:min-w-[25%] x-small-screen:min-w-[calc(100%/3)] x-smallest-screen:min-w-[50%]">
       <div className="relative w-full overflow-hidden pb-[85%]">
         <Link href="#" className="h-full w-full">
           <Image

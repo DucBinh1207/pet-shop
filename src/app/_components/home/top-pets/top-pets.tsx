@@ -1,12 +1,12 @@
 "use client";
 
-import Button from "@/components/common/button";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css/pagination";
 import { Pagination, Navigation, EffectCoverflow } from "swiper/modules";
 import { useRef } from "react";
+import PetCard from "@/components/pet-card";
+import Button from "@/components/common/button";
 import NavigationButton from "@/components/navigation-button";
-import PetCard from "@/components/card-product/pet-card";
 
 export default function TopPets() {
   const swiperRef = useRef(null);
@@ -62,14 +62,14 @@ export default function TopPets() {
           >
             {[...Array(8)].map((_, index) => (
               <SwiperSlide
-                className="border-box x-smallest-screen:min-w-[50%] x-small-screen:min-w-[calc(100%/3)] flex min-w-[232px] flex-1 transform flex-col border border-solid border-light_gray_color_second bg-white small-screen:min-w-[25%]"
+                className="border-box flex min-w-[232px] flex-1 transform flex-col border border-solid border-light_gray_color_second bg-white small-screen:min-w-[25%] x-small-screen:min-w-[calc(100%/3)] x-smallest-screen:min-w-[50%]"
                 key={index}
               >
                 <PetCard />
               </SwiperSlide>
             ))}
             <SwiperSlide
-              className="border-box x-smallest-screen:min-w-[50%] x-small-screen:min-w-[calc(100%/3)] flex min-w-[232px] flex-1 transform items-center justify-center border border-solid border-light_gray_color_second bg-white small-screen:min-w-[25%]"
+              className="border-box flex min-w-[232px] flex-1 transform items-center justify-center border border-solid border-light_gray_color_second bg-white small-screen:min-w-[25%] x-small-screen:min-w-[calc(100%/3)] x-smallest-screen:min-w-[50%]"
               key={8}
             >
               <Button
