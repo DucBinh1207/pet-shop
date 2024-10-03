@@ -305,7 +305,7 @@ export default function OrderSummary() {
                     className={cn(
                       "relative mr-[7px] appearance-none rounded-[3px] align-middle after:absolute after:bottom-[1px] after:left-[1px] after:right-[1px] after:top-0",
                       {
-                        "after:bg-term_checked": isTermChecked,
+                        "after:bg-checked": isTermChecked,
                       },
                     )}
                     name="terms"

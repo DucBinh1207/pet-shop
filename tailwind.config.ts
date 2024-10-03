@@ -38,6 +38,7 @@ const config: Config = {
         "x-smallest-screen": { max: "755px" },
         "up-xx-smallest-screen": { min: "620px", max: "755px" },
         "xx-smallest-screen": { max: "619px" },
+        "down-xx-smallest-screen": { max: "579px" },
         "xxx-smallest-screen": { max: "500px" },
       },
       colors: {
@@ -115,7 +116,7 @@ const config: Config = {
         arrow_next: 'url("/assets/icons/angle-right-icon.svg")',
         comments_bg: 'url("/assets/images/comments_bg.svg")',
         about_us: 'url("/assets/images/about_us_bg.jpg")',
-        term_checked: 'url("/assets/icons/check-icon.svg")',
+        checked: 'url("/assets/icons/check-icon.svg")',
       },
       transitionProperty: {
         "max-height": "max-height",

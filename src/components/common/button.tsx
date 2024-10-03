@@ -6,7 +6,7 @@ import React, { ComponentProps, forwardRef, ReactNode, useMemo } from "react";
 interface ButtonProps
   extends Pick<
       ComponentProps<"button">,
-      "children" | "className" | "disabled" | "type" | "form" | "onClick" 
+      "children" | "className" | "disabled" | "type" | "form" | "onClick"
     >,
     VariantProps<typeof buttonVariants> {
   startIcon?: ReactNode;
@@ -42,6 +42,8 @@ const buttonVariants = cva(
 
         search:
           "px-[15px] py-[0px] text-[16px] leading-[0px] tracking-[0.025em]",
+
+        filter: "px-[18px] py-[5px] ",
 
         none: "p-0",
       },
