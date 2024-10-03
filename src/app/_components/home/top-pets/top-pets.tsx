@@ -6,6 +6,7 @@ import { Pagination, Navigation, EffectCoverflow } from "swiper/modules";
 import { useRef } from "react";
 import PetCard from "@/components/pet-card";
 import NavigationButton from "@/components/navigation-button";
+import Button from "@/components/common/button";
 
 export default function TopPets() {
   const swiperRef = useRef(null);
@@ -67,6 +68,17 @@ export default function TopPets() {
                 <PetCard />
               </SwiperSlide>
             ))}
+            <SwiperSlide
+              className="border-box flex min-w-[232px] flex-1 transform items-center justify-center border border-solid border-light_gray_color_second bg-white small-screen:min-w-[25%] x-small-screen:min-w-[calc(100%/3)] x-smallest-screen:min-w-[50%]"
+              key={8}
+            >
+              <Button
+                size="xsm"
+                className="text-[12px] font-bold leading-[15px] tracking-[0.045em]"
+              >
+                View More
+              </Button>
+            </SwiperSlide>
           </Swiper>
         </div>
       </div>
