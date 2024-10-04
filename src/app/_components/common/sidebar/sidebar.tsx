@@ -105,7 +105,7 @@ export default function Sidebar() {
             "hidden opacity-0": !isSideBarOpen,
           },
         )}
-      ></div>
+      />
     </>
   );
 }

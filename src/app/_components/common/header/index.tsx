@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import cn from "@/utils/style/cn";
-import Sidebar from "../sidebar";
+import Sidebar from "../sidebar/sidebar";
 import Nav from "./nav";
 import BarIcon from "@/components/common/icons/bar-icon";
 import Action from "./action";

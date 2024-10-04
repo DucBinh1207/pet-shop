@@ -13,28 +13,28 @@ export default function Address() {
           <label className="text-primary" htmlFor="province">
             Province *
           </label>
-          <Input id="province"></Input>
+          <Input id="province" />
         </div>
 
         <div className="flex flex-col justify-start gap-[10px]">
           <label className="text-primary" htmlFor="district">
             District *
           </label>
-          <Input id="district"></Input>
+          <Input id="district" />
         </div>
 
         <div className="flex flex-col justify-start gap-[10px]">
           <label className="text-primary" htmlFor="ward">
             Ward *
           </label>
-          <Input id="ward"></Input>
+          <Input id="ward" />
         </div>
 
         <div className="flex flex-col justify-start gap-[10px]">
           <label className="text-primary" htmlFor="street">
             Street *
           </label>
-          <Input id="street"></Input>
+          <Input id="street" />
         </div>
 
         <Button

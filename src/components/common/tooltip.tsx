@@ -4,9 +4,14 @@ import { ReactNode } from "react";
 type ToolTipProps = {
   value?: string;
   element?: ReactNode;
+  isShowToolTip?: boolean;
 };
 
-export default function ToolTip({ value, element }: ToolTipProps) {
+export default function ToolTip({
+  value,
+  element,
+  isShowToolTip,
+}: ToolTipProps) {
   const tooltip = value && (
     <span
       className={cn(
@@ -21,9 +26,16 @@ export default function ToolTip({ value, element }: ToolTipProps) {
     </span>
   );
 
+  let isShow = true;
+
+  if (typeof isShowToolTip !== "undefined") {
+
+    isShow = isShowToolTip;
+  }
+
   return (
     <div className="group relative inline-block">
-      {tooltip}
+      {isShow && tooltip}
       {element}
     </div>
   );

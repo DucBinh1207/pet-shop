@@ -3,3 +3,5 @@ export const WeightType = {
   TEN: 10,
   FIFTY: 15,
 } as const;
+
+export type WeightTypes = (typeof WeightType)[keyof typeof WeightType];

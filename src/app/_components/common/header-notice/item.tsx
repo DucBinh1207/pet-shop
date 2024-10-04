@@ -18,6 +18,7 @@ const IconsMap = {
 };
 
 export default function Item({ name, href, iconName }: props) {
+
   const Icon = IconsMap[iconName];
 
   //If iconName is "BUSINESS_TIME", render a <span> element; otherwise, render an <Link> element with an href attribute

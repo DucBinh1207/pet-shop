@@ -120,7 +120,7 @@ export default function OurGuides() {
             ))}
           </Swiper>
 
-          <div className="guides-swiper-pagination relative mt-[25px] flex justify-center gap-[5px] large-screen:hidden large-screen:opacity-0"></div>
+          <div className="guides-swiper-pagination relative mt-[25px] flex justify-center gap-[5px] large-screen:hidden large-screen:opacity-0" />
         </div>
 
         <div className="mt-[20px] text-center">

@@ -16,28 +16,28 @@ export default function AccountDetail() {
           <label className="text-primary" htmlFor="user_name">
             Name *
           </label>
-          <Input id="user_name"></Input>
+          <Input id="user_name" />
         </div>
 
         <div className="flex flex-col justify-start gap-[10px]">
           <label className="text-primary" htmlFor="user_telephone">
             Telephone *
           </label>
-          <Input id="user_telephone"></Input>
+          <Input id="user_telephone" />
         </div>
 
         <div className="flex flex-col justify-start gap-[10px]">
           <label className="text-primary" htmlFor="user_email">
             Email *
           </label>
-          <Input id="user_email"></Input>
+          <Input id="user_email" />
         </div>
 
         <div className="flex flex-col justify-start gap-[10px]">
           <label className="text-primary" htmlFor="user_nationality">
             Nationnality *
           </label>
-          <Input id="user_nationality"></Input>
+          <Input id="user_nationality" />
         </div>
 
         <fieldset className="mt-[40px] flex max-w-[430px] flex-col gap-[10px]">
@@ -49,21 +49,21 @@ export default function AccountDetail() {
             <label className="text-primary" htmlFor="password">
               Current password (leave blank to leave unchanged)
             </label>
-            <Input id="password"></Input>
+            <Input id="password" />
           </div>
 
           <div className="flex flex-col justify-start gap-[10px]">
             <label className="text-primary" htmlFor="new_password">
               New password (leave blank to leave unchanged)
             </label>
-            <Input id="new_password"></Input>
+            <Input id="new_password" />
           </div>
 
           <div className="flex flex-col justify-start gap-[10px]">
             <label className="text-primary" htmlFor="confirm_password">
               Confirm new password
             </label>
-            <Input id="confirm_password"></Input>
+            <Input id="confirm_password" />
           </div>
         </fieldset>
       </form>

@@ -136,7 +136,7 @@ export default function OrderSummary() {
                   <td
                     colSpan={2}
                     className="relative w-full py-[20px] after:absolute after:left-0 after:right-0 after:top-[50%] after:h-[1px] after:bg-light_gray_color_second after:content-['']"
-                  ></td>
+                  />
                 </tr>
 
                 <tr className="medium-screen:flex medium-screen:justify-between">
@@ -152,7 +152,7 @@ export default function OrderSummary() {
                   <td
                     colSpan={2}
                     className="relative w-full py-[20px] after:absolute after:left-0 after:right-0 after:top-[50%] after:h-[1px] after:bg-light_gray_color_second after:content-['']"
-                  ></td>
+                  />
                 </tr>
 
                 <tr className="medium-screen:flex medium-screen:justify-between">
@@ -168,7 +168,7 @@ export default function OrderSummary() {
                   <td
                     colSpan={2}
                     className="relative w-full py-[20px] after:absolute after:left-0 after:right-0 after:top-[50%] after:h-[1px] after:bg-light_gray_color_second after:content-['']"
-                  ></td>
+                  />
                 </tr>
 
                 <tr className="medium-screen:flex medium-screen:justify-between">
@@ -184,7 +184,7 @@ export default function OrderSummary() {
                   <td
                     colSpan={2}
                     className="relative w-full py-[20px] after:absolute after:left-0 after:right-0 after:top-[50%] after:h-[1px] after:bg-light_gray_color_second after:content-['']"
-                  ></td>
+                  />
                 </tr>
               </tfoot>
             </table>

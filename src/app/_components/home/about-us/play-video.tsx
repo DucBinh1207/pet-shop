@@ -34,7 +34,7 @@ export default function PlayVideo() {
               allow=" autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               referrerPolicy="strict-origin-when-cross-origin"
               allowFullScreen
-            ></iframe>
+            />
           </div>
 
           <Button
@@ -45,7 +45,7 @@ export default function PlayVideo() {
             onClick={() => {
               setIsOpen(false);
             }}
-          ></Button>
+          />
 
           <div
             className={cn(
@@ -55,7 +55,7 @@ export default function PlayVideo() {
                 "hidden opacity-0": !isOpen,
               },
             )}
-          ></div>
+          />
         </>
       )}
     </>

@@ -46,7 +46,7 @@ export default function OrderCard({ RedirectOrderDetail }: props) {
               }
             />
           }
-        ></ToolTip>
+        />
       </td>
     </tr>
   );

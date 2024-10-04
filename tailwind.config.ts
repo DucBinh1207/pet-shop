@@ -117,6 +117,8 @@ const config: Config = {
         comments_bg: 'url("/assets/images/comments_bg.svg")',
         about_us: 'url("/assets/images/about_us_bg.jpg")',
         checked: 'url("/assets/icons/check-icon.svg")',
+        beef_img: 'url("/assets/images/beef.png")',
+        chicken_img: 'url("/assets/images/chicken.png")',
       },
       transitionProperty: {
         "max-height": "max-height",

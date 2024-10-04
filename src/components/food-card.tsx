@@ -7,13 +7,18 @@ import cn from "@/utils/style/cn";
 import Image from "next/image";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
 import Button from "./common/button";
 import ToolTip from "./common/tooltip";
 
 export default function FoodCard() {
   const [bgSelect, setBgSelect] = useState("/assets/icons/angle-down-icon.svg");
   const [isOpen, setIsOpen] = useState(false);
+  const nameRef = useRef<HTMLSpanElement>(null);
+  const descriptionRef = useRef<HTMLSpanElement>(null);
+  const [isShowNameTooltip, setIsShowNameTooltip] = useState(false);
+  const [isShowDescriptionTooltip, setIsShowDescriptionTooltip] =
+    useState(false);
 
   const onBlurSelect = () => {
     setBgSelect("/assets/icons/angle-down-icon.svg");
@@ -29,6 +34,21 @@ export default function FoodCard() {
       setIsOpen(true);
     }
   };
+
+  useLayoutEffect(() => {
+    if (nameRef.current) {
+      setIsShowNameTooltip(
+        nameRef.current.clientHeight < nameRef.current.scrollHeight,
+      );
+    }
+
+    if (descriptionRef.current) {
+      setIsShowDescriptionTooltip(
+        descriptionRef.current.clientHeight <
+          descriptionRef.current.scrollHeight,
+      );
+    }
+  }, []);
 
   return (
     <div className="border-box flex min-w-[232px] flex-1 transform flex-col border border-solid border-light_gray_color_second bg-white small-screen:min-w-[25%] x-small-screen:min-w-[calc(100%/3)] x-smallest-screen:min-w-[50%]">
@@ -47,19 +67,28 @@ export default function FoodCard() {
         <div className="flex flex-col">
           <ToolTip
             element={
-              <span className="mb-[10px] line-clamp-2 max-h-[46px] w-full overflow-hidden font-quicksand text-[17px] font-bold capitalize leading-[1.35] tracking-[-0.01em] text-primary">
+              <span
+                className="mb-[10px] line-clamp-2 max-h-[46px] w-full overflow-hidden font-quicksand text-[17px] font-bold capitalize leading-[1.35] tracking-[-0.01em] text-primary"
+                ref={nameRef}
+              >
                 True Acre Foods Grain
               </span>
             }
             value="True Acre Foods Grain"
+            isShowToolTip={isShowNameTooltip}
           />
+
           <ToolTip
             element={
-              <span className="mb-[10px] line-clamp-4 max-h-[76px] w-full overflow-hidden font-quicksand text-[13px] font-normal capitalize leading-[1.46] tracking-[0.02em] text-text_color">
+              <span
+                className="mb-[10px] line-clamp-4 max-h-[76px] w-full overflow-hidden font-quicksand text-[13px] font-normal capitalize leading-[1.46] tracking-[0.02em] text-text_color"
+                ref={descriptionRef}
+              >
                 Bring some grain-free goodness to your pup’s bowl.
               </span>
             }
             value="Bring some grain-free goodness to your pup’s bowl."
+            isShowToolTip={isShowDescriptionTooltip}
           />
 
           <span className="flex gap-[2px]">
@@ -113,7 +142,7 @@ export default function FoodCard() {
                     "bg-white": false,
                   },
                 )}
-              ></span>
+              />
             </li>
 
             <li
@@ -141,7 +170,7 @@ export default function FoodCard() {
                     "bg-white": true,
                   },
                 )}
-              ></span>
+              />
             </li>
           </ul>
         </div>
@@ -244,7 +273,7 @@ export default function FoodCard() {
                 size="circle_lg"
                 variant="primary"
                 startIcon={<CartIcon size={16} />}
-              ></Button>
+              />
             }
             value="Add to Cart"
           />

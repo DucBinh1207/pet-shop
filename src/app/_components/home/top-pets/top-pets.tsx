@@ -89,7 +89,7 @@ export default function TopPets() {
         typeReference="peer"
       />
 
-      <div className="swiper-pagination !relative mt-[25px]"></div>
+      <div className="swiper-pagination !relative mt-[25px]" />
     </div>
   );
 }

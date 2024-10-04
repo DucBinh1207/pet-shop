@@ -1,4 +1,3 @@
-import Button from "@/components/common/button";
 import SearchIcon from "@/components/common/icons/search-icon";
 import Input from "@/components/common/input";
 
@@ -9,7 +8,7 @@ export default function NotFound() {
         <div className="relative inline-block">
           <SearchIcon size={90} className="fill-current text-primary" />
 
-          <div className="after:absolute after:bottom-[-15px] after:left-[50%] after:h-[8px] after:w-[80px] after:translate-x-[-50%] after:rounded-[5px] after:bg-primary after:content-['']"></div>
+          <div className="after:absolute after:bottom-[-15px] after:left-[50%] after:h-[8px] after:w-[80px] after:translate-x-[-50%] after:rounded-[5px] after:bg-primary after:content-['']" />
         </div>
         <h1 className="mx-auto mt-[35px] max-w-[800px] text-center text-[27px] font-bold leading-[1.27] tracking-[-0.01em] text-primary">
           Oops! That page can’t be found
@@ -21,11 +20,9 @@ export default function NotFound() {
           <div className="flex-shrink flex-grow basis-auto">
             <Input placeholder="Search..." className="px-[12px] py-[9px]" />
           </div>
-          <Button
-            size="search"
-            className="hover_animate group relative flex-1"
-            startIcon={<SearchIcon size="small" className="fill-current" />}
-          />
+          <button className="hover_animate hover_animate group relative inline-block flex-1 cursor-pointer rounded-[25px] border-[2px] border-solid border-primary bg-white px-[15px] py-[0px] text-center text-[16px] uppercase leading-[0px] tracking-[0.025em] text-primary outline-none hover:bg-primary hover:text-white">
+            <SearchIcon size="small" className="fill-current" />
+          </button>
         </div>
       </div>
     </div>

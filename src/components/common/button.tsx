@@ -40,11 +40,6 @@ const buttonVariants = cva(
 
         circle_xxl: "p-[33px]",
 
-        search:
-          "px-[15px] py-[0px] text-[16px] leading-[0px] tracking-[0.025em]",
-
-        filter: "px-[18px] py-[5px] ",
-
         none: "p-0",
       },
       variant: {

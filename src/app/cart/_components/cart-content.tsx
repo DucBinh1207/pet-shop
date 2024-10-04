@@ -7,6 +7,7 @@ import CheckoutForm from "./checkout-form";
 import Button from "@/components/common/button";
 
 export default function CartContent() {
+
   const router = useRouter();
 
   //Handle fetching order data

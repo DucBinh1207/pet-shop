@@ -132,7 +132,7 @@ export default function Dashboard({ setTabActive }: props) {
                 onClick={() => {
                   setTabActive(Tabs.ADDRESS);
                 }}
-              ></Button>
+              />
             }
           />
         </div>
