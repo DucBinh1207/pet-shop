@@ -10,7 +10,11 @@ export default function HeaderNotice() {
           iconName="MAIL"
         />
 
-        <Item name="+84-857-123-987" href="tel:+84857123987" iconName="PHONE" />
+        <Item
+          name="+84-857-123-987"
+          href="tel:+84857123987"
+          iconName="PHONE"
+        />
 
         <Item
           name=" 54 Nguyen Luong Bang, Hoa Khanh Bac, Lien Chieu, Da Nang"
