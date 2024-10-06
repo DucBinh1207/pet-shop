@@ -31,7 +31,11 @@ export default function Header() {
         href="/"
         className="flex items-center font-quicksand text-[38px] font-bold tracking-wider text-white large-screen:gap-[10px] small-screen:flex-1 small-screen:text-[20px]"
       >
-        <LogoIcon size={40} fill="#ffffff" className="small-screen:scale-[0.7]" />
+        <LogoIcon
+          size={40}
+          fill="#ffffff"
+          className="small-screen:scale-[0.7]"
+        />
         Whiskers
       </Link>
 

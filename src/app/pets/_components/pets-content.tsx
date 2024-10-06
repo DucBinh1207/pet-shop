@@ -91,8 +91,6 @@ export default function PetsContent() {
     params.append("sort", sort);
 
     params.append("paging", paging.toString());
-
-    console.log(params.toString());
   };
 
   useEffect(() => {
@@ -180,7 +178,7 @@ export default function PetsContent() {
 
                 <button
                   type="button"
-                  className="hover_animate mt-[10px] inline-block cursor-pointer rounded-[18px] rounded-[25px] border-[2px] border-solid border-primary bg-white px-[18px] py-[5px] text-center text-[12px] font-bold uppercase tracking-wider text-primary outline-none hover:bg-primary hover:text-white"
+                  className="hover_animate mt-[10px] inline-block cursor-pointer rounded-[18px] border-[2px] border-solid border-primary bg-white px-[18px] py-[5px] text-center text-[12px] font-bold uppercase tracking-wider text-primary outline-none hover:bg-primary hover:text-white"
                 >
                   Filter
                 </button>
@@ -267,7 +265,7 @@ export default function PetsContent() {
 
               <div className="text-[14px] leading-[1.23] tracking-[0.02em] text-text_color">
                 <select
-                  className="relative h-auto w-full appearance-none rounded-[3px] border border-solid border-input_border_color bg-form_color py-[8px] pl-[9px] pr-[28px] text-[13px] font-medium leading-[16px] tracking-[0.01em] text-primary outline-none"
+                  className="relative h-auto w-full rounded-[3px] border border-solid border-input_border_color bg-form_color py-[8px] pl-[9px] pr-[28px] text-[13px] font-medium leading-[16px] tracking-[0.01em] text-primary outline-none"
                   onChange={handleWeightFilter}
                 >
                   <option value="">Choose the weight</option>
@@ -292,7 +290,7 @@ export default function PetsContent() {
               <div className="w-full flex-1">Showing all 11 results</div>
               <Sort sort={sort} handleSortFilter={handleSortFilter} />
             </div>
-            <div className="ml-[15px] mr-[2px]">
+            <div className="ml-[15px] mr-[2px] large-screen:hidden large-screen:opacity-0">
               <button
                 className="hover_animate inline-flex cursor-pointer items-center gap-[7px] rounded-[17px] border-[2px] border-solid border-primary bg-white px-[22px] py-[7px] text-center text-[11px] font-bold uppercase leading-[14px] tracking-[0.07em] text-primary outline-none hover:bg-primary hover:text-white"
                 onClick={() => setIsFilterOpen(true)}

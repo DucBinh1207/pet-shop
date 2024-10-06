@@ -34,7 +34,7 @@ export default function PetCard() {
 
           <TruncateToolTip
             spanClass="mb-[10px] line-clamp-4 max-h-[76px] w-full overflow-hidden font-quicksand text-[13px] font-normal capitalize leading-[1.46] tracking-[0.02em] text-text_color"
-            value="Bring some grain-free goodness to your pup’s bowl."
+            value="Bring some grain-free goodness to your pup’s bowl. Bring some grain-free goodness to your pup’s bowl.Bring some grain-free goodness to your pup’s bowl."
           />
 
           <span className="flex gap-[2px]">
