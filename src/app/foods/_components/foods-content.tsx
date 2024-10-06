@@ -1,33 +1,33 @@
 "use client";
 
-import { ColorType, ColorTypes } from "@/constants/color-type";
 import { IngredientType, IngredientTypes } from "@/constants/ingredient-type";
 import { PriceRange } from "@/constants/price-range";
 import { SizeType, SizeTypes } from "@/constants/size-type";
 import { WeightType, WeightTypes } from "@/constants/weight-type";
 import { useEffect, useState } from "react";
 import ReactSlider from "react-slider";
-import ColorCheckbox from "./color-checkbox";
 import SizeCheckbox from "./size-checkbox";
 import IngredientCheckbox from "./ingredient-checkbox";
-import PetsCategory from "./pets-category";
-import { CategoryType, CategoryTypes } from "@/constants/category-type";
-import PetCard from "@/components/pet-card";
 import CancelIcon from "@/components/common/icons/cancel-icon";
 import { SortType, SortTypes } from "@/constants/sort-type";
 import Sort from "./sort";
 import AngleIcon from "@/components/common/icons/angle-icon";
 import cn from "@/utils/style/cn";
+import FoodsCategory from "./foods-category";
+import FoodCard from "@/components/food-card";
 import ArrowIcon from "@/components/common/icons/arrow-icon";
+import {
+  FoodsCategoryType,
+  FoodsCategoryTypes,
+} from "@/constants/foods-category-type";
 
-export default function PetsContent() {
+export default function FoodsContent() {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
-  const [category, setCategory] = useState<CategoryTypes>(CategoryType.ALL);
+  const [category, setCategory] = useState<FoodsCategoryTypes>(
+    FoodsCategoryType.ALL,
+  );
   const [price, setPrice] = useState([PriceRange.MIN, PriceRange.MAX]);
-  const [color, setColor] = useState<ColorTypes[]>([
-    ColorType.LIGHT,
-    ColorType.DARK,
-  ]);
+
   const [size, setSize] = useState<SizeTypes[]>([
     SizeType.SMALL,
     SizeType.MEDIUM,
@@ -41,13 +41,8 @@ export default function PetsContent() {
   const [sort, setSort] = useState<SortTypes>(SortType.DEFAULT);
   const [paging, setPaging] = useState<number>(2);
 
-  function handleCategoryFilter(categoryCurrent: CategoryTypes) {
+  function handleCategoryFilter(categoryCurrent: FoodsCategoryTypes) {
     setCategory(categoryCurrent);
-  }
-  function handleColorFilter(colorCurrent: ColorTypes) {
-    if (color.includes(colorCurrent)) {
-      setColor(color.filter((c) => c !== colorCurrent));
-    } else setColor([...color, colorCurrent]);
   }
   function handleSizeFilter(sizeCurrent: SizeTypes) {
     if (size.includes(sizeCurrent)) {
@@ -75,10 +70,6 @@ export default function PetsContent() {
 
     params.append("category", category);
 
-    color.forEach((colorValue) => {
-      params.append("color", colorValue);
-    });
-
     size.forEach((sizeValue) => {
       params.append("size", sizeValue);
     });
@@ -96,11 +87,11 @@ export default function PetsContent() {
 
   useEffect(() => {
     appendColorsToParams();
-  }, [category, color, size, ingredient, weight, sort, paging]);
+  }, [category, size, ingredient, weight, sort, paging]);
 
   return (
     <>
-      <PetsCategory
+      <FoodsCategory
         category={category}
         handleCategoryFilter={handleCategoryFilter}
       />
@@ -184,28 +175,6 @@ export default function PetsContent() {
                   Filter
                 </button>
               </form>
-            </div>
-
-            <div className="px-[25px] pt-[40px]">
-              <h3 className="mb-[20px] font-quicksand text-[20px] font-bold leading-[1.1] tracking-[-0.01em] text-primary">
-                Color
-              </h3>
-
-              <ul className="text-[14px] leading-[1.23] tracking-[0.02em] text-text_color">
-                <ColorCheckbox
-                  color={color}
-                  colorType={ColorType.LIGHT}
-                  name="Màu sáng"
-                  handleColorFilter={handleColorFilter}
-                />
-
-                <ColorCheckbox
-                  color={color}
-                  colorType={ColorType.DARK}
-                  name="Màu tối"
-                  handleColorFilter={handleColorFilter}
-                />
-              </ul>
             </div>
 
             <div className="px-[25px] pt-[40px]">
@@ -308,7 +277,7 @@ export default function PetsContent() {
                 className="large-screen:w-[25%] up-x-small-screen:w-[25%] up-x-smallest-screen:!w-[calc(100%/3)] up-xx-smallest-screen:!w-[50%] xx-smallest-screen:w-full down-xx-smallest-screen:!w-[50%]"
                 key={index}
               >
-                <PetCard />
+                <FoodCard />
               </div>
             ))}
           </div>
