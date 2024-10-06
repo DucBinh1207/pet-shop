@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import cn from "@/utils/style/cn";
-import Sidebar from "../sidebar/sidebar";
+import Sidebar from "../sidebar";
 import Nav from "./nav";
 import BarIcon from "@/components/common/icons/bar-icon";
 import Action from "./action";
@@ -29,9 +29,9 @@ export default function Header() {
 
       <Link
         href="/"
-        className="flex items-center gap-[10px] font-quicksand text-[38px] font-bold tracking-wider text-white small-screen:flex-1"
+        className="flex items-center font-quicksand text-[38px] font-bold tracking-wider text-white large-screen:gap-[10px] small-screen:flex-1 small-screen:text-[20px]"
       >
-        <LogoIcon size={40} fill="#ffffff" />
+        <LogoIcon size={40} fill="#ffffff" className="small-screen:scale-[0.7]" />
         Whiskers
       </Link>
 

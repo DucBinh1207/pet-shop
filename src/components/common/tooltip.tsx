@@ -2,40 +2,24 @@ import cn from "@/utils/style/cn";
 import { ReactNode } from "react";
 
 type ToolTipProps = {
-  value?: string;
-  element?: ReactNode;
-  isShowToolTip?: boolean;
+  value: string;
+  element: ReactNode;
 };
 
-export default function ToolTip({
-  value,
-  element,
-  isShowToolTip,
-}: ToolTipProps) {
-  const tooltip = value && (
+export default function ToolTip({ value, element }: ToolTipProps) {
+  const tooltip = (
     <span
       className={cn(
-        "tooltip_animate invisible absolute bottom-[calc((100%+10px))] right-[calc(50%-21px)] inline-flex max-w-[100px] translate-y-[7px] scale-[0.7] rounded-[15px] bg-primary px-[9px] py-[6px] text-center text-[10px] font-bold uppercase leading-[13px] tracking-[0.025em] text-white opacity-0 after:absolute after:bottom-[-10px] after:right-[15px] after:block after:border-[6px] after:border-solid after:border-transparent after:border-t-primary after:content-[''] group-hover:visible group-hover:translate-y-0 group-hover:scale-100 group-hover:opacity-100",
-        {
-          "text-nowrap": value.length < 20,
-          "text-wrap": value.length > 20,
-        },
+        "tooltip_animate invisible absolute bottom-[calc((100%+10px))] right-[calc(50%-21px)] inline-flex max-w-[100px] translate-y-[7px] scale-[0.7] whitespace-nowrap rounded-[15px] bg-primary px-[9px] py-[6px] text-center text-[10px] font-bold uppercase leading-[13px] tracking-[0.025em] text-white opacity-0 after:absolute after:bottom-[-10px] after:right-[15px] after:block after:border-[6px] after:border-solid after:border-transparent after:border-t-primary after:content-[''] group-hover:visible group-hover:translate-y-0 group-hover:scale-100 group-hover:opacity-100",
       )}
     >
       {value}
     </span>
   );
 
-  let isShow = true;
-
-  if (typeof isShowToolTip !== "undefined") {
-
-    isShow = isShowToolTip;
-  }
-
   return (
     <div className="group relative inline-block">
-      {isShow && tooltip}
+      {tooltip}
       {element}
     </div>
   );

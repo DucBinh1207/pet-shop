@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import { Outfit, Quicksand } from "next/font/google";
 import "./globals.css";
-import Header from "@/app/_components/common/header/header";
-import HeaderNotice from "./_components/common/header-notice/header-notice";
+import Header from "@/app/_components/common/header";
+import HeaderNotice from "./_components/common/header-notice";
 import ToastNotification from "@/components/common/toast";
-import Footer from "./_components/common/footer/footer";
+import Footer from "./_components/common/footer";
 
 const outfit_init = Outfit({
   subsets: ["latin"],

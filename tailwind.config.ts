@@ -38,7 +38,8 @@ const config: Config = {
         "x-smallest-screen": { max: "755px" },
         "up-xx-smallest-screen": { min: "620px", max: "755px" },
         "xx-smallest-screen": { max: "619px" },
-        "down-xx-smallest-screen": { max: "579px" },
+        "down-xx-smallest-screen": { min: "320px", max: "619px" },
+        "up-xxx-smallest-screen": { max: "579px" },
         "xxx-smallest-screen": { max: "500px" },
       },
       colors: {

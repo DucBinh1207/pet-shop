@@ -12,8 +12,15 @@ import SizeCheckbox from "./size-checkbox";
 import IngredientCheckbox from "./ingredient-checkbox";
 import PetsCategory from "./pets-category";
 import { CategoryType, CategoryTypes } from "@/constants/category-type";
+import PetCard from "@/components/pet-card";
+import CancelIcon from "@/components/common/icons/cancel-icon";
+import { SortType, SortTypes } from "@/constants/sort-type";
+import Sort from "./sort";
+import AngleIcon from "@/components/common/icons/angle-icon";
+import cn from "@/utils/style/cn";
 
 export default function PetsContent() {
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [category, setCategory] = useState<CategoryTypes>(CategoryType.ALL);
   const [price, setPrice] = useState([PriceRange.MIN, PriceRange.MAX]);
   const [color, setColor] = useState<ColorTypes[]>([
@@ -30,6 +37,8 @@ export default function PetsContent() {
     IngredientType.CHICKEN,
   ]);
   const [weight, setWeight] = useState<WeightTypes>(WeightType.FIFTY);
+  const [sort, setSort] = useState<SortTypes>(SortType.DEFAULT);
+  const [paging, setPaging] = useState<number>(1);
 
   function handleCategoryFilter(categoryCurrent: CategoryTypes) {
     setCategory(categoryCurrent);
@@ -53,6 +62,12 @@ export default function PetsContent() {
     const weightCurrent = Number(event.target.value) as WeightTypes;
     setWeight(weightCurrent);
   }
+  function handleSortFilter(sortCurrent: SortTypes) {
+    setSort(sortCurrent);
+  }
+  function handlePagingFilter(pagingCurrent: number) {
+    setPaging(pagingCurrent);
+  }
 
   const appendColorsToParams = () => {
     const params = new URLSearchParams();
@@ -73,12 +88,16 @@ export default function PetsContent() {
 
     params.append("weight", weight.toString());
 
+    params.append("sort", sort);
+
+    params.append("paging", paging.toString());
+
     console.log(params.toString());
   };
 
   useEffect(() => {
     appendColorsToParams();
-  }, [category, color, size, ingredient, weight]);
+  }, [category, color, size, ingredient, weight, sort, paging]);
 
   return (
     <>
@@ -88,8 +107,26 @@ export default function PetsContent() {
       />
 
       <div className="mx-auto flex flex-nowrap rounded-[4px] border border-solid border-light_gray_color_second bg-white large-screen:w-[1160px]">
-        <div className="border-r border-solid border-light_gray_color_second large-screen:min-w-[232px]">
-          <div className="flex flex-col pb-[30px]">
+        <div className="border-r border-solid border-light_gray_color_second large-screen:min-w-[232px] small-screen:relative small-screen:overflow-hidden">
+          <div
+            className={cn(
+              "flex flex-col pb-[30px] transition-all duration-150 ease-linear small-screen:fixed small-screen:right-0 small-screen:top-0 small-screen:z-[200] small-screen:h-full small-screen:w-[360px] small-screen:max-w-full small-screen:bg-white small-screen:pb-[30px] small-screen:leading-[1.23]",
+              {
+                "small-screen:translate-x-0 small-screen:opacity-100":
+                  isFilterOpen,
+                "small-screen:w-0 small-screen:translate-x-full small-screen:opacity-0":
+                  !isFilterOpen,
+              },
+            )}
+          >
+            <div className="relative flex items-center justify-end large-screen:hidden">
+              <div className="flex h-[46px] w-[46px] items-center justify-center">
+                <button onClick={() => setIsFilterOpen(false)}>
+                  <CancelIcon size={32} className="fill-current text-primary" />
+                </button>
+              </div>
+            </div>
+
             <div className="flex flex-col px-[25px] pt-[25px]">
               <h3 className="mb-[20px] font-quicksand text-[20px] font-bold leading-[1.1] tracking-[-0.01em] text-primary">
                 Price
@@ -223,7 +260,7 @@ export default function PetsContent() {
               </ul>
             </div>
 
-            <div className="px-[25px] pt-[40px] pb-[120px]">
+            <div className="px-[25px] pb-[120px] pt-[40px]">
               <h3 className="mb-[20px] font-quicksand text-[20px] font-bold leading-[1.1] tracking-[-0.01em] text-primary">
                 Weight
               </h3>
@@ -249,11 +286,61 @@ export default function PetsContent() {
           </div>
         </div>
 
-        <div className="min-w-[900px] flex-1">
-          <div className="flex min-h-[55px] flex-col items-center border-b border-solid border-light_gray_color_second px-[30px] py-[13px] text-[13px] font-normal leading-[16px] tracking-[0.025em] text-text_color">
-            <div className="flex w-full flex-1 items-center up-smallest-screen:justify-between">
-              <div className="w-full flex-1">Showing all 13 results</div>
+        <div className="flex-1 large-screen:min-w-[900px] small-screen:w-full">
+          <div className="flex min-h-[55px] items-center border-b border-solid border-light_gray_color_second px-[30px] py-[13px] text-[13px] font-normal leading-[16px] tracking-[0.025em] text-text_color">
+            <div className="flex w-full flex-1 small-screen:gap-[5px] up-smallest-screen:items-center up-smallest-screen:justify-between smallest-screen:flex-col">
+              <div className="w-full flex-1">Showing all 11 results</div>
+              <Sort sort={sort} handleSortFilter={handleSortFilter} />
             </div>
+            <div className="ml-[15px] mr-[2px]">
+              <button
+                className="hover_animate inline-flex cursor-pointer items-center gap-[7px] rounded-[17px] border-[2px] border-solid border-primary bg-white px-[22px] py-[7px] text-center text-[11px] font-bold uppercase leading-[14px] tracking-[0.07em] text-primary outline-none hover:bg-primary hover:text-white"
+                onClick={() => setIsFilterOpen(true)}
+              >
+                <AngleIcon size={8} className="rotate-[-90deg] fill-current" />
+                Filter
+              </button>
+            </div>
+          </div>
+
+          <div className="flex flex-wrap">
+            {[...Array(11)].map((_, index) => (
+              <div
+                className="large-screen:w-[25%] up-x-small-screen:w-[25%] up-x-smallest-screen:!w-[calc(100%/3)] up-xx-smallest-screen:!w-[50%] xx-smallest-screen:w-full down-xx-smallest-screen:!w-[50%]"
+                key={index}
+              >
+                <PetCard />
+              </div>
+            ))}
+          </div>
+
+          <div className="flex min-h-[55px] items-center justify-center gap-[5px] border-b border-solid border-light_gray_color_second px-[30px] py-[13px] text-[13px] font-normal leading-[16px] tracking-[0.025em] text-text_color">
+            <button
+              className="hover_animate inline-block cursor-pointer rounded-[8px] border-[2px] border-solid border-primary bg-white p-[8px] text-center uppercase text-primary outline-none hover:bg-primary hover:text-white"
+              onClick={() => {
+                handlePagingFilter(1);
+              }}
+            >
+              1
+            </button>
+
+            <button
+              className="hover_animate inline-block cursor-pointer rounded-[8px] border-[2px] border-solid border-primary bg-white p-[8px] text-center uppercase text-primary outline-none hover:bg-primary hover:text-white"
+              onClick={() => {
+                handlePagingFilter(10);
+              }}
+            >
+              10
+            </button>
+
+            <button
+              className="hover_animate inline-block cursor-pointer rounded-[8px] border-[2px] border-solid border-primary bg-white p-[8px] text-center uppercase text-primary outline-none hover:bg-primary hover:text-white"
+              onClick={() => {
+                handlePagingFilter(100);
+              }}
+            >
+              100
+            </button>
           </div>
         </div>
       </div>

@@ -22,8 +22,8 @@ export default function PetsCategory({
   const swiperRef = useRef(null);
 
   return (
-    <div className="mt-[-15px] w-full min-w-[320px] bg-white px-[50px] pb-[35px] text-center text-primary">
-      <div className="relative mx-auto w-[640px] min-w-[320px] max-w-full smallest-screen:w-[480px] down-xx-smallest-screen:w-[320px]">
+    <div className="mt-[-15px] w-full min-w-[320px] bg-white px-[50px] pb-[35px] text-center text-primary small-screen:px-0">
+      <div className="up-xxx-smallest-screen:w-[320px] relative mx-auto w-[640px] min-w-[320px] max-w-full smallest-screen:w-[480px]">
         <div className="overflow-hidden">
           <Swiper
             ref={swiperRef}
@@ -58,7 +58,7 @@ export default function PetsCategory({
             className="swiper-container"
           >
             <SwiperSlide
-              className="flex min-w-[160px] flex-1 transform flex-col px-[10px] pt-[20px] smallest-screen:w-[calc(100%/3)] down-xx-smallest-screen:min-w-[50%]"
+              className="up-xxx-smallest-screen:min-w-[50%] flex min-w-[160px] flex-1 transform flex-col px-[10px] pt-[20px] smallest-screen:w-[calc(100%/3)]"
               key={0}
             >
               <Link href="/" className="group flex flex-col items-center">
@@ -75,7 +75,7 @@ export default function PetsCategory({
             </SwiperSlide>
 
             <SwiperSlide
-              className="flex min-w-[160px] flex-1 transform flex-col px-[10px] pt-[20px] smallest-screen:w-[calc(100%/3)] down-xx-smallest-screen:min-w-[50%]"
+              className="up-xxx-smallest-screen:min-w-[50%] flex min-w-[160px] flex-1 transform flex-col px-[10px] pt-[20px] smallest-screen:w-[calc(100%/3)]"
               key={1}
             >
               <label
@@ -110,8 +110,8 @@ export default function PetsCategory({
             </SwiperSlide>
 
             <SwiperSlide
-              className="flex min-w-[160px] flex-1 transform flex-col px-[10px] pt-[20px] smallest-screen:w-[calc(100%/3)] down-xx-smallest-screen:min-w-[50%]"
-              key={1}
+              className="up-xxx-smallest-screen:min-w-[50%] flex min-w-[160px] flex-1 transform flex-col px-[10px] pt-[20px] smallest-screen:w-[calc(100%/3)]"
+              key={2}
             >
               <label
                 htmlFor={CategoryType.DOG}
@@ -145,8 +145,8 @@ export default function PetsCategory({
             </SwiperSlide>
 
             <SwiperSlide
-              className="flex min-w-[160px] flex-1 transform flex-col px-[10px] pt-[20px] smallest-screen:w-[calc(100%/3)] down-xx-smallest-screen:min-w-[50%]"
-              key={1}
+              className="up-xxx-smallest-screen:min-w-[50%] flex min-w-[160px] flex-1 transform flex-col px-[10px] pt-[20px] smallest-screen:w-[calc(100%/3)]"
+              key={3}
             >
               <label
                 htmlFor={CategoryType.CAT}
