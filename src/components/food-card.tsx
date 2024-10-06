@@ -61,67 +61,7 @@ export default function FoodCard() {
       </div>
 
       <form className="flex flex-col gap-[12.5px] px-[30px] pb-[30px] pt-[15px]">
-        <div className="weight">
-          <ul className="flex flex-wrap" role="radiogroup" aria-label="weight">
-            <li
-              aria-checked={true}
-              tabIndex={0}
-              data-wvstooltip="8lbs"
-              className={cn(
-                "m-[2.5px] flex h-[26px] w-[26px] cursor-pointer list-none items-center justify-center rounded-[50%] border border-solid bg-white",
-                {
-                  "border-primary": true,
-                  "border-form_color": false,
-                },
-              )}
-              title="red"
-              data-title="red"
-              data-value="red"
-              role="radio"
-            >
-              <span
-                className={cn(
-                  "block h-[20px] w-[20px] rounded-[50%] border border-solid border-soft_dark_blue_color",
-                  {
-                    "bg-red-600": true,
-                    "bg-blue-600": false,
-                    "bg-white": false,
-                  },
-                )}
-              />
-            </li>
-
-            <li
-              aria-checked={true}
-              tabIndex={1}
-              data-wvstooltip="8lbs"
-              className={cn(
-                "m-[2.5px] flex h-[24px] w-[24px] cursor-pointer list-none items-center justify-center rounded-[50%] border border-solid bg-white",
-                {
-                  "border-primary": false,
-                  "border-form_color": true,
-                },
-              )}
-              title="red"
-              data-title="red"
-              data-value="red"
-              role="radio"
-            >
-              <span
-                className={cn(
-                  "block h-[20px] w-[20px] rounded-[50%] border border-solid border-soft_dark_blue_color",
-                  {
-                    "bg-red-600": false,
-                    "bg-blue-600": false,
-                    "bg-white": true,
-                  },
-                )}
-              />
-            </li>
-          </ul>
-        </div>
-
-        <div className="color">
+        <div>
           <ul className="flex flex-wrap" role="radiogroup" aria-label="color">
             <li
               aria-checked={true}
