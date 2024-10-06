@@ -5,8 +5,8 @@ import "swiper/css/pagination";
 import { Pagination, Navigation, EffectCoverflow } from "swiper/modules";
 import { useRef } from "react";
 import PetCard from "@/components/pet-card";
-import Button from "@/components/common/button";
 import NavigationButton from "@/components/navigation-button";
+import Button from "@/components/common/button";
 
 export default function TopPets() {
   const swiperRef = useRef(null);
@@ -89,7 +89,7 @@ export default function TopPets() {
         typeReference="peer"
       />
 
-      <div className="swiper-pagination !relative mt-[25px]"></div>
+      <div className="swiper-pagination !relative mt-[25px]" />
     </div>
   );
 }

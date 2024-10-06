@@ -33,7 +33,7 @@ export default function Social({ href, iconName }: props) {
           <Icon size={20} className="scale-125" />
         </div>
 
-        <div className="absolute h-[50px] w-[50px] rounded-[45%] border border-solid border-text_color_second transition-all duration-300 hover:scale-[110%]"></div>
+        <div className="absolute h-[50px] w-[50px] rounded-[45%] border border-solid border-text_color_second transition-all duration-300 hover:scale-[110%]" />
       </Link>
     </li>
   );

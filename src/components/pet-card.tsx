@@ -8,6 +8,7 @@ import Image from "next/image";
 import Link from "next/link";
 import ToolTip from "./common/tooltip";
 import Button from "./common/button";
+import TruncateToolTip from "./common/truncate-tooltip";
 
 export default function PetCard() {
   return (
@@ -23,24 +24,19 @@ export default function PetCard() {
           />
         </Link>
       </div>
+
       <div className="relative flex flex-auto flex-col justify-between px-[30px] pt-[20px]">
         <div className="flex flex-col">
-          <ToolTip
-            element={
-              <span className="mb-[10px] line-clamp-2 max-h-[46px] w-full overflow-hidden font-quicksand text-[17px] font-bold capitalize leading-[1.35] tracking-[-0.01em] text-primary">
-                True Acre Foods Grain
-              </span>
-            }
-            value="True Acre Foods Grain"
+          <TruncateToolTip
+            spanClass="mb-[10px] line-clamp-2 max-h-[46px] w-full overflow-hidden font-quicksand text-[17px] font-bold capitalize leading-[1.35] tracking-[-0.01em] text-primary"
+            value="True Acre Foods Grain "
           />
-          <ToolTip
-            element={
-              <span className="mb-[10px] line-clamp-4 max-h-[76px] w-full overflow-hidden font-quicksand text-[13px] font-normal capitalize leading-[1.46] tracking-[0.02em] text-text_color">
-                Bring some grain-free goodness to your pup’s bowl.
-              </span>
-            }
-            value="Bring some grain-free goodness to your pup’s bowl."
+
+          <TruncateToolTip
+            spanClass="mb-[10px] line-clamp-4 max-h-[76px] w-full overflow-hidden font-quicksand text-[13px] font-normal capitalize leading-[1.46] tracking-[0.02em] text-text_color"
+            value="Bring some grain-free goodness to your pup’s bowl. Bring some grain-free goodness to your pup’s bowl.Bring some grain-free goodness to your pup’s bowl."
           />
+
           <span className="flex gap-[2px]">
             {[...Array(4)].map((_, index) => (
               <StarIcon
@@ -76,7 +72,7 @@ export default function PetCard() {
                 size="circle_lg"
                 variant="primary"
                 startIcon={<CartIcon size={16} />}
-              ></Button>
+              />
             }
             value="Add to Cart"
           />

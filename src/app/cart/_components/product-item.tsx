@@ -7,6 +7,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 export default function ProductItem() {
+
   return (
     <tr className="medium-screen:item-center group medium-screen:relative medium-screen:mb-[15px] medium-screen:flex medium-screen:w-full medium-screen:flex-wrap medium-screen:border-b medium-screen:border-solid medium-screen:border-light_gray_color_second medium-screen:pb-[20px] medium-screen:pl-[90px]">
       <td className="relative w-[90px] border-b border-solid border-light_gray_color_second py-[20px] pr-[20px] medium-screen:absolute medium-screen:left-0 medium-screen:top-0 medium-screen:h-full medium-screen:w-[70px] medium-screen:border-b-0 medium-screen:p-0">
@@ -22,13 +23,13 @@ export default function ProductItem() {
                 className="fill-current text-primary opacity-100"
               />
             }
-          ></Button>
+          />
         </div>
         <Link
           href="/foods"
           className="relative block h-[75px] w-[90px] medium-screen:h-[60px] medium-screen:w-[70px]"
         >
-          <Image src="/assets/images/food1.jpg" fill alt="dog food"></Image>
+          <Image src="/assets/images/food1.jpg" fill alt="dog food"/>
         </Link>
       </td>
 

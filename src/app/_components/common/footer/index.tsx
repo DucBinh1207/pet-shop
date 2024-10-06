@@ -17,8 +17,8 @@ export default function Footer() {
           <Benefit value="Money Back Guarantee" icon="MONEY" />
         </ul>
       </div>
-      <div className="bg-dark_blue_color relative text-white small-screen:p-footer-p-small smallest-screen:p-footer-p-smallest">
-        <div className="absolute bottom-full left-0 block h-[30px] w-full translate-y-[1px] scale-y-[-1] bg-footer_img bg-repeat-x"></div>
+      <div className="relative bg-dark_blue_color text-white small-screen:p-footer-p-small smallest-screen:p-footer-p-smallest">
+        <div className="absolute bottom-full left-0 block h-[30px] w-full translate-y-[1px] scale-y-[-1] bg-footer_img bg-repeat-x" />
         <div className="mx-auto flex p-[60px] small-screen:flex-wrap">
           <div className="large-screen:w-[20%] between-small-smallest:w-[50%] smallest-screen:w-full">
             <div className="flex flex-col large-screen:pr-[30px] between-small-smallest:mb-[40px] smallest-screen:mb-[30px] smallest-screen:items-center">

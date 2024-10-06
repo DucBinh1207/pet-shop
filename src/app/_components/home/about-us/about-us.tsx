@@ -23,7 +23,7 @@ export default function AboutUs() {
                 src="/assets/images/about_us_pet.png"
                 alt="group of pets"
                 className="!h-auto w-full"
-              ></img>
+              />
             </picture>
 
             <div className="absolute left-[-20px] top-[83px] small-screen:left-[84px] small-screen:top-[51px] smallest-screen:hidden smallest-screen:opacity-0">
@@ -128,7 +128,7 @@ export default function AboutUs() {
               ))}
             </Swiper>
           </div>
-          <div className="about-us-swiper-pagination !relative mt-[25px] flex justify-center gap-[10px]"></div>
+          <div className="about-us-swiper-pagination !relative mt-[25px] flex justify-center gap-[10px]" />
         </div>
       </div>
     </>

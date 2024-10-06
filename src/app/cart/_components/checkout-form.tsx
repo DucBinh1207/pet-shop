@@ -7,6 +7,7 @@ import Button from "@/components/common/button";
 import Input from "@/components/common/input";
 
 export default function CheckoutForm() {
+
   const [isCouponOpen, setIsCouponOpen] = useState(false);
   const router = useRouter();
 
@@ -47,10 +48,7 @@ export default function CheckoutForm() {
                 )}
               >
                 <div className="flex gap-[10px] pt-[25px]">
-                  <Input
-                    placeholder="Input coupon code"
-                    className="w-full"
-                  ></Input>
+                  <Input placeholder="Input coupon code" className="w-full" />
                   <Button>Apply</Button>
                 </div>
               </div>
@@ -69,7 +67,7 @@ export default function CheckoutForm() {
               </tr>
 
               <tr className="relative after:absolute after:left-0 after:right-0 after:top-[50%] after:h-[1px] after:bg-light_gray_color_second after:content-['']">
-                <td className="py-[20px]" colSpan={2}></td>
+                <td className="py-[20px]" colSpan={2} />
               </tr>
 
               <tr>
@@ -104,7 +102,7 @@ export default function CheckoutForm() {
               </tr>
 
               <tr className="relative z-[1] after:absolute after:left-0 after:right-0 after:top-[50%] after:h-[1px] after:bg-light_gray_color_second after:content-['']">
-                <td className="py-[20px]" colSpan={2}></td>
+                <td className="py-[20px]" colSpan={2}/>
               </tr>
 
               <tr>

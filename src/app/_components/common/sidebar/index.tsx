@@ -33,9 +33,9 @@ export default function Sidebar() {
           "fixed top-0 z-[1000] h-full max-h-full w-full min-w-[320px] max-w-[415px] bg-header_bg_color_second text-text_color_second large-screen:hidden large-screen:opacity-0",
           {
             "translate-x-[0] opacity-100 duration-300 ease-in-out":
-              isSideBarOpen === true,
+              isSideBarOpen,
             "translate-x-[-100%] opacity-0 duration-300 ease-in-out":
-              isSideBarOpen === false,
+              !isSideBarOpen,
           },
         )}
       >
@@ -105,7 +105,7 @@ export default function Sidebar() {
             "hidden opacity-0": !isSideBarOpen,
           },
         )}
-      ></div>
+      />
     </>
   );
 }
