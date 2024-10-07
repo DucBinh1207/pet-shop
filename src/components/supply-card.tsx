@@ -61,7 +61,7 @@ export default function SupplyCard() {
       </div>
 
       <form className="flex flex-col gap-[12.5px] px-[30px] pb-[30px] pt-[15px]">
-        <div className="weight">
+        <div className="color">
           <ul className="flex flex-wrap" role="radiogroup" aria-label="weight">
             <li
               aria-checked={true}
@@ -119,64 +119,6 @@ export default function SupplyCard() {
               />
             </li>
           </ul>
-        </div>
-
-        <div className="color">
-          <ul className="flex flex-wrap" role="radiogroup" aria-label="color">
-            <li
-              aria-checked={true}
-              tabIndex={0}
-              data-wvstooltip="red"
-              className="m-[2.5px] cursor-pointer list-none"
-              title="8lbs"
-              data-title="8lbs"
-              data-value="8lbs"
-              role="radio"
-            >
-              <span
-                className={cn(
-                  "block rounded-[13px] border border-solid bg-form_color px-[9px] py-[5px] text-center text-[13px] font-medium leading-[16px] tracking-[0.01em] text-primary",
-                  {
-                    "border-primary": true,
-                    "border-form_color": !true,
-                  },
-                )}
-              >
-                8lbs
-              </span>
-            </li>
-            <li
-              aria-checked={false}
-              tabIndex={0}
-              data-wvstooltip="16lbs"
-              className="m-[2.5px] cursor-pointer list-none"
-              title="16lbs"
-              data-title="16lbs"
-              data-value="16lbs"
-              role="radio"
-            >
-              <span
-                className={cn(
-                  "block rounded-[13px] border border-solid bg-form_color px-[9px] py-[5px] text-center text-[13px] font-medium leading-[16px] tracking-[0.01em] text-primary",
-                  {
-                    "border-primary": false,
-                    "border-form_color": !false,
-                  },
-                )}
-              >
-                16lbs
-              </span>
-            </li>
-          </ul>
-        </div>
-
-        <div className="relative">
-          <select className="relative h-auto w-full rounded-[3px] border border-solid border-input_border_color bg-form_color py-[8px] pl-[9px] pr-[28px] text-[13px] font-medium leading-[16px] tracking-[0.01em] text-primary outline-none">
-            <option value="1">Choose your Ingredients</option>
-            <option value="2">Pig</option>
-            <option value="3">Chicken</option>
-            <option value="4">Beef</option>
-          </select>
         </div>
 
         <div className="relative">
