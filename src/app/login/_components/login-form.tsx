@@ -4,10 +4,12 @@ import Button from "@/components/common/button";
 import Input from "@/components/common/input";
 import cn from "@/utils/style/cn";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 export default function LoginForm() {
-  const [rememberMe, setRememberMe] = useState(false);
+  const [isRememberMe, setIsRememberMe] = useState(false);
+  const router = useRouter();
 
   return (
     <div className="mx-auto flex rounded-[4px] border border-solid border-light_gray_color_second bg-white large-screen:mb-[40px] large-screen:mt-[15px] large-screen:w-[1160px] small-screen:mb-[30px] small-screen:mt-[30px] smallest-screen:mb-[20px] smallest-screen:mt-[10px]">
@@ -49,12 +51,12 @@ export default function LoginForm() {
                       className={cn(
                         "relative mr-[7px] cursor-pointer appearance-none rounded-[3px] align-middle after:absolute after:bottom-[1px] after:left-[1px] after:right-[1px] after:top-0",
                         {
-                          "after:bg-checked": rememberMe,
+                          "after:bg-checked": isRememberMe,
                         },
                       )}
                       name="weight"
                       onClick={() => {
-                        setRememberMe(!rememberMe);
+                        setIsRememberMe(!isRememberMe);
                       }}
                     />
                     <span className="text-[13px] font-normal leading-[18px] tracking-[0.02em] text-primary hover:text-secondary">
@@ -72,9 +74,13 @@ export default function LoginForm() {
 
                 <li className="flex flex-col">
                   <Button
+                    type="button"
                     size="xsm"
                     variant="secondary"
                     className="text-center text-[13px] font-bold leading-[16px]"
+                    onClick={() => {
+                      router.push("/profile");
+                    }}
                   >
                     Log In
                   </Button>
