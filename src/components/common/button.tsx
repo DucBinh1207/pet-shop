@@ -26,7 +26,7 @@ const buttonVariants = cva(
 
         md: "px-[30px] py-[8px] text-[13px] leading-[16px] font-bold tracking-wider",
 
-        lg: "px-[32px] py-[10px] text-[15px] leading-[18px] font-bold tracking-wider",
+        lg: "px-[34px] py-[15.5px] text-[12px] leading-[15px] font-bold tracking-[0.03em]",
 
         circle_xsm: "p-[3px] text-[7px] leading-[1]",
 

@@ -63,6 +63,7 @@ export default function RootLayout({
           <Footer />
           <ToastNotification />
         </div>
+        <div id="modal-root"></div>
       </body>
     </html>
   );
