@@ -8,10 +8,11 @@ import { createContext } from "react";
 export const ProductContext = createContext<PetType | null>(null);
 
 export default function PageContent() {
-  const { id } = useParams();
+  const { productId } = useParams();
+
   // This is where the product's name is retrieved by fetching product data using the ID from the URL path
   const product: PetType = {
-    id: typeof id === "string" ? id : "",
+    id: typeof productId === "string" ? productId : "",
     name: "golden retriever 001",
     petType: "dog",
     gender: "male",

@@ -8,10 +8,11 @@ import { SupplyType } from "@/types/supply";
 export const ProductContext = createContext<SupplyType | null>(null);
 
 export default function PageContent() {
-  const { id } = useParams();
+  const { productId } = useParams();
+
   // This is where the product's name is retrieved by fetching product data using the ID from the URL path
   const product: SupplyType = {
-    id: typeof id === "string" ? id : "",
+    id: typeof productId === "string" ? productId : "",
     name: "Natural Clumping Cat Litter",
     petType: "Cat",
     ingredient: "Bentonite Clay, Activated Charcoal",

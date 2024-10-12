@@ -8,10 +8,11 @@ import { FoodType } from "@/types/food";
 export const ProductContext = createContext<FoodType | null>(null);
 
 export default function PageContent() {
-  const { id } = useParams();
+  const { productId } = useParams();
+
   // This is where the product's name is retrieved by fetching product data using the ID from the URL path
   const product: FoodType = {
-    id: typeof id === "string" ? id : "",
+    id: typeof productId === "string" ? productId : "",
     name: "Premium Cat Food",
     petType: "Cat",
     ingredient: "Chicken, Rice, Fish Oil",

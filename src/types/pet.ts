@@ -14,6 +14,6 @@ export type PetType = {
   rating: number | null;
   description: string;
   image: string;
-  quantity: number | null;
-  price: number | null;
+  quantity: number;
+  price: number;
 };
