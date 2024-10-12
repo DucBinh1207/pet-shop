@@ -4,20 +4,16 @@ import CartIcon from "@/components/common/icons/cart-icon";
 import CheckIcon from "@/components/common/icons/check-icon";
 import MinusIcon from "@/components/common/icons/minus-icon";
 import PlusIcon from "@/components/common/icons/plus-icon";
-import StarIcon from "@/components/common/icons/star-icon";
 import Input from "@/components/common/input";
-import Image from "next/image";
 import Link from "next/link";
 import ProductOverview from "./product-overview";
-import usePetProduct from "@/store/use-pet-product";
-import { useShallow } from "zustand/react/shallow";
+import ProductImage from "@/app/(products)/_components/image";
+import Rating from "@/app/(products)/_components/rating";
+import { useContext } from "react";
+import { ProductContext } from "./page-content";
 
 export default function Detail() {
-  const { product } = usePetProduct(
-    useShallow((state) => ({
-      product: state.product,
-    })),
-  );
+  const product = useContext(ProductContext);
 
   if (!product) return null;
 
@@ -25,13 +21,7 @@ export default function Detail() {
     <div className="mx-auto mb-[40px] mt-[30px] min-w-[320px] rounded-[4px] border border-solid border-light_gray_color_second bg-white large-screen:w-[1160px] small-screen:mb-[30px] small-screen:mt-[15px] small-screen:w-[calc(100%-60px)] smallest-screen:mb-[20px] smallest-screen:mt-[10px] xx-smallest-screen:w-full">
       <div className="mb-[30px] flex text-text_color smallest-screen:flex-col">
         <div className="up-smallest-screen:w-[50%]">
-          <div className="relative w-full pb-[80%]">
-            <Image
-              src="/assets/images/food-detail.jpg"
-              fill
-              alt="whole hearted"
-            />
-          </div>
+          <ProductImage />
 
           <ul className="mt-[25px] columns-2 gap-x-[30px] space-y-[10px] text-[12px] font-semibold leading-[1.25] tracking-[0.02em] large-screen:ml-[45px] between-small-smallest:ml-[35px] smallest-screen:mx-[35px]">
             <li>
@@ -65,28 +55,7 @@ export default function Detail() {
             {product.name}
           </h1>
 
-          <div className="mt-[15px] flex items-center gap-[10px] text-[12px] font-normal leading-[15px] tracking-[0.02em] text-primary">
-            <span className="flex gap-[2px]">
-              {[...Array(4)].map((_, index) => (
-                <StarIcon
-                  size={12}
-                  className="fill-current text-dark_yellow_color"
-                  key={index}
-                />
-              ))}
-
-              <StarIcon
-                size={12}
-                className="fill-current text-dark_yellow_color"
-                percentage={0.5}
-              />
-            </span>
-            <span>
-              <Link href="#comments" className="">
-                2 Reviews
-              </Link>
-            </span>
-          </div>
+          <Rating />
 
           <span className="mt-[20px] block text-[12px] font-semibold leading-[1.25] tracking-[0.02em]">
             SKU:&nbsp;<span className="font-normal">F1141410</span>

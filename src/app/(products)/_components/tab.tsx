@@ -1,6 +1,6 @@
 import cn from "@/utils/style/cn";
 import { Dispatch, SetStateAction } from "react";
-import { TabsType } from "./product-overview";
+import { TabsType } from "../_shared/tab";
 
 type props = {
   name: string;

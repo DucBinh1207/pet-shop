@@ -1,17 +1,17 @@
 "use client";
 import BreadCrumb from "@/components/bread-crumb";
 import { PetType } from "@/types/pet";
-import { usePathname } from "next/navigation";
+import { useParams } from "next/navigation";
 import Detail from "./detail";
-import usePetProduct from "@/store/use-pet-product";
-import { useShallow } from "zustand/react/shallow";
+import { createContext } from "react";
+
+export const ProductContext = createContext<PetType | null>(null);
 
 export default function PageContent() {
-  const pathName = usePathname();
-  const id = pathName.split("/").pop() || "";
+  const { id } = useParams();
   // This is where the product's name is retrieved by fetching product data using the ID from the URL path
   const product: PetType = {
-    id: id,
+    id: typeof id === "string" ? id : "",
     name: "golden retriever 001",
     petType: "dog",
     gender: "male",
@@ -31,21 +31,14 @@ export default function PageContent() {
     price: 1500,
   };
 
-  const { setProduct } = usePetProduct(
-    useShallow((state) => ({
-      setProduct: state.setProduct,
-    })),
-  );
-  setProduct(product);
-
   return (
-    <>
+    <ProductContext.Provider value={product}>
       <BreadCrumb
         pathLink={["/pets", `/pets/${product.id}`]}
         pathName={["Pets", product.name]}
       />
 
       <Detail />
-    </>
+    </ProductContext.Provider>
   );
 }

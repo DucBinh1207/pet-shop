@@ -70,7 +70,7 @@ export default function PetsContent() {
     setPaging(pagingCurrent);
   }
 
-  const appendColorsToParams = () => {
+  useEffect(() => {
     const params = new URLSearchParams();
 
     params.append("category", category);
@@ -92,10 +92,6 @@ export default function PetsContent() {
     params.append("sort", sort);
 
     params.append("paging", paging.toString());
-  };
-
-  useEffect(() => {
-    appendColorsToParams();
   }, [category, color, size, ingredient, weight, sort, paging]);
 
   return (

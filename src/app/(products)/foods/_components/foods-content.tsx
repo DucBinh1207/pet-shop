@@ -65,7 +65,7 @@ export default function FoodsContent() {
     setPaging(pagingCurrent);
   }
 
-  const appendColorsToParams = () => {
+  useEffect(() => {
     const params = new URLSearchParams();
 
     params.append("category", category);
@@ -83,10 +83,6 @@ export default function FoodsContent() {
     params.append("sort", sort);
 
     params.append("paging", paging.toString());
-  };
-
-  useEffect(() => {
-    appendColorsToParams();
   }, [category, size, ingredient, weight, sort, paging]);
 
   return (

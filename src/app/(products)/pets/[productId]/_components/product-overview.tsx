@@ -1,16 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import Tab from "./tab";
 import Content from "./content";
-
-export const Tabs = {
-  DESCRIPTION: 1,
-  ADDITIONAL_INFO: 2,
-  REVIEWS: 3,
-};
-
-export type TabsType = (typeof Tabs)[keyof typeof Tabs];
+import Tab from "@/app/(products)/_components/tab";
+import { Tabs, TabsType } from "@/app/(products)/_shared/tab";
 
 export default function ProductOverview() {
   const [tab, setTab] = useState<TabsType>(Tabs.DESCRIPTION);

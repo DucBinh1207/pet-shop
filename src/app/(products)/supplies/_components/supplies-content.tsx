@@ -50,7 +50,7 @@ export default function SuppliesContent() {
     setPaging(pagingCurrent);
   }
 
-  const appendColorsToParams = () => {
+  useEffect(() => {
     const params = new URLSearchParams();
 
     params.append("category", category);
@@ -62,10 +62,6 @@ export default function SuppliesContent() {
     params.append("sort", sort);
 
     params.append("paging", paging.toString());
-  };
-
-  useEffect(() => {
-    appendColorsToParams();
   }, [category, size, sort, paging]);
 
   return (

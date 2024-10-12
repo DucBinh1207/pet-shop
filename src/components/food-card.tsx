@@ -10,12 +10,18 @@ import Link from "next/link";
 import Button from "./common/button";
 import ToolTip from "./common/tooltip";
 import TruncateToolTip from "./common/truncate-tooltip";
+import { IngredientType, IngredientTypes } from "@/constants/ingredient-type";
+import { useState } from "react";
 
 export default function FoodCard() {
+  const [ingredient, setIngredient] = useState<IngredientTypes>(
+    IngredientType.BEEF,
+  );
+
   return (
     <div className="border-box flex min-w-[232px] flex-1 transform flex-col border border-solid border-light_gray_color_second bg-white small-screen:min-w-[25%] x-small-screen:min-w-[calc(100%/3)] x-smallest-screen:min-w-[50%]">
       <div className="relative w-full overflow-hidden pb-[85%]">
-        <Link href="#" className="h-full w-full">
+        <Link href="/foods/F3123212" className="h-full w-full">
           <Image
             src="/assets/images/food1.jpg"
             alt="food1"
@@ -111,12 +117,55 @@ export default function FoodCard() {
         </div>
 
         <div className="relative">
-          <select className="relative h-auto w-full rounded-[3px] border border-solid border-input_border_color bg-form_color py-[8px] pl-[9px] pr-[28px] text-[13px] font-medium leading-[16px] tracking-[0.01em] text-primary outline-none">
-            <option value="1">Choose your Ingredients</option>
-            <option value="2">Pig</option>
-            <option value="3">Chicken</option>
-            <option value="4">Beef</option>
-          </select>
+          <ul className="ml-[5px] flex gap-[10px] text-[14px] leading-[1.23] tracking-[0.02em] text-text_color">
+            <li className="">
+              <label
+                htmlFor={IngredientType.BEEF}
+                className="group inline-flex cursor-pointer items-center gap-[10px] hover:text-secondary"
+              >
+                <input
+                  type="checkbox"
+                  id={IngredientType.BEEF}
+                  className={cn(
+                    "relative inline-block h-[35px] w-[35px] cursor-pointer appearance-none rounded-[50%] bg-beef_img bg-cover after:absolute after:bottom-[-4px] after:left-[-4px] after:right-[-4px] after:top-[-4px] after:rounded-[4px] after:border after:border-solid after:content-[''] group-hover:after:border-secondary",
+                    {
+                      "after:border-secondary":
+                        ingredient === IngredientType.BEEF,
+                      "after:border-transparent":
+                        ingredient !== IngredientType.BEEF,
+                    },
+                  )}
+                  onClick={() => {
+                    setIngredient(IngredientType.BEEF);
+                  }}
+                />
+              </label>
+            </li>
+
+            <li className="">
+              <label
+                htmlFor={IngredientType.BEEF}
+                className="group inline-flex cursor-pointer items-center gap-[10px] hover:text-secondary"
+              >
+                <input
+                  type="checkbox"
+                  id={IngredientType.BEEF}
+                  className={cn(
+                    "relative inline-block h-[35px] w-[35px] cursor-pointer appearance-none rounded-[50%] bg-chicken_img bg-cover after:absolute after:bottom-[-4px] after:left-[-4px] after:right-[-4px] after:top-[-4px] after:rounded-[4px] after:border after:border-solid after:content-[''] group-hover:after:border-secondary",
+                    {
+                      "after:border-secondary":
+                        ingredient === IngredientType.CHICKEN,
+                      "after:border-transparent":
+                        ingredient !== IngredientType.CHICKEN,
+                    },
+                  )}
+                  onClick={() => {
+                    setIngredient(IngredientType.CHICKEN);
+                  }}
+                />
+              </label>
+            </li>
+          </ul>
         </div>
 
         <div className="relative">
