@@ -3,19 +3,31 @@
 import CartIcon from "@/components/common/icons/cart-icon";
 import DotIcon from "@/components/common/icons/dot-icon";
 import StarIcon from "@/components/common/icons/star-icon";
-import cn from "@/utils/style/cn";
 import Image from "next/image";
-
 import Link from "next/link";
 import Button from "./common/button";
 import ToolTip from "./common/tooltip";
 import TruncateToolTip from "./common/truncate-tooltip";
+import { IngredientType, IngredientTypes } from "@/constants/ingredient-type";
+import { useState } from "react";
+import IngredientCheckbox from "./ingredient-checkbox";
+import WeightCheckbox from "./weight-checkbox";
 
 export default function FoodCard() {
+  const [ingredient, setIngredient] = useState<IngredientTypes[]>([
+    IngredientType.BEEF,
+  ]);
+
+  function handleIngredientFilter(ingredientCurrent: IngredientTypes) {
+    if (!ingredient.includes(ingredientCurrent)) {
+      setIngredient([ingredientCurrent]);
+    }
+  }
+
   return (
     <div className="border-box flex min-w-[232px] flex-1 transform flex-col border border-solid border-light_gray_color_second bg-white small-screen:min-w-[25%] x-small-screen:min-w-[calc(100%/3)] x-smallest-screen:min-w-[50%]">
       <div className="relative w-full overflow-hidden pb-[85%]">
-        <Link href="#" className="h-full w-full">
+        <Link href="/foods/F3123212" className="h-full w-full">
           <Image
             src="/assets/images/food1.jpg"
             alt="food1"
@@ -63,69 +75,25 @@ export default function FoodCard() {
       <form className="flex flex-col gap-[12.5px] px-[30px] pb-[30px] pt-[15px]">
         <div>
           <ul className="flex flex-wrap" role="radiogroup" aria-label="color">
-            <li
-              aria-checked={true}
-              tabIndex={0}
-              data-wvstooltip="red"
-              className="m-[2.5px] cursor-pointer list-none"
-              title="8lbs"
-              data-title="8lbs"
-              data-value="8lbs"
-              role="radio"
-            >
-              <span
-                className={cn(
-                  "block rounded-[13px] border border-solid bg-form_color px-[9px] py-[5px] text-center text-[13px] font-medium leading-[16px] tracking-[0.01em] text-primary",
-                  {
-                    "border-primary": true,
-                    "border-form_color": !true,
-                  },
-                )}
-              >
-                8lbs
-              </span>
-            </li>
-            <li
-              aria-checked={false}
-              tabIndex={0}
-              data-wvstooltip="16lbs"
-              className="m-[2.5px] cursor-pointer list-none"
-              title="16lbs"
-              data-title="16lbs"
-              data-value="16lbs"
-              role="radio"
-            >
-              <span
-                className={cn(
-                  "block rounded-[13px] border border-solid bg-form_color px-[9px] py-[5px] text-center text-[13px] font-medium leading-[16px] tracking-[0.01em] text-primary",
-                  {
-                    "border-primary": false,
-                    "border-form_color": !false,
-                  },
-                )}
-              >
-                16lbs
-              </span>
-            </li>
+            <WeightCheckbox weight="1kg" />
+            <WeightCheckbox weight="5kg" />
           </ul>
         </div>
 
         <div className="relative">
-          <select className="relative h-auto w-full rounded-[3px] border border-solid border-input_border_color bg-form_color py-[8px] pl-[9px] pr-[28px] text-[13px] font-medium leading-[16px] tracking-[0.01em] text-primary outline-none">
-            <option value="1">Choose your Ingredients</option>
-            <option value="2">Pig</option>
-            <option value="3">Chicken</option>
-            <option value="4">Beef</option>
-          </select>
-        </div>
+          <ul className="ml-[5px] flex gap-[10px] text-[14px] leading-[1.23] tracking-[0.02em] text-text_color">
+            <IngredientCheckbox
+              ingredient={ingredient}
+              ingredientType={IngredientType.BEEF}
+              handleIngredientFilter={handleIngredientFilter}
+            />
 
-        <div className="relative">
-          <select className="relative h-auto w-full rounded-[3px] border border-solid border-input_border_color bg-form_color py-[8px] pl-[9px] pr-[28px] text-[13px] font-medium leading-[16px] tracking-[0.01em] text-primary outline-none">
-            <option value="1">Choose your size</option>
-            <option value="2">Small</option>
-            <option value="3">Medium</option>
-            <option value="4">Big</option>
-          </select>
+            <IngredientCheckbox
+              ingredient={ingredient}
+              ingredientType={IngredientType.CHICKEN}
+              handleIngredientFilter={handleIngredientFilter}
+            />
+          </ul>
         </div>
 
         <div className="flex items-center justify-between">

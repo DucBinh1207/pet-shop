@@ -22,7 +22,7 @@ interface InputProps
 }
 
 const inputVariants = cva(
-  "font-medium border-solid border rounded-[3px] tracking-[0.01em]",
+  "font-medium border-solid border rounded-[3px] outline-none tracking-[0.01em]",
   {
     variants: {
       inputSize: {

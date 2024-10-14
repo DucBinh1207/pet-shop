@@ -10,16 +10,18 @@ import { SortType, SortTypes } from "@/constants/sort-type";
 import Sort from "./sort";
 import AngleIcon from "@/components/common/icons/angle-icon";
 import cn from "@/utils/style/cn";
-import ArrowIcon from "@/components/common/icons/arrow-icon";
 import {
   SuppliesCategoryType,
   SuppliesCategoryTypes,
 } from "@/constants/supplies-category-type";
 import SupplyCard from "@/components/supply-card";
 import SuppliesCategory from "./supplies-category";
+import ColorCheckbox from "@/components/color-checkbox";
+import { ColorType, ColorTypes } from "@/constants/color-type";
+import Pagination from "../../_components/pagination";
 
 export default function SuppliesContent() {
-  const [isFilterOpen, setIsFilterOpen] = useState(false);
+  const [isOpenFilter, setIsOpenFilter] = useState(false);
   const [category, setCategory] = useState<SuppliesCategoryTypes>(
     SuppliesCategoryType.ALL,
   );
@@ -29,6 +31,10 @@ export default function SuppliesContent() {
     SizeType.SMALL,
     SizeType.MEDIUM,
     SizeType.BIG,
+  ]);
+  const [color, setColor] = useState<ColorTypes[]>([
+    ColorType.LIGHT,
+    ColorType.DARK,
   ]);
 
   const [sort, setSort] = useState<SortTypes>(SortType.DEFAULT);
@@ -43,6 +49,12 @@ export default function SuppliesContent() {
     } else setSize([...size, sizeCurrent]);
   }
 
+  function handleColorFilter(colorCurrent: ColorTypes) {
+    if (color.includes(colorCurrent)) {
+      setColor(color.filter((c) => c !== colorCurrent));
+    } else setColor([...color, colorCurrent]);
+  }
+
   function handleSortFilter(sortCurrent: SortTypes) {
     setSort(sortCurrent);
   }
@@ -50,7 +62,7 @@ export default function SuppliesContent() {
     setPaging(pagingCurrent);
   }
 
-  const appendColorsToParams = () => {
+  useEffect(() => {
     const params = new URLSearchParams();
 
     params.append("category", category);
@@ -59,14 +71,14 @@ export default function SuppliesContent() {
       params.append("size", sizeValue);
     });
 
+    color.forEach((colorValue) => {
+      params.append("color", colorValue);
+    });
+
     params.append("sort", sort);
 
     params.append("paging", paging.toString());
-  };
-
-  useEffect(() => {
-    appendColorsToParams();
-  }, [category, size, sort, paging]);
+  }, [category, color, size, sort, paging]);
 
   return (
     <>
@@ -79,18 +91,18 @@ export default function SuppliesContent() {
         <div className="border-r border-solid border-light_gray_color_second large-screen:min-w-[232px] small-screen:relative small-screen:overflow-hidden">
           <div
             className={cn(
-              "flex flex-col pb-[30px] transition-all duration-150 ease-linear small-screen:fixed small-screen:right-0 small-screen:top-0 small-screen:z-[200] small-screen:h-full small-screen:w-[360px] small-screen:max-w-full small-screen:bg-white small-screen:pb-[30px] small-screen:leading-[1.23]",
+              "sticky left-0 top-[90px] flex flex-col pb-[30px] transition-all duration-150 ease-linear small-screen:fixed small-screen:right-0 small-screen:top-0 small-screen:z-[200] small-screen:h-full small-screen:w-[360px] small-screen:max-w-full small-screen:bg-white small-screen:pb-[30px] small-screen:leading-[1.23]",
               {
                 "small-screen:translate-x-0 small-screen:opacity-100":
-                  isFilterOpen,
+                  isOpenFilter,
                 "small-screen:w-0 small-screen:translate-x-full small-screen:opacity-0":
-                  !isFilterOpen,
+                  !isOpenFilter,
               },
             )}
           >
             <div className="relative flex items-center justify-end large-screen:hidden">
               <div className="flex h-[46px] w-[46px] items-center justify-center">
-                <button onClick={() => setIsFilterOpen(false)}>
+                <button onClick={() => setIsOpenFilter(false)}>
                   <CancelIcon size={32} className="fill-current text-primary" />
                 </button>
               </div>
@@ -184,6 +196,28 @@ export default function SuppliesContent() {
                 />
               </ul>
             </div>
+
+            <div className="px-[25px] pt-[40px]">
+              <h3 className="mb-[20px] font-quicksand text-[20px] font-bold leading-[1.1] tracking-[-0.01em] text-primary">
+                Color
+              </h3>
+
+              <ul className="text-[14px] leading-[1.23] tracking-[0.02em] text-text_color">
+                <ColorCheckbox
+                  color={color}
+                  colorType={ColorType.LIGHT}
+                  name="Màu sáng"
+                  handleColorFilter={handleColorFilter}
+                />
+
+                <ColorCheckbox
+                  color={color}
+                  colorType={ColorType.DARK}
+                  name="Màu tối"
+                  handleColorFilter={handleColorFilter}
+                />
+              </ul>
+            </div>
           </div>
         </div>
 
@@ -196,7 +230,7 @@ export default function SuppliesContent() {
             <div className="ml-[15px] mr-[2px] large-screen:hidden large-screen:opacity-0">
               <button
                 className="hover_animate inline-flex cursor-pointer items-center gap-[7px] rounded-[17px] border-[2px] border-solid border-primary bg-white px-[22px] py-[7px] text-center text-[11px] font-bold uppercase leading-[14px] tracking-[0.07em] text-primary outline-none hover:bg-primary hover:text-white"
-                onClick={() => setIsFilterOpen(true)}
+                onClick={() => setIsOpenFilter(true)}
               >
                 <AngleIcon size={8} className="rotate-[-90deg] fill-current" />
                 Filter
@@ -216,126 +250,10 @@ export default function SuppliesContent() {
           </div>
 
           <div className="mt-[30px] flex justify-center pb-[30px]">
-            <ul className="flex flex-wrap items-center justify-center text-[18px] font-medium leading-[27px] tracking-[0.02em] text-text_color">
-              <li className="m-[2.5px]">
-                <button
-                  className={cn(
-                    "hover_animate inline-flex h-[50px] w-[50px] items-center justify-center rounded-[50%] border-[2px] border-solid border-primary bg-white text-center uppercase text-primary outline-none",
-                    {
-                      "pointer-events-none cursor-default opacity-25":
-                        paging === 1,
-                      "cursor-pointer hover:bg-primary hover:text-white":
-                        paging !== 1,
-                    },
-                  )}
-                  onClick={() => {
-                    if (paging !== 1) {
-                      handlePagingFilter(paging - 1);
-                    }
-                  }}
-                >
-                  <ArrowIcon size={17} className="fill-current" />
-                </button>
-              </li>
-
-              <li className="m-[2.5px]">
-                <button
-                  className={cn(
-                    "hover_animate inline-block h-[50px] w-[50px] cursor-pointer rounded-[50%] border-[2px] border-solid border-primary text-center uppercase outline-none hover:bg-primary hover:text-white",
-                    {
-                      "bg-primary text-white": paging === 1,
-                      "bg-white text-primary": paging !== 1,
-                    },
-                  )}
-                  onClick={() => {
-                    handlePagingFilter(1);
-                  }}
-                >
-                  1
-                </button>
-              </li>
-
-              <li className="m-[2.5px]">
-                <button
-                  className={cn(
-                    "hover_animate inline-block h-[50px] w-[50px] cursor-pointer rounded-[50%] border-[2px] border-solid border-primary text-center uppercase outline-none hover:bg-primary hover:text-white",
-                    {
-                      "bg-primary text-white": paging === 2,
-                      "bg-white text-primary": paging !== 2,
-                    },
-                  )}
-                  onClick={() => {
-                    handlePagingFilter(2);
-                  }}
-                >
-                  2
-                </button>
-              </li>
-
-              <li className="m-[2.5px]">
-                <button
-                  className={cn(
-                    "hover_animate inline-block h-[50px] w-[50px] cursor-pointer rounded-[50%] border-[2px] border-solid border-primary text-center uppercase outline-none hover:bg-primary hover:text-white",
-                    {
-                      "bg-primary text-white": paging === 3,
-                      "bg-white text-primary": paging !== 3,
-                    },
-                  )}
-                  onClick={() => {
-                    handlePagingFilter(3);
-                  }}
-                >
-                  3
-                </button>
-              </li>
-
-              <li className="m-[2.5px]">
-                <span className="hover_animate inline-flex h-[50px] w-[50px] cursor-default items-center justify-center rounded-[50%] border-[2px] border-solid border-primary bg-white text-center uppercase text-primary outline-none">
-                  ...
-                </span>
-              </li>
-
-              <li className="m-[2.5px]">
-                <button
-                  className={cn(
-                    "hover_animate inline-block h-[50px] w-[50px] cursor-pointer rounded-[50%] border-[2px] border-solid border-primary text-center uppercase outline-none hover:bg-primary hover:text-white",
-                    {
-                      "bg-primary text-white": paging === 100,
-                      "bg-white text-primary": paging !== 100,
-                    },
-                  )}
-                  onClick={() => {
-                    handlePagingFilter(100);
-                  }}
-                >
-                  100
-                </button>
-              </li>
-
-              <li className="m-[2.5px]">
-                <button
-                  className={cn(
-                    "hover_animate inline-flex h-[50px] w-[50px] items-center justify-center rounded-[50%] border-[2px] border-solid border-primary bg-white text-center uppercase text-primary outline-none",
-                    {
-                      "pointer-events-none cursor-default opacity-25":
-                        paging === 100,
-                      "cursor-pointer hover:bg-primary hover:text-white":
-                        paging !== 100,
-                    },
-                  )}
-                  onClick={() => {
-                    if (paging !== 100) {
-                      handlePagingFilter(paging + 1);
-                    }
-                  }}
-                >
-                  <ArrowIcon
-                    size={17}
-                    className="rotate-[180deg] fill-current"
-                  />
-                </button>
-              </li>
-            </ul>
+            <Pagination
+              paging={paging}
+              handlePagingFilter={handlePagingFilter}
+            />
           </div>
         </div>
       </div>

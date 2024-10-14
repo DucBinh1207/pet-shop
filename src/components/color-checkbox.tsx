@@ -4,7 +4,7 @@ import cn from "@/utils/style/cn";
 type props = {
   color: ColorTypes[];
   colorType: ColorTypes;
-  name: string;
+  name?: string;
   handleColorFilter: (colorCurrent: ColorTypes) => void;
 };
 
@@ -35,7 +35,7 @@ export default function ColorCheckbox({
           )}
           style={{ backgroundColor: colorType }}
         />
-        <span className="flex-1"> {name} </span>
+        {name && <span className="flex-1"> {name} </span>}
       </label>
     </li>
   );

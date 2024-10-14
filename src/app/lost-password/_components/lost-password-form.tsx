@@ -2,8 +2,11 @@
 
 import Button from "@/components/common/button";
 import Input from "@/components/common/input";
+import { useRouter } from "next/navigation";
 
 export default function LostPasswordForm() {
+  const router = useRouter();
+
   return (
     <div className="mx-auto flex rounded-[4px] border border-solid border-light_gray_color_second bg-white large-screen:mb-[40px] large-screen:mt-[15px] large-screen:w-[1160px] small-screen:mb-[30px] small-screen:mt-[30px] smallest-screen:mb-[20px] smallest-screen:mt-[10px]">
       <div className="flex w-full justify-center">
@@ -33,9 +36,13 @@ export default function LostPasswordForm() {
 
                 <li className="mt-[20px] flex flex-col">
                   <Button
+                    type="button"
                     size="xsm"
                     variant="secondary"
                     className="text-center text-[13px] font-bold leading-[16px]"
+                    onClick={() => {
+                      router.push("/reset-password");
+                    }}
                   >
                     Register
                   </Button>

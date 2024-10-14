@@ -3,19 +3,28 @@
 import CartIcon from "@/components/common/icons/cart-icon";
 import DotIcon from "@/components/common/icons/dot-icon";
 import StarIcon from "@/components/common/icons/star-icon";
-import cn from "@/utils/style/cn";
 import Image from "next/image";
 
 import Link from "next/link";
 import ToolTip from "./common/tooltip";
 import Button from "./common/button";
 import TruncateToolTip from "./common/truncate-tooltip";
+import { useState } from "react";
+import { ColorType, ColorTypes } from "@/constants/color-type";
+import ColorCheckbox from "./color-checkbox";
 
 export default function SupplyCard() {
+  const [color, setColor] = useState<ColorTypes[]>([ColorType.LIGHT]);
+  function handleColorFilter(colorCurrent: ColorTypes) {
+    if (!color.includes(colorCurrent)) {
+      setColor([colorCurrent]);
+    }
+  }
+
   return (
     <div className="border-box flex min-w-[232px] flex-1 transform flex-col border border-solid border-light_gray_color_second bg-white small-screen:min-w-[25%] x-small-screen:min-w-[calc(100%/3)] x-smallest-screen:min-w-[50%]">
       <div className="relative w-full overflow-hidden pb-[85%]">
-        <Link href="#" className="h-full w-full">
+        <Link href="/supplies/564845321" className="h-full w-full">
           <Image
             src="/assets/images/food1.jpg"
             alt="food1"
@@ -62,62 +71,22 @@ export default function SupplyCard() {
 
       <form className="flex flex-col gap-[12.5px] px-[30px] pb-[30px] pt-[15px]">
         <div className="color">
-          <ul className="flex flex-wrap" role="radiogroup" aria-label="weight">
-            <li
-              aria-checked={true}
-              tabIndex={0}
-              data-wvstooltip="8lbs"
-              className={cn(
-                "m-[2.5px] flex h-[26px] w-[26px] cursor-pointer list-none items-center justify-center rounded-[50%] border border-solid bg-white",
-                {
-                  "border-primary": true,
-                  "border-form_color": false,
-                },
-              )}
-              title="red"
-              data-title="red"
-              data-value="red"
-              role="radio"
-            >
-              <span
-                className={cn(
-                  "block h-[20px] w-[20px] rounded-[50%] border border-solid border-soft_dark_blue_color",
-                  {
-                    "bg-red-600": true,
-                    "bg-blue-600": false,
-                    "bg-white": false,
-                  },
-                )}
-              />
-            </li>
+          <ul
+            className="flex flex-wrap gap-[10px]"
+            role="radiogroup"
+            aria-label="weight"
+          >
+            <ColorCheckbox
+              color={color}
+              colorType={ColorType.LIGHT}
+              handleColorFilter={handleColorFilter}
+            />
 
-            <li
-              aria-checked={true}
-              tabIndex={0}
-              data-wvstooltip="8lbs"
-              className={cn(
-                "m-[2.5px] flex h-[24px] w-[24px] cursor-pointer list-none items-center justify-center rounded-[50%] border border-solid bg-white",
-                {
-                  "border-primary": false,
-                  "border-form_color": true,
-                },
-              )}
-              title="red"
-              data-title="red"
-              data-value="red"
-              role="radio"
-            >
-              <span
-                className={cn(
-                  "block h-[20px] w-[20px] rounded-[50%] border border-solid border-soft_dark_blue_color",
-                  {
-                    "bg-red-600": false,
-                    "bg-blue-600": false,
-                    "bg-white": true,
-                  },
-                )}
-              />
-            </li>
+            <ColorCheckbox
+              color={color}
+              colorType={ColorType.DARK}
+              handleColorFilter={handleColorFilter}
+            />
           </ul>
         </div>
 
