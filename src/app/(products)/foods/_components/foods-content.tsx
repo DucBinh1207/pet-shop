@@ -2,12 +2,9 @@
 
 import { IngredientType, IngredientTypes } from "@/constants/ingredient-type";
 import { PriceRange } from "@/constants/price-range";
-import { SizeType, SizeTypes } from "@/constants/size-type";
 import { WeightType, WeightTypes } from "@/constants/weight-type";
 import { useEffect, useState } from "react";
 import ReactSlider from "react-slider";
-import SizeCheckbox from "./size-checkbox";
-import IngredientCheckbox from "./ingredient-checkbox";
 import CancelIcon from "@/components/common/icons/cancel-icon";
 import { SortType, SortTypes } from "@/constants/sort-type";
 import Sort from "./sort";
@@ -20,6 +17,7 @@ import {
   FoodsCategoryType,
   FoodsCategoryTypes,
 } from "@/constants/foods-category-type";
+import IngredientCheckbox from "@/components/ingredient-checkbox";
 
 export default function FoodsContent() {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
@@ -28,11 +26,6 @@ export default function FoodsContent() {
   );
   const [price, setPrice] = useState([PriceRange.MIN, PriceRange.MAX]);
 
-  const [size, setSize] = useState<SizeTypes[]>([
-    SizeType.SMALL,
-    SizeType.MEDIUM,
-    SizeType.BIG,
-  ]);
   const [ingredient, setIngredient] = useState<IngredientTypes[]>([
     IngredientType.BEEF,
     IngredientType.CHICKEN,
@@ -44,11 +37,7 @@ export default function FoodsContent() {
   function handleCategoryFilter(categoryCurrent: FoodsCategoryTypes) {
     setCategory(categoryCurrent);
   }
-  function handleSizeFilter(sizeCurrent: SizeTypes) {
-    if (size.includes(sizeCurrent)) {
-      setSize(size.filter((s) => s !== sizeCurrent));
-    } else setSize([...size, sizeCurrent]);
-  }
+
   function handleIngredientFilter(ingredientCurrent: IngredientTypes) {
     if (ingredient.includes(ingredientCurrent)) {
       setIngredient(ingredient.filter((i) => i !== ingredientCurrent));
@@ -70,10 +59,6 @@ export default function FoodsContent() {
 
     params.append("category", category);
 
-    size.forEach((sizeValue) => {
-      params.append("size", sizeValue);
-    });
-
     ingredient.forEach((ingredientValue) => {
       params.append("ingredient", ingredientValue);
     });
@@ -83,7 +68,7 @@ export default function FoodsContent() {
     params.append("sort", sort);
 
     params.append("paging", paging.toString());
-  }, [category, size, ingredient, weight, sort, paging]);
+  }, [category, ingredient, weight, sort, paging]);
 
   return (
     <>
@@ -175,39 +160,10 @@ export default function FoodsContent() {
 
             <div className="px-[25px] pt-[40px]">
               <h3 className="mb-[20px] font-quicksand text-[20px] font-bold leading-[1.1] tracking-[-0.01em] text-primary">
-                Size
-              </h3>
-
-              <ul className="text-[14px] leading-[1.23] tracking-[0.02em] text-text_color">
-                <SizeCheckbox
-                  size={size}
-                  sizeType={SizeType.SMALL}
-                  name="Nhỏ "
-                  handleSizeFilter={handleSizeFilter}
-                />
-
-                <SizeCheckbox
-                  size={size}
-                  sizeType={SizeType.MEDIUM}
-                  name="Trung bình "
-                  handleSizeFilter={handleSizeFilter}
-                />
-
-                <SizeCheckbox
-                  size={size}
-                  sizeType={SizeType.BIG}
-                  name="Lớn "
-                  handleSizeFilter={handleSizeFilter}
-                />
-              </ul>
-            </div>
-
-            <div className="px-[25px] pt-[40px]">
-              <h3 className="mb-[20px] font-quicksand text-[20px] font-bold leading-[1.1] tracking-[-0.01em] text-primary">
                 Ingredients
               </h3>
 
-              <ul className="text-[14px] leading-[1.23] tracking-[0.02em] text-text_color">
+              <ul className="flex flex-col gap-[5px] text-[14px] leading-[1.23] tracking-[0.02em] text-text_color">
                 <IngredientCheckbox
                   ingredient={ingredient}
                   ingredientType={IngredientType.BEEF}

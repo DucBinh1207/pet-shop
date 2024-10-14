@@ -78,6 +78,7 @@ const config: Config = {
         in_circular_process:
           "inset 4px 4px 10px -1px rgba(0,0,0,0.2),inset -4px -4px 10px -1px rgba(255,255,255,0.7), -0.5px -0.5px 0px  rgb(255,255,255), 0.5px 0.5px 0px rgba(0,0,0,0.15), 0px 12px 10px -10px rgba(0,0,0,0.05)",
         item_next: "0 1px 10px rgba(12, 44, 92, 0.07)",
+        image_shadow: "4px 4px 10px rgba(0, 0, 0, 0.2)",
       },
       keyframes: {
         marquee: {

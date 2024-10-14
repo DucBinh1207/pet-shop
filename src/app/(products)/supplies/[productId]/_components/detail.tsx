@@ -1,13 +1,13 @@
 import ProductOverview from "./product-overview";
-import ProductImage from "@/app/(products)/_components/image";
+import ProductImage from "@/app/(products)/_components/product-image";
 import Rating from "@/app/(products)/_components/rating";
 import { useContext, useState } from "react";
 import { ProductContext } from "./page-content";
-import ColorCheckbox from "./color-checkbox";
 import { ColorType, ColorTypes } from "@/constants/color-type";
 import PurchaseActions from "@/app/(products)/_components/purchase-actions";
 import StoreBenefit from "@/app/(products)/_components/store-benefit";
 import ProductMeta from "@/app/(products)/_components/product-meta";
+import ColorCheckbox from "@/components/color-checkbox";
 
 export default function Detail() {
   const product = useContext(ProductContext);

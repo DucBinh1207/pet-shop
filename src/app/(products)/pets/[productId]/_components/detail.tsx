@@ -1,5 +1,5 @@
 import ProductOverview from "./product-overview";
-import ProductImage from "@/app/(products)/_components/image";
+import ProductImage from "@/app/(products)/_components/product-image";
 import Rating from "@/app/(products)/_components/rating";
 import { useContext } from "react";
 import { ProductContext } from "./page-content";

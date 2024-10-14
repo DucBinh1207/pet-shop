@@ -1,5 +1,5 @@
 import ProductOverview from "./product-overview";
-import ProductImage from "@/app/(products)/_components/image";
+import ProductImage from "@/app/(products)/_components/product-image";
 import Rating from "@/app/(products)/_components/rating";
 import { useContext, useState } from "react";
 import { ProductContext } from "./page-content";
@@ -86,26 +86,6 @@ export default function Detail() {
                       handleIngredientFilter={setIngredient}
                     />
                   </ul>
-                </div>
-              </div>
-
-              <div className="relative mt-[15px] flex flex-col">
-                <label
-                  htmlFor="size"
-                  className="px-[1px] font-quicksand text-[12px] font-bold leading-[15px] tracking-[-0.02em]"
-                >
-                  Size :
-                </label>
-                <div>
-                  <select
-                    id="size"
-                    className="relative mt-[10px] h-auto rounded-[3px] border border-solid border-input_border_color bg-form_color py-[8px] pl-[9px] pr-[28px] text-[13px] font-medium leading-[16px] tracking-[0.01em] text-primary outline-none"
-                  >
-                    <option value="1">Choose your size</option>
-                    <option value="2">Small</option>
-                    <option value="3">Medium</option>
-                    <option value="4">Big</option>
-                  </select>
                 </div>
               </div>
 

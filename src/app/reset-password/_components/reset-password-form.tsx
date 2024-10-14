@@ -9,7 +9,7 @@ import { useState } from "react";
 
 export default function ResetPasswordForm() {
   // This will check if the token is sent as a parameter in the reset password URL.
-  const [token, setToken] = useState<string | null>(null);
+  const [token, setToken] = useState<string | null>("123");
   const router = useRouter();
 
   if (!token) {

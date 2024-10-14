@@ -5,13 +5,13 @@ import DotIcon from "@/components/common/icons/dot-icon";
 import StarIcon from "@/components/common/icons/star-icon";
 import cn from "@/utils/style/cn";
 import Image from "next/image";
-
 import Link from "next/link";
 import Button from "./common/button";
 import ToolTip from "./common/tooltip";
 import TruncateToolTip from "./common/truncate-tooltip";
 import { IngredientType, IngredientTypes } from "@/constants/ingredient-type";
 import { useState } from "react";
+import IngredientCheckbox from "./ingredient-checkbox";
 
 export default function FoodCard() {
   const [ingredient, setIngredient] = useState<IngredientTypes>(
@@ -118,63 +118,18 @@ export default function FoodCard() {
 
         <div className="relative">
           <ul className="ml-[5px] flex gap-[10px] text-[14px] leading-[1.23] tracking-[0.02em] text-text_color">
-            <li className="">
-              <label
-                htmlFor={IngredientType.BEEF}
-                className="group inline-flex cursor-pointer items-center gap-[10px] hover:text-secondary"
-              >
-                <input
-                  type="checkbox"
-                  id={IngredientType.BEEF}
-                  className={cn(
-                    "relative inline-block h-[35px] w-[35px] cursor-pointer appearance-none rounded-[50%] bg-beef_img bg-cover after:absolute after:bottom-[-4px] after:left-[-4px] after:right-[-4px] after:top-[-4px] after:rounded-[4px] after:border after:border-solid after:content-[''] group-hover:after:border-secondary",
-                    {
-                      "after:border-secondary":
-                        ingredient === IngredientType.BEEF,
-                      "after:border-transparent":
-                        ingredient !== IngredientType.BEEF,
-                    },
-                  )}
-                  onClick={() => {
-                    setIngredient(IngredientType.BEEF);
-                  }}
-                />
-              </label>
-            </li>
+            <IngredientCheckbox
+              ingredient={ingredient}
+              ingredientType={IngredientType.BEEF}
+              handleIngredientFilter={setIngredient}
+            />
 
-            <li className="">
-              <label
-                htmlFor={IngredientType.BEEF}
-                className="group inline-flex cursor-pointer items-center gap-[10px] hover:text-secondary"
-              >
-                <input
-                  type="checkbox"
-                  id={IngredientType.BEEF}
-                  className={cn(
-                    "relative inline-block h-[35px] w-[35px] cursor-pointer appearance-none rounded-[50%] bg-chicken_img bg-cover after:absolute after:bottom-[-4px] after:left-[-4px] after:right-[-4px] after:top-[-4px] after:rounded-[4px] after:border after:border-solid after:content-[''] group-hover:after:border-secondary",
-                    {
-                      "after:border-secondary":
-                        ingredient === IngredientType.CHICKEN,
-                      "after:border-transparent":
-                        ingredient !== IngredientType.CHICKEN,
-                    },
-                  )}
-                  onClick={() => {
-                    setIngredient(IngredientType.CHICKEN);
-                  }}
-                />
-              </label>
-            </li>
+            <IngredientCheckbox
+              ingredient={ingredient}
+              ingredientType={IngredientType.CHICKEN}
+              handleIngredientFilter={setIngredient}
+            />
           </ul>
-        </div>
-
-        <div className="relative">
-          <select className="relative h-auto w-full rounded-[3px] border border-solid border-input_border_color bg-form_color py-[8px] pl-[9px] pr-[28px] text-[13px] font-medium leading-[16px] tracking-[0.01em] text-primary outline-none">
-            <option value="1">Choose your size</option>
-            <option value="2">Small</option>
-            <option value="3">Medium</option>
-            <option value="4">Big</option>
-          </select>
         </div>
 
         <div className="flex items-center justify-between">

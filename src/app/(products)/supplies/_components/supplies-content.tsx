@@ -17,6 +17,8 @@ import {
 } from "@/constants/supplies-category-type";
 import SupplyCard from "@/components/supply-card";
 import SuppliesCategory from "./supplies-category";
+import ColorCheckbox from "@/components/color-checkbox";
+import { ColorType, ColorTypes } from "@/constants/color-type";
 
 export default function SuppliesContent() {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
@@ -30,6 +32,10 @@ export default function SuppliesContent() {
     SizeType.MEDIUM,
     SizeType.BIG,
   ]);
+  const [color, setColor] = useState<ColorTypes[]>([
+    ColorType.LIGHT,
+    ColorType.DARK,
+  ]);
 
   const [sort, setSort] = useState<SortTypes>(SortType.DEFAULT);
   const [paging, setPaging] = useState<number>(2);
@@ -41,6 +47,12 @@ export default function SuppliesContent() {
     if (size.includes(sizeCurrent)) {
       setSize(size.filter((s) => s !== sizeCurrent));
     } else setSize([...size, sizeCurrent]);
+  }
+
+  function handleColorFilter(colorCurrent: ColorTypes) {
+    if (color.includes(colorCurrent)) {
+      setColor(color.filter((c) => c !== colorCurrent));
+    } else setColor([...color, colorCurrent]);
   }
 
   function handleSortFilter(sortCurrent: SortTypes) {
@@ -59,10 +71,14 @@ export default function SuppliesContent() {
       params.append("size", sizeValue);
     });
 
+    color.forEach((colorValue) => {
+      params.append("color", colorValue);
+    });
+
     params.append("sort", sort);
 
     params.append("paging", paging.toString());
-  }, [category, size, sort, paging]);
+  }, [category, color, size, sort, paging]);
 
   return (
     <>
@@ -177,6 +193,28 @@ export default function SuppliesContent() {
                   sizeType={SizeType.BIG}
                   name="Lớn "
                   handleSizeFilter={handleSizeFilter}
+                />
+              </ul>
+            </div>
+
+            <div className="px-[25px] pt-[40px]">
+              <h3 className="mb-[20px] font-quicksand text-[20px] font-bold leading-[1.1] tracking-[-0.01em] text-primary">
+                Color
+              </h3>
+
+              <ul className="text-[14px] leading-[1.23] tracking-[0.02em] text-text_color">
+                <ColorCheckbox
+                  color={color}
+                  colorType={ColorType.LIGHT}
+                  name="Màu sáng"
+                  handleColorFilter={handleColorFilter}
+                />
+
+                <ColorCheckbox
+                  color={color}
+                  colorType={ColorType.DARK}
+                  name="Màu tối"
+                  handleColorFilter={handleColorFilter}
                 />
               </ul>
             </div>

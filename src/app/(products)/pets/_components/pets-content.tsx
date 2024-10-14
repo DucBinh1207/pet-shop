@@ -1,15 +1,8 @@
 "use client";
 
-import { ColorType, ColorTypes } from "@/constants/color-type";
-import { IngredientType, IngredientTypes } from "@/constants/ingredient-type";
 import { PriceRange } from "@/constants/price-range";
-import { SizeType, SizeTypes } from "@/constants/size-type";
-import { WeightType, WeightTypes } from "@/constants/weight-type";
 import { useEffect, useState } from "react";
 import ReactSlider from "react-slider";
-import ColorCheckbox from "./color-checkbox";
-import SizeCheckbox from "./size-checkbox";
-import IngredientCheckbox from "./ingredient-checkbox";
 import PetsCategory from "./pets-category";
 import { CategoryType, CategoryTypes } from "@/constants/category-type";
 import PetCard from "@/components/pet-card";
@@ -24,45 +17,14 @@ export default function PetsContent() {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [category, setCategory] = useState<CategoryTypes>(CategoryType.ALL);
   const [price, setPrice] = useState([PriceRange.MIN, PriceRange.MAX]);
-  const [color, setColor] = useState<ColorTypes[]>([
-    ColorType.LIGHT,
-    ColorType.DARK,
-  ]);
-  const [size, setSize] = useState<SizeTypes[]>([
-    SizeType.SMALL,
-    SizeType.MEDIUM,
-    SizeType.BIG,
-  ]);
-  const [ingredient, setIngredient] = useState<IngredientTypes[]>([
-    IngredientType.BEEF,
-    IngredientType.CHICKEN,
-  ]);
-  const [weight, setWeight] = useState<WeightTypes>(WeightType.FIFTY);
+
   const [sort, setSort] = useState<SortTypes>(SortType.DEFAULT);
   const [paging, setPaging] = useState<number>(2);
 
   function handleCategoryFilter(categoryCurrent: CategoryTypes) {
     setCategory(categoryCurrent);
   }
-  function handleColorFilter(colorCurrent: ColorTypes) {
-    if (color.includes(colorCurrent)) {
-      setColor(color.filter((c) => c !== colorCurrent));
-    } else setColor([...color, colorCurrent]);
-  }
-  function handleSizeFilter(sizeCurrent: SizeTypes) {
-    if (size.includes(sizeCurrent)) {
-      setSize(size.filter((s) => s !== sizeCurrent));
-    } else setSize([...size, sizeCurrent]);
-  }
-  function handleIngredientFilter(ingredientCurrent: IngredientTypes) {
-    if (ingredient.includes(ingredientCurrent)) {
-      setIngredient(ingredient.filter((i) => i !== ingredientCurrent));
-    } else setIngredient([...ingredient, ingredientCurrent]);
-  }
-  function handleWeightFilter(event: React.ChangeEvent<HTMLSelectElement>) {
-    const weightCurrent = Number(event.target.value) as WeightTypes;
-    setWeight(weightCurrent);
-  }
+
   function handleSortFilter(sortCurrent: SortTypes) {
     setSort(sortCurrent);
   }
@@ -75,24 +37,11 @@ export default function PetsContent() {
 
     params.append("category", category);
 
-    color.forEach((colorValue) => {
-      params.append("color", colorValue);
-    });
-
-    size.forEach((sizeValue) => {
-      params.append("size", sizeValue);
-    });
-
-    ingredient.forEach((ingredientValue) => {
-      params.append("ingredient", ingredientValue);
-    });
-
-    params.append("weight", weight.toString());
-
     params.append("sort", sort);
 
     params.append("paging", paging.toString());
-  }, [category, color, size, ingredient, weight, sort, paging]);
+    console.log(params.toString());
+  }, [category, sort, paging]);
 
   return (
     <>
@@ -180,103 +129,6 @@ export default function PetsContent() {
                   Filter
                 </button>
               </form>
-            </div>
-
-            <div className="px-[25px] pt-[40px]">
-              <h3 className="mb-[20px] font-quicksand text-[20px] font-bold leading-[1.1] tracking-[-0.01em] text-primary">
-                Color
-              </h3>
-
-              <ul className="text-[14px] leading-[1.23] tracking-[0.02em] text-text_color">
-                <ColorCheckbox
-                  color={color}
-                  colorType={ColorType.LIGHT}
-                  name="Màu sáng"
-                  handleColorFilter={handleColorFilter}
-                />
-
-                <ColorCheckbox
-                  color={color}
-                  colorType={ColorType.DARK}
-                  name="Màu tối"
-                  handleColorFilter={handleColorFilter}
-                />
-              </ul>
-            </div>
-
-            <div className="px-[25px] pt-[40px]">
-              <h3 className="mb-[20px] font-quicksand text-[20px] font-bold leading-[1.1] tracking-[-0.01em] text-primary">
-                Size
-              </h3>
-
-              <ul className="text-[14px] leading-[1.23] tracking-[0.02em] text-text_color">
-                <SizeCheckbox
-                  size={size}
-                  sizeType={SizeType.SMALL}
-                  name="Nhỏ "
-                  handleSizeFilter={handleSizeFilter}
-                />
-
-                <SizeCheckbox
-                  size={size}
-                  sizeType={SizeType.MEDIUM}
-                  name="Trung bình "
-                  handleSizeFilter={handleSizeFilter}
-                />
-
-                <SizeCheckbox
-                  size={size}
-                  sizeType={SizeType.BIG}
-                  name="Lớn "
-                  handleSizeFilter={handleSizeFilter}
-                />
-              </ul>
-            </div>
-
-            <div className="px-[25px] pt-[40px]">
-              <h3 className="mb-[20px] font-quicksand text-[20px] font-bold leading-[1.1] tracking-[-0.01em] text-primary">
-                Ingredients
-              </h3>
-
-              <ul className="text-[14px] leading-[1.23] tracking-[0.02em] text-text_color">
-                <IngredientCheckbox
-                  ingredient={ingredient}
-                  ingredientType={IngredientType.BEEF}
-                  name="Thịt bò "
-                  handleIngredientFilter={handleIngredientFilter}
-                />
-
-                <IngredientCheckbox
-                  ingredient={ingredient}
-                  ingredientType={IngredientType.CHICKEN}
-                  name="Thịt gà "
-                  handleIngredientFilter={handleIngredientFilter}
-                />
-              </ul>
-            </div>
-
-            <div className="px-[25px] pb-[120px] pt-[40px]">
-              <h3 className="mb-[20px] font-quicksand text-[20px] font-bold leading-[1.1] tracking-[-0.01em] text-primary">
-                Weight
-              </h3>
-
-              <div className="text-[14px] leading-[1.23] tracking-[0.02em] text-text_color">
-                <select
-                  className="relative h-auto w-full rounded-[3px] border border-solid border-input_border_color bg-form_color py-[8px] pl-[9px] pr-[28px] text-[13px] font-medium leading-[16px] tracking-[0.01em] text-primary outline-none"
-                  onChange={handleWeightFilter}
-                >
-                  <option value="">Choose the weight</option>
-                  <option value={WeightType.FIVE}>
-                    &lt; {WeightType.FIVE}kg
-                  </option>
-                  <option value={WeightType.TEN}>
-                    &lt; {WeightType.TEN}kg
-                  </option>
-                  <option value={WeightType.FIFTY}>
-                    &lt; {WeightType.FIFTY}kg
-                  </option>
-                </select>
-              </div>
             </div>
           </div>
         </div>
