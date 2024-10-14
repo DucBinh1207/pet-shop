@@ -1,3 +1,4 @@
+import InfoRow from "@/app/(products)/_components/info-row";
 import { FoodType } from "@/types/food";
 
 export default function AdditionalInfo({ product }: { product: FoodType }) {
@@ -16,22 +17,5 @@ export default function AdditionalInfo({ product }: { product: FoodType }) {
         </table>
       </div>
     </div>
-  );
-}
-
-function InfoRow({
-  name,
-  value,
-}: {
-  name: string;
-  value: string | number | null;
-}) {
-  if (!value) return null;
-
-  return (
-    <tr className="flex w-full border-b border-solid border-light_gray_color_second text-left">
-      <th className="min-w-[50%] py-[14px] font-bold text-primary">{name} :</th>
-      <td className="min-w-[50%] py-[14px]">{value}</td>
-    </tr>
   );
 }

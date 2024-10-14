@@ -1,9 +1,13 @@
-import AdditionalInfo from "./additional-info";
-import Description from "@/app/(products)/_components/description";
-import Reviews from "@/app/(products)/_components/reviews";
 import { Tabs, TabsType } from "@/app/(products)/_shared/tab";
 import { ProductContext } from "./page-content";
 import { useContext } from "react";
+import dynamic from "next/dynamic";
+
+const AdditionalInfo = dynamic(() => import("./additional-info"));
+const Description = dynamic(
+  () => import("@/app/(products)/_components/description"),
+);
+const Reviews = dynamic(() => import("@/app/(products)/_components/reviews"));
 
 type props = {
   tab: TabsType;
@@ -11,8 +15,6 @@ type props = {
 
 export default function Content({ tab }: props) {
   const product = useContext(ProductContext);
-
-  if (!product) return null;
 
   return (
     <>

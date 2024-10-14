@@ -5,14 +5,32 @@ import { useParams } from "next/navigation";
 import Detail from "./detail";
 import { createContext } from "react";
 
-export const ProductContext = createContext<PetType | null>(null);
+export const ProductContext = createContext<PetType>({
+  id: "",
+  name: "",
+  petType: "",
+  gender: "",
+  health: "",
+  father: "",
+  mother: "",
+  type: "",
+  deworming: "",
+  vaccine: "",
+  breed: "",
+  traits: "",
+  rating: 0,
+  description: "",
+  image: "",
+  quantity: 0,
+  price: 0,
+});
 
 export default function PageContent() {
-  const { productId } = useParams();
+  const { productId } = useParams<{ productId: string }>();
 
   // This is where the product's name is retrieved by fetching product data using the ID from the URL path
   const product: PetType = {
-    id: typeof productId === "string" ? productId : "",
+    id: productId,
     name: "golden retriever 001",
     petType: "dog",
     gender: "male",

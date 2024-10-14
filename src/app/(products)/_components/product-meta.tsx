@@ -1,7 +1,8 @@
+import { ProductTypes } from "@/constants/product-type";
 import Link from "next/link";
 
 type props = {
-  type: "pets" | "foods" | "supplies";
+  type: ProductTypes;
   sku: string;
   category: string;
   tags: string[];

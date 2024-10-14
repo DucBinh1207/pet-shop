@@ -6,17 +6,15 @@ import { ProductContext } from "./page-content";
 import IngredientCheckbox from "./ingredient-checkbox";
 import { IngredientType, IngredientTypes } from "@/constants/ingredient-type";
 import StoreBenefit from "@/app/(products)/_components/store-benefit";
-import WeightCheckbox from "./weight-checkbox";
 import PurchaseActions from "@/app/(products)/_components/purchase-actions";
 import ProductMeta from "@/app/(products)/_components/product-meta";
+import WeightCheckbox from "@/components/weight-checkbox";
 
 export default function Detail() {
   const product = useContext(ProductContext);
   const [ingredient, setIngredient] = useState<IngredientTypes>(
     IngredientType.BEEF,
   );
-
-  if (!product) return null;
 
   return (
     <div className="mx-auto mb-[40px] mt-[30px] min-w-[320px] rounded-[4px] border border-solid border-light_gray_color_second bg-white large-screen:w-[1160px] small-screen:mb-[30px] small-screen:mt-[15px] small-screen:w-[calc(100%-60px)] smallest-screen:mb-[20px] smallest-screen:mt-[10px] xx-smallest-screen:w-full">

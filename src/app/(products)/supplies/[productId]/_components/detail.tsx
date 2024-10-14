@@ -16,8 +16,6 @@ export default function Detail() {
     setColor(colorCurrent);
   }
 
-  if (!product) return null;
-
   return (
     <div className="mx-auto mb-[40px] mt-[30px] min-w-[320px] rounded-[4px] border border-solid border-light_gray_color_second bg-white large-screen:w-[1160px] small-screen:mb-[30px] small-screen:mt-[15px] small-screen:w-[calc(100%-60px)] smallest-screen:mb-[20px] smallest-screen:mt-[10px] xx-smallest-screen:w-full">
       <div className="mb-[30px] flex text-text_color smallest-screen:flex-col">

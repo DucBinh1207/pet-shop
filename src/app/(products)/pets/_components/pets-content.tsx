@@ -11,7 +11,7 @@ import { SortType, SortTypes } from "@/constants/sort-type";
 import Sort from "./sort";
 import AngleIcon from "@/components/common/icons/angle-icon";
 import cn from "@/utils/style/cn";
-import ArrowIcon from "@/components/common/icons/arrow-icon";
+import Pagination from "../../_components/pagination";
 
 export default function PetsContent() {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
@@ -162,126 +162,10 @@ export default function PetsContent() {
           </div>
 
           <div className="mt-[30px] flex justify-center pb-[30px]">
-            <ul className="flex flex-wrap items-center justify-center text-[18px] font-medium leading-[27px] tracking-[0.02em] text-text_color">
-              <li className="m-[2.5px]">
-                <button
-                  className={cn(
-                    "hover_animate inline-flex h-[50px] w-[50px] items-center justify-center rounded-[50%] border-[2px] border-solid border-primary bg-white text-center uppercase text-primary outline-none",
-                    {
-                      "pointer-events-none cursor-default opacity-25":
-                        paging === 1,
-                      "cursor-pointer hover:bg-primary hover:text-white":
-                        paging !== 1,
-                    },
-                  )}
-                  onClick={() => {
-                    if (paging !== 1) {
-                      handlePagingFilter(paging - 1);
-                    }
-                  }}
-                >
-                  <ArrowIcon size={17} className="fill-current" />
-                </button>
-              </li>
-
-              <li className="m-[2.5px]">
-                <button
-                  className={cn(
-                    "hover_animate inline-block h-[50px] w-[50px] cursor-pointer rounded-[50%] border-[2px] border-solid border-primary text-center uppercase outline-none hover:bg-primary hover:text-white",
-                    {
-                      "bg-primary text-white": paging === 1,
-                      "bg-white text-primary": paging !== 1,
-                    },
-                  )}
-                  onClick={() => {
-                    handlePagingFilter(1);
-                  }}
-                >
-                  1
-                </button>
-              </li>
-
-              <li className="m-[2.5px]">
-                <button
-                  className={cn(
-                    "hover_animate inline-block h-[50px] w-[50px] cursor-pointer rounded-[50%] border-[2px] border-solid border-primary text-center uppercase outline-none hover:bg-primary hover:text-white",
-                    {
-                      "bg-primary text-white": paging === 2,
-                      "bg-white text-primary": paging !== 2,
-                    },
-                  )}
-                  onClick={() => {
-                    handlePagingFilter(2);
-                  }}
-                >
-                  2
-                </button>
-              </li>
-
-              <li className="m-[2.5px]">
-                <button
-                  className={cn(
-                    "hover_animate inline-block h-[50px] w-[50px] cursor-pointer rounded-[50%] border-[2px] border-solid border-primary text-center uppercase outline-none hover:bg-primary hover:text-white",
-                    {
-                      "bg-primary text-white": paging === 3,
-                      "bg-white text-primary": paging !== 3,
-                    },
-                  )}
-                  onClick={() => {
-                    handlePagingFilter(3);
-                  }}
-                >
-                  3
-                </button>
-              </li>
-
-              <li className="m-[2.5px]">
-                <span className="hover_animate inline-flex h-[50px] w-[50px] cursor-default items-center justify-center rounded-[50%] border-[2px] border-solid border-primary bg-white text-center uppercase text-primary outline-none">
-                  ...
-                </span>
-              </li>
-
-              <li className="m-[2.5px]">
-                <button
-                  className={cn(
-                    "hover_animate inline-block h-[50px] w-[50px] cursor-pointer rounded-[50%] border-[2px] border-solid border-primary text-center uppercase outline-none hover:bg-primary hover:text-white",
-                    {
-                      "bg-primary text-white": paging === 100,
-                      "bg-white text-primary": paging !== 100,
-                    },
-                  )}
-                  onClick={() => {
-                    handlePagingFilter(100);
-                  }}
-                >
-                  100
-                </button>
-              </li>
-
-              <li className="m-[2.5px]">
-                <button
-                  className={cn(
-                    "hover_animate inline-flex h-[50px] w-[50px] items-center justify-center rounded-[50%] border-[2px] border-solid border-primary bg-white text-center uppercase text-primary outline-none",
-                    {
-                      "pointer-events-none cursor-default opacity-25":
-                        paging === 100,
-                      "cursor-pointer hover:bg-primary hover:text-white":
-                        paging !== 100,
-                    },
-                  )}
-                  onClick={() => {
-                    if (paging !== 100) {
-                      handlePagingFilter(paging + 1);
-                    }
-                  }}
-                >
-                  <ArrowIcon
-                    size={17}
-                    className="rotate-[180deg] fill-current"
-                  />
-                </button>
-              </li>
-            </ul>
+            <Pagination
+              paging={paging}
+              handlePagingFilter={handlePagingFilter}
+            />
           </div>
         </div>
       </div>

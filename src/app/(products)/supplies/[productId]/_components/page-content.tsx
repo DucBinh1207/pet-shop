@@ -5,14 +5,28 @@ import Detail from "./detail";
 import { createContext } from "react";
 import { SupplyType } from "@/types/supply";
 
-export const ProductContext = createContext<SupplyType | null>(null);
+export const ProductContext = createContext<SupplyType>({
+  id: "",
+  name: "",
+  petType: "",
+  ingredient: "",
+  nutrition_info: "",
+  weight: "",
+  expire_date: "",
+  brand: "",
+  rating: 0,
+  description: "",
+  image: "",
+  quantity: 0,
+  price: 0,
+});
 
 export default function PageContent() {
-  const { productId } = useParams();
+  const { productId } = useParams<{ productId: string }>();
 
   // This is where the product's name is retrieved by fetching product data using the ID from the URL path
   const product: SupplyType = {
-    id: typeof productId === "string" ? productId : "",
+    id: productId,
     name: "Natural Clumping Cat Litter",
     petType: "Cat",
     ingredient: "Bentonite Clay, Activated Charcoal",

@@ -1,8 +1,7 @@
-import Image from "next/image";
 import ReviewForm from "./review-form";
-import cn from "@/utils/style/cn";
 import { useState } from "react";
-import StarIcon from "@/components/common/icons/star-icon";
+import Comment from "./comment";
+import Pagination from "./pagination";
 
 export default function Reviews() {
   const [paging, setPaging] = useState<number>(2);
@@ -22,34 +21,10 @@ export default function Reviews() {
           <Comment rating={2} />
 
           <div className="mt-[10px] flex justify-center pb-[30px]">
-            <ul className="flex flex-wrap items-center justify-center text-[18px] font-medium leading-[27px] tracking-[0.02em] text-text_color">
-              <Paging
-                pageNum={1}
-                pageCurrent={paging}
-                handlePagingFilter={handlePagingFilter}
-              />
-              <Paging
-                pageNum={2}
-                pageCurrent={paging}
-                handlePagingFilter={handlePagingFilter}
-              />
-              <Paging
-                pageNum={3}
-                pageCurrent={paging}
-                handlePagingFilter={handlePagingFilter}
-              />
-
-              <li className="m-[2.5px]">
-                <span className="hover_animate inline-flex h-[50px] w-[50px] cursor-default items-center justify-center rounded-[50%] border-[2px] border-solid border-primary bg-white text-center uppercase text-primary outline-none">
-                  ...
-                </span>
-              </li>
-              <Paging
-                pageNum={100}
-                pageCurrent={paging}
-                handlePagingFilter={handlePagingFilter}
-              />
-            </ul>
+            <Pagination
+              paging={paging}
+              handlePagingFilter={handlePagingFilter}
+            />
           </div>
         </ul>
 
@@ -62,88 +37,5 @@ export default function Reviews() {
         </div>
       </div>
     </div>
-  );
-}
-
-function Paging({
-  pageNum,
-  pageCurrent,
-  handlePagingFilter,
-}: {
-  pageNum: number;
-  pageCurrent: number;
-  handlePagingFilter: (pageNum: number) => void;
-}) {
-  return (
-    <li className="m-[2.5px]">
-      <button
-        type="button"
-        className={cn(
-          "hover_animate inline-block h-[50px] w-[50px] cursor-pointer rounded-[50%] border-[2px] border-solid border-primary text-center uppercase outline-none hover:bg-primary hover:text-white",
-          {
-            "bg-primary text-white": pageCurrent === pageNum,
-            "bg-white text-primary": pageCurrent !== pageNum,
-          },
-        )}
-        onClick={() => {
-          handlePagingFilter(pageNum);
-        }}
-      >
-        {pageNum}
-      </button>
-    </li>
-  );
-}
-
-function Comment({ rating }: { rating: number | null }) {
-  if (!rating) return null;
-
-  return (
-    <li className="mb-[10px]">
-      <div className="relative pb-[35px] pl-[80px]">
-        <Image
-          src="/assets/images/avatar.jpg"
-          width={60}
-          height={60}
-          alt="avatar"
-          className="absolute left-0 top-0 rounded-[50%]"
-        />
-        <div className="flex flex-col gap-[17px]">
-          <div className="flex gap-[15px]">
-            <span className="flex gap-[2px]">
-              {[...Array(rating)].map((_, index) => (
-                <StarIcon
-                  size={12}
-                  className="fill-current text-dark_yellow_color"
-                  key={index}
-                />
-              ))}
-
-              {[...Array(5 - rating)].map((_, index) => (
-                <StarIcon
-                  size={12}
-                  className="fill-current text-dark_yellow_color opacity-20"
-                  key={index}
-                />
-              ))}
-            </span>
-
-            <span className="text-[13px] font-bold leading-[16px] tracking-[0.015em] text-primary">
-              Tran Duc Binh
-            </span>
-
-            <span className="text-[12px] font-medium leading-[15px] tracking-[0.02em] text-text_color opacity-70">
-              December 7, 2022
-            </span>
-          </div>
-          <div className="text-[14px] font-medium leading-[1.5] tracking-[0.02em] text-text_color">
-            <p>
-              If it does as it says then it’s good stuff. Dog loves it. I
-              haven’t tried it so we’re going with the dogs review.
-            </p>
-          </div>
-        </div>
-      </div>
-    </li>
   );
 }
