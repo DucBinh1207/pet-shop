@@ -18,8 +18,7 @@ export default function Detail() {
 
   function handleIngredientFilter(ingredientCurrent: IngredientTypes) {
     if (!ingredient.includes(ingredientCurrent)) {
-      const newIngredient = ingredient.filter((i) => i === ingredientCurrent);
-      setIngredient([...newIngredient, ingredientCurrent]);
+      setIngredient([ingredientCurrent]);
     }
   }
 

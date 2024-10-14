@@ -17,8 +17,7 @@ export default function SupplyCard() {
   const [color, setColor] = useState<ColorTypes[]>([ColorType.LIGHT]);
   function handleColorFilter(colorCurrent: ColorTypes) {
     if (!color.includes(colorCurrent)) {
-      const newColor = color.filter((c) => c === colorCurrent);
-      setColor([...newColor, colorCurrent]);
+      setColor([colorCurrent]);
     }
   }
 

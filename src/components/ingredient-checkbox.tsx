@@ -26,12 +26,8 @@ export default function IngredientCheckbox({
           className={cn(
             "relative inline-block h-[35px] w-[35px] cursor-pointer appearance-none rounded-[50%] bg-cover after:absolute after:bottom-[-4px] after:left-[-4px] after:right-[-4px] after:top-[-4px] after:rounded-[4px] after:border after:border-solid after:content-[''] group-hover:after:border-secondary",
             {
-              "after:border-secondary":
-                ingredient.includes(ingredientType) &&
-                Array.isArray(ingredient),
-              "after:border-transparent":
-                !ingredient.includes(ingredientType) &&
-                Array.isArray(ingredient),
+              "after:border-secondary": ingredient.includes(ingredientType),
+              "after:border-transparent": !ingredient.includes(ingredientType),
               "bg-beef_img": ingredientType === "beef",
               "bg-chicken_img": ingredientType === "chicken",
             },
