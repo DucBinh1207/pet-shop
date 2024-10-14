@@ -55,11 +55,12 @@ export default function RootLayout({
       <body
         className={`${outfit_init.variable} ${quicksand_init.variable} bg-background_color`}
       >
-        <div className="root flex h-[100vh] flex-col font-outfit">
+        <div className="root flex min-h-[100vh] flex-col font-outfit">
           <HeaderNotice />
           <Header />
 
           <div className="flex-1">{children}</div>
+
           <Footer />
           <ToastNotification />
         </div>

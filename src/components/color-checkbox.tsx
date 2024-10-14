@@ -2,7 +2,7 @@ import { ColorTypes } from "@/constants/color-type";
 import cn from "@/utils/style/cn";
 
 type props = {
-  color: ColorTypes | ColorTypes[];
+  color: ColorTypes[];
   colorType: ColorTypes;
   name?: string;
   handleColorFilter: (colorCurrent: ColorTypes) => void;
@@ -30,11 +30,9 @@ export default function ColorCheckbox({
             "relative inline-block h-[22px] w-[22px] cursor-pointer appearance-none rounded-[50%] outline outline-[1px] outline-light_gray_color_second after:absolute after:bottom-[-4px] after:left-[-4px] after:right-[-4px] after:top-[-4px] after:rounded-[50%] after:border after:border-solid after:content-[''] group-hover:after:border-secondary",
             {
               "after:border-secondary":
-                (color === colorType && typeof color === "string") ||
-                (color.includes(colorType) && Array.isArray(color)),
+                color.includes(colorType) && Array.isArray(color),
               "after:border-transparent":
-                (color !== colorType && typeof color === "string") ||
-                (!color.includes(colorType) && Array.isArray(color)),
+                !color.includes(colorType) && Array.isArray(color),
             },
           )}
           style={{ backgroundColor: colorType }}

@@ -14,9 +14,16 @@ import IngredientCheckbox from "./ingredient-checkbox";
 import WeightCheckbox from "./weight-checkbox";
 
 export default function FoodCard() {
-  const [ingredient, setIngredient] = useState<IngredientTypes>(
+  const [ingredient, setIngredient] = useState<IngredientTypes[]>([
     IngredientType.BEEF,
-  );
+  ]);
+
+  function handleIngredientFilter(ingredientCurrent: IngredientTypes) {
+    if (!ingredient.includes(ingredientCurrent)) {
+      const newIngredient = ingredient.filter((i) => i === ingredientCurrent);
+      setIngredient([...newIngredient, ingredientCurrent]);
+    }
+  }
 
   return (
     <div className="border-box flex min-w-[232px] flex-1 transform flex-col border border-solid border-light_gray_color_second bg-white small-screen:min-w-[25%] x-small-screen:min-w-[calc(100%/3)] x-smallest-screen:min-w-[50%]">
@@ -79,13 +86,13 @@ export default function FoodCard() {
             <IngredientCheckbox
               ingredient={ingredient}
               ingredientType={IngredientType.BEEF}
-              handleIngredientFilter={setIngredient}
+              handleIngredientFilter={handleIngredientFilter}
             />
 
             <IngredientCheckbox
               ingredient={ingredient}
               ingredientType={IngredientType.CHICKEN}
-              handleIngredientFilter={setIngredient}
+              handleIngredientFilter={handleIngredientFilter}
             />
           </ul>
         </div>

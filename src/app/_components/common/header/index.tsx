@@ -48,9 +48,9 @@ export default function Header() {
       </ul>
 
       <ul className="flex text-base text-text_color_second small-screen:mx-[13px] small-screen:pt-[5px]">
-        <Action type="button" iconName="SEARCH" />
-        <Action type="link" iconName="USER" href="/login" />
-        <Action type="link" iconName="CART" href="/cart" />
+        <Action iconName="SEARCH" href="/search" />
+        <Action iconName="USER" href="/login" />
+        <Action iconName="CART" href="/cart" />
       </ul>
     </div>
   );

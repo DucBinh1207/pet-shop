@@ -11,9 +11,12 @@ import ColorCheckbox from "@/components/color-checkbox";
 
 export default function Detail() {
   const product = useContext(ProductContext);
-  const [color, setColor] = useState<ColorTypes>(ColorType.LIGHT);
+  const [color, setColor] = useState<ColorTypes[]>([ColorType.LIGHT]);
   function handleColorFilter(colorCurrent: ColorTypes) {
-    setColor(colorCurrent);
+    if (!color.includes(colorCurrent)) {
+      const newColor = color.filter((c) => c === colorCurrent);
+      setColor([...newColor, colorCurrent]);
+    }
   }
 
   return (

@@ -21,7 +21,7 @@ import { ColorType, ColorTypes } from "@/constants/color-type";
 import Pagination from "../../_components/pagination";
 
 export default function SuppliesContent() {
-  const [isFilterOpen, setIsFilterOpen] = useState(false);
+  const [isOpenFilter, setIsOpenFilter] = useState(false);
   const [category, setCategory] = useState<SuppliesCategoryTypes>(
     SuppliesCategoryType.ALL,
   );
@@ -91,18 +91,18 @@ export default function SuppliesContent() {
         <div className="border-r border-solid border-light_gray_color_second large-screen:min-w-[232px] small-screen:relative small-screen:overflow-hidden">
           <div
             className={cn(
-              "flex flex-col pb-[30px] transition-all duration-150 ease-linear small-screen:fixed small-screen:right-0 small-screen:top-0 small-screen:z-[200] small-screen:h-full small-screen:w-[360px] small-screen:max-w-full small-screen:bg-white small-screen:pb-[30px] small-screen:leading-[1.23]",
+              "sticky left-0 top-[90px] flex flex-col pb-[30px] transition-all duration-150 ease-linear small-screen:fixed small-screen:right-0 small-screen:top-0 small-screen:z-[200] small-screen:h-full small-screen:w-[360px] small-screen:max-w-full small-screen:bg-white small-screen:pb-[30px] small-screen:leading-[1.23]",
               {
                 "small-screen:translate-x-0 small-screen:opacity-100":
-                  isFilterOpen,
+                  isOpenFilter,
                 "small-screen:w-0 small-screen:translate-x-full small-screen:opacity-0":
-                  !isFilterOpen,
+                  !isOpenFilter,
               },
             )}
           >
             <div className="relative flex items-center justify-end large-screen:hidden">
               <div className="flex h-[46px] w-[46px] items-center justify-center">
-                <button onClick={() => setIsFilterOpen(false)}>
+                <button onClick={() => setIsOpenFilter(false)}>
                   <CancelIcon size={32} className="fill-current text-primary" />
                 </button>
               </div>
@@ -230,7 +230,7 @@ export default function SuppliesContent() {
             <div className="ml-[15px] mr-[2px] large-screen:hidden large-screen:opacity-0">
               <button
                 className="hover_animate inline-flex cursor-pointer items-center gap-[7px] rounded-[17px] border-[2px] border-solid border-primary bg-white px-[22px] py-[7px] text-center text-[11px] font-bold uppercase leading-[14px] tracking-[0.07em] text-primary outline-none hover:bg-primary hover:text-white"
-                onClick={() => setIsFilterOpen(true)}
+                onClick={() => setIsOpenFilter(true)}
               >
                 <AngleIcon size={8} className="rotate-[-90deg] fill-current" />
                 Filter
