@@ -6,10 +6,67 @@ import cn from "@/utils/style/cn";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+import Cookies from "js-cookie";
+import { LoginApi } from "@/services/auth-api";
+import { toast } from "react-toastify";
+
+const schema = z.object({
+  email: z.string().email("Invalid email format"),
+  password: z
+    .string()
+    .min(3, "Password must be at least 3 characters")
+    .max(20, "Password can have a maximum of 20 characters"),
+});
+
+export type LoginFormType = z.infer<typeof schema>;
 
 export default function LoginForm() {
   const [isRememberMe, setIsRememberMe] = useState(false);
   const router = useRouter();
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    defaultValues: {
+      email: "devfe1@gmail.com",
+      password: "123456",
+    },
+    mode: "onSubmit",
+    resolver: zodResolver(schema),
+  });
+
+  const onSubmitHandle = async (data: LoginFormType) => {
+    try {
+      const response = await LoginApi({
+        data: data,
+      });
+      const token = response.token;
+      Cookies.set("token", token);
+      router.push("/");
+    } catch (error) {
+      console.log(typeof error);
+      const errorMessage =
+        error instanceof Error && error.message
+          ? error.message
+          : "Login failed";
+
+      toast.error(errorMessage, {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme: "light",
+        progress: undefined,
+      });
+    }
+  };
 
   return (
     <div className="mx-auto flex rounded-[4px] border border-solid border-light_gray_color_second bg-white large-screen:mb-[40px] large-screen:mt-[15px] large-screen:w-[1160px] small-screen:mb-[30px] small-screen:mt-[30px] smallest-screen:mb-[20px] smallest-screen:mt-[10px]">
@@ -20,16 +77,19 @@ export default function LoginForm() {
               Login
             </h2>
 
-            <form action="">
+            <form onSubmit={handleSubmit(onSubmitHandle)}>
               <ul className="flex flex-col gap-[20px]">
                 <li className="flex flex-col">
                   <label
                     className="pb-[10px] text-[13px] font-normal leading-[18px] tracking-[0.02em] text-primary"
-                    htmlFor="username"
+                    htmlFor="email"
                   >
                     Email address *
                   </label>
-                  <Input id="username" />
+                  <Input id="email" {...register("email")} />
+                  <span className="ml-[5px] mt-[5px] text-[13px] leading-[18px] text-red-500">
+                    {errors.email?.message}
+                  </span>
                 </li>
 
                 <li className="flex flex-col">
@@ -39,7 +99,14 @@ export default function LoginForm() {
                   >
                     Password *
                   </label>
-                  <Input id="password" />
+                  <Input
+                    id="password"
+                    type="password"
+                    {...register("password")}
+                  />
+                  <span className="ml-[5px] mt-[5px] text-[13px] leading-[18px] text-red-500">
+                    {errors.password?.message}
+                  </span>
                 </li>
 
                 <li className="flex items-center justify-between">
@@ -74,13 +141,10 @@ export default function LoginForm() {
 
                 <li className="flex flex-col">
                   <Button
-                    type="button"
+                    type="submit"
                     size="xsm"
                     variant="secondary"
                     className="text-center text-[13px] font-bold leading-[16px]"
-                    onClick={() => {
-                      router.push("/profile");
-                    }}
                   >
                     Log In
                   </Button>

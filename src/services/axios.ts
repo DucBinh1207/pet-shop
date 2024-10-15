@@ -2,7 +2,7 @@ import Cookies from "js-cookie";
 import axios, { AxiosRequestConfig } from "axios";
 
 const apiClient = axios.create({
-  baseURL: "http://localhost:4444",
+  baseURL: "http://localhost:8000",
   headers: {
     "Content-Type": "application/json",
   },
@@ -29,12 +29,33 @@ apiClient.interceptors.response.use(
     return response.data;
   },
   (error) => {
-    // if (error.response.status === 404) {
-    //   window.location.replace("/404");
-    // }
-    console.log(error);
-
-    return Promise.reject(error);
+    if (error.response && error.response.data) {
+      const status = error.response.status;
+      switch (status) {
+        case 400:
+          console.error("Bad Request: ", error.response.data.message);
+          throw new Error(error.response.data.message);
+        case 401:
+          console.error("Unauthorized: ", error.response.data.message);
+          Cookies.remove("token");
+          throw new Error(error.response.data.message);
+        case 404:
+          console.error("Not Found: ", error.response.data.message);
+          throw new Error(error.response.data.message);
+        case 500:
+          console.error("Server Error: ", error.response.data.message);
+          Cookies.remove("token");
+          throw new Error(error.response.data.message);
+        default:
+          console.error("Error: ", error.response.data.message);
+      }
+      return Promise.reject(error.response.data.message);
+    }
+    if (error.request) {
+      console.error("Network Error: No response received from the server");
+      return;
+    }
+    console.error("Error: ", error.message);
   },
 );
 
@@ -48,7 +69,7 @@ export const get = <T>({
   config?: AxiosRequestConfig;
 }): Promise<T> => apiClient.get(url, { url, params, ...config });
 
-export const post = ({
+export const post = <T>({
   url,
   data,
   config,
@@ -56,7 +77,7 @@ export const post = ({
   url: string;
   data: unknown;
   config?: AxiosRequestConfig;
-}) => apiClient.post(url, data, config);
+}): Promise<T> => apiClient.post(url, data, config);
 
 export const update = ({
   url,
