@@ -1,7 +1,8 @@
 import Cookies from "js-cookie";
 import axios, { AxiosRequestConfig } from "axios";
+import { ErrorStatus } from "@/constants/error-status";
 
-const apiClient = axios.create({
+export const apiClient = axios.create({
   baseURL: "http://localhost:8000",
   headers: {
     "Content-Type": "application/json",
@@ -32,30 +33,23 @@ apiClient.interceptors.response.use(
     if (error.response && error.response.data) {
       const status = error.response.status;
       switch (status) {
-        case 400:
-          console.error("Bad Request: ", error.response.data.message);
+        case ErrorStatus.BAD_REQUEST:
+          window.history.back();
           throw new Error(error.response.data.message);
-        case 401:
-          console.error("Unauthorized: ", error.response.data.message);
+        case ErrorStatus.UNAUTHORIZED:
           Cookies.remove("token");
+          window.location.href = "/login";
           throw new Error(error.response.data.message);
-        case 404:
-          console.error("Not Found: ", error.response.data.message);
+        case ErrorStatus.NOT_FOUND:
+          window.location.href = "/not_found";
           throw new Error(error.response.data.message);
-        case 500:
-          console.error("Server Error: ", error.response.data.message);
-          Cookies.remove("token");
+        case ErrorStatus.SERVER_ERROR:
           throw new Error(error.response.data.message);
-        default:
-          console.error("Error: ", error.response.data.message);
       }
-      return Promise.reject(error.response.data.message);
     }
     if (error.request) {
-      console.error("Network Error: No response received from the server");
-      return;
+      throw new Error("Could not connect");
     }
-    console.error("Error: ", error.message);
   },
 );
 
