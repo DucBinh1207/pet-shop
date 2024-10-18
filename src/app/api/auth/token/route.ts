@@ -1,68 +1,58 @@
+import { CookieKey } from "@/constants/cookie-key";
 import { cookies } from "next/headers";
 import { NextRequest } from "next/server";
 
-export const dynamic = "force-dynamic";
 export async function POST(req: NextRequest) {
-  if (req.method === "POST") {
+  try {
     const { token } = await req.json();
     if (!token) {
-      return new Response("Token is required", {
-        status: 400,
-      });
+      return Response.json({ message: "Failed" }, { status: 401 });
     }
 
-    return new Response("Cookie set successfully", {
-      status: 200,
-      headers: {
-        "Set-Cookie": `token=${token};httpOnly;sameSite="Strict";path="/"`,
-      },
+    cookies().set({
+      name: CookieKey.AUTH_TOKEN,
+      value: token,
+      httpOnly: true,
+      sameSite: "lax",
+      path: "/",
+      maxAge: 3600 * 24 * 60,
     });
-  } else {
-    return new Response("Method not allowed", {
-      status: 405,
-    });
+
+    return Response.json({ message: "Success" }, { status: 200 });
+  } catch (error) {
+    return Response.json({ message: "Internal Server Error" }, { status: 500 });
   }
 }
 
-export async function GET(req: NextRequest) {
-  if (req.method === "GET") {
+export async function GET() {
+  try {
+    const cookieStore = cookies();
+    const token = cookieStore.get(CookieKey.AUTH_TOKEN);
+
+    if (!token) {
+      return new Response("No token found", {
+        status: 401,
+      });
+    }
+    return Response.json(token.value);
+  } catch (error) {
+    return Response.json({ message: "Internal Server Error" }, { status: 500 });
+  }
+}
+
+export async function DELETE() {
+  try {
     const cookieStore = cookies();
     const token = cookieStore.get("token");
 
     if (token) {
-      return Response.json(token.value);
+      cookies().delete(CookieKey.AUTH_TOKEN);
     } else {
       return new Response("No token found", {
         status: 400,
       });
     }
-  } else {
-    return new Response("Method not allowed", {
-      status: 405,
-    });
-  }
-}
-
-export async function DELETE(req: NextRequest) {
-  if (req.method === "DELETE") {
-    const cookieStore = cookies();
-    const token = cookieStore.get("token");
-
-    if (token) {
-      return new Response("Cookie delete successfully", {
-        status: 200,
-        headers: {
-          "Set-Cookie": `token=;httpOnly;maxAge=0;sameSite="Strict";path="/"`,
-        },
-      });
-    } else {
-      return new Response("No token found", {
-        status: 400,
-      });
-    }
-  } else {
-    return new Response("Method not allowed", {
-      status: 405,
-    });
+  } catch (error) {
+    return Response.json({ message: "Internal Server Error" }, { status: 500 });
   }
 }

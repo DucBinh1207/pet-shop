@@ -1,6 +1,7 @@
 import Cookies from "js-cookie";
 import axios, { AxiosRequestConfig } from "axios";
 import { ErrorStatus } from "@/constants/error-status";
+import { deleteAuthTokenFromInternalServer } from "./api/login";
 
 export const apiClient = axios.create({
   baseURL: "http://localhost:8000",
@@ -34,17 +35,15 @@ apiClient.interceptors.response.use(
       const status = error.response.status;
       switch (status) {
         case ErrorStatus.BAD_REQUEST:
-          window.history.back();
           throw new Error(error.response.data.message);
         case ErrorStatus.UNAUTHORIZED:
-          Cookies.remove("token");
+          deleteAuthTokenFromInternalServer();
           window.location.href = "/login";
           throw new Error(error.response.data.message);
         case ErrorStatus.NOT_FOUND:
           window.location.href = "/not_found";
-          throw new Error(error.response.data.message);
         case ErrorStatus.SERVER_ERROR:
-          throw new Error(error.response.data.message);
+          window.location.href = "/error";
       }
     }
     if (error.request) {

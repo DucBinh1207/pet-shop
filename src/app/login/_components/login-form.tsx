@@ -11,9 +11,12 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { LoginApi } from "@/services/auth-api";
 import FormInput from "@/components/form-input";
-import { ToastError } from "@/utils/toast";
-import axios, { AxiosError } from "axios";
+import { toastError } from "@/utils/toast";
 import useMutation from "@/hooks/use-mutation";
+import {
+  getAuthTokenFromInternalServer,
+  saveAuthTokenForInternalServer,
+} from "@/services/api/login";
 
 const schema = z.object({
   email: z.string().email("Invalid email format"),
@@ -47,28 +50,17 @@ export default function LoginForm() {
     options: {
       onSuccess: async (data) => {
         const token = data.token;
-        try {
-          await axios.post("/api/auth/token", { token });
-          const dataT = await axios.get("/api/auth/token");
-          console.log(dataT.data);
-          const dataD = await axios.delete("/api/auth/token");
-          console.log(dataD);
-        } catch (error) {
-          const err = error as AxiosError;
-          ToastError(err.response?.data as string);
-        }
+        await saveAuthTokenForInternalServer(token);
         router.push("/");
       },
       onError: (error) => {
-        ToastError(error.message);
+        toastError(error.message);
       },
-      onFinally: () => {
-        console.log("Mutation done");
-      },
+      onFinally: () => {},
     },
   });
 
-  const onSubmitHandle = handleSubmit((data: LoginFormType) => {
+  const onSubmit = handleSubmit((data: LoginFormType) => {
     mutate({ data });
   });
 
@@ -81,7 +73,7 @@ export default function LoginForm() {
               Login
             </h2>
 
-            <form onSubmit={onSubmitHandle}>
+            <form onSubmit={onSubmit}>
               <ul className="flex flex-col gap-[20px]">
                 <li className="flex flex-col">
                   <label
@@ -91,13 +83,11 @@ export default function LoginForm() {
                     Email address *
                   </label>
                   <FormInput
-                    input={
-                      <Input
-                        id="email"
-                        {...register("email")}
-                        placeholder="example@gmail.com"
-                      />
-                    }
+                    inputProps={{
+                      id: "email",
+                      placeholder: "example@gmail.com",
+                      ...register("email"),
+                    }}
                     error={errors.email?.message}
                   />
                 </li>
@@ -110,13 +100,11 @@ export default function LoginForm() {
                     Password *
                   </label>
                   <FormInput
-                    input={
-                      <Input
-                        id="password"
-                        type="password"
-                        {...register("password")}
-                      />
-                    }
+                    inputProps={{
+                      id: "password",
+                      type: "password",
+                      ...register("password"),
+                    }}
                     error={errors.password?.message}
                   />
                 </li>

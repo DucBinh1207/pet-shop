@@ -1,13 +1,15 @@
+import { ComponentProps } from "react";
+import Input from "./common/input";
+
 type FormInputProps = {
-  input: React.InputHTMLAttributes<HTMLInputElement>;
+  inputProps: ComponentProps<"input">;
   error?: string;
 };
 
-export default function FormInput({ input, error }: FormInputProps) {
-
+export default function FormInput({ inputProps, error }: FormInputProps) {
   return (
     <>
-      {input}
+      <Input {...inputProps} />
       {error && (
         <span className="ml-[5px] mt-[5px] text-[13px] leading-[18px] text-red-500">
           {error}

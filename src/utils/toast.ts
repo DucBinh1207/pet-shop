@@ -5,7 +5,7 @@ type toastProps = {
   message: string;
 };
 
-function Toast({ type, message }: toastProps) {
+function toastCreator({ type, message }: toastProps) {
   return toast[type](message, {
     position: "top-right",
     autoClose: 3000,
@@ -18,10 +18,10 @@ function Toast({ type, message }: toastProps) {
   });
 }
 
-export function ToastError(message: string) {
-  return Toast({ type: "error", message: message });
+export function toastError(message: string) {
+  return toastCreator({ type: "error", message: message });
 }
 
-export function ToastSuccess(message: string) {
-  return Toast({ type: "success", message: message });
+export function toastSuccess(message: string) {
+  return toastCreator({ type: "success", message: message });
 }

@@ -1,4 +1,5 @@
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
+import useMounted from "./use-mounted";
 
 type FetcherResponse<TData> = Promise<TData>;
 
@@ -32,24 +33,18 @@ function useMutation<TData = unknown, TParam = unknown>(
 
   const mutate = async (param?: TParam) => {
     setState({ ...state, isMutating: true });
-    console.log({
-      isMounted: isMounted(),
-    });
 
     try {
-      const data = await props.fetcher((param ?? null) as TParam);
+      const data = await props.fetcher((param ?? null) as any);
 
       if (isMounted()) {
         setData(data);
         props.options?.onSuccess?.(data);
       }
-
-      console.log({ data });
     } catch (error) {
       props.options?.onError?.(error as Error);
       setState({ ...state, error: error as Error });
     } finally {
-      console.log({ data });
       props.options?.onFinally?.();
       setState({ ...state, isMutating: false });
     }
@@ -61,16 +56,5 @@ function useMutation<TData = unknown, TParam = unknown>(
     data,
   };
 }
-
-const useMounted = () => {
-  const ref = useRef(false);
-  const get = () => ref.current;
-
-  useEffect(() => {
-    ref.current = true;
-  }, []);
-
-  return get;
-};
 
 export default useMutation;
