@@ -12,7 +12,7 @@ import { LoginApi } from "@/services/api/auth-api";
 import FormInput from "@/components/form-input";
 import { toastError } from "@/utils/toast";
 import useMutation from "@/hooks/use-mutation";
-import { saveAuthTokenForInternalServer } from "@/services/api/internal-auth-api";  
+import { saveAuthTokenForInternalServer } from "@/services/api/internal-auth-api";
 
 const schema = z.object({
   email: z.string().email("Invalid email format"),
@@ -78,11 +78,9 @@ export default function LoginForm() {
                     Email address *
                   </label>
                   <FormInput
-                    inputProps={{
-                      id: "email",
-                      placeholder: "example@gmail.com",
-                      ...register("email"),
-                    }}
+                    id="email"
+                    placeholder="example@gmail.com"
+                    {...register("email")}
                     error={errors.email?.message}
                   />
                 </li>
@@ -95,11 +93,9 @@ export default function LoginForm() {
                     Password *
                   </label>
                   <FormInput
-                    inputProps={{
-                      id: "password",
-                      type: "password",
-                      ...register("password"),
-                    }}
+                    id="password"
+                    type="password"
+                    {...register("password")}
                     error={errors.password?.message}
                   />
                 </li>
