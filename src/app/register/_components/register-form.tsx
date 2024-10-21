@@ -1,13 +1,16 @@
 "use client";
 
 import Button from "@/components/common/button";
-import Input from "@/components/common/input";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useRouter } from "next/router";
-import { RegisterApi } from "@/services/auth-api";
+import { RegisterApi } from "@/services/api/auth-api";
+import FormInput from "@/components/form-input";
+import useMutation from "@/hooks/use-mutation";
+import cn from "@/utils/style/cn";
+import { toastError } from "@/utils/toast";
+import { saveAuthTokenForInternalServer } from "@/services/api/internal-auth-api";
 
 const schema = z.object({
   email: z.string().email("Invalid email format"),
@@ -16,29 +19,36 @@ const schema = z.object({
 export type RegisterFormType = z.infer<typeof schema>;
 
 export default function RegisterForm() {
-  const router = useRouter();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm({
     defaultValues: {
-      email: "devfe1@gmail.com",
+      email: "",
     },
     mode: "onSubmit",
     resolver: zodResolver(schema),
   });
 
-  const onSubmitHandle = async (data: RegisterFormType) => {
-    try {
-      const response = await RegisterApi({
-        data: data,
-      });
-      router.push("/");
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  const { mutate, isMutating } = useMutation({
+    fetcher: RegisterApi,
+    options: {
+      onSuccess: async (data) => {
+        const token = data.token;
+        saveAuthTokenForInternalServer(token);
+        window.location.href = "/verify-email";
+      },
+      onError: (error) => {
+        toastError(error.message);
+      },
+      onFinally: () => {},
+    },
+  });
+
+  const onSubmit = handleSubmit((data: RegisterFormType) => {
+    mutate({ data });
+  });
 
   return (
     <div className="mx-auto flex rounded-[4px] border border-solid border-light_gray_color_second bg-white large-screen:mb-[40px] large-screen:mt-[15px] large-screen:w-[1160px] small-screen:mb-[30px] small-screen:mt-[30px] smallest-screen:mb-[20px] smallest-screen:mt-[10px]">
@@ -49,7 +59,7 @@ export default function RegisterForm() {
               Register
             </h2>
 
-            <form onSubmit={handleSubmit(onSubmitHandle)}>
+            <form onSubmit={onSubmit}>
               <ul className="flex flex-col">
                 <li className="flex flex-col">
                   <label
@@ -58,10 +68,14 @@ export default function RegisterForm() {
                   >
                     Email address *
                   </label>
-                  <Input id="username" {...register("email")} />
-                  <span className="ml-[5px] mt-[5px] text-[13px] leading-[18px] text-red-500">
-                    {errors.email?.message}
-                  </span>
+                  <FormInput
+                    inputProps={{
+                      id: "email",
+                      placeholder: "example@gmail.com",
+                      ...register("email"),
+                    }}
+                    error={errors.email?.message}
+                  />
                 </li>
 
                 <li className="mb-[25px] mt-[10px] flex text-[14px] leading-[1.5] tracking-[0.02em] text-text_color">
@@ -85,7 +99,11 @@ export default function RegisterForm() {
                   <Button
                     size="xsm"
                     variant="secondary"
-                    className="text-center text-[13px] font-bold leading-[16px]"
+                    className={cn(
+                      "text-center text-[13px] font-bold leading-[16px]",
+                      { "opacity-30": isMutating },
+                    )}
+                    disabled={isMutating}
                   >
                     Register
                   </Button>

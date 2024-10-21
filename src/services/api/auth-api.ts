@@ -1,4 +1,4 @@
-import { get, post } from "./axios";
+import { get, post } from "../axios";
 import { ResponseAuthType } from "@/types/response-auth";
 import { UserType } from "@/types/user";
 import { LoginFormType } from "@/app/login/_components/login-form";
@@ -21,5 +21,11 @@ export async function RegisterApi({ data }: { data: RegisterFormType }) {
 export async function GetUser() {
   return await get<UserType>({
     url: "/auth/user",
+  });
+}
+
+export async function LogOut() {
+  return await post<UserType>({
+    url: "/auth/logout",
   });
 }

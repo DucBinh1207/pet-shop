@@ -1,32 +1,14 @@
 import axios, { AxiosRequestConfig } from "axios";
 import { ErrorStatus } from "@/constants/error-status";
-import {
-  deleteAuthTokenFromInternalServer,
-  getAuthTokenFromInternalServer,
-} from "./api/internal-auth-api";
+import { deleteAuthTokenFromInternalServer } from "./api/internal-auth-api";
 
 export const apiClient = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_URL,
   headers: {
     "Content-Type": "application/json",
   },
-  timeout: 1000, // nếu vượt quá timeout thì sẽ ngừng request (throw về error)
+  timeout: 1000,
 });
-
-apiClient.interceptors.request.use(
-  (config) => {
-    const token = getAuthTokenFromInternalServer();
-
-    if (token) {
-      config.headers.Authorization = `Bearer ${token}`;
-    }
-
-    return config;
-  },
-  (error) => {
-    return Promise.reject(error);
-  },
-);
 
 apiClient.interceptors.response.use(
   (response) => {
@@ -38,7 +20,6 @@ apiClient.interceptors.response.use(
       switch (status) {
         case ErrorStatus.BAD_REQUEST:
           throw new Error(error.response.data.message);
-        case ErrorStatus.UNAUTHORIZED:
           deleteAuthTokenFromInternalServer();
           window.location.href = "/login";
           throw new Error(error.response.data.message);
@@ -72,7 +53,7 @@ export const post = <T>({
   config,
 }: {
   url: string;
-  data?: unknown;
+  data: unknown;
   config?: AxiosRequestConfig;
 }): Promise<T> => apiClient.post(url, data, config);
 

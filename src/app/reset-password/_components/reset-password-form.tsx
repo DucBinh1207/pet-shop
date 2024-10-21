@@ -4,12 +4,32 @@ import Button from "@/components/common/button";
 import AngleIcon from "@/components/common/icons/angle-icon";
 import CancelIcon from "@/components/common/icons/cancel-icon";
 import Input from "@/components/common/input";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
+import { z } from "zod";
+
+const schema = z
+  .object({
+    newPassword: z.string().min(8, "Password must be at least 3 characters"),
+    confirmPassword: z
+      .string()
+      .min(8, "Password must be at least 3 characters"),
+  })
+  .refine((data) => data.newPassword === data.confirmPassword, {
+    message: "Passwords don't match",
+    path: ["confirm"],
+  });
 
 export default function ResetPasswordForm() {
   // This will check if the token is sent as a parameter in the reset password URL.
   const [token, setToken] = useState<string>("");
+  const verifyToken = useSearchParams().get("token");
+  useEffect(() => {
+    if (verifyToken) {
+      setToken(verifyToken);
+    }
+  }, []);
+
   const router = useRouter();
 
   if (!token) {

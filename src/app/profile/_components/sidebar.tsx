@@ -2,11 +2,12 @@ import LogOutIcon from "@/components/common/icons/log-out-icon";
 import { Tabs } from "@/constants/profile-tabs";
 import cn from "@/utils/style/cn";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
 import { Dispatch, SetStateAction } from "react";
 import { useShallow } from "zustand/react/shallow";
 import { TabsType } from "./page-content";
 import useOrder from "../_shared/use-order";
+import { LogOut } from "@/services/api/auth-api";
+import { deleteAuthTokenFromInternalServer } from "@/services/api/internal-auth-api";
 
 type props = {
   tabActive: TabsType;
@@ -14,8 +15,6 @@ type props = {
 };
 
 export default function Sidebar({ tabActive, setTabActive }: props) {
-  const router = useRouter();
-
   const { clearOrder } = useOrder(
     useShallow((state) => ({
       clearOrder: state.clearOrder,
@@ -93,8 +92,10 @@ export default function Sidebar({ tabActive, setTabActive }: props) {
           </li>
           <li
             className="flex cursor-pointer gap-[4px] hover:text-secondary smallest-screen:justify-center"
-            onClick={() => {
-              router.push("/");
+            onClick={async () => {
+              await LogOut();
+              await deleteAuthTokenFromInternalServer();
+              window.location.href = "/";
             }}
           >
             <LogOutIcon size={14} className="fill-current" />

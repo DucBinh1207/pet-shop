@@ -4,19 +4,15 @@ import Button from "@/components/common/button";
 import Input from "@/components/common/input";
 import cn from "@/utils/style/cn";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { LoginApi } from "@/services/auth-api";
+import { LoginApi } from "@/services/api/auth-api";
 import FormInput from "@/components/form-input";
 import { toastError } from "@/utils/toast";
 import useMutation from "@/hooks/use-mutation";
-import {
-  getAuthTokenFromInternalServer,
-  saveAuthTokenForInternalServer,
-} from "@/services/api/login";
+import { saveAuthTokenForInternalServer } from "@/services/api/internal-auth-api";  
 
 const schema = z.object({
   email: z.string().email("Invalid email format"),
@@ -30,7 +26,6 @@ export type LoginFormType = z.infer<typeof schema>;
 
 export default function LoginForm() {
   const [isRememberMe, setIsRememberMe] = useState(false);
-  const router = useRouter();
 
   const {
     register,
@@ -38,8 +33,8 @@ export default function LoginForm() {
     formState: { errors },
   } = useForm<LoginFormType>({
     defaultValues: {
-      email: "devfe1@gmail.com",
-      password: "123456",
+      email: process.env.EMAIL_HOST,
+      password: process.env.PASSWORD_HOST,
     },
     mode: "onSubmit",
     resolver: zodResolver(schema),
@@ -50,8 +45,8 @@ export default function LoginForm() {
     options: {
       onSuccess: async (data) => {
         const token = data.token;
-        await saveAuthTokenForInternalServer(token);
-        router.push("/");
+        saveAuthTokenForInternalServer(token);
+        window.location.href = "/";
       },
       onError: (error) => {
         toastError(error.message);

@@ -5,7 +5,6 @@ type FormInputProps = {
   inputProps: ComponentProps<"input">;
   error?: string;
 };
-
 export default function FormInput({ inputProps, error }: FormInputProps) {
   return (
     <>

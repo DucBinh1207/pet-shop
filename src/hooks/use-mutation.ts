@@ -35,6 +35,7 @@ function useMutation<TData = unknown, TParam = unknown>(
     setState({ ...state, isMutating: true });
 
     try {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const data = await props.fetcher((param ?? null) as any);
 
       if (isMounted()) {

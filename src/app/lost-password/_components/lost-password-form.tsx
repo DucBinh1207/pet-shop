@@ -19,9 +19,8 @@ export default function LostPasswordForm() {
             <form action="">
               <ul className="flex flex-col">
                 <li className="mb-[25px] mt-[10px] flex text-[14px] leading-[1.5] tracking-[0.02em] text-text_color">
-                  Lost your password? Please enter your username or email
-                  address. You will receive a link to create a new password via
-                  email.
+                  Lost your password? Please enter your email address. You will
+                  receive a link to create a new password via email.
                 </li>
 
                 <li className="flex flex-col">
@@ -41,10 +40,10 @@ export default function LostPasswordForm() {
                     variant="secondary"
                     className="text-center text-[13px] font-bold leading-[16px]"
                     onClick={() => {
-                      router.push("/reset-password");
+                      router.push("/verify-email");
                     }}
                   >
-                    Register
+                    Lost Password
                   </Button>
                 </li>
               </ul>

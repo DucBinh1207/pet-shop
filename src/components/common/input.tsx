@@ -106,6 +106,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
       <input
         ref={ref}
         type={type}
+        autoComplete="off"
         className={className}
         onChange={onChangeProp}
         {...rest}
