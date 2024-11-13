@@ -15,7 +15,7 @@ export default function OrderList({ RedirectOrderDetail, orderList }: props) {
   if (orderNum === 0) {
     return (
       <div className="flex flex-col gap-[20px]">
-        <h3 className="mb-[10px]">No order has been made yet.</h3>
+        <h3 className="mb-[10px]">Không có đơn hàng nào được tạo.</h3>
         <div>
           <Button
             variant={"primary"}
@@ -24,7 +24,7 @@ export default function OrderList({ RedirectOrderDetail, orderList }: props) {
               router.push("/");
             }}
           >
-            browser products
+            Tìm sản phẩm
           </Button>
         </div>
       </div>
@@ -32,18 +32,20 @@ export default function OrderList({ RedirectOrderDetail, orderList }: props) {
   }
 
   return (
-    <table className="mt-[20px] w-full xxx-smallest-screen:block">
-      <thead className="w-full border-b border-solid border-light_gray_color_second xxx-smallest-screen:hidden">
-        <tr className="w-full text-left text-[13px] uppercase leading-[1] tracking-[0.02em] text-text_color xxx-smallest-screen:block">
-          <th className="w-[20%] pb-[15px] font-normal">Order</th>
-          <th className="w-[10%] pb-[15px] font-normal">Items</th>
-          <th className="w-[40%] pb-[15px] font-normal">Date</th>
-          <th className="w-[15%] pb-[15px] font-normal">Total</th>
-          <th className="w-[15%] pb-[15px] font-normal">Status</th>
-          <th className="w-[10%] pb-[15px] font-normal">Action</th>
+    <table className="mt-[20px] w-full xx-smallest-screen:block">
+      <thead className="w-full border-b border-solid border-light_gray_color_second xx-smallest-screen:hidden">
+        <tr className="w-full text-left text-[13px] uppercase leading-[1] tracking-[0.02em] text-text_color xx-smallest-screen:block">
+          <th className="w-[15%] pb-[15px] font-normal">Đơn hàng</th>
+          <th className="w-[10%] pb-[15px] font-normal">Sản phẩm</th>
+          <th className="w-[35%] pb-[15px] text-center font-normal">
+            Ngày đặt hàng
+          </th>
+          <th className="w-[20%] pb-[15px] font-normal">Tổng</th>
+          <th className="w-[25%] pb-[15px] font-normal">Trạng thái</th>
+          <th className="w-[10%] pb-[15px] font-normal">Xem</th>
         </tr>
       </thead>
-      <tbody className="w-full text-left xxx-smallest-screen:block">
+      <tbody className="w-full text-left xx-smallest-screen:block">
         <OrderCard RedirectOrderDetail={RedirectOrderDetail} />
 
         <OrderCard RedirectOrderDetail={RedirectOrderDetail} />

@@ -1,12 +1,7 @@
-import axios, { AxiosError } from "axios";
+import axios from "axios";
 
 export async function saveAuthTokenForInternalServer(token: string) {
-  try {
-    const response = await axios.post("/api/auth/token", { token });
-    if (response.data.error) {
-      throw new AxiosError(response.data.error.message);
-    }
-  } catch (error) {}
+  await axios.post("/api/auth/token", { token });
 }
 
 export async function getAuthTokenFromInternalServer() {

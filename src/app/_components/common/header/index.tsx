@@ -40,11 +40,11 @@ export default function Header() {
       </Link>
 
       <ul className="flex text-text_color_second small-screen:hidden small-screen:opacity-0">
-        <Nav name="Shop" path="/" iconName="SHOP" />
-        <Nav name="Pets" path="/pets" iconName="PETS" />
-        <Nav name="Foods" path="/foods" iconName="FOODS" />
-        <Nav name="Supplies" path="/supplies" iconName="SUPPLIES" />
-        <Nav name="Guides" path="/guides" iconName="GUIDES" />
+        <Nav name="Cửa hàng" path="/" iconName="SHOP" />
+        <Nav name="Thú cưng" path="/pets" iconName="PETS" />
+        <Nav name="Thức ăn" path="/foods" iconName="FOODS" />
+        <Nav name="Vật dụng khác" path="/supplies" iconName="SUPPLIES" />
+        <Nav name="Hướng dẫn" path="/guides" iconName="GUIDES" />
       </ul>
 
       <ul className="flex text-base text-text_color_second small-screen:mx-[13px] small-screen:pt-[5px]">

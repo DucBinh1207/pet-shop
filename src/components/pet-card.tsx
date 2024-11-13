@@ -9,6 +9,7 @@ import Link from "next/link";
 import ToolTip from "./common/tooltip";
 import Button from "./common/button";
 import TruncateToolTip from "./common/truncate-tooltip";
+import { getAuthTokenFromInternalServer } from "@/services/api/internal-auth-api";
 
 export default function PetCard() {
   return (
@@ -29,12 +30,12 @@ export default function PetCard() {
         <div className="flex flex-col">
           <TruncateToolTip
             spanClass="mb-[10px] line-clamp-2 max-h-[46px] w-full overflow-hidden font-quicksand text-[17px] font-bold capitalize leading-[1.35] tracking-[-0.01em] text-primary"
-            value="True Acre Foods Grain "
+            value="Husky "
           />
 
           <TruncateToolTip
             spanClass="mb-[10px] line-clamp-4 max-h-[76px] w-full overflow-hidden font-quicksand text-[13px] font-normal capitalize leading-[1.46] tracking-[0.02em] text-text_color"
-            value="Bring some grain-free goodness to your pup’s bowl. Bring some grain-free goodness to your pup’s bowl.Bring some grain-free goodness to your pup’s bowl."
+            value="Chó Husky là giống chó thông minh, năng động và nổi bật với bộ lông dày, đôi mắt sáng và tính cách thân thiện."
           />
 
           <span className="flex gap-[2px]">
@@ -54,16 +55,16 @@ export default function PetCard() {
           </span>
         </div>
         <div className="mt-[15px] flex flex-wrap items-center gap-[5px] text-[13px] font-normal leading-[16px] tracking-[0.02em] text-primary">
-          <Link href="#">Fresh & Frozen Food</Link>
+          <Link href="#">Husky</Link>
           <DotIcon size={3} className="fill-current text-dark_orange_color" />
-          <Link href="#">Sophresh</Link>
+          <Link href="#">Chó</Link>
         </div>
       </div>
 
       <form className="flex flex-col gap-[12.5px] px-[30px] pb-[30px] pt-[15px]">
-        <div className="flex items-center justify-between">
-          <span className="font-quicksand font-bold leading-[1] tracking-[-0.02em] text-secondary up-smallest-screen:text-[18px]">
-            $45.00
+        <div className="flex items-center justify-between xxx-smallest-screen:flex-col xxx-smallest-screen:gap-[10px]">
+          <span className="pr-[5px] font-quicksand font-bold leading-[1] tracking-[-0.02em] text-secondary up-smallest-screen:text-[18px]">
+            10.000.000 VND
           </span>
           <ToolTip
             element={
@@ -72,9 +73,17 @@ export default function PetCard() {
                 size="circle_lg"
                 variant="primary"
                 startIcon={<CartIcon size={16} />}
+                onClick={async () => {
+                  const token = await getAuthTokenFromInternalServer();
+                  if (!token) {
+                    window.location.href = "/login";
+                  } else {
+                    window.location.href = "/not_found";
+                  }
+                }}
               />
             }
-            value="Add to Cart"
+            value="Thêm vào giỏ hàng"
           />
         </div>
       </form>

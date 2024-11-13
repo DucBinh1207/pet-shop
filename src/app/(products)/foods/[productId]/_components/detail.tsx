@@ -55,7 +55,7 @@ export default function Detail() {
                   htmlFor="weight"
                   className="px-[1px] font-quicksand text-[12px] font-bold leading-[15px] tracking-[-0.02em]"
                 >
-                  Weight :
+                  Cân nặng :
                 </label>
 
                 <ul
@@ -74,7 +74,7 @@ export default function Detail() {
                   htmlFor="ingredients"
                   className="px-[1px] font-quicksand text-[12px] font-bold leading-[15px] tracking-[-0.02em]"
                 >
-                  Ingredients :
+                  Nguyên liệu :
                 </label>
                 <div>
                   <ul className="ml-[5px] mt-[15px] flex gap-[10px] text-[14px] leading-[1.23] tracking-[0.02em] text-text_color">

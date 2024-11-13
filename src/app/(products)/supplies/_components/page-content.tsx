@@ -4,7 +4,7 @@ import SuppliesContent from "./supplies-content";
 export default function PageContent() {
   return (
     <>
-      <BreadCrumb pathLink={["supplies"]} pathName={["Supplies"]} />
+      <BreadCrumb pathLink={["supplies"]} pathName={["Vật dụng"]} />
       <SuppliesContent />
     </>
   );

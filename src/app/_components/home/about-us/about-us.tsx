@@ -34,7 +34,7 @@ export default function AboutUs() {
           <div className="flex items-center up-smallest-screen:w-[50%]">
             <div className="flex flex-col smallest-screen:pb-[10px] smallest-screen:pt-[20px]">
               <h2 className="mb-[40px] mt-[35px] font-quicksand text-[30px] font-bold leading-[34px] tracking-[-0.025em] text-primary">
-                About us
+                Về chúng tôi
               </h2>
 
               <div>
@@ -47,10 +47,12 @@ export default function AboutUs() {
                   </div>
 
                   <p className="text-[17px] leading-[26px] tracking-[0.015em] text-text_color">
-                    At our pet shop, we see pets as family. Our love for animals
-                    guides us in offering the best products and advice to care
-                    for them. We&apos; re here to help you give your furry
-                    friends the love and attention they deserve.
+                    Tại cửa hàng thú cưng của chúng tôi, chúng tôi xem thú cưng
+                    như gia đình. Tình yêu của chúng tôi dành cho động vật dẫn
+                    dắt chúng tôi trong việc cung cấp những sản phẩm và lời
+                    khuyên tốt nhất để chăm sóc cho chúng. Chúng tôi ở đây để
+                    giúp bạn mang đến cho những người bạn bốn chân của mình tình
+                    yêu và sự chú ý mà chúng xứng đáng nhận được.
                   </p>
                 </div>
               </div>
@@ -65,10 +67,11 @@ export default function AboutUs() {
                   </div>
 
                   <p className="text-[17px] leading-[26px] tracking-[0.015em] text-text_color">
-                    We prioritize the health of our pets by ensuring they are
-                    fully vaccinated. Vaccinations are key to keeping them safe
-                    and healthy, and we take this seriously. Staying up to date
-                    gives them the best chance at a long, happy life.
+                    Chúng tôi ưu tiên sức khỏe của thú cưng bằng cách đảm bảo
+                    chúng được tiêm chủng đầy đủ. Việc tiêm vaccine là rất quan
+                    trọng để giữ cho chúng an toàn và khỏe mạnh, và chúng tôi
+                    coi đây là điều nghiêm túc. Cập nhật vaccine giúp thú cưng
+                    có cơ hội tốt nhất để sống lâu và hạnh phúc.
                   </p>
                 </div>
               </div>
@@ -90,6 +93,10 @@ export default function AboutUs() {
               grabCursor
               breakpoints={{
                 1: {
+                  slidesPerView: 1,
+                  spaceBetween: 0,
+                },
+                500: {
                   slidesPerView: 2,
                   spaceBetween: 20,
                 },
@@ -120,7 +127,7 @@ export default function AboutUs() {
             >
               {[...Array(5)].map((_, index) => (
                 <SwiperSlide
-                  className="min-w-[360px] rounded-[8px] border border-solid border-light_gray_color bg-white px-[35px] pb-[44px] pt-[35px] small-screen:min-w-[calc((100%-80px)/3)] small-screen:p-[25px] x-small-screen:min-w-[calc((100%-20px)/3)] x-smallest-screen:min-w-[calc((100%-20px)/2)]"
+                  className="min-w-[360px] rounded-[8px] border border-solid border-light_gray_color bg-white px-[35px] pb-[44px] pt-[35px] small-screen:min-w-[calc((100%-80px)/3)] small-screen:p-[25px] x-small-screen:min-w-[calc((100%-20px)/3)] x-smallest-screen:min-w-[calc((100%-20px)/2)] xxx-smallest-screen:min-w-full"
                   key={index}
                 >
                   <Item />

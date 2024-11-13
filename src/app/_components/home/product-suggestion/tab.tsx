@@ -12,7 +12,7 @@ export default function Tab({ name, order, tab, setTab }: props) {
   return (
     <div
       className={cn(
-        "z-10 cursor-pointer border-b-[2px] border-solid pb-[23px] text-[22px] font-medium leading-[1.27] text-primary",
+        "z-10 cursor-pointer border-b-[2px] border-solid pb-[23px] text-[22px] font-bold leading-[1.27] text-primary xxx-smallest-screen:text-[20px]",
         {
           "border-b-primary": order === tab,
         },

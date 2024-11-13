@@ -64,19 +64,7 @@ const inputVariants = cva(
 );
 
 const Input = forwardRef<HTMLInputElement, InputProps>(
-  (
-    {
-      inputSize,
-      variant,
-      type,
-      trimOnBlur,
-      className: classProps,
-      onChange: onChangeProp,
-      onBlur: onBlurProp,
-      ...rest
-    },
-    ref,
-  ) => {
+  ({ inputSize, variant, type, className: classProps, ...rest }, ref) => {
     const classVariants = useMemo(() => {
       return inputVariants({ inputSize, variant });
     }, [inputSize, variant]);
@@ -88,29 +76,13 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
       className += " " + classProps;
     }
 
-    const handleBlur = (event: React.FocusEvent<HTMLInputElement, Element>) => {
-      if (trimOnBlur) {
-        const trimmedValue = event.target.value.trim();
-        onChangeProp?.({
-          ...event,
-          target: {
-            ...event.target,
-            value: trimmedValue,
-          },
-        });
-        onBlurProp?.(event);
-      }
-    };
-
     return (
       <input
         ref={ref}
         type={type}
         autoComplete="off"
         className={className}
-        onChange={onChangeProp}
         {...rest}
-        onBlur={handleBlur}
       />
     );
   },

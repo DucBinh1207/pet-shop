@@ -10,11 +10,7 @@ export default function HeaderNotice() {
           iconName="MAIL"
         />
 
-        <Item
-          name="+84-857-123-987"
-          href="tel:+84857123987"
-          iconName="PHONE"
-        />
+        <Item name="+84-857-123-987" href="tel:+84857123987" iconName="PHONE" />
 
         <Item
           name=" 54 Nguyen Luong Bang, Hoa Khanh Bac, Lien Chieu, Da Nang"
@@ -23,7 +19,7 @@ export default function HeaderNotice() {
         />
 
         <Item
-          name="Mon-Fri: 8:00 AM - 20:00 PM"
+          name="T2-T6 : 8:00 AM - 20:00 PM"
           href="#"
           iconName="BUSINESS_TIME"
         />

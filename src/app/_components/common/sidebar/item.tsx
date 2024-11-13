@@ -31,11 +31,11 @@ export default function Item({ name, path, iconName }: props) {
   }));
 
   return (
-    <li className="py-[15px] text-[calc(18*100vw/1920)] text-base font-semibold uppercase leading-[1.23]">
+    <li className="py-[15px] text-[calc(18*100vw/1920)] text-base font-bold uppercase leading-[1.23]">
       <button onClick={closeSidebar} className="w-full">
         <Link
           href={path}
-          className={cn("group relative flex hover:!text-text_color_fourth", {
+          className={cn("group relative uppercase flex hover:!text-text_color_fourth items-center", {
             "after:absolute after:right-[30px] after:top-0 after:h-[20px] after:w-[20px] after:bg-arrow_img after:bg-no-repeat after:content-['']":
               pathName === path,
           })}

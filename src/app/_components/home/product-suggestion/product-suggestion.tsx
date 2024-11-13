@@ -11,20 +11,20 @@ export default function ProductSuggestion() {
   });
 
   return (
-    <div className="xx-smallest-screen:w-[calc(100%-40px)] mx-auto mb-[30px] mt-[20px] large-screen:max-w-[1160px] small-screen:w-[calc(100%-60px)]">
+    <div className="xx-smallest-screen:w-[calc(100%-40px)] xx-smallest-screen:mx-0 xx-smallest-screen:min-w-full mx-auto mb-[30px] mt-[20px] large-screen:max-w-[1160px] small-screen:w-[calc(100%-60px)]">
       <div className="mb-[25px] flex justify-center">
         <div className="relative mx-auto flex items-center gap-[40px] after:absolute after:bottom-0 after:h-[2px] after:w-full after:bg-light_gray_color_second after:content-['']">
-          <Tab name="Dogs" order={1} tab={tab} setTab={setTab} />
-          <Tab name="Cats" order={2} tab={tab} setTab={setTab} />
-          <Tab name="Foods" order={3} tab={tab} setTab={setTab} />
-          <Tab name="Supplies" order={4} tab={tab} setTab={setTab} />
+          <Tab name="Chó" order={1} tab={tab} setTab={setTab} />
+          <Tab name="Mèo" order={2} tab={tab} setTab={setTab} />
+          <Tab name="Thức ăn" order={3} tab={tab} setTab={setTab} />
+          <Tab name="Vật dụng" order={4} tab={tab} setTab={setTab} />
         </div>
       </div>
       <div>
-        <Content id="suggest-1" isSelected={tabNum[0]} />
-        <Content id="suggest-2" isSelected={tabNum[1]} />
-        <Content id="suggest-3" isSelected={tabNum[2]} />
-        <Content id="suggest-4" isSelected={tabNum[3]} />
+        <Content id="Chó" isSelected={tabNum[0]} />
+        <Content id="Mèo" isSelected={tabNum[1]} />
+        <Content id="Thức ăn" isSelected={tabNum[2]} />
+        <Content id="Vật dụng" isSelected={tabNum[3]} />
       </div>
     </div>
   );

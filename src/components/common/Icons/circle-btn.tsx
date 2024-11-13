@@ -20,7 +20,7 @@ export default function CircleBtn(props: SvgProps) {
           className="font-quicksand text-[12px] font-bold leading-[1] tracking-[0.5px]"
           fill="#372384"
         >
-          10 YEARS OF EXPERIENCE・TOP PET CARE SPECIALISTS・
+          10 NĂM KINH NGHIỆM・CỬA HÀNG THÚ CƯNG HÀNG ĐẦU・
         </textPath>
       </text>
     </Svg>

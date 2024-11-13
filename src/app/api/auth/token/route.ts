@@ -56,7 +56,6 @@ export async function DELETE() {
     const cookieStore = cookies();
     const token = cookieStore.get(CookieKey.AUTH_TOKEN);
 
-    console.log(token);
 
     if (token) {
       cookies().delete(CookieKey.AUTH_TOKEN);

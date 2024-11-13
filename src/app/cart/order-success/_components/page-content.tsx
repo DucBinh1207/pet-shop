@@ -7,7 +7,7 @@ export default function PageContent() {
     <>
       <BreadCrumb
         pathLink={["/cart", "/cart/order-success"]}
-        pathName={["Cart", "Order Success"]}
+        pathName={["Giỏ hàng", "Đơn hàng thành công"]}
       />
       <div className="mx-auto mb-[40px] mt-[30px] w-[1160px] min-w-[320px] rounded-[4px] border border-solid border-light_gray_color_second bg-white small-screen:mb-[30px] small-screen:mt-[15px] small-screen:w-[calc(100%-60px)] smallest-screen:mb-[20px] smallest-screen:mt-[10px] xx-smallest-screen:w-full">
         <div className="flex flex-col px-[45px] py-[65px] text-[13px] font-normal leading-[1] tracking-[0.02em] text-text_color">
@@ -24,7 +24,7 @@ export default function PageContent() {
           <ul className="mt-[50px] flex justify-between text-left smallest-screen:flex-wrap xxx-smallest-screen:flex-col">
             <li className="mb-[35px] flex-1 smallest-screen:min-w-[50%] smallest-screen:max-w-[100%] xxx-smallest-screen:w-full">
               <span className="block pb-[15px] pr-[15px] uppercase">
-                Order Code :
+                Mã đơn hàng :
               </span>
               <span className="mt-[20px] block pr-[15px] text-[15px] tracking-[0.01em] text-primary">
                 #PH1244721
@@ -33,25 +33,25 @@ export default function PageContent() {
 
             <li className="mb-[35px] flex-1 smallest-screen:min-w-[50%] smallest-screen:max-w-[100%] xxx-smallest-screen:w-full">
               <span className="block pb-[15px] pr-[15px] uppercase">
-                Date :
+                Ngày :
               </span>
               <span className="mt-[20px] block pr-[15px] text-[15px] tracking-[0.01em] text-primary">
-                Sunday,April 21,2024
+                Chủ nhật, ngày 21, tháng 4 năm 2024
               </span>
             </li>
 
             <li className="mb-[35px] flex-1 smallest-screen:min-w-[50%] smallest-screen:max-w-[100%] xxx-smallest-screen:w-full">
               <span className="block pb-[15px] pr-[15px] uppercase">
-                Payment Method :
+                Phương thức thanh toán:
               </span>
               <span className="mt-[20px] block pr-[15px] text-[15px] tracking-[0.01em] text-primary">
-                Direct bank transfer
+                Chuyển khoản online
               </span>
             </li>
 
             <li className="mb-[35px] up-smallest-screen:shrink-[1] up-smallest-screen:text-right smallest-screen:min-w-[50%] smallest-screen:max-w-[100%] xxx-smallest-screen:w-full">
               <span className="block pb-[15px] pr-[15px] uppercase">
-                Total :
+                Tổng :
               </span>
               <span className="mt-[20px] block pr-[15px] text-[15px] tracking-[0.01em] text-primary">
                 15.550.000 VND
@@ -62,17 +62,17 @@ export default function PageContent() {
           <div className="mx-auto max-w-[530px]">
             <div className="mb-[45px] mt-[30px] flex flex-col">
               <h2 className="mb-[35px] text-[22px] font-medium leading-[28px] text-primary">
-                Order Details
+                Chi tiết đơn hàng
               </h2>
 
               <table className="xxx-smallest-screen:block">
                 <thead className="xxx-smallest-screen:hidden">
                   <tr className="uppercase xxx-smallest-screen:flex">
                     <th className="w-[70%] border-b border-solid border-light_gray_color_second pb-[15px] text-left text-[13px] font-normal leading-[1]">
-                      product
+                      sản phẩm
                     </th>
                     <th className="border-b border-solid border-light_gray_color_second pb-[15px] text-right text-[13px] font-normal leading-[1]">
-                      total
+                      tổng  
                     </th>
                   </tr>
                 </thead>
@@ -106,17 +106,17 @@ export default function PageContent() {
                             href="/pets/{id}"
                             className="hover:text-secondary"
                           >
-                            Dog food
+                            Thức ăn đông lạnh cho chó
                           </Link>
                           <span> ×&nbsp;2 </span>
                         </div>
                         <ul className="mt-[5px] flex gap-[10px]">
                           <li>
-                            <span className="capitalize">weight : </span>
+                            <span className="capitalize">Cân nặng : </span>
                             <span className="text-primary"> 5kg </span>
                           </li>
                           <li>
-                            <span className="capitalize">Ingredient : </span>
+                            <span className="capitalize">Nguyên liệu : </span>
                             <span className="text-primary"> beef </span>
                           </li>
                         </ul>
@@ -132,7 +132,7 @@ export default function PageContent() {
                 <tfoot className="xxx-smallest-screen:block">
                   <tr className="uppercase xxx-smallest-screen:flex">
                     <th className="w-[70%] border-b border-solid border-light_gray_color_second text-left text-[13px] font-normal leading-[1]">
-                      subtotal :
+                      Tổng phụ :
                     </th>
 
                     <td className="w-auto border-b border-solid border-light_gray_color_second py-[15px] text-right text-[17px] font-bold leading-[1] tracking-[0.01em] text-primary">
@@ -142,7 +142,7 @@ export default function PageContent() {
 
                   <tr className="uppercase xxx-smallest-screen:flex">
                     <th className="w-[70%] border-b border-solid border-light_gray_color_second text-left text-[13px] font-normal leading-[1]">
-                      Shipping :
+                      Vận chuyện :
                     </th>
 
                     <td className="w-[30%] border-b border-solid border-light_gray_color_second py-[15px] text-right text-[17px] font-bold leading-[1] tracking-[0.01em] text-primary">
@@ -152,16 +152,16 @@ export default function PageContent() {
 
                   <tr className="xxx-smallest-screen:block">
                     <th className="w-[70%] border-b border-solid border-light_gray_color_second text-left text-[13px] font-normal uppercase leading-[1]">
-                      payment method :
+                      Phương thức thanh toán :
                     </th>
                     <td className="border-b border-solid border-light_gray_color_second py-[15px] text-right text-[15px] font-normal leading-[1.5] tracking-[0.01em] text-primary">
-                      Direct bank transfer
+                      Chuyển khoản online
                     </td>
                   </tr>
 
                   <tr className="xxx-smallest-screen:block">
                     <th className="w-[70%] border-b border-solid border-light_gray_color_second text-left text-[13px] font-normal uppercase leading-[1]">
-                      Total :
+                      Tổng :
                     </th>
                     <td className="border-b border-solid border-light_gray_color_second py-[15px] text-right font-quicksand text-[24px] font-bold leading-[23px] tracking-[-0.02em] text-secondary">
                       <span>15.550.000</span> VND
@@ -174,7 +174,7 @@ export default function PageContent() {
             <div className="mb-[40px] flex flex-wrap">
               <div className="flex w-[220px] flex-col">
                 <h2 className="mb-[35px] text-[22px] font-medium leading-[28px] text-primary">
-                  Bill Detail
+                  Chi tiết hóa đơn
                 </h2>
                 <ul className="flex flex-col">
                   <li>Tran Duc Binh</li>
@@ -186,7 +186,7 @@ export default function PageContent() {
 
               <div className="flex w-[220px] flex-col">
                 <h2 className="mb-[35px] text-[22px] font-medium leading-[28px] text-primary">
-                  Address Detail
+                  Địa chỉ
                 </h2>
                 <ul className="flex flex-col">
                   <li>Da Nang</li>
@@ -199,7 +199,7 @@ export default function PageContent() {
 
             <div>
               <p>
-                <i className="font-bold">Note</i> : Đồ dễ vỡ shipper cẩn thận
+                <i className="font-bold">Ghi chú</i> : Đồ dễ vỡ shipper cẩn thận
                 giúp em, nếu không liên lạc được thì gọi cho số 0555666777
               </p>
             </div>

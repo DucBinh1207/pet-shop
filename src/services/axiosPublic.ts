@@ -1,13 +1,12 @@
 import axios, { AxiosRequestConfig } from "axios";
 import { ErrorStatus } from "@/constants/error-status";
-import { deleteAuthTokenFromInternalServer } from "./api/internal-auth-api";
 
 export const apiClient = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_URL,
   headers: {
     "Content-Type": "application/json",
   },
-  timeout: 1000,
+  timeout: 7000,
 });
 
 apiClient.interceptors.response.use(
@@ -20,8 +19,7 @@ apiClient.interceptors.response.use(
       switch (status) {
         case ErrorStatus.BAD_REQUEST:
           throw new Error(error.response.data.message);
-          deleteAuthTokenFromInternalServer();
-          window.location.href = "/login";
+        case ErrorStatus.UNAUTHORIZED:
           throw new Error(error.response.data.message);
         case ErrorStatus.NOT_FOUND:
           window.location.href = "/not_found";
@@ -32,7 +30,7 @@ apiClient.interceptors.response.use(
       }
     }
     if (error.request) {
-      throw new Error("Could not connect");
+      throw new Error("Không thể kết nối");
     }
   },
 );
@@ -57,7 +55,7 @@ export const post = <T>({
   config?: AxiosRequestConfig;
 }): Promise<T> => apiClient.post(url, data, config);
 
-export const update = ({
+export const update = <T>({
   url,
   data,
   config,
@@ -65,6 +63,6 @@ export const update = ({
   url: string;
   data: unknown;
   config?: AxiosRequestConfig;
-}) => apiClient.put(url, data, config);
+}): Promise<T> => apiClient.put(url, data, config);
 
 export const remove = ({ url }: { url: string }) => apiClient.delete(url);

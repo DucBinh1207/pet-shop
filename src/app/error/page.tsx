@@ -11,18 +11,18 @@ export default function Page() {
           <TriangleError size={90} className="fill-current text-primary" />
         </div>
         <h1 className="mx-auto mt-[35px] max-w-[800px] text-center text-[27px] font-bold leading-[1.27] tracking-[-0.01em] text-primary">
-          Internal server error
+          Lỗi máy chủ nội bộ
         </h1>
         <p className="mx-auto mt-[20px] text-text_color">
-          Something went wrong on our end. We’re working to fix the issue.
-          Please try again later
+          Có gì đó không ổn ở phía chúng tôi. Chúng tôi đang làm việc để khắc
+          phục sự cố. Vui lòng thử lại sau.
         </p>
         <p
           onClick={() => window.history.back()}
           className="mt-[10px] flex cursor-pointer items-center gap-[5px] border-b border-solid border-transparent text-primary hover:border-secondary hover:text-secondary"
         >
           <ArrowIcon size={15} className="fill-current" />
-          Try again ?
+          Thử lại ?
         </p>
       </div>
     </div>

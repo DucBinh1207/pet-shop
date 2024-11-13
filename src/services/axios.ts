@@ -10,12 +10,13 @@ export const apiClient = axios.create({
   headers: {
     "Content-Type": "application/json",
   },
-  timeout: 1000, // nếu vượt quá timeout thì sẽ ngừng request (throw về error)
+  withCredentials: true,
+  timeout: 7000, // nếu vượt quá timeout thì sẽ ngừng request (throw về error)
 });
 
 apiClient.interceptors.request.use(
-  (config) => {
-    const token = getAuthTokenFromInternalServer();
+  async (config) => {
+    const token = await getAuthTokenFromInternalServer();
 
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
@@ -33,7 +34,8 @@ apiClient.interceptors.response.use(
     return response.data;
   },
   (error) => {
-    if (error.response && error.response.data) {
+
+    if (error.response) {
       const status = error.response.status;
       switch (status) {
         case ErrorStatus.BAD_REQUEST:
@@ -50,8 +52,9 @@ apiClient.interceptors.response.use(
           break;
       }
     }
+
     if (error.request) {
-      throw new Error("Could not connect");
+      throw new Error("Không thể kết nối");
     }
   },
 );
@@ -72,11 +75,11 @@ export const post = <T>({
   config,
 }: {
   url: string;
-  data?: unknown;
+  data: unknown;
   config?: AxiosRequestConfig;
 }): Promise<T> => apiClient.post(url, data, config);
 
-export const update = ({
+export const update = <T>({
   url,
   data,
   config,
@@ -84,6 +87,6 @@ export const update = ({
   url: string;
   data: unknown;
   config?: AxiosRequestConfig;
-}) => apiClient.put(url, data, config);
+}): Promise<T> => apiClient.put(url, data, config);
 
 export const remove = ({ url }: { url: string }) => apiClient.delete(url);

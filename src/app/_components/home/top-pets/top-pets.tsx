@@ -12,10 +12,10 @@ export default function TopPets() {
   const swiperRef = useRef(null);
 
   return (
-    <div className="border-box relative mx-auto flex max-w-[1160px] flex-col small-screen:max-w-[calc(100%-60px)]">
+    <div className="border-box relative mx-auto xx-smallest-screen:mx-0 xx-smallest-screen:min-w-full flex max-w-[1160px] flex-col small-screen:max-w-[calc(100%-60px)]">
       <div className="mb-[25px] mt-[35px] text-center">
         <h2 className="font-quicksand text-[30px] font-bold leading-[34px] tracking-[-0.025em] text-tertiary">
-          Top Pets
+          Thú cưng hàng đầu
         </h2>
       </div>
 
@@ -76,7 +76,7 @@ export default function TopPets() {
                 size="xsm"
                 className="text-[12px] font-bold leading-[15px] tracking-[0.045em]"
               >
-                View More
+                Xem thêm
               </Button>
             </SwiperSlide>
           </Swiper>

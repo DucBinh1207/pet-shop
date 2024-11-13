@@ -37,13 +37,15 @@ export default function Comment({ rating }: { rating: number }) {
             </span>
 
             <span className="text-[12px] font-medium leading-[15px] tracking-[0.02em] text-text_color opacity-70">
-              December 7, 2022
+              07/12/2023
             </span>
           </div>
           <div className="text-[14px] font-medium leading-[1.5] tracking-[0.02em] text-text_color">
             <p>
-              If it does as it says then it’s good stuff. Dog loves it. I
-              haven’t tried it so we’re going with the dogs review.
+              Tôi vừa mua một chú chó ở cửa hàng này và thật sự rất hài lòng!
+              Chú chó khỏe mạnh và rất đáng yêu. Dịch vụ chăm sóc khách hàng
+              cũng tuyệt vời. Cảm ơn cửa hàng đã mang đến cho tôi một người bạn
+              tuyệt vời!
             </p>
           </div>
         </div>

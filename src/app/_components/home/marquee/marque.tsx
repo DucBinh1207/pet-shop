@@ -11,25 +11,25 @@ export default function Marquee() {
         <div className="flex items-center gap-[10px]">
           <LeafIcon size={20} className="text-green_color" />
           <div className="font-quicksand text-[20px] font-semibold leading-normal tracking-[-0.02em] text-primary">
-            All Products is Natural
+            Toàn Bộ Sản Phẩm Là Tự Nhiên
           </div>
         </div>
         <div className="flex items-center gap-[10px]">
           <MoneyIcon size={20} className="text-yellow-400" />
           <div className="font-quicksand text-[20px] font-semibold leading-normal tracking-[-0.02em] text-primary">
-            Money Back Guarantee
+            Bảo Đảm Hoàn Tiền
           </div>
         </div>
         <div className="flex items-center gap-[10px]">
           <PhoneIcon size={20} className="text-blue-800" />
           <div className="font-quicksand text-[20px] font-semibold leading-normal tracking-[-0.02em] text-primary">
-            24/7 Support
+            Hỗ trợ 24/7
           </div>
         </div>
         <div className="flex items-center gap-[10px]">
           <CarIcon size={20} className="text-blue-800" />
           <div className="font-quicksand text-[20px] font-semibold leading-normal tracking-[-0.02em] text-primary">
-            Free Shipping
+            Vận chuyện nhanh chóng
           </div>
         </div>
       </div>

@@ -22,7 +22,7 @@ export default function ProductMeta({
         SKU:&nbsp;<span className="font-normal">{sku}</span>
       </li>
       <li>
-        Category:&nbsp;
+        Danh mục:&nbsp;
         <span className="font-normal text-primary">
           <Link
             href={`/${type}/${category}`}
@@ -33,7 +33,7 @@ export default function ProductMeta({
         </span>
       </li>
       <li>
-        Tags:&nbsp;
+        Thẻ:&nbsp;
         <span className="font-normal text-primary">
           {tags.map((tag, index) => (
             <span key={index}>
@@ -47,7 +47,7 @@ export default function ProductMeta({
       </li>
       {brand && (
         <li>
-          Brand:&nbsp;
+          Thương hiệu:&nbsp;
           <span className="font-normal text-text_color">{brand}</span>
         </li>
       )}

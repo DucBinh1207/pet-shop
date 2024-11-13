@@ -7,11 +7,11 @@ export const SortType = {
 } as const;
 
 export const sortName = {
-  [SortType.DEFAULT]: " Default sorting",
-  [SortType.LATEST]: "Sort by latest",
-  [SortType.RATING]: "Sort by average rating",
-  [SortType.PRICE]: "Sort by price: low to high",
-  [SortType.PRICE_DESC]: "Sort by price: high to low",
+  [SortType.DEFAULT]: " Sắp xếp mặc định",
+  [SortType.LATEST]: "Sắp xếp theo mới nhất",
+  [SortType.RATING]: "Sắp xếp thanh đánh giá",
+  [SortType.PRICE]: "Xắp xếp theo giá: thấp đến cao",
+  [SortType.PRICE_DESC]: "Xắp xếp theo giá: cao đến thấp",
 };
 
 export type SortTypes = (typeof SortType)[keyof typeof SortType];

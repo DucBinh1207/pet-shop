@@ -12,18 +12,18 @@ export default function Page() {
           />
         </div>
         <h1 className="mx-auto mt-[35px] max-w-[800px] text-center text-[27px] font-bold leading-[1.27] tracking-[-0.01em] text-primary">
-          Please verify your email
+          Vui lòng xác minh email của bạn
         </h1>
         <p className="mx-auto mb-[20px] mt-[20px] w-[600px] text-center text-text_color">
-          Please check your inbox and follow the instructions to verify your
-          account.
+          Hãy kiểm tra hộp thư đến của bạn và làm theo hướng dẫn để xác minh tài
+          khoản của bạn.
         </p>
         <Link
           href="https://mail.google.com/mail/u/0/#inbox"
           className="hover_animate inline-block cursor-pointer rounded-[25px] border-[2px] border-solid border-primary bg-white px-[30px] py-[8px] text-center text-[13px] font-bold uppercase text-primary outline-none hover:bg-primary hover:text-white"
           target="_blank"
         >
-          Check your mail
+          Xem email
         </Link>
       </div>
     </div>

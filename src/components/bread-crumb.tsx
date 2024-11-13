@@ -14,7 +14,7 @@ export default function BreadCrumb({ pathLink, pathName }: props) {
           <ol className="mx-auto flex h-full w-[780px] max-w-full flex-wrap items-center justify-center text-[13px] font-medium capitalize leading-[1.23] tracking-[0.015em]">
             <li>
               <Link href="/" className="hover_animate hover:text-secondary">
-                home
+                Cửa hàng
               </Link>
             </li>
 
@@ -40,7 +40,7 @@ export default function BreadCrumb({ pathLink, pathName }: props) {
         <ol className="mx-auto flex h-full w-[780px] max-w-full flex-wrap items-center justify-center text-[13px] font-medium capitalize leading-[1.23] tracking-[0.015em]">
           <li>
             <Link href="/" className="hover_animate hover:text-secondary">
-              home
+              Cửa hàng
             </Link>
           </li>
 
