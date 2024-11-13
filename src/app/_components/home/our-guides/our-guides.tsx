@@ -19,7 +19,7 @@ export default function OurGuides() {
       <div className="flex flex-col">
         <div className="mb-[25px] mt-[35px]">
           <h2 className="text-center font-quicksand text-[30px] font-bold leading-[34px] tracking-[-0,025em] text-primary">
-            Out Guides
+            Cẩm nang của chúng tôi
           </h2>
         </div>
 
@@ -88,13 +88,15 @@ export default function OurGuides() {
                   href="/guides"
                   className="font-quicksand text-[28px] font-bold leading-[1.14] tracking-[-0.01em] text-primary small-screen:text-[18px] small-screen:leading-[1.1] small-screen:tracking-[0.005em]"
                 >
-                  New Trends in Pets Industry in 2023
+                  Xu Hướng Mới Trong Ngành Thú Cưng Năm 2023
                 </Link>
                 <p className="mt-[15px] overflow-hidden overflow-ellipsis font-quicksand text-[14px] font-normal leading-[1.46] tracking-[0.02em] text-text_color small-screen:max-h-[38px]">
-                  Adipiscing adipiscing non, vitae vel ullamcorper lorem massa
-                  elit libero. Eu ut egestas vel neque ut eget quis. Iaculis in
-                  amet cum molestie. Ut congue quis proin eleifend. Et a quam ac
-                  amet, cursus. Nunc posuere venenatis amet eu massa.…
+                  Năm 2023, ngành công nghiệp thú cưng nổi bật với xu hướng tập
+                  trung vào sức khỏe và hạnh phúc của thú cưng. Nhu cầu về thực
+                  phẩm tự nhiên và hữu cơ ngày càng tăng, cùng với việc sử dụng
+                  công nghệ như ứng dụng và thiết bị thông minh để theo dõi sức
+                  khỏe thú cưng. Xu hướng này mang đến nhiều cơ hội cho doanh
+                  nghiệp và nâng cao chất lượng cuộc sống cho thú cưng.
                 </p>
                 <div className="small-screen:hidden small-screen:opacity-0">
                   <Button
@@ -105,7 +107,7 @@ export default function OurGuides() {
                     size="xsm"
                     className="mt-[25px] text-center text-[13px] font-bold leading-[16px] tracking-[0.05em]"
                   >
-                    READ MORE
+                    XEM THÊM
                   </Button>
                 </div>
               </div>
@@ -131,7 +133,7 @@ export default function OurGuides() {
               router.push("/guides");
             }}
           >
-            View All
+            Xem tất cả
           </Button>
         </div>
       </div>

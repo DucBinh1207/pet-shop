@@ -23,11 +23,13 @@ export default function Sort({ sort, handleSortFilter }: props) {
   return (
     <div className="relative flex" ref={ref}>
       <select className="hidden opacity-0">
-        <option value={SortType.DEFAULT}>Default sorting</option>
-        <option value={SortType.RATING}>Sort by average rating</option>
-        <option value={SortType.LATEST}>Sort by latest</option>
-        <option value={SortType.PRICE}>Sort by price: low to high</option>
-        <option value={SortType.PRICE_DESC}>Sort by price: high to low</option>
+        <option value={SortType.DEFAULT}>{sortName[SortType.DEFAULT]}</option>
+        <option value={SortType.LATEST}>{sortName[SortType.LATEST]}</option>
+        <option value={SortType.RATING}>{sortName[SortType.RATING]}</option>
+        <option value={SortType.PRICE}>{sortName[SortType.PRICE]}</option>
+        <option value={SortType.PRICE_DESC}>
+          {sortName[SortType.PRICE_DESC]}
+        </option>
       </select>
 
       <span
@@ -61,7 +63,7 @@ export default function Sort({ sort, handleSortFilter }: props) {
             handleSortFilter(SortType.DEFAULT);
           }}
         >
-          Default sorting
+          {sortName[SortType.DEFAULT]}
         </li>
         <li
           className={cn(
@@ -73,7 +75,7 @@ export default function Sort({ sort, handleSortFilter }: props) {
             handleSortFilter(SortType.LATEST);
           }}
         >
-          Sort by latest
+          {sortName[SortType.LATEST]}
         </li>
         <li
           className={cn(
@@ -85,7 +87,7 @@ export default function Sort({ sort, handleSortFilter }: props) {
             handleSortFilter(SortType.RATING);
           }}
         >
-          Sort by average rating
+          {sortName[SortType.RATING]}
         </li>
         <li
           className={cn(
@@ -97,7 +99,7 @@ export default function Sort({ sort, handleSortFilter }: props) {
             handleSortFilter(SortType.PRICE);
           }}
         >
-          Sort by price: low to high
+          {sortName[SortType.PRICE]}
         </li>
         <li
           className={cn(
@@ -109,7 +111,7 @@ export default function Sort({ sort, handleSortFilter }: props) {
             handleSortFilter(SortType.PRICE_DESC);
           }}
         >
-          Sort by price: high to low
+          {sortName[SortType.PRICE_DESC]}
         </li>
       </ul>
     </div>

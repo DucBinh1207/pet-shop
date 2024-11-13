@@ -8,10 +8,10 @@ import { CategoryType, CategoryTypes } from "@/constants/category-type";
 import PetCard from "@/components/pet-card";
 import CancelIcon from "@/components/common/icons/cancel-icon";
 import { SortType, SortTypes } from "@/constants/sort-type";
-import Sort from "./sort";
 import AngleIcon from "@/components/common/icons/angle-icon";
 import cn from "@/utils/style/cn";
 import Pagination from "../../_components/pagination";
+import Sort from "../../_components/sort";
 
 export default function PetsContent() {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
@@ -39,7 +39,7 @@ export default function PetsContent() {
 
     params.append("sort", sort);
 
-    params.append("paging", paging.toString());
+    params.append("page", paging.toString());
   }, [category, sort, paging]);
 
   return (
@@ -53,7 +53,7 @@ export default function PetsContent() {
         <div className="border-r border-solid border-light_gray_color_second large-screen:min-w-[232px] small-screen:relative small-screen:overflow-hidden">
           <div
             className={cn(
-              "sticky left-0 top-[90px] flex flex-col pb-[30px] transition-all duration-150 ease-linear small-screen:fixed small-screen:right-0 small-screen:top-0 small-screen:z-[200] small-screen:h-full small-screen:w-[360px] small-screen:max-w-full small-screen:bg-white small-screen:pb-[30px] small-screen:leading-[1.23]",
+              "sticky top-[90px] flex flex-col pb-[30px] transition-all duration-150 ease-linear large-screen:left-0 small-screen:fixed small-screen:right-0 small-screen:top-0 small-screen:z-[200] small-screen:h-full small-screen:w-[360px] small-screen:max-w-full small-screen:bg-white small-screen:pb-[30px] small-screen:leading-[1.23]",
               {
                 "small-screen:translate-x-0 small-screen:opacity-100":
                   isFilterOpen,
@@ -72,7 +72,7 @@ export default function PetsContent() {
 
             <div className="flex flex-col px-[25px] pt-[25px]">
               <h3 className="mb-[20px] font-quicksand text-[20px] font-bold leading-[1.1] tracking-[-0.01em] text-primary">
-                Price
+                Giá
               </h3>
               <form action="" className="flex flex-col">
                 <span>
@@ -115,7 +115,7 @@ export default function PetsContent() {
                 </span>
 
                 <div className="mb-[3px] mt-[15px] text-[12px] leading-[18px] tracking-[0.025em] text-text_color">
-                  <span>Price:&nbsp;</span>
+                  <span>Giá:&nbsp;</span>
                   <span>{price[0]} </span>
                   <span>&nbsp;&nbsp;-&nbsp;</span>
                   <span>{price[1]} </span>
@@ -125,7 +125,7 @@ export default function PetsContent() {
                   type="button"
                   className="hover_animate mt-[10px] inline-block cursor-pointer rounded-[18px] border-[2px] border-solid border-primary bg-white px-[18px] py-[5px] text-center text-[12px] font-bold uppercase tracking-wider text-primary outline-none hover:bg-primary hover:text-white"
                 >
-                  Filter
+                  Lọc
                 </button>
               </form>
             </div>
@@ -135,7 +135,7 @@ export default function PetsContent() {
         <div className="flex-1 large-screen:min-w-[900px] small-screen:w-full">
           <div className="flex min-h-[55px] items-center border-b border-solid border-light_gray_color_second px-[30px] py-[13px] text-[13px] font-normal leading-[16px] tracking-[0.025em] text-text_color">
             <div className="flex w-full flex-1 small-screen:gap-[5px] up-smallest-screen:items-center up-smallest-screen:justify-between smallest-screen:flex-col">
-              <div className="w-full flex-1">Showing all 11 results</div>
+              <div className="w-full flex-1">Có 11 kết quả</div>
               <Sort sort={sort} handleSortFilter={handleSortFilter} />
             </div>
             <div className="ml-[15px] mr-[2px] large-screen:hidden large-screen:opacity-0">
@@ -144,7 +144,7 @@ export default function PetsContent() {
                 onClick={() => setIsFilterOpen(true)}
               >
                 <AngleIcon size={8} className="rotate-[-90deg] fill-current" />
-                Filter
+                Bộ lọc
               </button>
             </div>
           </div>

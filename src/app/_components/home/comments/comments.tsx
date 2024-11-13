@@ -13,7 +13,7 @@ export default function Comments() {
     <div className="mx-auto my-[35px] max-w-[1920px]">
       <div className="mb-[25px] flex justify-center">
         <h2 className="leading-[34px font-quicksand text-[30px] font-bold tracking-[-0.025em] text-primary">
-          Testimonials
+          Nhận xét về cửa hàng
         </h2>
       </div>
       <div className="group relative mx-auto max-w-[calc(100%-100px)] bg-comments_bg px-[35px] small-screen:px-[15px]">

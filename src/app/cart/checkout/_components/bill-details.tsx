@@ -5,7 +5,7 @@ export default function BillDetails() {
     <div className="relative flex-1 px-[40px] py-[20px] medium-screen:px-[30px] smallest-screen:w-full smallest-screen:max-w-[400px] smallest-screen:px-0">
       <div className="flex flex-col py-[15px]">
         <h3 className="relative text-left text-[22px] font-medium leading-[1.27px] text-primary">
-          Billing details
+          Chi tiết hóa đơn
         </h3>
 
         <div className="mt-[15px]">

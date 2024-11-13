@@ -32,7 +32,7 @@ export default function Nav({ name, path, iconName }: props) {
       <Link
         href={path}
         className={cn(
-          "group relative flex items-end text-base font-semibold uppercase leading-[1.47] hover:!text-text_color_fourth max-large-screen:!text-[calc(18*100vw/1920)] large-screen:text-[18px]",
+          "group relative flex items-end text-end text-base font-bold leading-[1] hover:!text-text_color_fourth max-large-screen:!text-[calc(22*100vw/1920)] large-screen:text-[18px]",
           {
             "after:absolute after:bottom-[-10px] after:left-0 after:h-[1px] after:w-full after:bg-text_color_second after:content-['']":
               pathName === path,
@@ -46,7 +46,7 @@ export default function Nav({ name, path, iconName }: props) {
               "brightness-[1.5]": pathName === path,
             },
           )}
-          size={26.4}
+          size={24}
         />
 
         {name}

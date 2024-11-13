@@ -22,7 +22,7 @@ export default function OrderSummary() {
       <div className="rounded-[4px] border border-solid border-primary px-[35px] pb-[30px] pt-[25px] medium-screen:px-[25px] medium-screen:pb-[25px] medium-screen:pt-[20px]">
         <div className="flex flex-col">
           <h2 className="text-[22px] font-medium leading-[1.27] text-primary">
-            Your order
+            Đơn hàng của bạn
           </h2>
 
           <div className="mt-[12px]">
@@ -31,102 +31,78 @@ export default function OrderSummary() {
                 <tr className="mb-[10px] medium-screen:block">
                   <td className="flex flex-col pb-[12px]">
                     <span className="w-full text-[14px] font-normal leading-[1.27] tracking-[0.02em] text-primary">
-                      True Acre Foods Grain
+                      Thức ăn đông lạnh cho chó
                       <strong className="whitespace-nowrap font-normal">
                         ×&nbsp;1
                       </strong>
                     </span>
                     <ul className="font-text mt-[10px] flex gap-[10px] p-0 text-[13px] font-normal leading-[16px] tracking-[0.005em]">
                       <li className="flex items-center whitespace-nowrap">
-                        <span className="capitalize">Weight :&nbsp;</span>
-                        <span className="capitalize text-primary">8lbs</span>
+                        <span className="capitalize">Cân nặng :&nbsp;</span>
+                        <span className="capitalize text-primary">5 kg</span>
                       </li>
 
                       <li className="flex items-center whitespace-nowrap">
-                        <span className="capitalize">Color :&nbsp;</span>
-                        <span className="capitalize text-primary">blue</span>
-                      </li>
-
-                      <li className="flex items-center whitespace-nowrap">
-                        <span className="capitalize">Size :&nbsp;</span>
-                        <span className="capitalize text-primary"> big </span>
+                        <span className="capitalize">Nguyên liệu :&nbsp;</span>
+                        <span className="capitalize text-primary"> Bò </span>
                       </li>
                     </ul>
                   </td>
 
-                  <td className="whitespace-nowrap pb-[12px] text-right text-[17px] font-bold leading-[21px] tracking-[-0.01em] text-primary medium-screen:flex medium-screen:justify-between">
-                    <div className="hidden font-medium medium-screen:block">
-                      Subtotal
-                    </div>
-                    <div>100</div>
+                  <td className="whitespace-wrap pb-[12px] text-right text-[17px] font-bold leading-[21px] tracking-[-0.01em] text-primary medium-screen:flex medium-screen:justify-between">
+                    100.000.000 VND
                   </td>
                 </tr>
 
                 <tr className="mb-[10px] medium-screen:block">
                   <td className="flex flex-col pb-[12px]">
                     <span className="w-full text-[14px] font-normal leading-[1.27] tracking-[0.02em] text-primary">
-                      True Acre Foods Grain
+                      Khay vệ sinh cho mèo
                       <strong className="whitespace-nowrap font-normal">
                         ×&nbsp;1
                       </strong>
                     </span>
                     <ul className="font-text mt-[10px] flex gap-[10px] p-0 text-[13px] font-normal leading-[16px] tracking-[0.005em]">
                       <li className="flex items-center whitespace-nowrap">
-                        <span className="capitalize">Weight :&nbsp;</span>
-                        <span className="capitalize text-primary">8lbs</span>
-                      </li>
-
-                      <li className="flex items-center whitespace-nowrap">
                         <span className="capitalize">Color :&nbsp;</span>
-                        <span className="capitalize text-primary">blue</span>
+                        <span className="capitalize text-primary">Light</span>
                       </li>
 
                       <li className="flex items-center whitespace-nowrap">
                         <span className="capitalize">Size :&nbsp;</span>
-                        <span className="capitalize text-primary"> big </span>
+                        <span className="capitalize text-primary"> Lớn </span>
                       </li>
                     </ul>
                   </td>
 
-                  <td className="whitespace-nowrap pb-[12px] text-right text-[17px] font-bold leading-[21px] tracking-[-0.01em] text-primary medium-screen:flex medium-screen:justify-between">
-                    <div className="hidden font-medium medium-screen:block">
-                      Subtotal
-                    </div>
-                    <div>100</div>
+                  <td className="whitespace-wrap pb-[12px] text-right text-[17px] font-bold leading-[21px] tracking-[-0.01em] text-primary medium-screen:flex medium-screen:justify-between">
+                    200.000.000 VND
                   </td>
                 </tr>
 
                 <tr className="mb-[10px] medium-screen:block">
                   <td className="flex flex-col pb-[12px]">
                     <span className="w-full text-[14px] font-normal leading-[1.27] tracking-[0.02em] text-primary">
-                      True Acre Foods Grain
+                      Thức ăn đông lạnh cho mèo
                       <strong className="whitespace-nowrap font-normal">
                         ×&nbsp;1
                       </strong>
                     </span>
                     <ul className="font-text mt-[10px] flex gap-[10px] p-0 text-[13px] font-normal leading-[16px] tracking-[0.005em]">
                       <li className="flex items-center whitespace-nowrap">
-                        <span className="capitalize">Weight :&nbsp;</span>
-                        <span className="capitalize text-primary">8lbs</span>
+                        <span className="capitalize">Cân nặng :&nbsp;</span>
+                        <span className="capitalize text-primary">10 kg</span>
                       </li>
 
                       <li className="flex items-center whitespace-nowrap">
-                        <span className="capitalize">Color :&nbsp;</span>
-                        <span className="capitalize text-primary">blue</span>
-                      </li>
-
-                      <li className="flex items-center whitespace-nowrap">
-                        <span className="capitalize">Size :&nbsp;</span>
-                        <span className="capitalize text-primary"> big </span>
+                        <span className="capitalize">Nguyên liệu :&nbsp;</span>
+                        <span className="capitalize text-primary"> Gà </span>
                       </li>
                     </ul>
                   </td>
 
-                  <td className="whitespace-nowrap pb-[12px] text-right text-[17px] font-bold leading-[21px] tracking-[-0.01em] text-primary medium-screen:flex medium-screen:justify-between">
-                    <div className="hidden font-medium medium-screen:block">
-                      Subtotal
-                    </div>
-                    <div>100</div>
+                  <td className="whitespace-wrap pb-[12px] text-right text-[17px] font-bold leading-[21px] tracking-[-0.01em] text-primary medium-screen:flex medium-screen:justify-between">
+                    500.000.000 VND
                   </td>
                 </tr>
               </tbody>
@@ -141,10 +117,10 @@ export default function OrderSummary() {
 
                 <tr className="medium-screen:flex medium-screen:justify-between">
                   <th className="text-left text-[22px] font-medium leading-[1.27] text-primary">
-                    Subtotal
+                    Tổng phụ
                   </th>
-                  <td className="whitespace-nowrap pb-[12px] text-right text-[17px] font-bold leading-[21px] tracking-[-0.01em] text-secondary">
-                    300
+                  <td className="whitespace-wrap pb-[12px] text-right text-[17px] font-bold leading-[21px] tracking-[-0.01em] text-secondary">
+                    1.000.000.000 VND
                   </td>
                 </tr>
 
@@ -157,10 +133,10 @@ export default function OrderSummary() {
 
                 <tr className="medium-screen:flex medium-screen:justify-between">
                   <th className="text-left text-[22px] font-medium leading-[1.27] text-primary">
-                    Shipping
+                    Vận chuyển
                   </th>
                   <td className="leading-[21px]text-secondary whitespace-nowrap text-right text-[17px] font-bold tracking-[-0.01em] text-secondary">
-                    50
+                    Miễn phí
                   </td>
                 </tr>
 
@@ -172,11 +148,11 @@ export default function OrderSummary() {
                 </tr>
 
                 <tr className="medium-screen:flex medium-screen:justify-between">
-                  <th className="w-[50%] text-left text-[22px] font-medium leading-[1.27] text-primary">
-                    Total
+                  <th className="text-left text-[22px] font-medium leading-[1.27] text-primary">
+                    Tổng
                   </th>
-                  <td className="w-[50%] whitespace-nowrap text-right text-[24px] font-bold leading-[30px] tracking-[-0.02em] text-secondary">
-                    350
+                  <td className="whitespace-wrap text-right text-[24px] font-bold leading-[30px] tracking-[-0.02em] text-secondary">
+                    1.000.000.000 VND
                   </td>
                 </tr>
 
@@ -192,7 +168,7 @@ export default function OrderSummary() {
 
           <div>
             <h2 className="text-[22px] font-medium leading-[1.27] text-primary">
-              Payment Method
+              Phương thức thanh toán
             </h2>
 
             <ul>
@@ -219,7 +195,7 @@ export default function OrderSummary() {
                   htmlFor="cod"
                   className="flex w-[calc(100%-32px)] flex-1 basis-auto flex-col items-start text-primary"
                 >
-                  Cash on delivery
+                  Thanh toán khi nhận hàng
                 </label>
 
                 <div
@@ -230,7 +206,7 @@ export default function OrderSummary() {
                     },
                   )}
                 >
-                  Pay with cash upon delivery.
+                  Thanh toán cho bên vận chuyển khi nhận được hàng
                 </div>
               </li>
 
@@ -257,7 +233,7 @@ export default function OrderSummary() {
                   htmlFor="online"
                   className="flex w-[calc(100%-32px)] flex-1 basis-auto flex-col items-start text-primary"
                 >
-                  Direct bank transfer
+                  Chuyển khoản online
                 </label>
 
                 <div
@@ -269,9 +245,10 @@ export default function OrderSummary() {
                   )}
                 >
                   <p>
-                    Make your payment directly into our bank account. Please use
-                    your Order ID as the payment reference. Your order will not
-                    be shipped until the funds have cleared in our account.
+                    Hãy chuyển khoản trực tiếp vào tài khoản ngân hàng của chúng
+                    tôi. Vui lòng sử dụng mã đơn hàng của bạn làm tham chiếu
+                    thanh toán. Đơn hàng của bạn sẽ không được giao cho đến khi
+                    số tiền đã được xác nhận trong tài khoản của chúng tôi.
                   </p>
                 </div>
               </li>
@@ -282,17 +259,17 @@ export default function OrderSummary() {
             <div className="flex flex-col">
               <div className="mt-[20px]">
                 <p>
-                  Your personal data will be used to process your order, support
-                  your experience throughout this website, and for other
-                  purposes described in our
+                  Dữ liệu cá nhân của bạn sẽ được sử dụng để xử lý đơn hàng của
+                  bạn, hỗ trợ trải nghiệm của bạn trên toàn bộ trang web này, và
+                  cho các mục đích khác được mô tả trong
                   <Link
                     href="/privacy-policy"
                     className="underline decoration-light_gray_color_second hover:text-secondary"
                     target="_blank"
                   >
-                    &nbsp;privacy policy
+                    &nbsp;chính sách bảo mật&nbsp;
                   </Link>
-                  .
+                  của chúng tôi.
                 </p>
               </div>
 
@@ -303,7 +280,7 @@ export default function OrderSummary() {
                     id="term"
                     inputSize="form_controls"
                     className={cn(
-                      "relative mr-[7px] appearance-none rounded-[3px] align-middle after:absolute after:bottom-[1px] after:left-[1px] after:right-[1px] after:top-0",
+                      "relative mr-[7px] cursor-pointer appearance-none rounded-[3px] align-middle after:absolute after:bottom-[1px] after:left-[1px] after:right-[1px] after:top-0",
                       {
                         "after:bg-checked": isTermChecked,
                       },
@@ -315,14 +292,15 @@ export default function OrderSummary() {
                     }}
                   />
                   <span className="text-[14px] leading-[1.5] tracking-[0.02em] text-text_color">
-                    I have read and agree to the website
+                    Tôi đã đọc và đồng ý với các
                     <Link
                       href="/refund"
-                      className="rounded-[3px] hover:text-secondary"
+                      className="underline decoration-light_gray_color_second hover:text-secondary"
                       target="_blank"
                     >
-                      &nbsp;terms and conditions
+                      &nbsp;điều khoản và điều kiện&nbsp;
                     </Link>
+                    của trang web.
                   </span>
                   &nbsp;*
                 </label>
@@ -339,7 +317,7 @@ export default function OrderSummary() {
               router.push("/cart/order-success");
             }}
           >
-            Place Order
+            Đặt hàng
           </Button>
         </div>
       </div>

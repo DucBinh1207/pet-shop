@@ -30,7 +30,7 @@ export default function Reviews() {
 
         <div className="mt-[30px] flex flex-col">
           <h2 className="mb-[20px] text-[22px] font-bold leading-[1.27] tracking-[0.02em] text-primary">
-            Add a review
+            Thêm bình luận
           </h2>
 
           <ReviewForm />

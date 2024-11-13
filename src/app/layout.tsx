@@ -1,15 +1,15 @@
 import type { Metadata } from "next";
-import { Outfit, Quicksand } from "next/font/google";
+import { Baloo_2, Quicksand } from "next/font/google";
 import "./globals.css";
 import Header from "@/app/_components/common/header";
 import HeaderNotice from "./_components/common/header-notice";
 import ToastNotification from "@/components/common/toast";
 import Footer from "./_components/common/footer";
 
-const outfit_init = Outfit({
+const baloo_2_init = Baloo_2({
   subsets: ["latin"],
-  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
-  variable: "--font-outfit",
+  weight: ["400", "500", "600", "700", "800"],
+  variable: "--font-baloo_2",
 });
 
 const quicksand_init = Quicksand({
@@ -53,9 +53,9 @@ export default function RootLayout({
     <html lang="en ">
       <head></head>
       <body
-        className={`${outfit_init.variable} ${quicksand_init.variable} bg-background_color`}
+        className={`${baloo_2_init.variable} ${quicksand_init.variable} bg-background_color`}
       >
-        <div className="root flex min-h-[100vh] flex-col font-outfit">
+        <div className="root font-baloo_2 flex min-h-[100vh] flex-col">
           <HeaderNotice />
           <Header />
 

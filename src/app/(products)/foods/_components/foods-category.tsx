@@ -72,7 +72,7 @@ export default function FoodsCategory({
                   />
                 </div>
                 <h2 className="mt-[10px] text-center text-[17px] font-bold capitalize leading-[1.18] tracking-[0.005em]">
-                  Home
+                  Cửa hàng
                 </h2>
               </Link>
             </SwiperSlide>

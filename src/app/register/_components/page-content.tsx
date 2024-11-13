@@ -4,7 +4,7 @@ import RegisterForm from "./register-form";
 export default function PageContent() {
   return (
     <>
-      <BreadCrumb pathLink={[""]} pathName={["My Account"]} />
+      <BreadCrumb pathLink={[""]} pathName={["Tài khoản"]} />
       <RegisterForm />
     </>
   );

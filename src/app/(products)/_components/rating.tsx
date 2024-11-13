@@ -19,7 +19,7 @@ export default function Rating() {
         />
       </span>
 
-      <span>2 Reviews</span>
+      <span>2 Đánh giá</span>
     </div>
   );
 }

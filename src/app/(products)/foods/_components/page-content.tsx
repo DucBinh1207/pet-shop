@@ -4,7 +4,7 @@ import FoodsContent from "./foods-content";
 export default function PageContent() {
   return (
     <>
-      <BreadCrumb pathLink={["foods"]} pathName={["Foods"]} />
+      <BreadCrumb pathLink={["foods"]} pathName={["Thức ăn"]} />
       <FoodsContent />
     </>
   );

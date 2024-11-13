@@ -12,6 +12,7 @@ import { IngredientType, IngredientTypes } from "@/constants/ingredient-type";
 import { useState } from "react";
 import IngredientCheckbox from "./ingredient-checkbox";
 import WeightCheckbox from "./weight-checkbox";
+import { getAuthTokenFromInternalServer } from "@/services/api/internal-auth-api";
 
 export default function FoodCard() {
   const [ingredient, setIngredient] = useState<IngredientTypes[]>([
@@ -41,12 +42,12 @@ export default function FoodCard() {
         <div className="flex flex-col">
           <TruncateToolTip
             spanClass="mb-[10px] line-clamp-2 max-h-[46px] w-full overflow-hidden font-quicksand text-[17px] font-bold capitalize leading-[1.35] tracking-[-0.01em] text-primary"
-            value="True Acre Foods Grain "
+            value="Thức Ăn Ngũ Cốc True Acre "
           />
 
           <TruncateToolTip
             spanClass="mb-[10px] line-clamp-4 max-h-[76px] w-full overflow-hidden font-quicksand text-[13px] font-normal capitalize leading-[1.46] tracking-[0.02em] text-text_color"
-            value="Bring some grain-free goodness to your pup’s bowl."
+            value="Cung cấp thức ăn dinh dưỡng chất lượng cao, không chứa ngũ cốc, giúp hỗ trợ sức khỏe và sự phát triển của thú cưng."
           />
 
           <span className="flex gap-[2px]">
@@ -66,7 +67,7 @@ export default function FoodCard() {
           </span>
         </div>
         <div className="mt-[15px] flex flex-wrap items-center gap-[5px] text-[13px] font-normal leading-[16px] tracking-[0.02em] text-primary">
-          <Link href="#">Fresh & Frozen Food</Link>
+          <Link href="#">Thức ăn khô</Link>
           <DotIcon size={3} className="fill-current text-dark_orange_color" />
           <Link href="#">Sophresh</Link>
         </div>
@@ -96,9 +97,9 @@ export default function FoodCard() {
           </ul>
         </div>
 
-        <div className="flex items-center justify-between">
-          <span className="font-quicksand font-bold leading-[1] tracking-[-0.02em] text-secondary up-smallest-screen:text-[18px]">
-            $45.00
+        <div className="flex items-center justify-between xxx-smallest-screen:flex-col xxx-smallest-screen:gap-[10px]">
+          <span className="pr-[5px] font-quicksand font-bold leading-[1] tracking-[-0.02em] text-secondary up-smallest-screen:text-[18px]">
+            10.000.000 VND
           </span>
           <ToolTip
             element={
@@ -107,9 +108,17 @@ export default function FoodCard() {
                 size="circle_lg"
                 variant="primary"
                 startIcon={<CartIcon size={16} />}
+                onClick={async () => {
+                  const token = await getAuthTokenFromInternalServer();
+                  if (!token) {
+                    window.location.href = "/login";
+                  } else {
+                    window.location.href = "/not_found";
+                  }
+                }}
               />
             }
-            value="Add to Cart"
+            value="Thêm vào giỏ hàng"
           />
         </div>
       </form>

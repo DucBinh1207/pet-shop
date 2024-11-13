@@ -47,12 +47,12 @@ export default function Sidebar() {
 
         <div className="absolute bottom-[100px] left-0 right-0 top-[60px] overflow-hidden">
           <div className="hidden_scrollbar h-full w-[100vw] min-w-[320px] max-w-[415px] snap-none overflow-auto px-[25px]">
-            <ul className="flex flex-col text-text_color_second">
-              <Item name="Shop" path="/" iconName="SHOP" />
-              <Item name="Pets" path="/pets" iconName="PETS" />
-              <Item name="Foods" path="/foods" iconName="FOODS" />
-              <Item name="Supplies" path="/supplies" iconName="SUPPLIES" />
-              <Item name="Guides" path="/guides" iconName="GUIDES" />
+            <ul className="flex flex-col font-quicksand text-text_color_second">
+              <Item name="Cửa hàng" path="/" iconName="SHOP" />
+              <Item name="Thú cưng" path="/pets" iconName="PETS" />
+              <Item name="Thức ăn" path="/foods" iconName="FOODS" />
+              <Item name="Vật dụng khác" path="/supplies" iconName="SUPPLIES" />
+              <Item name="Hướng dẫn" path="/guides" iconName="GUIDES" />
 
               <li className="mt-[22px]">
                 <div className="overflow-hidden px-[50px] text-white">
@@ -76,7 +76,7 @@ export default function Sidebar() {
                     />
 
                     <Notice
-                      name="Mon-Fri: 8:00 AM - 20:00 PM"
+                      name="T2-T6 : 8:00 AM - 20:00 PM"
                       href="#"
                       iconName="BUSINESS_TIME"
                     />

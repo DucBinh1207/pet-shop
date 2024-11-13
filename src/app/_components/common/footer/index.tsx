@@ -12,9 +12,9 @@ export default function Footer() {
     <div className="mt-auto">
       <div className="flex w-full justify-center bg-light_gray_color">
         <ul className="flex min-h-[90px] w-full max-w-[1160px] items-center justify-around smallest-screen:flex-col">
-          <Benefit value="Free Shipping" icon="CAR" />
-          <Benefit value="24/7 Support" icon="QUESTION" />
-          <Benefit value="Money Back Guarantee" icon="MONEY" />
+          <Benefit value="Vận chuyển nhanh chóng" icon="CAR" />
+          <Benefit value="Hỗ trợ 24/7" icon="QUESTION" />
+          <Benefit value="Đảm bảo hoàn tiền" icon="MONEY" />
         </ul>
       </div>
       <div className="relative bg-dark_blue_color text-white small-screen:p-footer-p-small smallest-screen:p-footer-p-smallest">
@@ -32,12 +32,12 @@ export default function Footer() {
                 Whiskers
               </Link>
               <p className="font-normal tracking-[0.4px] text-blue_gray_color small-screen:text-[14px]">
-                © 2022 Ricky Theme. All rights reserved.
+                © 2022 Whiskers. All rights reserved.
               </p>
               <div className="mt-[30px] flex w-full flex-wrap items-center justify-start text-[12px] smallest-screen:justify-center">
                 <span className="smallest-screen:mr-[15px mb-[12px] mr-[10px] smallest-screen:mb-[18px]">
                   <Link href="#" className="hover_animate hover:text-secondary">
-                    Privacy Policy
+                    Chính sách bảo mật
                   </Link>
                 </span>
 
@@ -48,7 +48,7 @@ export default function Footer() {
 
                 <span className="smallest-screen:mr-[15px mb-[12px] mr-[10px] smallest-screen:mb-[18px]">
                   <Link href="#" className="hover_animate hover:text-secondary">
-                    Terms
+                    Điều khoản
                   </Link>
                 </span>
 
@@ -59,7 +59,7 @@ export default function Footer() {
 
                 <span className="smallest-screen:mr-[15px mb-[12px] mr-[10px] smallest-screen:mb-[18px]">
                   <Link href="#" className="hover_animate hover:text-secondary">
-                    SiteMap
+                    Sơ đồ cửa hàng
                   </Link>
                 </span>
               </div>
@@ -68,14 +68,11 @@ export default function Footer() {
           <div className="large-screen:w-[30%] between-small-smallest:w-[50%] smallest-screen:w-full">
             <div className="large-screen:pr-[30px] between-small-smallest:mb-[40px] smallest-screen:mb-[30px]">
               <Overview
-                value="Quis quisque viverra nulla risus integer aliquet in. Dis
-                  nascetur vitae sed ultricies vel luctus massa. Sed orci ut
-                  magnis maecenas pharetra."
+                value="Thú cưng là những người bạn trung thành, mang lại niềm vui và tình yêu vô bờ. Chúng khiến cuộc sống của chúng ta thêm ý nghĩa và hạnh phúc."
                 icon="HEART"
               />
               <Overview
-                value="Ut et duis ornare in eget elit. Vestibulum nisi nec ultricies
-                consectetur suspendisse. Vitae aliquam quis sed at et."
+                value="Chúng tôi cam kết đảm bảo vận chuyển an toàn cho thú cưng của bạn. Mỗi gói hàng đều được xử lý cẩn thận để đảm bảo rằng thú cưng sẽ đến nơi một cách khỏe mạnh và thoải mái. Sự an toàn của chúng là ưu tiên hàng đầu của chúng tôi."
                 icon="CAR"
               />
             </div>
@@ -83,13 +80,12 @@ export default function Footer() {
           <div className="large-screen:w-[25%] small-screen:mb-[30px] small-screen:mt-[10px] between-small-smallest:w-[50%] smallest-screen:w-full">
             <div className="large-screen:pr-[30px] between-small-smallest:mb-[40px] smallest-screen:mb-[30px]">
               <ul className="flex flex-col gap-[20px]">
-                <ShopInfo value="About Us" href="#" />
-                <ShopInfo value="Our Team" href="#" />
-                <ShopInfo value="Maintenance Mode" href="#" />
+                <ShopInfo value="Về chúng tôi" href="#" />
+                <ShopInfo value="Nhóm của tôi" href="#" />
               </ul>
             </div>
-            <div className="mt-[15px] flex items-center smallest-screen:justify-center">
-              <span className="text-blue_gray_color">Follow Us :</span>
+            <div className="mt-[15px] flex items-center smallest-screen:justify-center xxx-smallest-screen:flex-col">
+              <span className="text-blue_gray_color">Theo dõi chúng tôi :</span>
               <div className="flex">
                 <Social href="https://www.facebook.com" icon="FACEBOOK" />
                 <Social href="https://www.instagram.com" icon="INSTAGRAM" />
@@ -117,7 +113,7 @@ export default function Footer() {
                   icon="LOCATE"
                 />
                 <Contact
-                  value="Mon-Fri: 8:00 AM - 20:00 PM"
+                  value="T2-T6 : 8:00 AM - 20:00 PM"
                   href="#"
                   icon="BUSINESS_TIME"
                 />

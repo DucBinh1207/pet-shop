@@ -3,6 +3,7 @@ import CartIcon from "@/components/common/icons/cart-icon";
 import MinusIcon from "@/components/common/icons/minus-icon";
 import PlusIcon from "@/components/common/icons/plus-icon";
 import Input from "@/components/common/input";
+import { getAuthTokenFromInternalServer } from "@/services/api/internal-auth-api";
 
 export default function PurchaseActions() {
   return (
@@ -41,13 +42,32 @@ export default function PurchaseActions() {
             variant="secondary"
             size="lg"
             startIcon={<CartIcon size={12} className="fill-current" />}
+            onClick={async () => {
+              const token = await getAuthTokenFromInternalServer();
+              if (!token) {
+                window.location.href = "/login";
+              } else {
+                window.location.href = "/not_found";
+              }
+            }}
           >
-            Add to cart
+            Thêm vào giỏ hàng
           </Button>
         </div>
 
-        <Button className="mt-[10px] h-[50px] gap-[10px] text-center" size="lg">
-          Buy Now
+        <Button
+          className="mt-[10px] h-[50px] gap-[10px] text-center"
+          size="lg"
+          onClick={async () => {
+            const token = await getAuthTokenFromInternalServer();
+            if (!token) {
+              window.location.href = "/login";
+            } else {
+              window.location.href = "/not_found";
+            }
+          }}
+        >
+          Mua ngay
         </Button>
       </div>
     </div>

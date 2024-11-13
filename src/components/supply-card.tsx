@@ -12,6 +12,7 @@ import TruncateToolTip from "./common/truncate-tooltip";
 import { useState } from "react";
 import { ColorType, ColorTypes } from "@/constants/color-type";
 import ColorCheckbox from "./color-checkbox";
+import { getAuthTokenFromInternalServer } from "@/services/api/internal-auth-api";
 
 export default function SupplyCard() {
   const [color, setColor] = useState<ColorTypes[]>([ColorType.LIGHT]);
@@ -38,12 +39,12 @@ export default function SupplyCard() {
         <div className="flex flex-col">
           <TruncateToolTip
             spanClass="mb-[10px] line-clamp-2 max-h-[46px] w-full overflow-hidden font-quicksand text-[17px] font-bold capitalize leading-[1.35] tracking-[-0.01em] text-primary"
-            value="True Acre Foods Grain "
+            value="Khay vệ sinh cho mèo"
           />
 
           <TruncateToolTip
             spanClass="mb-[10px] line-clamp-4 max-h-[76px] w-full overflow-hidden font-quicksand text-[13px] font-normal capitalize leading-[1.46] tracking-[0.02em] text-text_color"
-            value="Bring some grain-free goodness to your pup’s bowl."
+            value="Khay vệ sinh có nắp giúp giữ mùi hôi và bụi bẩn bên trong, mang lại sự riêng tư cho mèo và dễ dàng cho bạn trong việc vệ sinh."
           />
 
           <span className="flex gap-[2px]">
@@ -63,7 +64,7 @@ export default function SupplyCard() {
           </span>
         </div>
         <div className="mt-[15px] flex flex-wrap items-center gap-[5px] text-[13px] font-normal leading-[16px] tracking-[0.02em] text-primary">
-          <Link href="#">Fresh & Frozen Food</Link>
+          <Link href="#">Đồ vệ sinh</Link>
           <DotIcon size={3} className="fill-current text-dark_orange_color" />
           <Link href="#">Sophresh</Link>
         </div>
@@ -92,16 +93,16 @@ export default function SupplyCard() {
 
         <div className="relative">
           <select className="relative h-auto w-full rounded-[3px] border border-solid border-input_border_color bg-form_color py-[8px] pl-[9px] pr-[28px] text-[13px] font-medium leading-[16px] tracking-[0.01em] text-primary outline-none">
-            <option value="1">Choose your size</option>
-            <option value="2">Small</option>
-            <option value="3">Medium</option>
-            <option value="4">Big</option>
+            <option value="1">Chọn kích cỡ</option>
+            <option value="2">Nhỏ</option>
+            <option value="3">Vừa</option>
+            <option value="4">Lớn</option>
           </select>
         </div>
 
-        <div className="flex items-center justify-between">
-          <span className="font-quicksand font-bold leading-[1] tracking-[-0.02em] text-secondary up-smallest-screen:text-[18px]">
-            $45.00
+        <div className="flex items-center justify-between xxx-smallest-screen:flex-col xxx-smallest-screen:gap-[10px]">
+          <span className="pr-[5px] font-quicksand font-bold leading-[1] tracking-[-0.02em] text-secondary up-smallest-screen:text-[18px]">
+            10.000.000 VND
           </span>
           <ToolTip
             element={
@@ -110,9 +111,17 @@ export default function SupplyCard() {
                 size="circle_lg"
                 variant="primary"
                 startIcon={<CartIcon size={16} />}
+                onClick={async () => {
+                  const token = await getAuthTokenFromInternalServer();
+                  if (!token) {
+                    window.location.href = "/login";
+                  } else {
+                    window.location.href = "/not_found";
+                  }
+                }}
               />
             }
-            value="Add to Cart"
+            value="Thêm vào giỏ hàng"
           />
         </div>
       </form>

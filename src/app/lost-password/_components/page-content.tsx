@@ -1,11 +1,11 @@
 import BreadCrumb from "@/components/bread-crumb";
-import RegisterForm from "./lost-password-form";
+import LostPasswordForm from "./lost-password-form";
 
 export default function PageContent() {
   return (
     <>
-      <BreadCrumb pathLink={[""]} pathName={["My Account"]} />
-      <RegisterForm />
+      <BreadCrumb pathLink={[""]} pathName={["Tài khoản"]} />
+      <LostPasswordForm />
     </>
   );
 }

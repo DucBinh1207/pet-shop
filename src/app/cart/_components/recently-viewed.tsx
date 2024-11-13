@@ -1,7 +1,5 @@
 "use client";
 
-import FoodCard from "@/components/food-card";
-import PetCard from "@/components/pet-card";
 import SupplyCard from "@/components/supply-card";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css/pagination";
@@ -10,9 +8,8 @@ import { useRef } from "react";
 import cn from "@/utils/style/cn";
 
 export default function RecentlyViewed() {
-
   //Handle fetching data from local storage here
-  const recentlyProduct = new Array(3);
+  const recentlyProduct = new Array(1);
   const pNum = recentlyProduct.length;
 
   const swiperRef = useRef(null);
@@ -21,7 +18,7 @@ export default function RecentlyViewed() {
     <div className="mx-auto mb-[40px] mt-[35px] w-[1160px] min-w-[320px] rounded-[4px] small-screen:mb-[30px] small-screen:mt-[15px] small-screen:w-[calc(100%-60px)] smallest-screen:mb-[20px] smallest-screen:mt-[10px] xx-smallest-screen:w-full">
       <div className="flex h-full flex-col items-center">
         <h2 className="mb-[35px] font-quicksand text-[30px] font-bold leading-[1.13] tracking-[-0.02em] text-primary">
-          Recently viewed products
+          Sản phẩm vừa xem
         </h2>
         <div className="w-full overflow-hidden">
           <Swiper

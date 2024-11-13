@@ -17,13 +17,15 @@ export default function Item() {
           href="/guides"
           className="font-quicksand text-[18px] font-bold leading-[1.1] tracking-[0.005em] text-primary"
         >
-          New Trends in Pets Industry in 2023
+          Xu Hướng Mới Trong Ngành Thú Cưng Năm 2023
         </Link>
         <p className="mt-[15px] max-h-[38px] overflow-hidden overflow-ellipsis font-quicksand text-[14px] font-normal leading-[1.46] tracking-[0.02em] text-text_color">
-          Adipiscing adipiscing non, vitae vel ullamcorper lorem massa elit
-          libero. Eu ut egestas vel neque ut eget quis. Iaculis in amet cum
-          molestie. Ut congue quis proin eleifend. Et a quam ac amet, cursus.
-          Nunc posuere venenatis amet eu massa.…
+          Năm 2023, ngành công nghiệp thú cưng nổi bật với xu hướng tập trung
+          vào sức khỏe và hạnh phúc của thú cưng. Nhu cầu về thực phẩm tự nhiên
+          và hữu cơ ngày càng tăng, cùng với việc sử dụng công nghệ như ứng dụng
+          và thiết bị thông minh để theo dõi sức khỏe thú cưng. Xu hướng này
+          mang đến nhiều cơ hội cho doanh nghiệp và nâng cao chất lượng cuộc
+          sống cho thú cưng. của họ.
         </p>
       </div>
     </>

@@ -68,7 +68,7 @@ const config: Config = {
         dark_yellow_color: "#ffa61e",
       },
       fontFamily: {
-        outfit: ["var(--font-outfit)"],
+        baloo_2: ["var(--font-baloo_2)"],
         quicksand: ["var(--font-quicksand)"],
       },
       boxShadow: {

@@ -7,17 +7,16 @@ export default function AdditionalInfo({ product }: { product: PetType }) {
       <div className="flex items-center justify-center gap-[10px]">
         <table className="min-w-[50%] smallest-screen:w-full xxx-smallest-screen:block">
           <tbody className="flex w-full flex-col items-center xxx-smallest-screen:block">
-            <InfoRow name="Name" value={product.name} />
-            <InfoRow name="Type" value={product.type} />
-            <InfoRow name="Gender" value={product.gender} />
-            <InfoRow name="Health" value={product.health} />
-            <InfoRow name="Father" value={product.father} />
-            <InfoRow name="Mother" value={product.mother} />
-            <InfoRow name="Deworming" value={product.deworming} />
-            <InfoRow name="Vaccine" value={product.breed} />
-            <InfoRow name="Breed" value={product.breed} />
+            <InfoRow name="Tên" value={product.name} />
+            <InfoRow name="Giống" value={product.type} />
+            <InfoRow name="Giới tính" value={product.gender} />
+            <InfoRow name="Sức khỏe" value={product.health} />
+            <InfoRow name="Cha" value={product.father} />
+            <InfoRow name="Mẹ" value={product.mother} />
+            <InfoRow name="Xổ giun" value={product.deworming} />
+            <InfoRow name="Tiêm phòng" value={product.vaccine} />
+            <InfoRow name="Thuần chủng" value={product.breed} />
             <InfoRow name="Traits" value={product.traits} />
-            <InfoRow name="Breed" value={product.breed} />
           </tbody>
         </table>
       </div>

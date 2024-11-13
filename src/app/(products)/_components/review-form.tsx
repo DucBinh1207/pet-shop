@@ -1,5 +1,6 @@
 import Button from "@/components/common/button";
 import StarIcon from "@/components/common/icons/star-icon";
+import { getAuthTokenFromInternalServer } from "@/services/api/internal-auth-api";
 import cn from "@/utils/style/cn";
 import { useState } from "react";
 
@@ -38,22 +39,30 @@ export default function ReviewForm() {
         </span>
 
         <span className="text-[13px] font-bold leading-[16px] tracking-[0.01em] text-text_color">
-          Your rating *
+          Đánh giá của bạn *
         </span>
       </div>
 
       <textarea
         name="comment"
         id="comment"
-        placeholder="Your review *"
+        placeholder="Nhập đánh giá *"
         className="mt-[10px] min-h-[148px] rounded-[3px] border border-solid border-input_border_color bg-background_color px-[12px] py-[9px] text-[13px] font-medium leading-[16px] tracking-[0.01em] text-primary outline-none"
       />
 
       <Button
         size="xsm"
         className="mt-[20px] text-center text-[13px] font-bold leading-[16px]"
+        onClick={async () => {
+          const token = await getAuthTokenFromInternalServer();
+          if (!token) {
+            window.location.href = "/login";
+          } else {
+            window.location.href = "/not_found";
+          }
+        }}
       >
-        Submit
+        Gửi
       </Button>
     </form>
   );

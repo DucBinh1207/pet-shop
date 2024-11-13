@@ -47,13 +47,13 @@ export default function Content({ id, isSelected }: props) {
 
           <div className="relative flex flex-col">
             <span className="font-quicksand text-[48px] font-bold leading-[1.15] tracking-[-0.02em] text-primary">
-              Dogs - {id}
+              {id}
             </span>
             <Link
               href="/pets"
               className="mt-[15px] flex items-center gap-[7px] py-[10px] text-[12px] font-bold uppercase leading-[15px] tracking-[0.03em] text-primary"
             >
-              View All
+              Xem tất cả
               <ArrowIcon size={12} className="rotate-[180deg] fill-current" />
             </Link>
           </div>
@@ -97,7 +97,7 @@ export default function Content({ id, isSelected }: props) {
             href="/pets"
             className="mt-[15px] flex items-center gap-[7px] py-[10px] text-[12px] font-bold uppercase leading-[15px] tracking-[0.03em] text-primary"
           >
-            View All
+            Xem tất cả
             <ArrowIcon size={12} className="rotate-[180deg] fill-current" />
           </Link>
         </div>

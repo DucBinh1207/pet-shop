@@ -18,14 +18,14 @@ export default function Item() {
           href="/"
           className="cursor-pointer font-quicksand text-[22px] font-bold leading-[1.27] tracking-[-0.01em] text-primary"
         >
-          Pets Grooming
+          Tỉa lông
         </Link>
       </div>
 
       <div>
         <p className="mt-[20px] font-quicksand text-[17px] font-normal leading-[1.53] tracking-[0.015em] text-text_color">
-          Maecenas nisi proin at in. Imperdiet nunc adipiscing eros, ut dolor
-          consequat. Mattis diam tortor.
+          Cắt tỉa lông thú cưng thường xuyên không chỉ giúp chúng luôn gọn gàng
+          mà còn góp phần vào sức khỏe và sự thoải mái của chúng.
         </p>
       </div>
 
@@ -37,7 +37,7 @@ export default function Item() {
             router.push("/");
           }}
         >
-          Read more
+          Xem thêm
         </Button>
       </div>
     </>

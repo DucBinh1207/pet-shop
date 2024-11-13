@@ -23,7 +23,7 @@ export default function PetsCategory({
 
   return (
     <div className="mt-[-15px] w-full min-w-[320px] overflow-hidden bg-white px-[50px] pb-[35px] text-center text-primary small-screen:px-0">
-      <div className="relative mx-auto w-[640px] min-w-[320px] max-w-full smallest-screen:w-[480px] up-xxx-smallest-screen:w-[320px]">
+      <div className="relative mx-auto w-[640px] min-w-[320px] max-w-full font-quicksand font-bold smallest-screen:w-[480px] up-xxx-smallest-screen:w-[320px]">
         <div className="overflow-hidden">
           <Swiper
             ref={swiperRef}
@@ -68,8 +68,8 @@ export default function PetsCategory({
                     className="fill-current text-primary duration-100 ease-linear hover:scale-[1.15] hover:text-secondary"
                   />
                 </div>
-                <h2 className="mt-[10px] text-center text-[17px] font-medium capitalize leading-[1.18] tracking-[0.005em]">
-                  Home
+                <h2 className="mt-[10px] text-center text-[17px] capitalize leading-[1.18] tracking-[0.005em]">
+                  Cửa hàng
                 </h2>
               </Link>
             </SwiperSlide>
@@ -103,7 +103,7 @@ export default function PetsCategory({
                     className="object-cover"
                   />
                 </div>
-                <h2 className="mt-[10px] text-center text-[17px] font-medium capitalize leading-[1.18] tracking-[0.005em]">
+                <h2 className="mt-[10px] text-center text-[17px] capitalize leading-[1.18] tracking-[0.005em]">
                   All
                 </h2>
               </label>
@@ -138,7 +138,7 @@ export default function PetsCategory({
                     className="object-cover"
                   />
                 </div>
-                <h2 className="mt-[10px] text-center text-[17px] font-medium capitalize leading-[1.18] tracking-[0.005em]">
+                <h2 className="mt-[10px] text-center text-[17px] capitalize leading-[1.18] tracking-[0.005em]">
                   Dogs
                 </h2>
               </label>
@@ -173,7 +173,7 @@ export default function PetsCategory({
                     className="object-cover"
                   />
                 </div>
-                <h2 className="mt-[10px] text-center text-[17px] font-medium capitalize leading-[1.18] tracking-[0.005em]">
+                <h2 className="mt-[10px] text-center text-[17px] capitalize leading-[1.18] tracking-[0.005em]">
                   Cats
                 </h2>
               </label>
