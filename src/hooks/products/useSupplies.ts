@@ -31,18 +31,6 @@ export default function useSupplies({
     params.append("maxPrice", price[1].toString());
   }
 
-  //   if (color) {
-  //     color.forEach((colorValue) => {
-  //       params.append("color", colorValue);
-  //     });
-  //   }
-
-  //   if (size) {
-  //     size.forEach((sizeValue) => {
-  //       params.append("size", sizeValue);
-  //     });
-  //   }
-
   const { data, error, isLoading } = useSWR(
     "/products/supplies" + "?" + params.toString(),
     getSupplies,

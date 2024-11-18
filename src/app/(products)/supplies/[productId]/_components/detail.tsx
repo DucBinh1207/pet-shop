@@ -11,7 +11,6 @@ import ColorCheckbox from "@/components/color-checkbox";
 
 export default function Detail() {
   const product = useContext(ProductContext);
-  console.log(product);
   const [color, setColor] = useState<ColorTypes[]>([
     product.variationsSupplies[0].color as ColorTypes,
   ]);
@@ -107,7 +106,6 @@ export default function Detail() {
       size === supply.size && color.includes(supply.color as ColorTypes),
   );
 
-  console.log({ supply });
 
   const { minPrice, maxPrice } = product.variationsSupplies.reduce(
     (num, option) => ({

@@ -2,7 +2,6 @@ import InfoRow from "@/app/(products)/_components/info-row";
 import { PetType } from "@/types/pet";
 
 export default function AdditionalInfo({ product }: { product: PetType }) {
-  console.log(product);
 
   return (
     <div className="mx-auto w-full max-w-[950px] px-[35px] text-[14px] font-medium leading-[1.5] tracking-[0.02em] text-text_color">

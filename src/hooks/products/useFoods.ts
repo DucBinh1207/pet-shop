@@ -20,8 +20,6 @@ export default function useFoods({
 }: props) {
   const params = new URLSearchParams();
 
-  // if (category) params.append("category", category);
-
   if (sort) params.append("sortBy", sort);
 
   if (paging) params.append("page", paging.toString());
@@ -45,7 +43,6 @@ export default function useFoods({
     params.append("weight", weight.toString());
   }
 
-  console.log(params.toString());
 
   const { data, error, isLoading } = useSWR(
     "/products/foods" + "?" + params.toString(),

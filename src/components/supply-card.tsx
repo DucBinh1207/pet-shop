@@ -115,7 +115,6 @@ export default function SupplyCard({ data }: props) {
       size === supply.size && color.includes(supply.color as ColorTypes),
   );
 
-  console.log({ supply });
 
   const { minPrice, maxPrice } = data.variationsSupplies.reduce(
     (num, option) => ({
