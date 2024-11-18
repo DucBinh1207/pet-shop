@@ -1,25 +1,30 @@
 "use client";
 
 import { PriceRange } from "@/constants/price-range";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import ReactSlider from "react-slider";
 import PetsCategory from "./pets-category";
 import { CategoryType, CategoryTypes } from "@/constants/category-type";
-import PetCard from "@/components/pet-card";
 import CancelIcon from "@/components/common/icons/cancel-icon";
 import { SortType, SortTypes } from "@/constants/sort-type";
 import AngleIcon from "@/components/common/icons/angle-icon";
 import cn from "@/utils/style/cn";
 import Pagination from "../../_components/pagination";
 import Sort from "../../_components/sort";
+import ListPets from "./list-pets";
 
 export default function PetsContent() {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [category, setCategory] = useState<CategoryTypes>(CategoryType.ALL);
   const [price, setPrice] = useState([PriceRange.MIN, PriceRange.MAX]);
-
+  const [priceParams, setPriceParams] = useState([
+    PriceRange.MIN,
+    PriceRange.MAX,
+  ]);
+  const [resultNum, setResultNum] = useState(0);
   const [sort, setSort] = useState<SortTypes>(SortType.DEFAULT);
-  const [paging, setPaging] = useState<number>(2);
+  const [paging, setPaging] = useState<number>(1);
+  const [totalPages, setTotalPages] = useState<number>(1);
 
   function handleCategoryFilter(categoryCurrent: CategoryTypes) {
     setCategory(categoryCurrent);
@@ -31,16 +36,9 @@ export default function PetsContent() {
   function handlePagingFilter(pagingCurrent: number) {
     setPaging(pagingCurrent);
   }
-
-  useEffect(() => {
-    const params = new URLSearchParams();
-
-    params.append("category", category);
-
-    params.append("sort", sort);
-
-    params.append("page", paging.toString());
-  }, [category, sort, paging]);
+  function handlePrice() {
+    setPriceParams(price);
+  }
 
   return (
     <>
@@ -106,7 +104,7 @@ export default function PetsContent() {
                         );
                       }
                     }}
-                    step={100000}
+                    step={500000}
                     min={PriceRange.MIN}
                     max={PriceRange.MAX}
                     onChange={setPrice}
@@ -124,6 +122,7 @@ export default function PetsContent() {
                 <button
                   type="button"
                   className="hover_animate mt-[10px] inline-block cursor-pointer rounded-[18px] border-[2px] border-solid border-primary bg-white px-[18px] py-[5px] text-center text-[12px] font-bold uppercase tracking-wider text-primary outline-none hover:bg-primary hover:text-white"
+                  onClick={handlePrice}
                 >
                   Lọc
                 </button>
@@ -132,10 +131,12 @@ export default function PetsContent() {
           </div>
         </div>
 
-        <div className="flex-1 large-screen:min-w-[900px] small-screen:w-full">
+        <div className="flex flex-1 flex-col large-screen:min-w-[900px] small-screen:w-full">
           <div className="flex min-h-[55px] items-center border-b border-solid border-light_gray_color_second px-[30px] py-[13px] text-[13px] font-normal leading-[16px] tracking-[0.025em] text-text_color">
             <div className="flex w-full flex-1 small-screen:gap-[5px] up-smallest-screen:items-center up-smallest-screen:justify-between smallest-screen:flex-col">
-              <div className="w-full flex-1">Có 11 kết quả</div>
+              <div className="w-full flex-1">
+                {resultNum && `Có ${resultNum} kết quả`}
+              </div>
               <Sort sort={sort} handleSortFilter={handleSortFilter} />
             </div>
             <div className="ml-[15px] mr-[2px] large-screen:hidden large-screen:opacity-0">
@@ -149,20 +150,19 @@ export default function PetsContent() {
             </div>
           </div>
 
-          <div className="flex flex-wrap">
-            {[...Array(11)].map((_, index) => (
-              <div
-                className="large-screen:w-[25%] up-x-small-screen:w-[25%] up-x-smallest-screen:!w-[calc(100%/3)] up-xx-smallest-screen:!w-[50%] xx-smallest-screen:w-full down-xx-smallest-screen:!w-[50%]"
-                key={index}
-              >
-                <PetCard />
-              </div>
-            ))}
-          </div>
+          <ListPets
+            category={category}
+            paging={paging}
+            sort={sort}
+            price={priceParams}
+            setResultNum={setResultNum}
+            setTotalPages={setTotalPages}
+          />
 
-          <div className="mt-[30px] flex justify-center pb-[30px]">
+          <div className="mt-[30px] flex flex-1 items-end justify-center pb-[30px]">
             <Pagination
               paging={paging}
+              totalPages={totalPages}
               handlePagingFilter={handlePagingFilter}
             />
           </div>

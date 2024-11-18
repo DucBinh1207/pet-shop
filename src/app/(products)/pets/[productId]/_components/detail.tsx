@@ -14,7 +14,7 @@ export default function Detail() {
     <div className="mx-auto mb-[40px] mt-[30px] min-w-[320px] rounded-[4px] border border-solid border-light_gray_color_second bg-white large-screen:w-[1160px] small-screen:mb-[30px] small-screen:mt-[15px] small-screen:w-[calc(100%-60px)] smallest-screen:mb-[20px] smallest-screen:mt-[10px] xx-smallest-screen:w-full">
       <div className="mb-[30px] flex text-text_color smallest-screen:flex-col">
         <div className="up-smallest-screen:w-[50%]">
-          <ProductImage />
+          <ProductImage imageUrl={product.image} />
 
           <ProductMeta
             type="pets"
@@ -39,7 +39,7 @@ export default function Detail() {
             <div className="flex flex-col">
               <div className="mt-[25px]">
                 <span className="font-quicksand text-[25px] font-bold leading-[1.24] tracking-[-0.02em] text-secondary">
-                  {product.price}
+                  {product.variationsPets[0].price}
                 </span>
               </div>
 

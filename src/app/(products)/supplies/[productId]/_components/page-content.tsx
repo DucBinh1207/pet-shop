@@ -4,52 +4,52 @@ import { useParams } from "next/navigation";
 import Detail from "./detail";
 import { createContext } from "react";
 import { SupplyType } from "@/types/supply";
+import useSupplyDetail from "@/hooks/products/useSupplyDetail";
+import Loading from "@/app/loading";
 
 export const ProductContext = createContext<SupplyType>({
   id: "",
   name: "",
-  petType: "",
-  ingredient: "",
-  nutrition_info: "",
-  weight: "",
-  expire_date: "",
-  brand: "",
-  rating: 0,
   description: "",
   image: "",
-  quantity: 0,
-  price: 0,
+  dateCreated: "",
+  rating: 0,
+  category: "",
+  material: "",
+  brand: "",
+  type: "",
+  variationsSupplies: [
+    {
+      productVariantId: "",
+      color: "",
+      size: "",
+      price: 0,
+      quantity: 0,
+      dateCreated: "",
+    },
+  ],
 });
 
 export default function PageContent() {
   const { productId } = useParams<{ productId: string }>();
 
-  // This is where the product's name is retrieved by fetching product data using the ID from the URL path
-  const product: SupplyType = {
-    id: productId,
-    name: "Natural Clumping Cat Litter",
-    petType: "Cat",
-    ingredient: "Bentonite Clay, Activated Charcoal",
-    nutrition_info: "N/A",
-    weight: "10kg",
-    expire_date: "2026-01-01",
-    brand: "CleanPaws",
-    rating: 4.8,
-    description:
-      "Premium clumping cat litter with activated charcoal for superior odor control.",
-    image: "https://example.com/images/natural-clumping-cat-litter.jpg",
-    quantity: 100,
-    price: 150000,
-  };
+  const { supply, isLoading, isError } = useSupplyDetail({ id: productId });
 
-  return (
-    <ProductContext.Provider value={product}>
-      <BreadCrumb
-        pathLink={["/supplies", `/supplies/${product.id}`]}
-        pathName={["Supplies", product.name]}
-      />
+  if (isError) window.location.href = "/error";
 
-      <Detail />
-    </ProductContext.Provider>
-  );
+  if (isLoading) {
+    return <Loading />;
+  }
+
+  if (supply)
+    return (
+      <ProductContext.Provider value={supply}>
+        <BreadCrumb
+          pathLink={["/supplies", `/supplies/${supply.id}`]}
+          pathName={["Supplies", supply.name]}
+        />
+
+        <Detail />
+      </ProductContext.Provider>
+    );
 }

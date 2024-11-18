@@ -4,12 +4,15 @@ import ArrowIcon from "@/components/common/icons/arrow-icon";
 
 type Props = {
   paging: number;
+  totalPages: number;
   handlePagingFilter: (paging: number) => void;
 };
 
-const TOTAL_PAGES = 10;
-
-export default function Pagination({ paging, handlePagingFilter }: Props) {
+export default function Pagination({
+  paging,
+  totalPages,
+  handlePagingFilter,
+}: Props) {
   return (
     <ul className="flex flex-wrap items-center justify-center text-[18px] font-medium leading-[27px] tracking-[0.02em] text-text_color">
       <li className="m-[2.5px]">
@@ -61,7 +64,7 @@ export default function Pagination({ paging, handlePagingFilter }: Props) {
         handlePagingFilter={handlePagingFilter}
       />
 
-      {paging < TOTAL_PAGES - 1 && (
+      {paging < totalPages - 1 && (
         <Paging
           pageNum={paging + 1}
           pageCurrent={paging}
@@ -69,7 +72,7 @@ export default function Pagination({ paging, handlePagingFilter }: Props) {
         />
       )}
 
-      {paging < TOTAL_PAGES - 2 && (
+      {paging < totalPages - 2 && (
         <li className="m-[2.5px]">
           <span className="hover_animate inline-flex h-[50px] w-[50px] cursor-default items-center justify-center rounded-[50%] border-[2px] border-solid border-primary bg-white text-center uppercase text-primary outline-none">
             ...
@@ -77,9 +80,9 @@ export default function Pagination({ paging, handlePagingFilter }: Props) {
         </li>
       )}
 
-      {paging < TOTAL_PAGES && (
+      {paging < totalPages && (
         <Paging
-          pageNum={TOTAL_PAGES}
+          pageNum={totalPages}
           pageCurrent={paging}
           handlePagingFilter={handlePagingFilter}
         />
@@ -91,13 +94,13 @@ export default function Pagination({ paging, handlePagingFilter }: Props) {
             "hover_animate inline-flex h-[50px] w-[50px] items-center justify-center rounded-[50%] border-[2px] border-solid border-primary bg-white text-center uppercase text-primary outline-none",
             {
               "pointer-events-none cursor-default opacity-25":
-                paging === TOTAL_PAGES,
+                paging === totalPages,
               "cursor-pointer hover:bg-primary hover:text-white":
-                paging !== TOTAL_PAGES,
+                paging !== totalPages,
             },
           )}
           onClick={() => {
-            if (paging < TOTAL_PAGES) {
+            if (paging < totalPages) {
               handlePagingFilter(paging + 1);
             }
           }}

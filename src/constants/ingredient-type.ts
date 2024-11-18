@@ -1,6 +1,6 @@
 export const IngredientType = {
-  BEEF: "beef",
-  CHICKEN: "chicken",
+  BEEF: "Bò",
+  CHICKEN: "Gà",
 } as const;
 
 export type IngredientTypes =

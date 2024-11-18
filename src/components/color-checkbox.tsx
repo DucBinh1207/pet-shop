@@ -1,4 +1,4 @@
-import { ColorTypes } from "@/constants/color-type";
+import { ColorMapping, ColorTypes } from "@/constants/color-type";
 import cn from "@/utils/style/cn";
 
 type props = {
@@ -33,7 +33,7 @@ export default function ColorCheckbox({
               "after:border-transparent": !color.includes(colorType),
             },
           )}
-          style={{ backgroundColor: colorType }}
+          style={{ backgroundColor: ColorMapping[colorType as ColorTypes] }}
         />
         {name && <span className="flex-1"> {name} </span>}
       </label>

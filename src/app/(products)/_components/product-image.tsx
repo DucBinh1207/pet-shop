@@ -1,7 +1,11 @@
 import Image from "next/image";
 import { useRef, useState } from "react";
 
-export default function ProductImage() {
+type props = {
+  imageUrl: string;
+};
+
+export default function ProductImage({ imageUrl }: props) {
   const sourceRef = useRef<HTMLDivElement>(null);
   const targetRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -46,14 +50,14 @@ export default function ProductImage() {
 
   return (
     <div
-      className="up-smallest-screen:hover:shadow-image_shadow relative w-full cursor-zoom-in overflow-hidden p-[30px] pb-[80%] hover:border hover:border-solid hover:border-light_gray_color_second"
+      className="relative w-full cursor-zoom-in overflow-hidden p-[30px] pb-[80%] hover:border hover:border-solid hover:border-light_gray_color_second up-smallest-screen:hover:shadow-image_shadow"
       ref={containerRef}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       onMouseMove={handleMouseMove}
     >
       <div ref={sourceRef} className="absolute inset-0">
-        <Image src="/assets/images/food-detail.jpg" fill alt="whole hearted" />
+        <Image src={imageUrl} fill alt="whole hearted" />
       </div>
 
       <div
@@ -65,7 +69,7 @@ export default function ProductImage() {
           transformOrigin: "top left",
         }}
       >
-        <Image src="/assets/images/food-detail.jpg" fill alt="whole hearted" />
+        <Image src={imageUrl} fill alt="whole hearted" />
       </div>
     </div>
   );

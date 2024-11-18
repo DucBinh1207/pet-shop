@@ -4,8 +4,38 @@ import MinusIcon from "@/components/common/icons/minus-icon";
 import PlusIcon from "@/components/common/icons/plus-icon";
 import Input from "@/components/common/input";
 import { getAuthTokenFromInternalServer } from "@/services/api/internal-auth-api";
+import { ChangeEvent, useState } from "react";
 
 export default function PurchaseActions() {
+  const [quantity, setQuantity] = useState(1);
+
+  function handleChangeQuantity(e: ChangeEvent<HTMLInputElement>) {
+    const productNum = e.target.value.replace(/[^0-9]/g, "");
+
+    if (productNum !== "") {
+      const newQuantity = Number(productNum);
+      if (newQuantity > 100) {
+        setQuantity(100);
+      } else setQuantity(newQuantity);
+    } else {
+      setQuantity(0);
+    }
+  }
+
+  function handleDecreaseQuantity() {
+    if (quantity > 1) setQuantity(quantity - 1);
+  }
+
+  function handleIncreaseQuantity() {
+    if (quantity < 100) setQuantity(quantity + 1);
+  }
+
+  function handleBlurQuantity() {
+    if (quantity === 0) {
+      setQuantity(1);
+    }
+  }
+
   return (
     <div className="mt-[20px] inline-flex">
       <div className="flex flex-col">
@@ -14,6 +44,7 @@ export default function PurchaseActions() {
             <button
               type="button"
               className="flex w-[32px] items-center justify-end"
+              onClick={handleDecreaseQuantity}
             >
               <MinusIcon
                 size={12}
@@ -21,14 +52,17 @@ export default function PurchaseActions() {
               />
             </button>
             <Input
+              value={quantity}
               inputSize="quantity"
               variant="quantity"
-              type="number"
-              value={1}
+              type="text"
+              onChange={handleChangeQuantity}
+              onBlur={handleBlurQuantity}
             />
             <button
               type="button"
               className="flex w-[32px] items-center justify-start"
+              onClick={handleIncreaseQuantity}
             >
               <PlusIcon
                 size={12}
