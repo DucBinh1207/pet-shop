@@ -104,7 +104,7 @@ export default function PetsCategory({
                   />
                 </div>
                 <h2 className="mt-[10px] text-center text-[17px] capitalize leading-[1.18] tracking-[0.005em]">
-                  All
+                  Tất cả
                 </h2>
               </label>
             </SwiperSlide>
@@ -139,7 +139,7 @@ export default function PetsCategory({
                   />
                 </div>
                 <h2 className="mt-[10px] text-center text-[17px] capitalize leading-[1.18] tracking-[0.005em]">
-                  Dogs
+                  Chó
                 </h2>
               </label>
             </SwiperSlide>
@@ -174,7 +174,7 @@ export default function PetsCategory({
                   />
                 </div>
                 <h2 className="mt-[10px] text-center text-[17px] capitalize leading-[1.18] tracking-[0.005em]">
-                  Cats
+                  Mèo
                 </h2>
               </label>
             </SwiperSlide>

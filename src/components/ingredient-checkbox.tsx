@@ -5,13 +5,15 @@ type props = {
   ingredient: IngredientTypes[];
   ingredientType: IngredientTypes;
   name?: string;
-  handleIngredientFilter: (colorCurrent: IngredientTypes) => void;
+  isAvailable: boolean;
+  handleIngredientFilter?: (colorCurrent: IngredientTypes) => void;
 };
 
 export default function IngredientCheckbox({
   ingredient,
   ingredientType,
   name,
+  isAvailable,
   handleIngredientFilter,
 }: props) {
   return (
@@ -28,12 +30,13 @@ export default function IngredientCheckbox({
             {
               "after:border-secondary": ingredient.includes(ingredientType),
               "after:border-transparent": !ingredient.includes(ingredientType),
-              "bg-beef_img": ingredientType === "beef",
-              "bg-chicken_img": ingredientType === "chicken",
+              "bg-beef_img": ingredientType === "Bò",
+              "bg-chicken_img": ingredientType === "Gà",
+              "opacity-30": !isAvailable,
             },
           )}
           onClick={() => {
-            handleIngredientFilter(ingredientType);
+            if (handleIngredientFilter) handleIngredientFilter(ingredientType);
           }}
         />
         {name && <span className="flex-1"> {name} </span>}

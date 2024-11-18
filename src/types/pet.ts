@@ -1,19 +1,33 @@
+type VariationPet = {
+  id: string;
+  idProduct: string;
+  breed: string;
+  breedOrigin: boolean;
+  dateOfBirth: string;
+  deworming: string;
+  father: string;
+  gender: boolean;
+  health: string;
+  mother: string;
+  price: number;
+  quantity: number ;
+  trait: string;
+  type: string;
+  vaccine: number ;
+};
+
 export type PetType = {
   id: string;
-  name: string;
-  petType: string;
-  gender: string;
-  health: string;
-  father: string;
-  mother: string;
-  type: string;
-  deworming: string;
-  vaccine: string;
-  breed: string;
-  traits: string;
-  rating: number | null;
+  category: string;
+  dateCreated: string;
   description: string;
   image: string;
-  quantity: number;
-  price: number;
+  name: string;
+  rating: number | null;
+  variationsPets: VariationPet[];
+};
+
+export type PetResponse = {
+  products: PetType[];
+  totalPages: number;
 };

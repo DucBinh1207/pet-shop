@@ -13,12 +13,12 @@ import {
   SuppliesCategoryType,
   SuppliesCategoryTypes,
 } from "@/constants/supplies-category-type";
-import SupplyCard from "@/components/supply-card";
 import SuppliesCategory from "./supplies-category";
 import ColorCheckbox from "@/components/color-checkbox";
 import { ColorType, ColorTypes } from "@/constants/color-type";
 import Pagination from "../../_components/pagination";
 import Sort from "../../_components/sort";
+import ListSupplies from "./list-supplies";
 
 export default function SuppliesContent() {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
@@ -26,7 +26,12 @@ export default function SuppliesContent() {
     SuppliesCategoryType.ALL,
   );
   const [price, setPrice] = useState([PriceRange.MIN, PriceRange.MAX]);
+  const [priceParams, setPriceParams] = useState([
+    PriceRange.MIN,
+    PriceRange.MAX,
+  ]);
 
+  const [resultNum, setResultNum] = useState(0);
   const [size, setSize] = useState<SizeTypes[]>([
     SizeType.SMALL,
     SizeType.MEDIUM,
@@ -38,7 +43,8 @@ export default function SuppliesContent() {
   ]);
 
   const [sort, setSort] = useState<SortTypes>(SortType.DEFAULT);
-  const [paging, setPaging] = useState<number>(2);
+  const [paging, setPaging] = useState<number>(1);
+  const [totalPages, setTotalPages] = useState<number>(1);
 
   function handleCategoryFilter(categoryCurrent: SuppliesCategoryTypes) {
     setCategory(categoryCurrent);
@@ -60,6 +66,10 @@ export default function SuppliesContent() {
   }
   function handlePagingFilter(pagingCurrent: number) {
     setPaging(pagingCurrent);
+  }
+
+  function handlePrice() {
+    setPriceParams(price);
   }
 
   useEffect(() => {
@@ -162,6 +172,7 @@ export default function SuppliesContent() {
                 <button
                   type="button"
                   className="hover_animate mt-[10px] inline-block cursor-pointer rounded-[18px] border-[2px] border-solid border-primary bg-white px-[18px] py-[5px] text-center text-[12px] font-bold uppercase tracking-wider text-primary outline-none hover:bg-primary hover:text-white"
+                  onClick={handlePrice}
                 >
                   Filter
                 </button>
@@ -221,10 +232,10 @@ export default function SuppliesContent() {
           </div>
         </div>
 
-        <div className="flex-1 large-screen:min-w-[900px] small-screen:w-full">
+        <div className="flex flex-1 flex-col large-screen:min-w-[900px] small-screen:w-full">
           <div className="flex min-h-[55px] items-center border-b border-solid border-light_gray_color_second px-[30px] py-[13px] text-[13px] font-normal leading-[16px] tracking-[0.025em] text-text_color">
             <div className="flex w-full flex-1 small-screen:gap-[5px] up-smallest-screen:items-center up-smallest-screen:justify-between smallest-screen:flex-col">
-              <div className="w-full flex-1">Showing all 11 results</div>
+              <div className="w-full flex-1">{`Có ${resultNum} kết quả`}</div>
               <Sort sort={sort} handleSortFilter={handleSortFilter} />
             </div>
             <div className="ml-[15px] mr-[2px] large-screen:hidden large-screen:opacity-0">
@@ -238,20 +249,21 @@ export default function SuppliesContent() {
             </div>
           </div>
 
-          <div className="flex flex-wrap">
-            {[...Array(11)].map((_, index) => (
-              <div
-                className="large-screen:w-[25%] up-x-small-screen:w-[25%] up-x-smallest-screen:!w-[calc(100%/3)] up-xx-smallest-screen:!w-[50%] xx-smallest-screen:w-full down-xx-smallest-screen:!w-[50%]"
-                key={index}
-              >
-                <SupplyCard />
-              </div>
-            ))}
-          </div>
+          <ListSupplies
+            category={category}
+            paging={paging}
+            sort={sort}
+            price={priceParams}
+            color={color}
+            size={size}
+            setTotalPages={setTotalPages}
+            setResultNum={setResultNum}
+          />
 
-          <div className="mt-[30px] flex justify-center pb-[30px]">
+          <div className="mt-[30px] flex flex-1 items-end justify-center pb-[30px]">
             <Pagination
               paging={paging}
+              totalPages={totalPages}
               handlePagingFilter={handlePagingFilter}
             />
           </div>

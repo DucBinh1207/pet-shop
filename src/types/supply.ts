@@ -1,15 +1,27 @@
+type VariationSupply = {
+  productVariantId: string;
+  color: string;
+  size: string;
+  price: number;
+  quantity: number;
+  dateCreated: string;
+};
+
 export type SupplyType = {
   id: string;
   name: string;
-  petType: string;
-  ingredient: string;
-  nutrition_info: string;
-  weight: string;
-  expire_date: string;
-  brand: string;
-  rating: number | null;
   description: string;
   image: string;
-  quantity: number;
-  price: number;
+  dateCreated: string;
+  rating: number;
+  category: string;
+  material: string;
+  brand: string;
+  type: string;
+  variationsSupplies: VariationSupply[];
+};
+
+export type SupplyResponse = {
+  products: SupplyType[];
+  totalPages: number;
 };

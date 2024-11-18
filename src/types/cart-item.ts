@@ -1,6 +1,5 @@
 export type CartItemType = {
-  userId: string;
-  productId: string;
-  productType: "pets" | "foods" | "supplies";
-  quantity: string;
+  id_product_variant: string;
+  category: "pets" | "foods" | "supplies";
+  quantity: number;
 };

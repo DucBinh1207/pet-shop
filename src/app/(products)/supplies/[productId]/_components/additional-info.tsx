@@ -7,13 +7,10 @@ export default function AdditionalInfo({ product }: { product: SupplyType }) {
       <div className="flex items-center justify-center gap-[10px]">
         <table className="min-w-[50%] smallest-screen:w-full xxx-smallest-screen:block">
           <tbody className="flex w-full flex-col items-center xxx-smallest-screen:block">
-            <InfoRow name="Name" value={product.name} />
-            <InfoRow name="Type" value={product.petType} />
-            <InfoRow name="Ingredients" value={product.ingredient} />
-            <InfoRow name="Nutrition Info" value={product.nutrition_info} />
-            <InfoRow name="Weight" value={product.weight} />
-            <InfoRow name="Expire Date" value={product.expire_date} />
-            <InfoRow name="Brand" value={product.brand} />
+            <InfoRow name="Tên" value={product.name} />
+            <InfoRow name="Loài" value={product.type} />
+            <InfoRow name="Vật liệu" value={product.material} />
+            <InfoRow name="Thương hiệu" value={product.brand} />
           </tbody>
         </table>
       </div>

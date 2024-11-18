@@ -4,52 +4,53 @@ import { useParams } from "next/navigation";
 import Detail from "./detail";
 import { createContext } from "react";
 import { FoodType } from "@/types/food";
+import useFoodDetail from "@/hooks/products/useFoodDetail";
+import Loading from "@/app/loading";
 
 export const ProductContext = createContext<FoodType>({
   id: "",
   name: "",
-  petType: "",
-  ingredient: "",
-  nutrition_info: "",
-  weight: "",
-  expire_date: "",
-  brand: "",
-  rating: 0,
   description: "",
   image: "",
-  quantity: 0,
-  price: 0,
+  dateCreated: "",
+  rating: 0,
+  category: "",
+  petType: "",
+  nutritionInfo: "",
+  expireDate: "",
+  brand: "",
+  variationsFoods: [
+    {
+      productVariantId: "",
+      ingredient: "",
+      weight: "",
+      price: 0,
+      quantity: 0,
+      dateCreated: "",
+    },
+  ],
 });
 
 export default function PageContent() {
   const { productId } = useParams<{ productId: string }>();
 
-  // This is where the product's name is retrieved by fetching product data using the ID from the URL path
-  const product: FoodType = {
-    id: productId,
-    name: "Premium Cat Food",
-    petType: "Cat",
-    ingredient: "Chicken, Rice, Fish Oil",
-    nutrition_info: "Protein 30%, Fat 10%, Fiber 3%",
-    weight: "1.5kg",
-    expire_date: "2025-08-10",
-    brand: "Whiskers Delight",
-    rating: 4.7,
-    description:
-      "A premium blend of chicken and fish for your cat's daily nutrition.",
-    image: "https://example.com/images/premium-cat-food.jpg",
-    quantity: 50,
-    price: 200000,
-  };
+  const { food, isLoading, isError } = useFoodDetail({ id: productId });
 
-  return (
-    <ProductContext.Provider value={product}>
-      <BreadCrumb
-        pathLink={["/foods", `/foods/${product.id}`]}
-        pathName={["Foods", product.name]}
-      />
+  if (isError) window.location.href = "/error";
 
-      <Detail />
-    </ProductContext.Provider>
-  );
+  if (isLoading) {
+    return <Loading />;
+  }
+
+  if (food)
+    return (
+      <ProductContext.Provider value={food}>
+        <BreadCrumb
+          pathLink={["/foods", `/foods/${food.id}`]}
+          pathName={["Foods", food.name]}
+        />
+
+        <Detail />
+      </ProductContext.Provider>
+    );
 }
