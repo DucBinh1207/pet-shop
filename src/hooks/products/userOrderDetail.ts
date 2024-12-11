@@ -6,7 +6,6 @@ type props = {
 };
 
 export default function useOrderDetail({ orderId }: props) {
-  console.log(orderId);
   const { data, error, isLoading } = useSWR(
     "/orders/user/details?id_order=" + orderId,
     getOrderDetail,

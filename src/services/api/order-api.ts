@@ -35,19 +35,10 @@ export async function Payment({
   return toCamelCase<ResponsePayment>(dataResponse);
 }
 
-// export async function getOrderItems(url: string) {
-//   const rawData = await get<OrderApiResponse[]>({
-//     url: url,
-//   });
-//   const data = toCamelCase<OrderApiResponse[]>(rawData);
-//   return data;
-// }
-
 export async function getOrderDetail(url: string) {
   const rawData = await get<OrderApiResponse>({
     url: url,
   });
   const data = toCamelCase<OrderApiResponse>(rawData);
-  console.log({ data });
   return data;
 }

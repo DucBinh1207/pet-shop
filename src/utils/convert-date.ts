@@ -1,8 +1,6 @@
 export default function formatDate(dateString: string) {
   const date = new Date(dateString);
 
-  console.log(date);
-
   const dayOfWeek = new Intl.DateTimeFormat("vi-VN", {
     weekday: "long",
   }).format(date);
