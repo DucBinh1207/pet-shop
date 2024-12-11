@@ -44,7 +44,6 @@ export default function Header() {
         <Nav name="Thú cưng" path="/pets" iconName="PETS" />
         <Nav name="Thức ăn" path="/foods" iconName="FOODS" />
         <Nav name="Vật dụng khác" path="/supplies" iconName="SUPPLIES" />
-        <Nav name="Hướng dẫn" path="/guides" iconName="GUIDES" />
       </ul>
 
       <ul className="flex text-base text-text_color_second small-screen:mx-[13px] small-screen:pt-[5px]">

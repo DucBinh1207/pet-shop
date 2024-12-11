@@ -4,7 +4,6 @@ import CartIcon from "@/components/common/icons/cart-icon";
 import DotIcon from "@/components/common/icons/dot-icon";
 import StarIcon from "@/components/common/icons/star-icon";
 import Image from "next/image";
-
 import Link from "next/link";
 import ToolTip from "./common/tooltip";
 import Button from "./common/button";
@@ -12,12 +11,30 @@ import TruncateToolTip from "./common/truncate-tooltip";
 import { getAuthTokenFromInternalServer } from "@/services/api/internal-auth-api";
 import { PetType } from "@/types/pet";
 import { MouseEvent } from "react";
+import useMutation from "@/hooks/use-mutation";
+import { toastError } from "@/utils/toast";
+import { AddToCard } from "@/services/api/cart-api";
+import { AddToCartData } from "@/types/cart-item";
+import ToastAddToCart from "./toast-add-to-cart";
 
 type props = {
   data: PetType;
 };
 
 export default function PetCard({ data }: props) {
+  const { mutate, isMutating } = useMutation({
+    fetcher: AddToCard,
+    options: {
+      onSuccess: async () => {
+        ToastAddToCart();
+      },
+      onError: (error) => {
+        toastError(error.message);
+      },
+      onFinally: () => {},
+    },
+  });
+
   const handleAddToCart = async (
     e: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>,
   ) => {
@@ -26,6 +43,12 @@ export default function PetCard({ data }: props) {
     if (!token) {
       window.location.href = "/login";
     } else {
+      const cartData: AddToCartData = {
+        productVariantId: data.variationsPets[0].productVariantId,
+        category: "pets",
+        quantity: 1,
+      };
+      mutate({ data: cartData });
     }
   };
 
@@ -85,17 +108,23 @@ export default function PetCard({ data }: props) {
           <span className="pr-[5px] font-quicksand font-bold leading-[1] tracking-[-0.02em] text-secondary up-smallest-screen:text-[18px]">
             {data.variationsPets[0].price} VND
           </span>
-          <ToolTip
-            element={
-              <Button
-                size="circle_lg"
-                variant="primary"
-                startIcon={<CartIcon size={16} />}
-                onClick={handleAddToCart}
-              />
-            }
-            value="Thêm vào giỏ hàng"
-          />
+          {!isMutating ? (
+            <ToolTip
+              element={
+                <Button
+                  size="circle_lg"
+                  variant="primary"
+                  startIcon={<CartIcon size={16} />}
+                  onClick={handleAddToCart}
+                />
+              }
+              value="Thêm vào giỏ hàng"
+            />
+          ) : (
+            <div className="hover_animate inline-block cursor-pointer rounded-[25px] border-[2px] border-solid border-primary bg-primary p-[12px] text-center uppercase text-primary outline-none hover:bg-primary hover:text-white">
+              <div className="h-4 w-4 animate-spin rounded-full border-2 border-t-2 border-transparent border-t-white"></div>
+            </div>
+          )}
         </div>
       </form>
     </div>

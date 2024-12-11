@@ -20,13 +20,17 @@ export async function POST(req: NextRequest) {
     );
     const payLoad = JSON.parse(jsonPayload);
 
+    const currentTimestamp = Math.floor(Date.now() / 1000);
+    const expiresTimestamp = payLoad.exp;
+    const remainingTime = expiresTimestamp - currentTimestamp;
+
     cookies().set({
       name: CookieKey.AUTH_TOKEN,
       value: token,
       httpOnly: true,
       sameSite: "lax",
       path: "/",
-      maxAge: payLoad.exp,
+      maxAge: remainingTime,
     });
 
     return Response.json({ message: "Success" }, { status: 200 });
@@ -55,7 +59,6 @@ export async function DELETE() {
   try {
     const cookieStore = cookies();
     const token = cookieStore.get(CookieKey.AUTH_TOKEN);
-
 
     if (token) {
       cookies().delete(CookieKey.AUTH_TOKEN);

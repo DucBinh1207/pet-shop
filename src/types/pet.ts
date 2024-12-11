@@ -1,6 +1,5 @@
 type VariationPet = {
-  id: string;
-  idProduct: string;
+  productVariantId: string;
   breed: string;
   breedOrigin: boolean;
   dateOfBirth: string;
@@ -10,10 +9,10 @@ type VariationPet = {
   health: string;
   mother: string;
   price: number;
-  quantity: number ;
+  quantity: number;
   trait: string;
   type: string;
-  vaccine: number ;
+  vaccine: number;
 };
 
 export type PetType = {

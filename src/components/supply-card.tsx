@@ -9,11 +9,16 @@ import Link from "next/link";
 import ToolTip from "./common/tooltip";
 import Button from "./common/button";
 import TruncateToolTip from "./common/truncate-tooltip";
-import { ChangeEvent, useEffect, useState } from "react";
+import { ChangeEvent, MouseEvent, useEffect, useState } from "react";
 import { ColorTypes } from "@/constants/color-type";
 import ColorCheckbox from "./color-checkbox";
 import { getAuthTokenFromInternalServer } from "@/services/api/internal-auth-api";
 import { SupplyType } from "@/types/supply";
+import useMutation from "@/hooks/use-mutation";
+import { toastError } from "@/utils/toast";
+import { AddToCard } from "@/services/api/cart-api";
+import { AddToCartData } from "@/types/cart-item";
+import ToastAddToCart from "./toast-add-to-cart";
 
 type props = {
   data: SupplyType;
@@ -108,13 +113,25 @@ export default function SupplyCard({ data }: props) {
     }
   }
 
+  const { mutate, isMutating } = useMutation({
+    fetcher: AddToCard,
+    options: {
+      onSuccess: async () => {
+        ToastAddToCart();
+      },
+      onError: (error) => {
+        toastError(error.message);
+      },
+      onFinally: () => {},
+    },
+  });
+
   const colorRender = colorOptionFilter();
 
   const supply = data.variationsSupplies.find(
     (supply) =>
       size === supply.size && color.includes(supply.color as ColorTypes),
   );
-
 
   const { minPrice, maxPrice } = data.variationsSupplies.reduce(
     (num, option) => ({
@@ -123,6 +140,25 @@ export default function SupplyCard({ data }: props) {
     }),
     { minPrice: Infinity, maxPrice: -Infinity },
   );
+
+  const handleAddToCart = async (
+    e: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>,
+  ) => {
+    e.preventDefault();
+    const token = await getAuthTokenFromInternalServer();
+    if (!token) {
+      window.location.href = "/login";
+    } else {
+      if (supply) {
+        const cartData: AddToCartData = {
+          productVariantId: supply.productVariantId,
+          category: "supplies",
+          quantity: 1,
+        };
+        mutate({ data: cartData });
+      }
+    }
+  };
 
   useEffect(() => {
     if (data.variationsSupplies) {
@@ -262,25 +298,25 @@ export default function SupplyCard({ data }: props) {
               }}
             />
           ) : (
-            <ToolTip
-              element={
-                <Button
-                  type="submit"
-                  size="circle_lg"
-                  variant="primary"
-                  startIcon={<CartIcon size={16} />}
-                  onClick={async () => {
-                    const token = await getAuthTokenFromInternalServer();
-                    if (!token) {
-                      window.location.href = "/login";
-                    } else {
-                      window.location.href = "/not_found";
-                    }
-                  }}
+            <>
+              {!isMutating ? (
+                <ToolTip
+                  element={
+                    <Button
+                      size="circle_lg"
+                      variant="primary"
+                      startIcon={<CartIcon size={16} />}
+                      onClick={handleAddToCart}
+                    />
+                  }
+                  value="Thêm vào giỏ hàng"
                 />
-              }
-              value="Thêm vào giỏ hàng"
-            />
+              ) : (
+                <div className="hover_animate inline-block cursor-pointer rounded-[25px] border-[2px] border-solid border-primary bg-primary p-[12px] text-center uppercase text-primary outline-none hover:bg-primary hover:text-white">
+                  <div className="h-4 w-4 animate-spin rounded-full border-2 border-t-2 border-transparent border-t-white"></div>
+                </div>
+              )}
+            </>
           )}
         </div>
       </form>

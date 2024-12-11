@@ -1,26 +1,160 @@
 "use client";
 
 import Button from "@/components/common/button";
+import AngleIcon from "@/components/common/icons/angle-icon";
 import Input from "@/components/common/input";
-import { PaymentMethod } from "@/constants/payment-method";
+import { PaymentMethod, PaymentType } from "@/constants/payment-method";
+import useCartItems from "@/hooks/products/useCartItems";
+import { applyCoupon } from "@/services/api/cart-api";
+import useCoupon from "@/store/use-coupon";
+import { CouponType } from "@/types/coupon";
+import { shippingPrice } from "@/utils/shipping-price";
 import cn from "@/utils/style/cn";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
+import OrderItem from "./order-item";
+import { priceRender } from "@/utils/priceRender";
+import { UseFormRegister } from "react-hook-form";
+import { BillFormType } from "./bill-details";
 
-type PaymentType = (typeof PaymentMethod)[keyof typeof PaymentMethod];
+type props = {
+  register: UseFormRegister<BillFormType>;
+};
 
-export default function OrderSummary() {
+export default function OrderSummary({ register }: props) {
   const [paymentMethod, setPaymentMethod] = useState<PaymentType>(
     PaymentMethod.COD,
   );
   const [isTermChecked, setIsTermChecked] = useState(false);
-  const router = useRouter();
+  const [isCouponOpen, setIsCouponOpen] = useState(false);
+  const { cartItems } = useCartItems();
+  const {
+    coupon: couponValue,
+    setCoupon: setCouponValue,
+    clearCoupon,
+  } = useCoupon((state) => ({
+    coupon: state.coupon,
+    setCoupon: state.setCoupon,
+    clearCoupon: state.clearCoupon,
+  }));
+  const [coupon, setCoupon] = useState(couponValue?.code);
+  const [couponData, setCouponData] = useState<CouponType | undefined>(
+    couponValue,
+  );
+
+  const subTotal =
+    cartItems &&
+    cartItems?.reduce((total, item) => {
+      return total + item.price * item.quantity;
+    }, 0);
+
+  const shipping = subTotal ? shippingPrice(subTotal) : 0;
+
+  let total = subTotal && subTotal + shipping;
+
+  let discountAmount = 0;
+
+  if (couponData && total) {
+    discountAmount = (total * couponData.percent) / 100;
+    total = total - discountAmount;
+  }
+
+  function handleInputCoupon(e: ChangeEvent<HTMLInputElement>) {
+    setCoupon(e.target.value);
+  }
+
+  async function handleApplyCoupon() {
+    if (coupon) {
+      try {
+        const couponResponse = await applyCoupon(coupon);
+        if (couponResponse) {
+          setCouponData(couponResponse);
+          setCouponValue(couponResponse);
+        }
+      } catch (error) {}
+    }
+  }
+
+  function handleDeleteCoupon() {
+    clearCoupon();
+    setCouponData(undefined);
+    setCoupon("");
+  }
 
   return (
-    <div className="flex-0 m-[20px] ml-0 w-[400px] max-w-[100%] down-medium-screen:w-[339px]">
+    <div className="flex-0 m-[20px] ml-0 w-[400px] max-w-[100%] down-medium-screen:w-[339px] smallest-screen:w-full smallest-screen:max-w-full">
       <div className="rounded-[4px] border border-solid border-primary px-[35px] pb-[30px] pt-[25px] medium-screen:px-[25px] medium-screen:pb-[25px] medium-screen:pt-[20px]">
         <div className="flex flex-col">
+          <div className="relative mb-[21px] pb-[25px] after:absolute after:bottom-0 after:h-[1px] after:w-full after:bg-light_gray_color_second after:content-['']">
+            <div className="flex flex-col">
+              <div
+                className="flex cursor-pointer items-center justify-between"
+                onClick={() => {
+                  setIsCouponOpen(!isCouponOpen);
+                }}
+              >
+                <span className="text-left text-[22px] font-medium leading-[1.27] text-primary">
+                  Mã giảm giá
+                </span>
+                <AngleIcon
+                  size={13}
+                  className={cn(
+                    "transform fill-current text-primary duration-300 ease-linear",
+                    {
+                      "rotate-[180deg]": !isCouponOpen,
+                      "rotate-0": isCouponOpen,
+                    },
+                  )}
+                />
+              </div>
+
+              <div
+                className={cn(
+                  "overflow-hidden transition-max-height duration-300 ease-linear",
+                  {
+                    "max-h-[150px]": isCouponOpen,
+                    "max-h-0": !isCouponOpen,
+                  },
+                )}
+              >
+                <div className="flex gap-[10px] pt-[25px]">
+                  {couponData?.code ? (
+                    <input
+                      value={coupon}
+                      className="h-auto w-full min-w-0 rounded-[3px] border p-[9px_12px] text-[13px] font-medium leading-[16px] tracking-[0.01em]"
+                      disabled
+                    />
+                  ) : (
+                    <Input
+                      value={coupon}
+                      placeholder="Mã giảm giá"
+                      className="w-full"
+                      onChange={handleInputCoupon}
+                    />
+                  )}
+
+                  {couponData?.code ? (
+                    <Button
+                      type="button"
+                      className="whitespace-nowrap"
+                      onClick={handleDeleteCoupon}
+                    >
+                      Hủy
+                    </Button>
+                  ) : (
+                    <Button
+                      type="button"
+                      className="whitespace-nowrap"
+                      onClick={handleApplyCoupon}
+                    >
+                      Áp dụng
+                    </Button>
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
+
           <h2 className="text-[22px] font-medium leading-[1.27] text-primary">
             Đơn hàng của bạn
           </h2>
@@ -28,83 +162,11 @@ export default function OrderSummary() {
           <div className="mt-[12px]">
             <table className="w-full">
               <tbody className="w-full medium-screen:block">
-                <tr className="mb-[10px] medium-screen:block">
-                  <td className="flex flex-col pb-[12px]">
-                    <span className="w-full text-[14px] font-normal leading-[1.27] tracking-[0.02em] text-primary">
-                      Thức ăn đông lạnh cho chó
-                      <strong className="whitespace-nowrap font-normal">
-                        ×&nbsp;1
-                      </strong>
-                    </span>
-                    <ul className="font-text mt-[10px] flex gap-[10px] p-0 text-[13px] font-normal leading-[16px] tracking-[0.005em]">
-                      <li className="flex items-center whitespace-nowrap">
-                        <span className="capitalize">Cân nặng :&nbsp;</span>
-                        <span className="capitalize text-primary">5 kg</span>
-                      </li>
-
-                      <li className="flex items-center whitespace-nowrap">
-                        <span className="capitalize">Nguyên liệu :&nbsp;</span>
-                        <span className="capitalize text-primary"> Bò </span>
-                      </li>
-                    </ul>
-                  </td>
-
-                  <td className="whitespace-wrap pb-[12px] text-right text-[17px] font-bold leading-[21px] tracking-[-0.01em] text-primary medium-screen:flex medium-screen:justify-between">
-                    100.000.000 VND
-                  </td>
-                </tr>
-
-                <tr className="mb-[10px] medium-screen:block">
-                  <td className="flex flex-col pb-[12px]">
-                    <span className="w-full text-[14px] font-normal leading-[1.27] tracking-[0.02em] text-primary">
-                      Khay vệ sinh cho mèo
-                      <strong className="whitespace-nowrap font-normal">
-                        ×&nbsp;1
-                      </strong>
-                    </span>
-                    <ul className="font-text mt-[10px] flex gap-[10px] p-0 text-[13px] font-normal leading-[16px] tracking-[0.005em]">
-                      <li className="flex items-center whitespace-nowrap">
-                        <span className="capitalize">Color :&nbsp;</span>
-                        <span className="capitalize text-primary">Light</span>
-                      </li>
-
-                      <li className="flex items-center whitespace-nowrap">
-                        <span className="capitalize">Size :&nbsp;</span>
-                        <span className="capitalize text-primary"> Lớn </span>
-                      </li>
-                    </ul>
-                  </td>
-
-                  <td className="whitespace-wrap pb-[12px] text-right text-[17px] font-bold leading-[21px] tracking-[-0.01em] text-primary medium-screen:flex medium-screen:justify-between">
-                    200.000.000 VND
-                  </td>
-                </tr>
-
-                <tr className="mb-[10px] medium-screen:block">
-                  <td className="flex flex-col pb-[12px]">
-                    <span className="w-full text-[14px] font-normal leading-[1.27] tracking-[0.02em] text-primary">
-                      Thức ăn đông lạnh cho mèo
-                      <strong className="whitespace-nowrap font-normal">
-                        ×&nbsp;1
-                      </strong>
-                    </span>
-                    <ul className="font-text mt-[10px] flex gap-[10px] p-0 text-[13px] font-normal leading-[16px] tracking-[0.005em]">
-                      <li className="flex items-center whitespace-nowrap">
-                        <span className="capitalize">Cân nặng :&nbsp;</span>
-                        <span className="capitalize text-primary">10 kg</span>
-                      </li>
-
-                      <li className="flex items-center whitespace-nowrap">
-                        <span className="capitalize">Nguyên liệu :&nbsp;</span>
-                        <span className="capitalize text-primary"> Gà </span>
-                      </li>
-                    </ul>
-                  </td>
-
-                  <td className="whitespace-wrap pb-[12px] text-right text-[17px] font-bold leading-[21px] tracking-[-0.01em] text-primary medium-screen:flex medium-screen:justify-between">
-                    500.000.000 VND
-                  </td>
-                </tr>
+                {cartItems && cartItems?.map((item) => {
+                  return (
+                    <OrderItem key={item.productVariantId} product={item} />
+                  );
+                })}
               </tbody>
 
               <tfoot className="w-full medium-screen:block">
@@ -120,7 +182,7 @@ export default function OrderSummary() {
                     Tổng phụ
                   </th>
                   <td className="whitespace-wrap pb-[12px] text-right text-[17px] font-bold leading-[21px] tracking-[-0.01em] text-secondary">
-                    1.000.000.000 VND
+                    {subTotal && priceRender(subTotal)}
                   </td>
                 </tr>
 
@@ -136,7 +198,7 @@ export default function OrderSummary() {
                     Vận chuyển
                   </th>
                   <td className="leading-[21px]text-secondary whitespace-nowrap text-right text-[17px] font-bold tracking-[-0.01em] text-secondary">
-                    Miễn phí
+                    {shipping ? priceRender(shipping) + "đ" : "Miễn phí"}
                   </td>
                 </tr>
 
@@ -147,12 +209,37 @@ export default function OrderSummary() {
                   />
                 </tr>
 
+                {couponData?.code && (
+                  <>
+                    <tr>
+                      <th className="w-[50%] text-left text-[22px] font-medium leading-[1.27] text-primary">
+                        Giảm giá
+                      </th>
+                      <td className="w-[50%] whitespace-nowrap text-right text-[17px] font-bold leading-[21px] tracking-[-0.01em] text-secondary">
+                        {couponData && discountAmount}
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <th colSpan={2}>
+                        <div className="text-end italic">
+                          {"(" + couponData.percent + "% đơn hàng)"}
+                        </div>
+                      </th>
+                    </tr>
+
+                    <tr className="relative z-[1] after:absolute after:left-0 after:right-0 after:top-[50%] after:h-[1px] after:bg-light_gray_color_second after:content-['']">
+                      <td className="py-[20px]" colSpan={2} />
+                    </tr>
+                  </>
+                )}
+
                 <tr className="medium-screen:flex medium-screen:justify-between">
                   <th className="text-left text-[22px] font-medium leading-[1.27] text-primary">
                     Tổng
                   </th>
                   <td className="whitespace-wrap text-right text-[24px] font-bold leading-[30px] tracking-[-0.02em] text-secondary">
-                    1.000.000.000 VND
+                    {subTotal && total && priceRender(total) + "đ"}
                   </td>
                 </tr>
 
@@ -178,8 +265,6 @@ export default function OrderSummary() {
                   type="radio"
                   value={PaymentMethod.COD}
                   inputSize="form_controls"
-                  // checked={paymentMethod === PaymentMethod.COD}
-                  name="payment_method"
                   className={cn(
                     "relative mr-[14px] cursor-pointer appearance-none rounded-[50%] after:absolute after:left-[50%] after:top-[50%] after:block after:h-[10px] after:w-[10px] after:translate-x-[-50%] after:translate-y-[-50%] after:rounded-[50%] after:bg-primary after:content-['']",
                     {
@@ -190,6 +275,7 @@ export default function OrderSummary() {
                   onClick={() => {
                     setPaymentMethod(PaymentMethod.COD);
                   }}
+                  {...register("paymentMethod")}
                 />
                 <label
                   htmlFor="cod"
@@ -216,8 +302,6 @@ export default function OrderSummary() {
                   type="radio"
                   value={PaymentMethod.ONLINE}
                   inputSize="form_controls"
-                  // checked={paymentMethod === PaymentMethod.ONLINE}
-                  name="payment_method"
                   className={cn(
                     "relative mr-[14px] cursor-pointer appearance-none rounded-[50%] after:absolute after:left-[50%] after:top-[50%] after:block after:h-[10px] after:w-[10px] after:translate-x-[-50%] after:translate-y-[-50%] after:rounded-[50%] after:bg-primary after:content-['']",
                     {
@@ -228,6 +312,7 @@ export default function OrderSummary() {
                   onClick={() => {
                     setPaymentMethod(PaymentMethod.ONLINE);
                   }}
+                  {...register("paymentMethod")}
                 />
                 <label
                   htmlFor="online"
@@ -308,17 +393,24 @@ export default function OrderSummary() {
             </div>
           </div>
 
-          <Button
-            type="submit"
-            variant="secondary"
-            size="xsm"
-            className="mt-[37px] text-[13px] font-bold leading-[16px] tracking-wider"
-            onClick={() => {
-              router.push("/cart/order-success");
-            }}
-          >
-            Đặt hàng
-          </Button>
+          {isTermChecked ? (
+            <Button
+              type="submit"
+              variant="secondary"
+              size="xsm"
+              className="mt-[37px] text-[13px] font-bold leading-[16px] tracking-wider"
+            >
+              Đặt hàng
+            </Button>
+          ) : (
+            <button
+              className="mt-[37px] inline-block cursor-pointer rounded-[25px] border-[2px] border-solid border-primary bg-primary px-[25px] py-[15px] text-center text-[13px] font-bold uppercase leading-[16px] tracking-wider text-white opacity-30 outline-none"
+              type="submit"
+              disabled
+            >
+              Đặt hàng
+            </button>
+          )}
         </div>
       </div>
     </div>

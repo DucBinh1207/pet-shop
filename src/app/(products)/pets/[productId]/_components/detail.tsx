@@ -6,9 +6,41 @@ import { ProductContext } from "./page-content";
 import ProductMeta from "@/app/(products)/_components/product-meta";
 import PurchaseActions from "@/app/(products)/_components/purchase-actions";
 import StoreBenefit from "@/app/(products)/_components/store-benefit";
+import useMutation from "@/hooks/use-mutation";
+import { toastError, toastSuccess } from "@/utils/toast";
+import { AddToCard } from "@/services/api/cart-api";
+import { getAuthTokenFromInternalServer } from "@/services/api/internal-auth-api";
+import { CartItemType } from "@/types/cart-item";
 
 export default function Detail() {
   const product = useContext(ProductContext);
+
+  const { mutate, isMutating } = useMutation({
+    fetcher: AddToCard,
+    options: {
+      onSuccess: async () => {
+        toastSuccess("Thêm giỏ hàng thành công");
+      },
+      onError: (error) => {
+        toastError(error.message);
+      },
+      onFinally: () => {},
+    },
+  });
+
+  const handleAddToCart = async (quantity: number) => {
+    const token = await getAuthTokenFromInternalServer();
+    if (!token) {
+      window.location.href = "/login";
+    } else {
+      const cartData: CartItemType = {
+        productVariantId: product.variationsPets[0].productVariantId,
+        category: "pets",
+        quantity: quantity,
+      };
+      mutate({ data: cartData });
+    }
+  };
 
   return (
     <div className="mx-auto mb-[40px] mt-[30px] min-w-[320px] rounded-[4px] border border-solid border-light_gray_color_second bg-white large-screen:w-[1160px] small-screen:mb-[30px] small-screen:mt-[15px] small-screen:w-[calc(100%-60px)] smallest-screen:mb-[20px] smallest-screen:mt-[10px] xx-smallest-screen:w-full">
@@ -43,7 +75,10 @@ export default function Detail() {
                 </span>
               </div>
 
-              <PurchaseActions />
+              <PurchaseActions
+                isMutating={isMutating}
+                handleAddToCart={handleAddToCart}
+              />
 
               <StoreBenefit />
             </div>
