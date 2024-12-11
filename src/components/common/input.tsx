@@ -11,6 +11,7 @@ interface InputProps
       | "onBlur"
       | "type"
       | "placeholder"
+      | "disabled"
       | "id"
       | "name"
       | "value"

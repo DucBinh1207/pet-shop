@@ -1,5 +1,21 @@
 export type CartItemType = {
-  id_product_variant: string;
+  id: string;
+  idProduct: string;
+  productVariantId: string;
+  category: "pets" | "foods" | "supplies";
+  name: string;
+  quantity: number;
+  ingredient: string;
+  weight: string;
+  size: string;
+  color: string;
+  price: number;
+  image: string;
+  status: number;
+};
+
+export type AddToCartData = {
+  productVariantId: string;
   category: "pets" | "foods" | "supplies";
   quantity: number;
 };

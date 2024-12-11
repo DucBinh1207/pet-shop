@@ -52,7 +52,6 @@ export default function Sidebar() {
               <Item name="Thú cưng" path="/pets" iconName="PETS" />
               <Item name="Thức ăn" path="/foods" iconName="FOODS" />
               <Item name="Vật dụng khác" path="/supplies" iconName="SUPPLIES" />
-              <Item name="Hướng dẫn" path="/guides" iconName="GUIDES" />
 
               <li className="mt-[22px]">
                 <div className="overflow-hidden px-[50px] text-white">
