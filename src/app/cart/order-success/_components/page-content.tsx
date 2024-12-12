@@ -3,7 +3,7 @@
 import BreadCrumb from "@/components/bread-crumb";
 import Button from "@/components/common/button";
 import CartIcon from "@/components/common/icons/cart-icon";
-import useCartItems from "@/hooks/products/useCartItems";
+import useCartItems from "@/hooks/users/useCartItems";
 import { useRouter, useSearchParams } from "next/navigation";
 import OrderDetail from "./order-detail";
 

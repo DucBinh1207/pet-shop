@@ -3,7 +3,7 @@ import { toSnakeCase } from "@/utils/to-snake-case";
 import { toCamelCase } from "@/utils/to-camel-case";
 import { OrderFormType } from "@/app/cart/checkout/_components/bill-details";
 import { ResponsePayment } from "@/types/response-payment";
-import { OrderApiResponse } from "@/types/order-item";
+import { OrderApiResponse, OrderType } from "@/types/order-item";
 
 export async function CreateOrder({
   data: orderData,
@@ -40,5 +40,13 @@ export async function getOrderDetail(url: string) {
     url: url,
   });
   const data = toCamelCase<OrderApiResponse>(rawData);
+  return data;
+}
+
+export async function getOrderItems(url: string) {
+  const rawData = await get<OrderType[]>({
+    url: url,
+  });
+  const data = toCamelCase<OrderType[]>(rawData);
   return data;
 }

@@ -34,7 +34,6 @@ apiClient.interceptors.response.use(
     return response.data;
   },
   (error) => {
-
     if (error.response) {
       const status = error.response.status;
       switch (status) {
@@ -90,3 +89,39 @@ export const update = <T>({
 }): Promise<T> => apiClient.put(url, data, config);
 
 export const remove = ({ url }: { url: string }) => apiClient.delete(url);
+
+export const postFormData = <T>({
+  url,
+  data,
+  config,
+}: {
+  url: string;
+  data: FormData;
+  config?: AxiosRequestConfig;
+}): Promise<T> => {
+  return apiClient.post(url, data, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+      ...config?.headers,
+    },
+    ...config,
+  });
+};
+
+export const updateFormData = <T>({
+  url,
+  data,
+  config,
+}: {
+  url: string;
+  data: FormData;
+  config?: AxiosRequestConfig;
+}): Promise<T> => {
+  return apiClient.put(url, data, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+      ...config?.headers,
+    },
+    ...config,
+  });
+};

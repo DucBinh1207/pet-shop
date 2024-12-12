@@ -1,6 +1,4 @@
 import Button from "@/components/common/button";
-import { OrderType } from "@/types/order";
-import OrderCard from "./order-card";
 import { useShallow } from "zustand/react/shallow";
 import PenIcon from "@/components/common/icons/pen-icon";
 import { Tabs } from "@/constants/profile-tabs";
@@ -10,39 +8,39 @@ import { useRouter } from "next/navigation";
 import { TabsType } from "./page-content";
 import ToolTip from "@/components/common/tooltip";
 import useOrder from "../_shared/use-order";
+import useOrderList from "@/hooks/users/useOrderList";
+import OrderList from "./order-list";
+import { OrderType } from "@/types/order-item";
+import useUser from "@/hooks/users/useUser";
+import Loading from "@/app/loading";
 
 type props = {
   setTabActive: Dispatch<SetStateAction<TabsType>>;
 };
 
 export default function Dashboard({ setTabActive }: props) {
-  const initialOrder: OrderType = {
-    id: "",
-    product: "",
-    quantity: "",
-    name: "",
-    telephone: null,
-    total: null,
-  };
-
   const router = useRouter();
+
   const { setOrder, clearOrder } = useOrder(
     useShallow((state) => ({
       setOrder: state.setOrder,
       clearOrder: state.clearOrder,
     })),
   );
+  const { user } = useUser();
+  const { orderList, isLoading, isError } = useOrderList();
+  const orderNum = orderList ? orderList.length : 0;
 
-  // This will be the place to fetch order data
-  const orderList: OrderType[] = [initialOrder];
-  const orderNum = orderList.length;
-
-  // This is where we will pass the order data that needs to be viewed in detail
-  // and redirect the user to the orders page
-  const RedirectOrderDetail = () => {
+  const RedirectOrderDetail = (order: OrderType) => {
     setTabActive(Tabs.ORDERS);
-    setOrder(initialOrder);
+    setOrder(order);
   };
+  
+  if (isError) window.location.href = "/error";
+
+  if (isLoading) {
+    return <Loading />;
+  }
 
   return (
     <>
@@ -51,31 +49,14 @@ export default function Dashboard({ setTabActive }: props) {
           Đơn hàng gần đây
         </h2>
 
-        {/*If the number of orders is greater than 0, render the order table; otherwise, render the "browse products" button.*/}
         {orderNum > 0 ? (
           <>
-            <table className="mt-[20px] w-full xx-smallest-screen:block">
-              <thead className="w-full border-b border-solid border-light_gray_color_second xx-smallest-screen:hidden">
-                <tr className="w-full text-left text-[13px] uppercase leading-[1] tracking-[0.02em] text-text_color xx-smallest-screen:block">
-                  <th className="w-[15%] pb-[15px] font-normal">Đơn hàng</th>
-                  <th className="w-[15%] pb-[15px] font-normal">Số lượng</th>
-                  <th className="w-[35%] pb-[15px] text-center font-normal">
-                    Ngày đặt hàng
-                  </th>
-                  <th className="w-[15%] pb-[15px] font-normal">Tổng</th>
-                  <th className="w-[15%] pb-[15px] font-normal">Trạng thái</th>
-                  <th className="w-[5%] pb-[15px] font-normal">Xem</th>
-                </tr>
-              </thead>
-
-              <tbody className="w-full text-left xx-smallest-screen:block">
-                <OrderCard RedirectOrderDetail={RedirectOrderDetail} />
-
-                <OrderCard RedirectOrderDetail={RedirectOrderDetail} />
-
-                <OrderCard RedirectOrderDetail={RedirectOrderDetail} />
-              </tbody>
-            </table>
+            {orderList && (
+              <OrderList
+                RedirectOrderDetail={RedirectOrderDetail}
+                orderList={orderList.slice(orderList.length - 3)}
+              />
+            )}
 
             <div className="mt-[20px] flex justify-center">
               <Button
@@ -122,7 +103,17 @@ export default function Dashboard({ setTabActive }: props) {
           />
 
           <span className="text-[16px] leading-[1.5] tracking-[0.02em] text-text_color">
-            54 Nguyen Luong Bang, Hoa Khanh Bac, Lien Chieu, Da Nang
+            {user &&
+            user.street &&
+            user.ward &&
+            user.province &&
+            user.district ? (
+              <>
+                {user.street}, {user.ward}, {user.district}, {user.province}
+              </>
+            ) : (
+              <>Chưa có thông tin địa chỉ</>
+            )}
           </span>
 
           <ToolTip
@@ -164,28 +155,36 @@ export default function Dashboard({ setTabActive }: props) {
                 <th className="min-w-[50%] py-[14px] font-medium text-primary">
                   Tên :
                 </th>
-                <td className="min-w-[50%] py-[14px]">Tran Duc Binh</td>
+                <td className="min-w-[50%] py-[14px]">
+                  {user && user.name ? user.name : "Chưa có"}
+                </td>
               </tr>
 
               <tr className="flex w-full border-b border-solid border-light_gray_color_second text-left xxx-smallest-screen:block">
                 <th className="min-w-[50%] py-[14px] font-medium text-primary">
                   Số điện thoại :
                 </th>
-                <td className="min-w-[50%] py-[14px]">0123 987 456</td>
+                <td className="min-w-[50%] py-[14px]">
+                  {user && user.telephoneNumber
+                    ? user.telephoneNumber
+                    : "Chưa có"}
+                </td>
               </tr>
 
               <tr className="flex w-full border-b border-solid border-light_gray_color_second text-left xxx-smallest-screen:block">
                 <th className="min-w-[50%] py-[14px] font-medium text-primary">
                   Email :
                 </th>
-                <td className="min-w-[50%] py-[14px]">example@gmail.com</td>
+                <td className="min-w-[50%] py-[14px]">{user && user.email}</td>
               </tr>
 
               <tr className="flex w-full border-b border-solid border-light_gray_color_second text-left xxx-smallest-screen:block">
                 <th className="min-w-[50%] py-[14px] font-medium text-primary">
                   Quốc tịch :
                 </th>
-                <td className="min-w-[50%] py-[14px]">Viet Nam</td>
+                <td className="min-w-[50%] py-[14px]">
+                  {user && user.nationality ? user.nationality : "Chưa có"}
+                </td>
               </tr>
             </tbody>
           </table>

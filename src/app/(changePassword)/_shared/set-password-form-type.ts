@@ -2,10 +2,10 @@ import { z } from "zod";
 
 export const schema = z
   .object({
-    newPassword: z.string().min(8, "Password must be at least 3 characters"),
+    newPassword: z.string().min(8, "Password must be at least 8 characters"),
     confirmPassword: z
       .string()
-      .min(8, "Password must be at least 3 characters"),
+      .min(8, "Password must be at least 8 characters"),
   })
   .refine((data) => data.newPassword === data.confirmPassword, {
     message: "Passwords don't match",

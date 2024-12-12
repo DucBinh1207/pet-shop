@@ -1,20 +1,24 @@
 import Button from "@/components/common/button";
 import EyeIcon from "@/components/common/icons/eye-icon";
 import ToolTip from "@/components/common/tooltip";
+import { OrderType } from "@/types/order-item";
+import convertDate from "@/utils/convert-date";
+import { priceRender } from "@/utils/priceRender";
 
 type props = {
-  RedirectOrderDetail: () => void;
+  RedirectOrderDetail: (order: OrderType) => void;
+  order: OrderType;
 };
 
-export default function OrderCard({ RedirectOrderDetail }: props) {
+export default function OrderCard({ RedirectOrderDetail, order }: props) {
   return (
     <tr className="mb-[10px] xx-smallest-screen:block">
       <td className="py-[7px] pr-[15px] xx-smallest-screen:flex xx-smallest-screen:justify-center">
         <div
-          onClick={RedirectOrderDetail}
+          onClick={() => RedirectOrderDetail(order)}
           className="cursor-pointer font-bold text-primary hover:text-secondary"
         >
-          #PH1244721
+          {order.id}
         </div>
       </td>
 
@@ -22,13 +26,14 @@ export default function OrderCard({ RedirectOrderDetail }: props) {
         3 sản phẩm
       </td>
       <td className="py-[7px] pr-[15px] text-center xx-smallest-screen:flex xx-smallest-screen:justify-center">
-        Chủ nhật, ngày 21, tháng 4 năm 2024
+        {convertDate(order.dateCreated)}
+        {/* Chủ nhật, ngày 21, tháng 4 năm 2024 */}
       </td>
       <td className="py-[7px] pr-[15px] xx-smallest-screen:flex xx-smallest-screen:justify-center">
-        10.000.000 VND
+        {priceRender(Number(order.totalPrice)) + "đ"}
       </td>
       <td className="py-[7px] pr-[15px] xx-smallest-screen:flex xx-smallest-screen:justify-center">
-        Chờ thanh toán
+        {order.status}
       </td>
       <td className="py-[7px] text-center xx-smallest-screen:flex xx-smallest-screen:justify-center">
         <ToolTip
@@ -37,7 +42,7 @@ export default function OrderCard({ RedirectOrderDetail }: props) {
             <Button
               size="none"
               variant="none"
-              onClick={RedirectOrderDetail}
+              onClick={() => RedirectOrderDetail(order)}
               startIcon={
                 <EyeIcon
                   size={18}
