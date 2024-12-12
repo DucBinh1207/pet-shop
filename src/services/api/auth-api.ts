@@ -1,7 +1,6 @@
-import { get, post, update } from "../axios";
-import { post as postPublic } from "../axiosPublic";
+import { post, update } from "../axios";
+import { post as postPublic } from "../axios-public";
 import { ResponseAuthType } from "@/types/response-auth";
-import { UserType } from "@/types/user";
 import { LoginFormType } from "@/app/login/_components/login-form";
 import { RegisterFormType } from "@/app/register/_components/register-form";
 import { VerifyTokenType } from "@/app/(changePassword)/_shared/verify-token-type";
@@ -44,12 +43,6 @@ export async function ForgotPasswordApi({
   return await postPublic<ResponseAuthType>({
     url: "/auth/forgot-password",
     data,
-  });
-}
-
-export async function GetUser() {
-  return await get<UserType>({
-    url: "/auth/user",
   });
 }
 

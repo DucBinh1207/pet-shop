@@ -2,8 +2,8 @@
 
 import Loading from "@/app/loading";
 import CartIcon from "@/components/common/icons/cart-icon";
-import useOrderDetail from "@/hooks/products/userOrderDetail";
-import formatDate from "@/utils/convert-date";
+import useOrderDetail from "@/hooks/users/userOrderDetail";
+import convertDate from "@/utils/convert-date";
 import { useSearchParams } from "next/navigation";
 import SuccessOrderItem from "./success-order-item";
 
@@ -47,7 +47,7 @@ export default function OrderDetail() {
                 Ngày :
               </span>
               <span className="mt-[20px] block pr-[15px] text-[15px] tracking-[0.01em] text-primary">
-                {order && formatDate(order?.dateCreated)}
+                {order && convertDate(order?.dateCreated)}
               </span>
             </li>
 
@@ -169,7 +169,11 @@ export default function OrderDetail() {
 
             <div>
               <p>
-                <i className="font-bold">Ghi chú</i> : {order?.note}
+                {order && order.note && (
+                  <>
+                    <i className="font-bold">Ghi chú</i> : {order.note}
+                  </>
+                )}
               </p>
             </div>
           </div>

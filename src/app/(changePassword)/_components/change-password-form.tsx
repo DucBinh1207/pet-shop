@@ -117,6 +117,7 @@ export default function ChangePasswordForm({ title }: props) {
                     </label>
                     <FormInput
                       id="new_password"
+                      type="password"
                       {...register("newPassword")}
                       error={errors.newPassword?.message}
                     />
@@ -130,6 +131,7 @@ export default function ChangePasswordForm({ title }: props) {
                     </label>
                     <FormInput
                       id="confirm_password"
+                      type="password"
                       {...register("confirmPassword")}
                       error={errors.confirmPassword?.message}
                     />

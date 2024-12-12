@@ -1,17 +1,35 @@
-import Link from "next/link";
+import Loading from "@/app/loading";
+import useOrderDetail from "@/hooks/users/userOrderDetail";
+import { OrderType } from "@/types/order-item";
+import convertDate from "@/utils/convert-date";
+import OrderProduct from "./order-product";
+type props = {
+  order: OrderType;
+};
 
-export default function OrderDetail() {
+export default function OrderDetail({ order: orderData }: props) {
+  const orderId = orderData.id;
+
+  const { order, isLoading, isError } = useOrderDetail({ orderId });
+
+  if (isError) window.location.href = "/error";
+
+  if (isLoading) {
+    return <Loading />;
+  }
+
   return (
     <div className="flex flex-col">
       <h3 className="mb-[10px]">
-        Đơn hàng #
-        <span className="font-bold uppercase text-black">PH1244721</span>
+        Đơn hàng
+        <span className="font-bold uppercase text-black"> {order?.id} </span>
         &nbsp;được đặt vào&nbsp;
         <span className="font-bold capitalize text-black">
-          Chủ nhật, ngày 21, tháng 4 năm 2024
+          {order && convertDate(order?.dateCreated)}
         </span>
         &nbsp;và đang&nbsp;
-        <span className="font-bold capitalize text-black">chờ thanh toán</span>.
+        <span className="font-bold capitalize text-black">{order?.status}</span>
+        .
       </h3>
 
       <div className="mb-[45px] mt-[30px] flex flex-col">
@@ -32,49 +50,13 @@ export default function OrderDetail() {
           </thead>
 
           <tbody>
-            <tr className="xxx-smallest-screen:block">
-              <td className="w-[70%] pb-[6px] pt-[15px] text-left text-[13px] font-normal leading-[1]">
-                <div className="flex flex-col">
-                  <div className="text-[14px] leading-[1.27] text-primary">
-                    <Link href="/pets/{id}" className="hover:text-secondary">
-                      Husky
-                    </Link>
-                    <span> ×&nbsp;3 </span>
-                  </div>
-                </div>
-              </td>
-
-              <td className="pb-[6px] pt-[15px] text-right font-quicksand text-[17px] font-bold leading-[1] tracking-[0.01em] text-primary">
-                <span>15.000.000</span>&nbsp;VND
-              </td>
-            </tr>
-
-            <tr className="xxx-smallest-screen:block">
-              <td className="w-[70%] border-b border-solid border-light_gray_color_second pb-[15px] pt-[6px] text-left text-[13px] font-normal leading-[1]">
-                <div className="flex flex-col">
-                  <div className="text-[14px] leading-[1.27] text-primary">
-                    <Link href="/pets/{id}" className="hover:text-secondary">
-                      Thức ăn cho chó
-                    </Link>
-                    <span> ×&nbsp;2 </span>
-                  </div>
-                  <ul className="mt-[5px] flex gap-[10px]">
-                    <li>
-                      <span className="capitalize">Cân nặng : </span>
-                      <span className="text-primary"> 5kg </span>
-                    </li>
-                    <li>
-                      <span className="capitalize">Nguyên liệu : </span>
-                      <span className="text-primary"> beef </span>
-                    </li>
-                  </ul>
-                </div>
-              </td>
-
-              <td className="border-b border-solid border-light_gray_color_second pb-[15px] pt-[6px] text-right font-quicksand text-[17px] font-bold leading-[1] tracking-[0.01em] text-primary">
-                <span>500.000</span>&nbsp;VND
-              </td>
-            </tr>
+            {order?.orderItems && (
+              <>
+                {order.orderItems.map((orderItem, id) => {
+                  return <OrderProduct key={id} product={orderItem} />;
+                })}
+              </>
+            )}
           </tbody>
 
           <tfoot>
@@ -83,7 +65,7 @@ export default function OrderDetail() {
                 Tổng phụ :
               </th>
               <td className="border-b border-solid border-light_gray_color_second py-[15px] text-right text-[17px] font-bold leading-[1] tracking-[0.01em] text-primary">
-                <span>15.500.000</span> vnd
+                <span>{order?.subtotalPrice}đ</span>
               </td>
             </tr>
 
@@ -92,7 +74,7 @@ export default function OrderDetail() {
                 Vận chuyện :
               </th>
               <td className="border-b border-solid border-light_gray_color_second py-[15px] text-right text-[17px] font-bold leading-[1] tracking-[0.01em] text-primary">
-                <span>50.000</span> vnd
+                <span>{order?.shippingPrice}đ</span>
               </td>
             </tr>
 
@@ -101,7 +83,7 @@ export default function OrderDetail() {
                 Phương thức thanh toán :
               </th>
               <td className="border-b border-solid border-light_gray_color_second py-[15px] text-right text-[15px] font-normal leading-[1.5] tracking-[0.01em] text-primary">
-                Chuyển khoản online
+                {order?.paymentMethod}
               </td>
             </tr>
 
@@ -110,7 +92,7 @@ export default function OrderDetail() {
                 Tổng :
               </th>
               <td className="border-b border-solid border-light_gray_color_second py-[15px] text-right font-quicksand text-[24px] font-bold leading-[23px] tracking-[-0.02em] text-secondary">
-                <span>15.550.000</span> VND
+                <span> {order?.totalPrice}đ</span>
               </td>
             </tr>
           </tfoot>
@@ -123,10 +105,9 @@ export default function OrderDetail() {
             Chi tiết hóa đơn
           </h2>
           <ul className="flex flex-col">
-            <li>Tran Duc Binh</li>
-            <li>0123 987 456</li>
-            <li>example@gmail.com</li>
-            <li>Viet nam</li>
+            <li>{order?.name}</li>
+            <li>{order?.telephoneNumber}</li>
+            <li>{order?.email}</li>
           </ul>
         </div>
 
@@ -135,18 +116,21 @@ export default function OrderDetail() {
             Địa chỉ
           </h2>
           <ul className="flex flex-col">
-            <li>Da Nang</li>
-            <li>Lien Chieu</li>
-            <li>Hoa Khanh Bac</li>
-            <li>54 Nguyen Luong Bang</li>
+            <li>{order?.province}</li>
+            <li>{order?.district}</li>
+            <li>{order?.ward}</li>
+            <li>{order?.street}</li>
           </ul>
         </div>
       </div>
 
       <div>
         <p>
-          <i className="font-bold">Ghi chú</i> : Đồ dễ vỡ shipper cẩn thận giúp em,
-          nếu không liên lạc được thì gọi cho số 0555666777
+          {order && order.note && (
+            <>
+              <i className="font-bold">Ghi chú</i> : {order.note}
+            </>
+          )}
         </p>
       </div>
     </div>

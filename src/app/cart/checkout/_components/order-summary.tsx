@@ -4,7 +4,7 @@ import Button from "@/components/common/button";
 import AngleIcon from "@/components/common/icons/angle-icon";
 import Input from "@/components/common/input";
 import { PaymentMethod, PaymentType } from "@/constants/payment-method";
-import useCartItems from "@/hooks/products/useCartItems";
+import useCartItems from "@/hooks/users/useCartItems";
 import { applyCoupon } from "@/services/api/cart-api";
 import useCoupon from "@/store/use-coupon";
 import { CouponType } from "@/types/coupon";
@@ -162,11 +162,12 @@ export default function OrderSummary({ register }: props) {
           <div className="mt-[12px]">
             <table className="w-full">
               <tbody className="w-full medium-screen:block">
-                {cartItems && cartItems?.map((item) => {
-                  return (
-                    <OrderItem key={item.productVariantId} product={item} />
-                  );
-                })}
+                {cartItems &&
+                  cartItems?.map((item) => {
+                    return (
+                      <OrderItem key={item.productVariantId} product={item} />
+                    );
+                  })}
               </tbody>
 
               <tfoot className="w-full medium-screen:block">

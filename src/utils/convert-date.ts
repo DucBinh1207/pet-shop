@@ -1,4 +1,4 @@
-export default function formatDate(dateString: string) {
+export default function convertDate(dateString: string) {
   const date = new Date(dateString);
 
   const dayOfWeek = new Intl.DateTimeFormat("vi-VN", {

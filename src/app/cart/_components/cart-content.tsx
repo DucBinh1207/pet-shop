@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import CheckoutForm from "./checkout-form";
 import Button from "@/components/common/button";
 import ListItem from "./list-item";
-import useCartItems from "@/hooks/products/useCartItems";
+import useCartItems from "@/hooks/users/useCartItems";
 import CartItemSkeleton from "./cart-item-skeleton";
 import { useEffect, useState } from "react";
 
@@ -175,15 +175,9 @@ export default function CartContent() {
         </div>
 
         {cartItems ? (
-          <CheckoutForm
-            cartItems={cartItems}
-            isMutating={isMutating}
-          />
+          <CheckoutForm cartItems={cartItems} isMutating={isMutating} />
         ) : (
-          <CheckoutForm
-            cartItems={listItems}
-            isMutating={isMutating}
-          />
+          <CheckoutForm cartItems={listItems} isMutating={isMutating} />
         )}
       </div>
     </div>

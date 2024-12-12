@@ -1,4 +1,4 @@
-import { get } from "../axiosPublic";
+import { get } from "../axios-public";
 import { toCamelCase } from "@/utils/to-camel-case";
 import { PetResponse, PetType } from "@/types/pet";
 import { FoodResponse, FoodType } from "@/types/food";

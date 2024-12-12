@@ -11,7 +11,7 @@ import { CreateOrder, Payment } from "@/services/api/order-api";
 import { PaymentMethod } from "@/constants/payment-method";
 import useCoupon from "@/store/use-coupon";
 import { shippingPrice } from "@/utils/shipping-price";
-import useCartItems from "@/hooks/products/useCartItems";
+import useCartItems from "@/hooks/users/useCartItems";
 import CartIcon from "@/components/common/icons/cart-icon";
 import Button from "@/components/common/button";
 import { useRouter } from "next/navigation";

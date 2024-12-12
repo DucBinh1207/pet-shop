@@ -66,3 +66,4 @@ export const update = <T>({
 }): Promise<T> => apiClient.put(url, data, config);
 
 export const remove = ({ url }: { url: string }) => apiClient.delete(url);
+

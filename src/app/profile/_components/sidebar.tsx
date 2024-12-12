@@ -1,7 +1,6 @@
 import LogOutIcon from "@/components/common/icons/log-out-icon";
 import { Tabs } from "@/constants/profile-tabs";
 import cn from "@/utils/style/cn";
-import Image from "next/image";
 import { Dispatch, SetStateAction } from "react";
 import { useShallow } from "zustand/react/shallow";
 import { TabsType } from "./page-content";
@@ -10,6 +9,7 @@ import { LogOut } from "@/services/api/auth-api";
 import { deleteAuthTokenFromInternalServer } from "@/services/api/internal-auth-api";
 import useMutation from "@/hooks/use-mutation";
 import { toastError } from "@/utils/toast";
+import Avatar from "./avatar";
 
 type props = {
   tabActive: TabsType;
@@ -28,7 +28,7 @@ export default function Sidebar({ tabActive, setTabActive }: props) {
     options: {
       onSuccess: async () => {
         await deleteAuthTokenFromInternalServer();
-        window.location.href = "/";
+        window.location.href = "/login";
       },
       onError: (error) => {
         toastError(error.message);
@@ -43,16 +43,7 @@ export default function Sidebar({ tabActive, setTabActive }: props) {
 
   return (
     <div className="flex basis-[260px] flex-col border-r border-solid border-light_gray_color_second p-[40px] x-small-screen:border-b x-small-screen:border-r-0">
-      <div className="mb-[25px] flex items-center gap-[20px] text-start x-small-screen:flex-col">
-        <div className="relative h-[70px] w-[70px] overflow-clip object-cover">
-          <Image src="/assets/images/avatar.jpg" fill alt="avatar" />
-        </div>
-
-        <div className="flex flex-col text-[14px] leading-[1.5] tracking-[0.02] x-small-screen:flex-row">
-          <span className="text-text_color">Xin chào,&nbsp;</span>
-          <span className="font-medium text-primary">Tran Binh</span>
-        </div>
-      </div>
+      <Avatar />
 
       <div className="h-full w-full flex-1">
         <ul className="flex flex-col gap-[25px] text-[14px] font-medium uppercase leading-[1] tracking-[0.025em] text-primary">

@@ -1,4 +1,4 @@
-import { OrderType } from "@/types/order";
+import { OrderType } from "@/types/order-item";
 import { create } from "zustand";
 
 type OrderStore = {
@@ -10,11 +10,22 @@ type OrderStore = {
 
 const defaultOrder: OrderType = {
   id: "",
-  product: "",
-  quantity: "",
+  dateCreated: "",
+  status: 0,
+  subtotalPrice: "",
+  shippingPrice: "",
+  totalPrice: "",
+  paymentMethod: "",
+  note: "",
   name: "",
-  telephone: 0,
-  total: 0,
+  telephoneNumber: "",
+  email: "",
+  province: "",
+  district: "",
+  ward: "",
+  street: "",
+  voucherCode: "",
+  orderItems: [],
 };
 
 const useOrder = create<OrderStore>((set) => ({
