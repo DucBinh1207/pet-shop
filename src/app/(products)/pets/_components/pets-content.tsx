@@ -4,26 +4,34 @@ import { PriceRange } from "@/constants/price-range";
 import { useState } from "react";
 import ReactSlider from "react-slider";
 import PetsCategory from "./pets-category";
-import { CategoryType, CategoryTypes } from "@/constants/category-type";
+import { CategoryTypes } from "@/constants/category-type";
 import CancelIcon from "@/components/common/icons/cancel-icon";
-import { SortType, SortTypes } from "@/constants/sort-type";
+import { SortTypes } from "@/constants/sort-type";
 import AngleIcon from "@/components/common/icons/angle-icon";
 import cn from "@/utils/style/cn";
 import Pagination from "../../_components/pagination";
 import Sort from "../../_components/sort";
 import ListPets from "./list-pets";
+import usePetsOption from "@/store/use-pets-option";
+import { useShallow } from "zustand/react/shallow";
 
 export default function PetsContent() {
+  const { petsOption } = usePetsOption(
+    useShallow((state) => ({
+      petsOption: state.petsOption,
+    })),
+  );
+
   const [isFilterOpen, setIsFilterOpen] = useState(false);
-  const [category, setCategory] = useState<CategoryTypes>(CategoryType.ALL);
+  const [category, setCategory] = useState<CategoryTypes>(petsOption.category);
   const [price, setPrice] = useState([PriceRange.MIN, PriceRange.MAX]);
   const [priceParams, setPriceParams] = useState([
     PriceRange.MIN,
     PriceRange.MAX,
   ]);
   const [resultNum, setResultNum] = useState(0);
-  const [sort, setSort] = useState<SortTypes>(SortType.DEFAULT);
-  const [paging, setPaging] = useState<number>(1);
+  const [sort, setSort] = useState<SortTypes>(petsOption.sort);
+  const [paging, setPaging] = useState<number>(petsOption.paging);
   const [totalPages, setTotalPages] = useState<number>(1);
 
   function handleCategoryFilter(categoryCurrent: CategoryTypes) {

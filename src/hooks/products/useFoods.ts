@@ -8,6 +8,7 @@ type props = {
   price: (0 | 100000000)[];
   ingredient?: string[];
   weight: number;
+  limit?: number;
 };
 
 export default function useFoods({
@@ -17,6 +18,7 @@ export default function useFoods({
   price,
   ingredient,
   weight,
+  limit,
 }: props) {
   const params = new URLSearchParams();
 
@@ -43,6 +45,9 @@ export default function useFoods({
     params.append("weight", weight.toString());
   }
 
+  if (limit) {
+    params.append("limit", limit.toString());
+  }
 
   const { data, error, isLoading } = useSWR(
     "/products/foods" + "?" + params.toString(),

@@ -6,9 +6,16 @@ type props = {
   sort?: string;
   paging?: number;
   price: (0 | 100000000)[];
+  limit?: number;
 };
 
-export default function usePets({ category, sort, paging, price }: props) {
+export default function usePets({
+  category,
+  sort,
+  paging,
+  price,
+  limit,
+}: props) {
   const params = new URLSearchParams();
 
   if (category) params.append("category", category);
@@ -20,6 +27,10 @@ export default function usePets({ category, sort, paging, price }: props) {
   if (price) {
     params.append("minPrice", price[0].toString());
     params.append("maxPrice", price[1].toString());
+  }
+
+  if (limit) {
+    params.append("limit", limit.toString());
   }
 
   const { data, error, isLoading } = useSWR(

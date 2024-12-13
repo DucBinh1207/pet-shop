@@ -1,7 +1,7 @@
 export const CategoryType = {
   ALL: "all",
-  DOG: "dogs",
-  CAT: "cats",
+  DOG: "chó",
+  CAT: "mèo",
 } as const;
 
 export type CategoryTypes = (typeof CategoryType)[keyof typeof CategoryType];
