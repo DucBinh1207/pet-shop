@@ -1,12 +1,27 @@
 import StarIcon from "@/components/common/icons/star-icon";
+import convertDate from "@/utils/convert-date";
 import Image from "next/image";
 
-export default function Comment({ rating }: { rating: number }) {
+type props = {
+  name: string;
+  avatar: string;
+  rating: number;
+  content: string;
+  time: string;
+};
+
+export default function Comment({
+  name,
+  avatar,
+  rating,
+  content,
+  time,
+}: props) {
   return (
     <li className="mb-[10px]">
       <div className="relative pb-[35px] pl-[80px]">
         <Image
-          src="/assets/images/avatar.jpg"
+          src={avatar}
           width={60}
           height={60}
           alt="avatar"
@@ -33,20 +48,15 @@ export default function Comment({ rating }: { rating: number }) {
             </span>
 
             <span className="text-[13px] font-bold leading-[16px] tracking-[0.015em] text-primary">
-              Tran Duc Binh
+              {name}
             </span>
 
             <span className="text-[12px] font-medium leading-[15px] tracking-[0.02em] text-text_color opacity-70">
-              07/12/2023
+              {convertDate(time)}
             </span>
           </div>
           <div className="text-[14px] font-medium leading-[1.5] tracking-[0.02em] text-text_color">
-            <p>
-              Tôi vừa mua một chú chó ở cửa hàng này và thật sự rất hài lòng!
-              Chú chó khỏe mạnh và rất đáng yêu. Dịch vụ chăm sóc khách hàng
-              cũng tuyệt vời. Cảm ơn cửa hàng đã mang đến cho tôi một người bạn
-              tuyệt vời!
-            </p>
+            <p>{content}</p>
           </div>
         </div>
       </div>
