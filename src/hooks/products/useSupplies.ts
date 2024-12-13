@@ -8,6 +8,7 @@ type props = {
   price: (0 | 100000000)[];
   color?: string[];
   size: string[];
+  limit?: number;
 };
 
 export default function useSupplies({
@@ -17,6 +18,7 @@ export default function useSupplies({
   price,
   color,
   size,
+  limit,
 }: props) {
   const params = new URLSearchParams();
 
@@ -30,6 +32,10 @@ export default function useSupplies({
     params.append("minPrice", price[0].toString());
     params.append("maxPrice", price[1].toString());
   }
+
+   if (limit) {
+     params.append("limit", limit.toString());
+   }
 
   const { data, error, isLoading } = useSWR(
     "/products/supplies" + "?" + params.toString(),

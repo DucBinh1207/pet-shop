@@ -59,10 +59,10 @@ export default function CategoryHighlight() {
     <div className="mx-auto mb-[25px] mt-[35px] max-w-[1920px]">
       <div className="flex overflow-hidden px-[50px]">
         <div className="flex w-full overflow-hidden">
-          <Item order={items[0]} />
-          <Item order={items[1]} />
-          <Item order={items[2]} />
-          <Item order={items[3]} />
+          <Item order={items[0]} type="toys" />
+          <Item order={items[1]} type="foods" />
+          <Item order={items[2]} type="cage" />
+          <Item order={items[3]} type="clothes" />
         </div>
       </div>
     </div>

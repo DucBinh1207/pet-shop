@@ -6,11 +6,10 @@ import { useEffect, useState } from "react";
 import ReactSlider from "react-slider";
 import SizeCheckbox from "./size-checkbox";
 import CancelIcon from "@/components/common/icons/cancel-icon";
-import { SortType, SortTypes } from "@/constants/sort-type";
+import {  SortTypes } from "@/constants/sort-type";
 import AngleIcon from "@/components/common/icons/angle-icon";
 import cn from "@/utils/style/cn";
 import {
-  SuppliesCategoryType,
   SuppliesCategoryTypes,
 } from "@/constants/supplies-category-type";
 import SuppliesCategory from "./supplies-category";
@@ -19,31 +18,32 @@ import { ColorType, ColorTypes } from "@/constants/color-type";
 import Pagination from "../../_components/pagination";
 import Sort from "../../_components/sort";
 import ListSupplies from "./list-supplies";
+import useSuppliesOption from "@/store/use-supplies-option";
+import { useShallow } from "zustand/react/shallow";
 
 export default function SuppliesContent() {
+  const { suppliesOption } = useSuppliesOption(
+    useShallow((state) => ({
+      suppliesOption: state.suppliesOption,
+    })),
+  );
+
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [category, setCategory] = useState<SuppliesCategoryTypes>(
-    SuppliesCategoryType.ALL,
+    suppliesOption.category,
   );
-  const [price, setPrice] = useState([PriceRange.MIN, PriceRange.MAX]);
+  const [price, setPrice] = useState(suppliesOption.price);
   const [priceParams, setPriceParams] = useState([
     PriceRange.MIN,
     PriceRange.MAX,
   ]);
 
   const [resultNum, setResultNum] = useState(0);
-  const [size, setSize] = useState<SizeTypes[]>([
-    SizeType.SMALL,
-    SizeType.MEDIUM,
-    SizeType.BIG,
-  ]);
-  const [color, setColor] = useState<ColorTypes[]>([
-    ColorType.LIGHT,
-    ColorType.DARK,
-  ]);
+  const [size, setSize] = useState<SizeTypes[]>(suppliesOption.size);
+  const [color, setColor] = useState<ColorTypes[]>(suppliesOption.color);
 
-  const [sort, setSort] = useState<SortTypes>(SortType.DEFAULT);
-  const [paging, setPaging] = useState<number>(1);
+  const [sort, setSort] = useState<SortTypes>(suppliesOption.sort);
+  const [paging, setPaging] = useState<number>(suppliesOption.paging);
   const [totalPages, setTotalPages] = useState<number>(1);
 
   function handleCategoryFilter(categoryCurrent: SuppliesCategoryTypes) {

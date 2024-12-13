@@ -6,38 +6,42 @@ import { WeightType, WeightTypes } from "@/constants/weight-type";
 import { useEffect, useState } from "react";
 import ReactSlider from "react-slider";
 import CancelIcon from "@/components/common/icons/cancel-icon";
-import { SortType, SortTypes } from "@/constants/sort-type";
+import { SortTypes } from "@/constants/sort-type";
 import AngleIcon from "@/components/common/icons/angle-icon";
 import cn from "@/utils/style/cn";
 import FoodsCategory from "./foods-category";
-import {
-  FoodsCategoryType,
-  FoodsCategoryTypes,
-} from "@/constants/foods-category-type";
+import { FoodsCategoryTypes } from "@/constants/foods-category-type";
 import IngredientCheckbox from "@/components/ingredient-checkbox";
 import Pagination from "../../_components/pagination";
 import Sort from "../../_components/sort";
 import ListFoods from "./list-foods";
+import useFoodsOption from "@/store/use-foods-option";
+import { useShallow } from "zustand/react/shallow";
 
 export default function FoodsContent() {
+  const { foodsOption } = useFoodsOption(
+    useShallow((state) => ({
+      foodsOption: state.foodsOption,
+    })),
+  );
+
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [category, setCategory] = useState<FoodsCategoryTypes>(
-    FoodsCategoryType.ALL,
+    foodsOption.category,
   );
-  const [price, setPrice] = useState([PriceRange.MIN, PriceRange.MAX]);
+  const [price, setPrice] = useState(foodsOption.price);
   const [priceParams, setPriceParams] = useState([
     PriceRange.MIN,
     PriceRange.MAX,
   ]);
   const [resultNum, setResultNum] = useState(0);
 
-  const [ingredient, setIngredient] = useState<IngredientTypes[]>([
-    IngredientType.BEEF,
-    IngredientType.CHICKEN,
-  ]);
-  const [weight, setWeight] = useState<WeightTypes>(WeightType.FIVE);
-  const [sort, setSort] = useState<SortTypes>(SortType.DEFAULT);
-  const [paging, setPaging] = useState<number>(1);
+  const [ingredient, setIngredient] = useState<IngredientTypes[]>(
+    foodsOption.ingredient,
+  );
+  const [weight, setWeight] = useState<WeightTypes>(foodsOption.weight);
+  const [sort, setSort] = useState<SortTypes>(foodsOption.sort);
+  const [paging, setPaging] = useState<number>(foodsOption.paging);
   const [totalPages, setTotalPages] = useState<number>(1);
 
   function handleCategoryFilter(categoryCurrent: FoodsCategoryTypes) {
