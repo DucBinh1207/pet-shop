@@ -12,7 +12,7 @@ import { usePathname } from "next/navigation";
 type props = {
   name: string;
   path: string;
-  iconName: "SHOP" | "PETS" | "FOODS" | "SUPPLIES" | "GUIDES";
+  iconName: "SHOP" | "PETS" | "FOODS" | "SUPPLIES";
 };
 
 const IconsMap = {
@@ -20,7 +20,6 @@ const IconsMap = {
   PETS: PetIcon,
   FOODS: FoodIcon,
   SUPPLIES: SupplyIcon,
-  GUIDES: GuideIcon,
 };
 
 export default function Nav({ name, path, iconName }: props) {
