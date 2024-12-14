@@ -11,7 +11,7 @@ import { usePathname } from "next/navigation";
 type props = {
   name: string;
   path: string;
-  iconName: "SHOP" | "PETS" | "FOODS" | "SUPPLIES" | "GUIDES";
+  iconName: "SHOP" | "PETS" | "FOODS" | "SUPPLIES";
 };
 
 const IconsMap = {
@@ -19,7 +19,6 @@ const IconsMap = {
   PETS: PetIcon,
   FOODS: FoodIcon,
   SUPPLIES: SupplyIcon,
-  GUIDES: GuideIcon,
 };
 
 export default function Item({ name, path, iconName }: props) {
@@ -35,10 +34,13 @@ export default function Item({ name, path, iconName }: props) {
       <button onClick={closeSidebar} className="w-full">
         <Link
           href={path}
-          className={cn("group relative uppercase flex hover:!text-text_color_fourth items-center", {
-            "after:absolute after:right-[30px] after:top-0 after:h-[20px] after:w-[20px] after:bg-arrow_img after:bg-no-repeat after:content-['']":
-              pathName === path,
-          })}
+          className={cn(
+            "group relative flex items-center uppercase hover:!text-text_color_fourth",
+            {
+              "after:absolute after:right-[30px] after:top-0 after:h-[20px] after:w-[20px] after:bg-arrow_img after:bg-no-repeat after:content-['']":
+                pathName === path,
+            },
+          )}
         >
           <Icon
             className={cn(

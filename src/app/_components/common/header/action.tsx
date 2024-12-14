@@ -1,15 +1,13 @@
-import SearchIcon from "@/components/common/icons/search-icon";
 import UserIcon from "@/components/common/icons/user-icon";
 import CartIcon from "@/components/common/icons/cart-icon";
 import Link from "next/link";
 
 type props = {
-  iconName: "SEARCH" | "USER" | "CART";
+  iconName: "USER" | "CART";
   href: string;
 };
 
 const IconsMap = {
-  SEARCH: SearchIcon,
   USER: UserIcon,
   CART: CartIcon,
 };

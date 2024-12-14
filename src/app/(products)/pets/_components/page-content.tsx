@@ -4,7 +4,7 @@ import PetsContent from "./pets-content";
 export default function PageContent() {
   return (
     <>
-      <BreadCrumb pathLink={["pets"]} pathName={["Pets"]} />
+      <BreadCrumb pathLink={["pets"]} pathName={["Thú cưng"]} />
       <PetsContent />
     </>
   );

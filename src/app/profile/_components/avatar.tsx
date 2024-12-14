@@ -8,7 +8,7 @@ import { ChangeEvent, useEffect, useRef, useState } from "react";
 
 export default function Avatar() {
   const avatarInputRef = useRef<HTMLInputElement>(null);
-  const [avatar, setAvatar] = useState("/assets/images/avatar.svg"); 
+  const [avatar, setAvatar] = useState("/assets/images/avatar.svg");
 
   const { user } = useUser();
 
@@ -33,7 +33,6 @@ export default function Avatar() {
 
   useEffect(() => {
     if (user && user.image) {
-      console.log(user.image)
       setAvatar(user.image);
     }
   }, []);

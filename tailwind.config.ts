@@ -52,7 +52,7 @@ const config: Config = {
         text_color_fourth: "#ffffff",
         input_border_color: "#CBB9DE",
         dark_orange_color: "#EF6F00",
-        overlay_color: "rgba(252, 243, 255,0.8)",
+        overlay_color: "rgba(255, 255, 255,0.95)",
         light_gray_color: "#E4F5FC",
         light_gray_color_second: "#f0ebf2",
         green_color: "#73BE2F",
