@@ -97,7 +97,7 @@ export default function PetsCategory({
                   )}
                 >
                   <Image
-                    src="/assets/images/dog.jpg"
+                    src="/assets/images/cat-and-dog.png"
                     fill
                     alt="category dogs"
                     className="object-cover"
@@ -132,7 +132,7 @@ export default function PetsCategory({
                   )}
                 >
                   <Image
-                    src="/assets/images/dog.jpg"
+                    src="/assets/images/pets1.png"
                     fill
                     alt="category dogs"
                     className="object-cover"
@@ -167,7 +167,7 @@ export default function PetsCategory({
                   )}
                 >
                   <Image
-                    src="/assets/images/dog.jpg"
+                    src="/assets/images/cat3.png"
                     fill
                     alt="category dogs"
                     className="object-cover"

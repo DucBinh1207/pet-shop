@@ -35,7 +35,7 @@ export default function Dashboard({ setTabActive }: props) {
     setTabActive(Tabs.ORDERS);
     setOrder(order);
   };
-  
+
   if (isError) window.location.href = "/error";
 
   if (isLoading) {
@@ -103,13 +103,12 @@ export default function Dashboard({ setTabActive }: props) {
           />
 
           <span className="text-[16px] leading-[1.5] tracking-[0.02em] text-text_color">
-            {user &&
-            user.street &&
-            user.ward &&
-            user.province &&
-            user.district ? (
+            {user && user.ward && user.province && user.district ? (
               <>
-                {user.street}, {user.ward}, {user.district}, {user.province}
+                {user.street && <>{user.street + ", "}</>}
+                {user.ward && <>{user.ward + ", "}</>}
+                {user.district && <>{user.district + ", "}</>}
+                {user.province && <>{user.province }</>}
               </>
             ) : (
               <>Chưa có thông tin địa chỉ</>

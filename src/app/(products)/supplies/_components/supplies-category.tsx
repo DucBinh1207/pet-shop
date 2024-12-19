@@ -100,7 +100,7 @@ export default function SuppliesCategory({
                   )}
                 >
                   <Image
-                    src="/assets/images/dog.jpg"
+                    src="/assets/images/all-supplies.png"
                     fill
                     alt="category dogs"
                     className="object-cover"
@@ -137,7 +137,7 @@ export default function SuppliesCategory({
                   )}
                 >
                   <Image
-                    src="/assets/images/dog.jpg"
+                    src="/assets/images/pet-bed.jpg"
                     fill
                     alt="category dogs"
                     className="object-cover"
@@ -174,7 +174,7 @@ export default function SuppliesCategory({
                   )}
                 >
                   <Image
-                    src="/assets/images/dog.jpg"
+                    src="/assets/images/pet-litter.png"
                     fill
                     alt="category dogs"
                     className="object-cover"
@@ -247,7 +247,7 @@ export default function SuppliesCategory({
                   )}
                 >
                   <Image
-                    src="/assets/images/dog.jpg"
+                    src="/assets/images/pet-toy.jpg"
                     fill
                     alt="category dogs"
                     className="object-cover"
@@ -284,7 +284,7 @@ export default function SuppliesCategory({
                   )}
                 >
                   <Image
-                    src="/assets/images/dog.jpg"
+                    src="/assets/images/pet-health.jpg"
                     fill
                     alt="category dogs"
                     className="object-cover"
@@ -319,7 +319,7 @@ export default function SuppliesCategory({
                   )}
                 >
                   <Image
-                    src="/assets/images/dog.jpg"
+                    src="/assets/images/pet-other.jpg"
                     fill
                     alt="category dogs"
                     className="object-cover"

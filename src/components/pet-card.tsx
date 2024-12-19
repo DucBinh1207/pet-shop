@@ -13,20 +13,29 @@ import { PetType } from "@/types/pet";
 import { MouseEvent } from "react";
 import useMutation from "@/hooks/use-mutation";
 import { toastError } from "@/utils/toast";
-import { AddToCard } from "@/services/api/cart-api";
-import { AddToCartData } from "@/types/cart-item";
+import { AddToCart } from "@/services/api/cart-api";
 import ToastAddToCart from "./toast-add-to-cart";
+import { PurchaseDataType } from "@/types/purchase-data-type";
+import useCartTrigger from "@/store/use-cart-trigger";
+import { useShallow } from "zustand/react/shallow";
 
 type props = {
   data: PetType;
 };
 
 export default function PetCard({ data }: props) {
+  const { increaseTriggerNumber } = useCartTrigger(
+    useShallow((state) => ({
+      increaseTriggerNumber: state.increaseTriggerNumber,
+    })),
+  );
+
   const { mutate, isMutating } = useMutation({
-    fetcher: AddToCard,
+    fetcher: AddToCart,
     options: {
       onSuccess: async () => {
         ToastAddToCart();
+        increaseTriggerNumber();
       },
       onError: (error) => {
         toastError(error.message);
@@ -43,7 +52,7 @@ export default function PetCard({ data }: props) {
     if (!token) {
       window.location.href = "/login";
     } else {
-      const cartData: AddToCartData = {
+      const cartData: PurchaseDataType = {
         productVariantId: data.variationsPets[0].productVariantId,
         category: "pets",
         quantity: 1,
@@ -78,7 +87,7 @@ export default function PetCard({ data }: props) {
             value={data.description}
           />
 
-          {data.rating && (
+          {data.rating && data.rating !== 0 ? (
             <span className="flex gap-[2px]">
               {[...Array(Math.floor(data.rating))].map((_, index) => (
                 <StarIcon
@@ -94,6 +103,8 @@ export default function PetCard({ data }: props) {
                 percentage={data.rating - Math.floor(data.rating)}
               />
             </span>
+          ) : (
+            <></>
           )}
         </div>
         <div className="mt-[15px] flex flex-wrap items-center gap-[5px] text-[13px] font-normal leading-[16px] tracking-[0.02em] text-primary">

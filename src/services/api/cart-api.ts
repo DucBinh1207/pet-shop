@@ -1,11 +1,16 @@
-import { AddToCartData, CartItemType } from "@/types/cart-item";
+import { CartItemType } from "@/types/cart-item";
 import { get, post, update } from "../axios";
 import { toSnakeCase } from "@/utils/to-snake-case";
 import { toCamelCase } from "@/utils/to-camel-case";
 import { cartItemData } from "@/app/cart/_components/list-item";
 import { CouponType } from "@/types/coupon";
+import { PurchaseDataType } from "@/types/purchase-data-type";
 
-export async function AddToCard({ data: cartData }: { data: AddToCartData }) {
+export async function AddToCart({
+  data: cartData,
+}: {
+  data: PurchaseDataType;
+}) {
   const data = toSnakeCase(cartData);
   return await post({
     url: "/cartItem/add",
@@ -57,5 +62,3 @@ export async function verifyCart() {
     url: "/cartItems/verify",
   });
 }
-
-

@@ -1,18 +1,34 @@
 "use client";
 
-import SupplyCard from "@/components/supply-card";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css/pagination";
 import { Pagination, Navigation, EffectCoverflow } from "swiper/modules";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import cn from "@/utils/style/cn";
+import { getRecentlyViewed } from "@/utils/recently-viewed";
+import { LocalProduct } from "@/types/local-product";
+import RenderFoodCard from "./render-food-card";
+import RenderPetCard from "./render-pet-card";
+import RenderSupplyCard from "./render-supply-card";
 
 export default function RecentlyViewed() {
   //Handle fetching data from local storage here
+
+  const [recentlyProducts, setRecentlyProducts] = useState<LocalProduct[]>([]);
+
   const recentlyProduct = new Array(1);
   const pNum = recentlyProduct.length;
 
   const swiperRef = useRef(null);
+
+  useEffect(() => {
+    const recently = getRecentlyViewed();
+    setRecentlyProducts(recently);
+  }, []);
+
+  if (recentlyProducts.length === 0) {
+    return <></>;
+  }
 
   return (
     <div className="mx-auto mb-[40px] mt-[35px] w-[1160px] min-w-[320px] rounded-[4px] small-screen:mb-[30px] small-screen:mt-[15px] small-screen:w-[calc(100%-60px)] smallest-screen:mb-[20px] smallest-screen:mt-[10px] xx-smallest-screen:w-full">
@@ -66,12 +82,29 @@ export default function RecentlyViewed() {
               "justify-center": pNum === 1,
             })}
           >
-            <SwiperSlide
-              className="border-box flex min-w-[232px] transform flex-col border border-solid border-light_gray_color_second bg-white small-screen:min-w-[25%] x-small-screen:min-w-[calc(100%/3)] x-smallest-screen:min-w-[50%]"
-              key={0}
-            >
-              {/* <SupplyCard /> */}
-            </SwiperSlide>
+            {recentlyProducts &&
+              recentlyProducts.map((product) => (
+                <SwiperSlide
+                  className="border-box flex min-w-[232px] transform flex-col border border-solid border-light_gray_color_second bg-white small-screen:min-w-[25%] x-small-screen:min-w-[calc(100%/3)] x-smallest-screen:min-w-[50%]"
+                  key={0}
+                >
+                  <>
+                    {product.category === "pets" && (
+                      <RenderPetCard productId={product.id} />
+                    )}
+                  </>
+                  <>
+                    {product.category === "foods" && (
+                      <RenderFoodCard productId={product.id} />
+                    )}
+                  </>
+                  <>
+                    {product.category === "supplies" && (
+                      <RenderSupplyCard productId={product.id} />
+                    )}
+                  </>
+                </SwiperSlide>
+              ))}
           </Swiper>
         </div>
       </div>

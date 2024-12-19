@@ -15,6 +15,8 @@ import useCartItems from "@/hooks/users/useCartItems";
 import CartIcon from "@/components/common/icons/cart-icon";
 import Button from "@/components/common/button";
 import { useRouter } from "next/navigation";
+import useProductBuyNow from "@/store/use-product-buy-now";
+import { useShallow } from "zustand/react/shallow";
 
 const schema = z.object({
   name: z.string().min(1, "Name is required"),
@@ -50,6 +52,12 @@ export default function BillDetails() {
 
   const { cartItems } = useCartItems();
 
+  const { productBuyNow } = useProductBuyNow(
+    useShallow((state) => ({
+      productBuyNow: state.productBuyNow,
+    })),
+  );
+
   const {
     register,
     handleSubmit,
@@ -76,9 +84,10 @@ export default function BillDetails() {
       onSuccess: async (data) => {
         try {
           if (data && data.idOrder) {
+            console.log(data);
             const dataPayment = {
               idOrder: data.idOrder,
-              amount: "100000",
+              amount: data.amount,
             };
             const paymentResponse = await Payment({ data: dataPayment });
             if (paymentResponse) {
@@ -95,34 +104,60 @@ export default function BillDetails() {
   });
 
   const onSubmit = handleSubmit((data: BillFormType) => {
-    const subTotal = cartItems?.reduce((total, item) => {
-      return total + item.price * item.quantity;
-    }, 0);
+    if (productBuyNow) {
+      const subTotal = productBuyNow.price * productBuyNow.quantity;
 
-    const shipping = subTotal ? shippingPrice(subTotal) : 0;
+      const shipping = subTotal ? shippingPrice(subTotal) : 0;
 
-    let total = subTotal && subTotal + shipping;
+      let total = subTotal + shipping;
 
-    let discountAmount = 0;
+      let discountAmount = 0;
 
-    if (coupon && total) {
-      discountAmount = (total * coupon.percent) / 100;
-      total = total - discountAmount;
-    }
+      if (coupon && total) {
+        discountAmount = (total * coupon.percent) / 100;
+        total = total - discountAmount;
+      }
 
-    if (total && subTotal && shipping !== null && shipping !== undefined) {
-      const orderData: OrderFormType = {
-        ...data,
-        totalPrice: total.toString(),
-        subtotalPrice: subTotal.toString(),
-        shippingPrice: shipping.toString(),
-        voucherCode: coupon.code,
-      };
-      mutate({ data: orderData });
+      if (total && subTotal && shipping !== null && shipping !== undefined) {
+        const orderData: OrderFormType = {
+          ...data,
+          totalPrice: total.toString(),
+          subtotalPrice: subTotal.toString(),
+          shippingPrice: shipping.toString(),
+          voucherCode: coupon.code,
+        };
+        mutate({ data: orderData });
+      }
+    } else {
+      const subTotal = cartItems?.reduce((total, item) => {
+        return total + item.price * item.quantity;
+      }, 0);
+
+      const shipping = subTotal ? shippingPrice(subTotal) : 0;
+
+      let total = subTotal && subTotal + shipping;
+
+      let discountAmount = 0;
+
+      if (coupon && total) {
+        discountAmount = (total * coupon.percent) / 100;
+        total = total - discountAmount;
+      }
+
+      if (total && subTotal && shipping !== null && shipping !== undefined) {
+        const orderData: OrderFormType = {
+          ...data,
+          totalPrice: total.toString(),
+          subtotalPrice: subTotal.toString(),
+          shippingPrice: shipping.toString(),
+          voucherCode: coupon.code,
+        };
+        mutate({ data: orderData });
+      }
     }
   });
 
-  if (cartItems?.length === 0) {
+  if (cartItems?.length === 0 && productBuyNow === null) {
     return (
       <div className="xx-x-small-screen:w-full mx-auto mb-[40px] mt-[30px] w-[1160px] min-w-[320px] rounded-[4px] border border-solid border-light_gray_color_second bg-white small-screen:mb-[30px] small-screen:mt-[15px] small-screen:w-[calc(100%-60px)] x-small-screen:mb-[20px] x-small-screen:mt-[10px]">
         <div className="flex h-full flex-col items-center px-[60px] py-[125px] small-screen:py-[85px]">

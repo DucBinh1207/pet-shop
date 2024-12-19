@@ -14,6 +14,8 @@ import { toastError, toastSuccess } from "@/utils/toast";
 import { deleteCartItem, updateCart } from "@/services/api/cart-api";
 import { CartItemType } from "@/types/cart-item";
 import { createContext } from "react";
+import useCartTrigger from "@/store/use-cart-trigger";
+import { useShallow } from "zustand/react/shallow";
 
 type MutateDeleteType = {
   mutateDelete: (param?: string) => Promise<void>;
@@ -32,6 +34,12 @@ export default function CartContent() {
   const router = useRouter();
 
   const { cartItems, isError, isLoading, refresh } = useCartItems();
+
+  const { triggerNumber } = useCartTrigger(
+    useShallow((state) => ({
+      triggerNumber: state.triggerNumber,
+    })),
+  );
 
   const [listItems, setListItems] = useState<CartItemType[]>([]);
 
@@ -73,6 +81,10 @@ export default function CartContent() {
       setListItems(cartItems);
     }
   }, [cartItems]);
+
+  useEffect(() => {
+    refresh();
+  }, [triggerNumber]);
 
   if (isError) window.location.href = "/error";
 

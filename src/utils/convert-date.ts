@@ -12,5 +12,6 @@ export default function convertDate(dateString: string) {
     date,
   );
 
-  return `${dayOfWeek}, ngày ${day}, tháng ${month} năm ${year}`;
+  return `${dayOfWeek}, ngày ${day},  ${month} năm ${year}`;
 }
+  

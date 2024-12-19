@@ -31,7 +31,10 @@ export default function Search() {
   const { products, isLoading, refresh } = useSearch(debouncedSearch);
 
   useEffect(() => {
-    refresh(debouncedSearch);
+    console.log("1");
+    if (isSearchOpen) {
+      refresh(debouncedSearch);
+    }
   }, [debouncedSearch]);
 
   return (
@@ -88,8 +91,8 @@ export default function Search() {
               </form>
               {products && (
                 <div className="flex max-h-full flex-col gap-[25px] overflow-y-scroll">
-                  {products.map((product) => (
-                    <Item product={product} />
+                  {products.map((product, index) => (
+                    <Item product={product} key={index} />
                   ))}
                 </div>
               )}

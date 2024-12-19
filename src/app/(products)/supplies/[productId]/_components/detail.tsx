@@ -8,9 +8,25 @@ import PurchaseActions from "@/app/(products)/_components/purchase-actions";
 import StoreBenefit from "@/app/(products)/_components/store-benefit";
 import ProductMeta from "@/app/(products)/_components/product-meta";
 import ColorCheckbox from "@/components/color-checkbox";
+import { getAuthTokenFromInternalServer } from "@/services/api/internal-auth-api";
+import useProductBuyNow, {
+  ProductBuyNowType,
+} from "@/store/use-product-buy-now";
+import { useShallow } from "zustand/react/shallow";
+import useMutation from "@/hooks/use-mutation";
+import { AddToCart } from "@/services/api/cart-api";
+import { toastError } from "@/utils/toast";
+import { BuyNow } from "@/services/api/order-api";
+import {
+  PurchaseDataType,
+  ResponseBuyNowApi,
+} from "@/types/purchase-data-type";
+import { useRouter } from "next/navigation";
+import ToastAddToCart from "@/components/toast-add-to-cart";
 
 export default function Detail() {
   const product = useContext(ProductContext);
+  const router = useRouter();
   const [color, setColor] = useState<ColorTypes[]>([
     product.variationsSupplies[0].color as ColorTypes,
   ]);
@@ -106,7 +122,6 @@ export default function Detail() {
       size === supply.size && color.includes(supply.color as ColorTypes),
   );
 
-
   const { minPrice, maxPrice } = product.variationsSupplies.reduce(
     (num, option) => ({
       minPrice: Math.min(option.price, num.minPrice),
@@ -114,6 +129,88 @@ export default function Detail() {
     }),
     { minPrice: Infinity, maxPrice: -Infinity },
   );
+
+  const { setProductBuyNow } = useProductBuyNow(
+    useShallow((state) => ({
+      setProductBuyNow: state.setProductBuyNow,
+    })),
+  );
+
+  const { mutate, isMutating } = useMutation({
+    fetcher: AddToCart,
+    options: {
+      onSuccess: async () => {
+        ToastAddToCart();
+      },
+      onError: (error) => {
+        toastError(error.message);
+      },
+      onFinally: () => {},
+    },
+  });
+
+  const { mutate: mutateBuyNow, isMutating: isMutatingBuyNow } = useMutation({
+    fetcher: BuyNow,
+    options: {
+      onSuccess: async (data: ResponseBuyNowApi) => {
+        if (supply) {
+          const productData: ProductBuyNowType = {
+            id: product.id,
+            idProduct: product.id,
+            productVariantId: supply.productVariantId,
+            category: "supplies",
+            name: product.name,
+            quantity: data.quantity,
+            ingredient: "",
+            weight: "",
+            size: supply.size,
+            color: supply.color,
+            price: supply.price,
+            image: product.image,
+            status: 1,
+          };
+          setProductBuyNow(productData);
+          router.push("/cart/checkout");
+        }
+      },
+      onError: (error) => {
+        toastError(error.message);
+      },
+      onFinally: () => {},
+    },
+  });
+
+  const handleAddToCart = async (quantity: number) => {
+    const token = await getAuthTokenFromInternalServer();
+    if (!token) {
+      window.location.href = "/login";
+    } else {
+      if (supply) {
+        const cartData: PurchaseDataType = {
+          productVariantId: supply.productVariantId,
+          category: "supplies",
+          quantity: quantity,
+        };
+        mutate({ data: cartData });
+      }
+    }
+  };
+
+  const handleBuyNow = async (quantity: number) => {
+    const token = await getAuthTokenFromInternalServer();
+    if (!token) {
+      window.location.href = "/login";
+    } else {
+      if (supply) {
+        const productData: PurchaseDataType = {
+          productVariantId: supply.productVariantId,
+          category: "supplies",
+          quantity: quantity,
+        };
+        mutateBuyNow({ data: productData });
+      }
+    }
+  };
 
   useEffect(() => {
     if (product.variationsSupplies) {
@@ -142,7 +239,7 @@ export default function Detail() {
             {product.name}
           </h1>
 
-          <Rating />
+          {product.rating !== 0 && <Rating rating={product.rating} />}
 
           <span className="mt-[20px] block text-[12px] font-semibold leading-[1.25] tracking-[0.02em]">
             SKU:&nbsp;<span className="font-normal"> {product.id}</span>
@@ -157,7 +254,7 @@ export default function Detail() {
                       htmlFor="color"
                       className="px-[1px] font-quicksand text-[12px] font-bold leading-[15px] tracking-[-0.02em]"
                     >
-                      Color :
+                      Màu :
                     </label>
 
                     <ul
@@ -195,7 +292,7 @@ export default function Detail() {
                       htmlFor="size"
                       className="px-[1px] font-quicksand text-[12px] font-bold leading-[15px] tracking-[-0.02em]"
                     >
-                      Size :
+                      Kích cỡ :
                     </label>
                     <div>
                       <select
@@ -239,7 +336,13 @@ export default function Detail() {
                 </span>
               </div>
 
-              <PurchaseActions />
+              <PurchaseActions
+                isOptionChosen={supply !== undefined}
+                isMutating={isMutating}
+                isMutatingBuyNow={isMutatingBuyNow}
+                handleAddToCart={handleAddToCart}
+                handleBuyNow={handleBuyNow}
+              />
 
               <StoreBenefit />
             </div>

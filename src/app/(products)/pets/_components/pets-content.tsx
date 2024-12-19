@@ -36,16 +36,19 @@ export default function PetsContent() {
 
   function handleCategoryFilter(categoryCurrent: CategoryTypes) {
     setCategory(categoryCurrent);
+    if (paging !== 1) setPaging(1);
   }
 
   function handleSortFilter(sortCurrent: SortTypes) {
     setSort(sortCurrent);
+    if (paging !== 1) setPaging(1);
   }
   function handlePagingFilter(pagingCurrent: number) {
     setPaging(pagingCurrent);
   }
   function handlePrice() {
     setPriceParams(price);
+    if (paging !== 1) setPaging(1);
   }
 
   return (

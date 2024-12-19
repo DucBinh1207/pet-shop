@@ -6,6 +6,10 @@ import { toastError, toastSuccess } from "@/utils/toast";
 import Image from "next/image";
 import { ChangeEvent, useEffect, useRef, useState } from "react";
 
+export type updateAvatarResponse = {
+  imageUrl: string;
+};
+
 export default function Avatar() {
   const avatarInputRef = useRef<HTMLInputElement>(null);
   const [avatar, setAvatar] = useState("/assets/images/avatar.svg");
@@ -15,8 +19,11 @@ export default function Avatar() {
   const { mutate } = useMutation({
     fetcher: updateAvatar,
     options: {
-      onSuccess: async () => {
+      onSuccess: async (data) => {
         toastSuccess("Cập nhật hình nền thành công");
+        if (data && data.imageUrl) {
+          setAvatar(data.imageUrl);
+        }
       },
       onError: (error) => {
         toastError(error.message);
@@ -35,7 +42,7 @@ export default function Avatar() {
     if (user && user.image) {
       setAvatar(user.image);
     }
-  }, []);
+  }, [user]);
 
   function handleChangeAvatar(e: ChangeEvent<HTMLInputElement>) {
     try {
@@ -62,11 +69,7 @@ export default function Avatar() {
             className="hover_animate relative h-[70px] w-[70px] overflow-clip rounded-[50%] object-cover hover:cursor-pointer hover:opacity-70"
             onClick={onChangeAvatar}
           >
-            {user && user.image ? (
-              <Image src={user.image} fill alt="avatar" />
-            ) : (
-              <Image src={avatar} fill alt="avatar" />
-            )}
+            <Image src={avatar} fill alt="avatar" />
           </div>
         }
       />

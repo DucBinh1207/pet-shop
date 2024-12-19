@@ -4,7 +4,6 @@ import CartIcon from "@/components/common/icons/cart-icon";
 import DotIcon from "@/components/common/icons/dot-icon";
 import StarIcon from "@/components/common/icons/star-icon";
 import Image from "next/image";
-
 import Link from "next/link";
 import ToolTip from "./common/tooltip";
 import Button from "./common/button";
@@ -16,9 +15,11 @@ import { getAuthTokenFromInternalServer } from "@/services/api/internal-auth-api
 import { SupplyType } from "@/types/supply";
 import useMutation from "@/hooks/use-mutation";
 import { toastError } from "@/utils/toast";
-import { AddToCard } from "@/services/api/cart-api";
-import { AddToCartData } from "@/types/cart-item";
+import { AddToCart } from "@/services/api/cart-api";
 import ToastAddToCart from "./toast-add-to-cart";
+import { PurchaseDataType } from "@/types/purchase-data-type";
+import useCartTrigger from "@/store/use-cart-trigger";
+import { useShallow } from "zustand/react/shallow";
 
 type props = {
   data: SupplyType;
@@ -113,11 +114,18 @@ export default function SupplyCard({ data }: props) {
     }
   }
 
+   const { increaseTriggerNumber } = useCartTrigger(
+     useShallow((state) => ({
+       increaseTriggerNumber: state.increaseTriggerNumber,
+     })),
+   );
+
   const { mutate, isMutating } = useMutation({
-    fetcher: AddToCard,
+    fetcher: AddToCart,
     options: {
       onSuccess: async () => {
         ToastAddToCart();
+        increaseTriggerNumber()
       },
       onError: (error) => {
         toastError(error.message);
@@ -150,7 +158,7 @@ export default function SupplyCard({ data }: props) {
       window.location.href = "/login";
     } else {
       if (supply) {
-        const cartData: AddToCartData = {
+        const cartData: PurchaseDataType = {
           productVariantId: supply.productVariantId,
           category: "supplies",
           quantity: 1,
@@ -192,21 +200,25 @@ export default function SupplyCard({ data }: props) {
             value="Khay vệ sinh có nắp giúp giữ mùi hôi và bụi bẩn bên trong, mang lại sự riêng tư cho mèo và dễ dàng cho bạn trong việc vệ sinh."
           />
 
-          <span className="flex gap-[2px]">
-            {[...Array(4)].map((_, index) => (
+          {data.rating && data.rating !== 0 ? (
+            <span className="flex gap-[2px]">
+              {[...Array(Math.floor(data.rating))].map((_, index) => (
+                <StarIcon
+                  size={12}
+                  className="fill-current text-dark_yellow_color"
+                  key={index}
+                />
+              ))}
+
               <StarIcon
                 size={12}
                 className="fill-current text-dark_yellow_color"
-                key={index}
+                percentage={data.rating - Math.floor(data.rating)}
               />
-            ))}
-
-            <StarIcon
-              size={12}
-              className="fill-current text-dark_yellow_color"
-              percentage={0.5}
-            />
-          </span>
+            </span>
+          ) : (
+            <></>
+          )}
         </div>
         <div className="mt-[15px] flex flex-wrap items-center gap-[5px] text-[13px] font-normal leading-[16px] tracking-[0.02em] text-primary">
           <Link href="#">Đồ vệ sinh</Link>

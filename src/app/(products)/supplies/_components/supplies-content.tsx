@@ -6,12 +6,10 @@ import { useEffect, useState } from "react";
 import ReactSlider from "react-slider";
 import SizeCheckbox from "./size-checkbox";
 import CancelIcon from "@/components/common/icons/cancel-icon";
-import {  SortTypes } from "@/constants/sort-type";
+import { SortTypes } from "@/constants/sort-type";
 import AngleIcon from "@/components/common/icons/angle-icon";
 import cn from "@/utils/style/cn";
-import {
-  SuppliesCategoryTypes,
-} from "@/constants/supplies-category-type";
+import { SuppliesCategoryTypes } from "@/constants/supplies-category-type";
 import SuppliesCategory from "./supplies-category";
 import ColorCheckbox from "@/components/color-checkbox";
 import { ColorType, ColorTypes } from "@/constants/color-type";
@@ -48,14 +46,17 @@ export default function SuppliesContent() {
 
   function handleCategoryFilter(categoryCurrent: SuppliesCategoryTypes) {
     setCategory(categoryCurrent);
+    if (paging !== 1) setPaging(1);
   }
   function handleSizeFilter(sizeCurrent: SizeTypes) {
+    if (paging !== 1) setPaging(1);
     if (size.includes(sizeCurrent)) {
       setSize(size.filter((s) => s !== sizeCurrent));
     } else setSize([...size, sizeCurrent]);
   }
 
   function handleColorFilter(colorCurrent: ColorTypes) {
+    if (paging !== 1) setPaging(1);
     if (color.includes(colorCurrent)) {
       setColor(color.filter((c) => c !== colorCurrent));
     } else setColor([...color, colorCurrent]);
@@ -63,6 +64,7 @@ export default function SuppliesContent() {
 
   function handleSortFilter(sortCurrent: SortTypes) {
     setSort(sortCurrent);
+    if (paging !== 1) setPaging(1);
   }
   function handlePagingFilter(pagingCurrent: number) {
     setPaging(pagingCurrent);
@@ -70,6 +72,7 @@ export default function SuppliesContent() {
 
   function handlePrice() {
     setPriceParams(price);
+    if (paging !== 1) setPaging(1);
   }
 
   useEffect(() => {

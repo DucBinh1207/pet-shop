@@ -18,9 +18,11 @@ export default function useFoods({
   price,
   ingredient,
   weight,
-  limit,
+  limit = 12,
 }: props) {
   const params = new URLSearchParams();
+
+  console.log(category);
 
   if (sort) params.append("sortBy", sort);
 

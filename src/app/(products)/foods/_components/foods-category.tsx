@@ -95,12 +95,12 @@ export default function FoodsCategory({
                 />
                 <div
                   className={cn(
-                    "relative flex h-[100px] w-[100px] origin-bottom items-center justify-center rounded-[50%] bg-background_color duration-100 ease-linear group-hover:scale-[1.15]",
+                    "relative flex h-[100px] w-[100px] origin-bottom items-center justify-center rounded-[50%] duration-100 ease-linear group-hover:scale-[1.15]",
                     { "scale-[1.15]": category === FoodsCategoryType.ALL },
                   )}
                 >
                   <Image
-                    src="/assets/images/dog.jpg"
+                    src="/assets/images/all.png"
                     fill
                     alt="category dogs"
                     className="object-cover"
@@ -130,12 +130,12 @@ export default function FoodsCategory({
                 />
                 <div
                   className={cn(
-                    "relative flex h-[100px] w-[100px] origin-bottom items-center justify-center rounded-[50%] bg-background_color duration-100 ease-linear group-hover:scale-[1.15]",
+                    "relative flex h-[100px] w-[100px] origin-bottom items-center justify-center rounded-[50%] duration-100 ease-linear group-hover:scale-[1.15]",
                     { "scale-[1.15]": category === FoodsCategoryType.DRY },
                   )}
                 >
                   <Image
-                    src="/assets/images/dog.jpg"
+                    src="/assets/images/dry-food.png"
                     fill
                     alt="category dogs"
                     className="object-cover"
@@ -165,12 +165,12 @@ export default function FoodsCategory({
                 />
                 <div
                   className={cn(
-                    "relative flex h-[100px] w-[100px] origin-bottom items-center justify-center rounded-[50%] bg-background_color duration-100 ease-linear group-hover:scale-[1.15]",
+                    "relative flex h-[100px] w-[100px] origin-bottom items-center justify-center rounded-[50%] duration-100 ease-linear group-hover:scale-[1.15]",
                     { "scale-[1.15]": category === FoodsCategoryType.WET },
                   )}
                 >
                   <Image
-                    src="/assets/images/dog.jpg"
+                    src="/assets/images/wet-food.png"
                     fill
                     alt="category dogs"
                     className="object-cover"
@@ -200,12 +200,12 @@ export default function FoodsCategory({
                 />
                 <div
                   className={cn(
-                    "relative flex h-[100px] w-[100px] origin-bottom items-center justify-center rounded-[50%] bg-background_color duration-100 ease-linear group-hover:scale-[1.15]",
+                    "relative flex h-[100px] w-[100px] origin-bottom items-center justify-center rounded-[50%] duration-100 ease-linear group-hover:scale-[1.15]",
                     { "scale-[1.15]": category === FoodsCategoryType.RAW },
                   )}
                 >
                   <Image
-                    src="/assets/images/dog.jpg"
+                    src="/assets/images/fresh.png"
                     fill
                     alt="category dogs"
                     className="object-cover"
@@ -235,12 +235,12 @@ export default function FoodsCategory({
                 />
                 <div
                   className={cn(
-                    "relative flex h-[100px] w-[100px] origin-bottom items-center justify-center rounded-[50%] bg-background_color duration-100 ease-linear group-hover:scale-[1.15]",
+                    "relative flex h-[100px] w-[100px] origin-bottom items-center justify-center rounded-[50%] duration-100 ease-linear group-hover:scale-[1.15]",
                     { "scale-[1.15]": category === FoodsCategoryType.FREEZE },
                   )}
                 >
                   <Image
-                    src="/assets/images/dog.jpg"
+                    src="/assets/images/frozen-food.png"
                     fill
                     alt="category dogs"
                     className="object-cover"

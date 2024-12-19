@@ -9,6 +9,13 @@ export type ReviewType = {
   time: string;
 };
 
+export type ReviewResponse = {
+  comments: ReviewType[];
+  currentPage: number;
+  totalPages: number;
+  limit: number;
+};
+
 export type AddReviewDataType = {
   idProduct: string;
   rating: number;

@@ -106,7 +106,7 @@ export default function OrderDetail() {
                       Tổng phụ :
                     </th>
 
-                    <td className="w-auto border-b border-solid border-light_gray_color_second py-[15px] text-right text-[17px] font-bold leading-[1] tracking-[0.01em] text-primary">
+                    <td className="w-[30%] border-b border-solid border-light_gray_color_second py-[15px] text-right text-[17px] font-bold leading-[1] tracking-[0.01em] text-primary">
                       <span>{order?.subtotalPrice}đ</span>
                     </td>
                   </tr>
@@ -121,7 +121,42 @@ export default function OrderDetail() {
                     </td>
                   </tr>
 
-                  <tr className="xxx-smallest-screen:block">
+                  {order && order.voucher && (
+                    <>
+                      <tr className="uppercase xxx-smallest-screen:flex">
+                        <th className="w-[70%] text-left text-[13px] font-normal leading-[1]">
+                          Giảm giá :
+                        </th>
+
+                        <td className="w-[30%] py-[15px] text-right text-[17px] font-bold leading-[1] tracking-[0.01em] text-primary">
+                          <span>
+                            {Number(order.subtotalPrice) +
+                              Number(order.shippingPrice) -
+                              Number(order.totalPrice)}
+                            đ
+                          </span>
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <th colSpan={2}>
+                          <div className="text-end italic">
+                            {"(" +
+                              order.voucher +
+                              ": Giảm giá " +
+                              order.percent +
+                              "% đơn hàng)"}
+                          </div>
+                        </th>
+                      </tr>
+
+                      <tr className="relative z-[1] after:absolute after:left-0 after:right-0 after:top-[50%] after:h-[1px] after:bg-light_gray_color_second after:content-['']">
+                        <td className="py-[20px]" colSpan={2} />
+                      </tr>
+                    </>
+                  )}
+
+                  <tr className="xxx-smallest-screen:flex">
                     <th className="w-[70%] border-b border-solid border-light_gray_color_second text-left text-[13px] font-normal uppercase leading-[1]">
                       Phương thức thanh toán :
                     </th>
@@ -130,11 +165,11 @@ export default function OrderDetail() {
                     </td>
                   </tr>
 
-                  <tr className="xxx-smallest-screen:block">
+                  <tr className="xxx-smallest-screen:flex">
                     <th className="w-[70%] border-b border-solid border-light_gray_color_second text-left text-[13px] font-normal uppercase leading-[1]">
                       Tổng :
                     </th>
-                    <td className="border-b border-solid border-light_gray_color_second py-[15px] text-right font-quicksand text-[24px] font-bold leading-[23px] tracking-[-0.02em] text-secondary">
+                    <td className="w-[30%] border-b border-solid border-light_gray_color_second py-[15px] text-right font-quicksand text-[24px] font-bold leading-[23px] tracking-[-0.02em] text-secondary">
                       <span> {order?.totalPrice}đ</span>
                     </td>
                   </tr>

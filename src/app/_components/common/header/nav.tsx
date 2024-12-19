@@ -1,7 +1,6 @@
 "use client";
 
 import FoodIcon from "@/components/common/icons/food-icon";
-import GuideIcon from "@/components/common/icons/guide-icon";
 import PetIcon from "@/components/common/icons/pet-icon";
 import ShopIcon from "@/components/common/icons/shop-icon";
 import SupplyIcon from "@/components/common/icons/supply-icon";

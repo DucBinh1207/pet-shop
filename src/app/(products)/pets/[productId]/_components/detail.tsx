@@ -7,19 +7,65 @@ import ProductMeta from "@/app/(products)/_components/product-meta";
 import PurchaseActions from "@/app/(products)/_components/purchase-actions";
 import StoreBenefit from "@/app/(products)/_components/store-benefit";
 import useMutation from "@/hooks/use-mutation";
-import { toastError, toastSuccess } from "@/utils/toast";
-import { AddToCard } from "@/services/api/cart-api";
+import { toastError } from "@/utils/toast";
+import { AddToCart } from "@/services/api/cart-api";
 import { getAuthTokenFromInternalServer } from "@/services/api/internal-auth-api";
-import { CartItemType } from "@/types/cart-item";
+import {
+  PurchaseDataType,
+  ResponseBuyNowApi,
+} from "@/types/purchase-data-type";
+import { BuyNow } from "@/services/api/order-api";
+import { useRouter } from "next/navigation";
+import useProductBuyNow, {
+  ProductBuyNowType,
+} from "@/store/use-product-buy-now";
+import { useShallow } from "zustand/react/shallow";
+import ToastAddToCart from "@/components/toast-add-to-cart";
 
 export default function Detail() {
   const product = useContext(ProductContext);
+  const router = useRouter();
+
+  const { setProductBuyNow } = useProductBuyNow(
+    useShallow((state) => ({
+      setProductBuyNow: state.setProductBuyNow,
+    })),
+  );
 
   const { mutate, isMutating } = useMutation({
-    fetcher: AddToCard,
+    fetcher: AddToCart,
     options: {
       onSuccess: async () => {
-        toastSuccess("Thêm giỏ hàng thành công");
+        ToastAddToCart();
+      },
+      onError: (error) => {
+        toastError(error.message);
+      },
+      onFinally: () => {},
+    },
+  });
+
+  const { mutate: mutateBuyNow, isMutating: isMutatingBuyNow } = useMutation({
+    fetcher: BuyNow,
+    options: {
+      onSuccess: async (data: ResponseBuyNowApi) => {
+        const productData: ProductBuyNowType = {
+          id: product.id,
+          idProduct: product.id,
+          productVariantId: product.variationsPets[0].productVariantId,
+          category: "pets",
+          name: product.name,
+          quantity: data.quantity,
+          ingredient: "",
+          weight: "",
+          size: "",
+          color: "",
+          price: product.variationsPets[0].price,
+          image: product.image,
+          status: 1,
+        };
+        setProductBuyNow(productData);
+        router.push("/cart/checkout");
       },
       onError: (error) => {
         toastError(error.message);
@@ -33,12 +79,26 @@ export default function Detail() {
     if (!token) {
       window.location.href = "/login";
     } else {
-      const cartData: CartItemType = {
+      const cartData: PurchaseDataType = {
         productVariantId: product.variationsPets[0].productVariantId,
         category: "pets",
         quantity: quantity,
       };
       mutate({ data: cartData });
+    }
+  };
+
+  const handleBuyNow = async (quantity: number) => {
+    const token = await getAuthTokenFromInternalServer();
+    if (!token) {
+      window.location.href = "/login";
+    } else {
+      const productData: PurchaseDataType = {
+        productVariantId: product.variationsPets[0].productVariantId,
+        category: "pets",
+        quantity: quantity,
+      };
+      mutateBuyNow({ data: productData });
     }
   };
 
@@ -61,7 +121,7 @@ export default function Detail() {
             {product.name}
           </h1>
 
-          <Rating />
+          {product.rating && <Rating rating={product.rating} />}
 
           <span className="mt-[20px] block text-[12px] font-semibold leading-[1.25] tracking-[0.02em]">
             SKU:&nbsp;<span className="font-normal"> {product.id}</span>
@@ -76,8 +136,11 @@ export default function Detail() {
               </div>
 
               <PurchaseActions
+                isOptionChosen={true}
                 isMutating={isMutating}
+                isMutatingBuyNow={isMutatingBuyNow}
                 handleAddToCart={handleAddToCart}
+                handleBuyNow={handleBuyNow}
               />
 
               <StoreBenefit />

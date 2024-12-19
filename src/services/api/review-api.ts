@@ -1,16 +1,14 @@
 import { toCamelCase } from "@/utils/to-camel-case";
-import { get, post, update, updateFormData } from "../axios";
-import { AddressFormType } from "@/app/profile/_components/address";
-import { ChangeAccountInfoFormType } from "@/app/profile/_components/account-info";
+import { get, post } from "../axios";
 import { toSnakeCase } from "@/utils/to-snake-case";
-import { ChangePasswordFormType } from "@/app/profile/_components/account-password";
-import { AddReviewDataType, ReviewType } from "@/types/review";
+
+import { AddReviewDataType, ReviewResponse } from "@/types/review";
 
 export async function getReviews(url: string) {
-  const rawData = await get<ReviewType[]>({
+  const rawData = await get<ReviewResponse>({
     url: url,
   });
-  const data = toCamelCase<ReviewType[]>(rawData);
+  const data = toCamelCase<ReviewResponse>(rawData);
   return data;
 }
 
@@ -21,7 +19,7 @@ export async function addReview({
 }) {
   const data = toSnakeCase(reviewData);
   return await post({
-    url: "/comment/add",
+    url: "/comments/add",
     data,
   });
 }

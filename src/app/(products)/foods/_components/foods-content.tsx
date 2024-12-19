@@ -46,9 +46,11 @@ export default function FoodsContent() {
 
   function handleCategoryFilter(categoryCurrent: FoodsCategoryTypes) {
     setCategory(categoryCurrent);
+    if (paging !== 1) setPaging(1);
   }
 
   function handleIngredientFilter(ingredientCurrent: IngredientTypes) {
+    if (paging !== 1) setPaging(1);
     if (ingredient.includes(ingredientCurrent)) {
       setIngredient(ingredient.filter((i) => i !== ingredientCurrent));
     } else setIngredient([...ingredient, ingredientCurrent]);
@@ -57,10 +59,12 @@ export default function FoodsContent() {
   function handleWeightFilter(event: React.ChangeEvent<HTMLSelectElement>) {
     const weightCurrent = Number(event.target.value) as WeightTypes;
     setWeight(weightCurrent);
+    if (paging !== 1) setPaging(1);
   }
 
   function handleSortFilter(sortCurrent: SortTypes) {
     setSort(sortCurrent);
+    if (paging !== 1) setPaging(1);
   }
 
   function handlePagingFilter(pagingCurrent: number) {
@@ -69,6 +73,7 @@ export default function FoodsContent() {
 
   function handlePrice() {
     setPriceParams(price);
+    if (paging !== 1) setPaging(1);
   }
 
   useEffect(() => {

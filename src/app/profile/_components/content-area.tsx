@@ -14,18 +14,14 @@ type props = {
 export default function ContentArea({ tabActive, setTabActive }: props) {
   return (
     <div className="flex-1 px-[50px] py-[35px] text-[14px] leading-[1.5] tracking-[0.02em] text-text_color">
-      {/* Dashboard Section */}
       {tabActive === Tabs.DASHBOARD && (
         <Dashboard setTabActive={setTabActive} />
       )}
 
-      {/* Order Section */}
       {tabActive === Tabs.ORDERS && <Order setTabActive={setTabActive} />}
 
-      {/* Address Section */}
       {tabActive === Tabs.ADDRESS && <Address />}
 
-      {/* Account Details Section */}
       {tabActive === Tabs.ACCOUNT_DETAILS && <AccountDetail />}
     </div>
   );

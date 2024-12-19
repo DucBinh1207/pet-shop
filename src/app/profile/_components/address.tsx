@@ -12,7 +12,7 @@ const schema = z.object({
   province: z.string().min(1, "Province is required"),
   district: z.string().min(1, "District is required"),
   ward: z.string().min(1, "Ward is required"),
-  street: z.string().min(1, "Street is required"),
+  street: z.string().optional(),
 });
 
 export type AddressFormType = z.infer<typeof schema>;

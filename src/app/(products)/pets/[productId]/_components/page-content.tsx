@@ -6,6 +6,8 @@ import Detail from "./detail";
 import { createContext } from "react";
 import usePetDetail from "@/hooks/products/usePetDetail";
 import Loading from "@/app/loading";
+import { addToRecentlyViewed } from "@/utils/recently-viewed";
+import RecentlyViewed from "@/components/recently-viewed/recently-viewed";
 
 export const ProductContext = createContext<PetType>({
   id: "",
@@ -46,15 +48,20 @@ export default function PageContent() {
     return <Loading />;
   }
 
+  if (pet) {
+    addToRecentlyViewed({ id: productId, category: "pets" });
+  }
+
   if (pet)
     return (
       <ProductContext.Provider value={pet}>
         <BreadCrumb
           pathLink={["/pets", `/pets/${pet.id}`]}
-          pathName={["Pets", pet.name]}
+          pathName={["Thú cưng", pet.name]}
         />
 
         <Detail />
+        <RecentlyViewed />
       </ProductContext.Provider>
     );
 }
