@@ -14,7 +14,7 @@ export default function usePets({
   sort,
   paging,
   price,
-  limit,
+  limit=12,
 }: props) {
   const params = new URLSearchParams();
 

@@ -9,16 +9,29 @@ import PurchaseActions from "@/app/(products)/_components/purchase-actions";
 import ProductMeta from "@/app/(products)/_components/product-meta";
 import WeightCheckbox from "@/components/weight-checkbox";
 import IngredientCheckbox from "@/components/ingredient-checkbox";
+import { getAuthTokenFromInternalServer } from "@/services/api/internal-auth-api";
+import {
+  PurchaseDataType,
+  ResponseBuyNowApi,
+} from "@/types/purchase-data-type";
+import useMutation from "@/hooks/use-mutation";
+import useProductBuyNow, {
+  ProductBuyNowType,
+} from "@/store/use-product-buy-now";
+import { useShallow } from "zustand/react/shallow";
+import { AddToCart } from "@/services/api/cart-api";
+import { toastError } from "@/utils/toast";
+import { BuyNow } from "@/services/api/order-api";
+import { useRouter } from "next/navigation";
+import ToastAddToCart from "@/components/toast-add-to-cart";
 
 export default function Detail() {
   const product = useContext(ProductContext);
+  const router = useRouter();
   const [weight, setWeight] = useState([product.variationsFoods[0].weight]);
   const [ingredient, setIngredient] = useState<IngredientTypes[]>([
     product.variationsFoods[0].ingredient as IngredientTypes,
   ]);
-
-  const [weightOption, setWeightOption] = useState<string[]>([]);
-  const [ingredientOption, setIngredientOption] = useState<string[]>([]);
 
   const weightOptionFilter = () => {
     const newWeightOption = product.variationsFoods.reduce<string[]>(
@@ -45,6 +58,12 @@ export default function Detail() {
     );
     return newIngredientOption;
   };
+
+  const [weightOption, setWeightOption] =
+    useState<string[]>(weightOptionFilter());
+  const [ingredientOption, setIngredientOption] = useState<string[]>(
+    ingredientOptionFilter(),
+  );
 
   function handleWeightFilter(weightCurrent: string) {
     if (!weight.includes(weightCurrent)) {
@@ -119,6 +138,88 @@ export default function Detail() {
     { minPrice: Infinity, maxPrice: -Infinity },
   );
 
+  const { setProductBuyNow } = useProductBuyNow(
+    useShallow((state) => ({
+      setProductBuyNow: state.setProductBuyNow,
+    })),
+  );
+
+  const { mutate, isMutating } = useMutation({
+    fetcher: AddToCart,
+    options: {
+      onSuccess: async () => {
+        ToastAddToCart();
+      },
+      onError: (error) => {
+        toastError(error.message);
+      },
+      onFinally: () => {},
+    },
+  });
+
+  const { mutate: mutateBuyNow, isMutating: isMutatingBuyNow } = useMutation({
+    fetcher: BuyNow,
+    options: {
+      onSuccess: async (data: ResponseBuyNowApi) => {
+        if (food) {
+          const productData: ProductBuyNowType = {
+            id: product.id,
+            idProduct: product.id,
+            productVariantId: food.productVariantId,
+            category: "foods",
+            name: product.name,
+            quantity: data.quantity,
+            ingredient: food.ingredient,
+            weight: food.weight,
+            size: "",
+            color: "",
+            price: food.price,
+            image: product.image,
+            status: 1,
+          };
+          setProductBuyNow(productData);
+          router.push("/cart/checkout");
+        }
+      },
+      onError: (error) => {
+        toastError(error.message);
+      },
+      onFinally: () => {},
+    },
+  });
+
+  const handleAddToCart = async (quantity: number) => {
+    const token = await getAuthTokenFromInternalServer();
+    if (!token) {
+      window.location.href = "/login";
+    } else {
+      if (food) {
+        const cartData: PurchaseDataType = {
+          productVariantId: food.productVariantId,
+          category: "foods",
+          quantity: quantity,
+        };
+        mutate({ data: cartData });
+      }
+    }
+  };
+
+  const handleBuyNow = async (quantity: number) => {
+    const token = await getAuthTokenFromInternalServer();
+    if (!token) {
+      window.location.href = "/login";
+    } else {
+      if (food) {
+        const productData: PurchaseDataType = {
+          productVariantId: food.productVariantId,
+          category: "foods",
+          quantity: quantity,
+        };
+        mutateBuyNow({ data: productData });
+      }
+    }
+  };
+
   useEffect(() => {
     if (product.variationsFoods) {
       setWeightOption(weightOptionFilter());
@@ -146,7 +247,7 @@ export default function Detail() {
             {product.name}
           </h1>
 
-          <Rating />
+          {product.rating !== 0 && <Rating rating={product.rating} />}
 
           <span className="mt-[20px] block text-[12px] font-semibold leading-[1.25] tracking-[0.02em]">
             SKU:&nbsp;<span className="font-normal"> {product.id}</span>
@@ -254,7 +355,13 @@ export default function Detail() {
                 </span>
               </div>
 
-              <PurchaseActions />
+              <PurchaseActions
+                isOptionChosen={food !== undefined}
+                isMutating={isMutating}
+                isMutatingBuyNow={isMutatingBuyNow}
+                handleAddToCart={handleAddToCart}
+                handleBuyNow={handleBuyNow}
+              />
 
               <StoreBenefit />
             </div>

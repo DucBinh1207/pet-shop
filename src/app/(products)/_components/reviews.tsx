@@ -7,7 +7,7 @@ import { useParams } from "next/navigation";
 import Loading from "@/app/loading";
 
 export default function Reviews() {
-  const [paging, setPaging] = useState<number>(2);
+  const [paging, setPaging] = useState<number>(1);
 
   function handlePagingFilter(pagingCurrent: number) {
     setPaging(pagingCurrent);
@@ -15,7 +15,10 @@ export default function Reviews() {
 
   const { productId } = useParams<{ productId: string }>();
 
-  const { reviews, isLoading, isError, refresh } = useReviews(productId);
+  const { reviews, isLoading, isError, refresh } = useReviews({
+    productId,
+    paging,
+  });
 
   function trigger() {
     refresh();
@@ -31,12 +34,13 @@ export default function Reviews() {
     <div className="mx-auto w-full max-w-[770px] px-[35px]">
       <div className="flex flex-col">
         <ul className="flex flex-col">
-          {reviews ? (
+          {reviews?.comments ? (
             <>
-              {reviews.map((review, index) => (
+              {reviews.comments.map((review, index) => (
                 <Comment
                   key={index}
                   name={review.name}
+                  email={review.email}
                   avatar={review.image}
                   rating={review.star}
                   content={review.content}
@@ -45,6 +49,7 @@ export default function Reviews() {
               ))}
               <div className="mt-[10px] flex justify-center pb-[30px]">
                 <Pagination
+                  totalPages={reviews.totalPages}
                   paging={paging}
                   handlePagingFilter={handlePagingFilter}
                 />

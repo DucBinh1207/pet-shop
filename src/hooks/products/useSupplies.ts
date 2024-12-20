@@ -18,7 +18,7 @@ export default function useSupplies({
   price,
   color,
   size,
-  limit,
+  limit = 12,
 }: props) {
   const params = new URLSearchParams();
 
@@ -33,9 +33,23 @@ export default function useSupplies({
     params.append("maxPrice", price[1].toString());
   }
 
-   if (limit) {
-     params.append("limit", limit.toString());
-   }
+  console.log(color, size);
+
+  // if (color) {
+  //   color.map((colorData) => {
+  //     params.append("color", colorData.toString());
+  //   });
+  // }
+
+  // if (size) {
+  //   size.map((sizeData) => {
+  //     params.append("size", sizeData.toString());
+  //   });
+  // }
+
+  if (limit) {
+    params.append("limit", limit.toString());
+  }
 
   const { data, error, isLoading } = useSWR(
     "/products/supplies" + "?" + params.toString(),

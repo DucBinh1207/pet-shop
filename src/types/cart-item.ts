@@ -13,9 +13,3 @@ export type CartItemType = {
   image: string;
   status: number;
 };
-
-export type AddToCartData = {
-  productVariantId: string;
-  category: "pets" | "foods" | "supplies";
-  quantity: number;
-};

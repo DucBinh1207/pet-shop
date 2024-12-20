@@ -24,7 +24,8 @@ const defaultOrder: OrderType = {
   district: "",
   ward: "",
   street: "",
-  voucherCode: "",
+  voucher: "",
+  percent: 0,
   orderItems: [],
 };
 

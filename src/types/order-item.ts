@@ -28,7 +28,8 @@ export type OrderType = {
   district: string;
   ward: string;
   street: string;
-  voucherCode?: string;
+  voucher?: string;
+  percent: number;
   orderItems: OrderItemType[];
 };
 

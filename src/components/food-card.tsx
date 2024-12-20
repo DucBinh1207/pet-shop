@@ -14,11 +14,13 @@ import IngredientCheckbox from "./ingredient-checkbox";
 import WeightCheckbox from "./weight-checkbox";
 import { getAuthTokenFromInternalServer } from "@/services/api/internal-auth-api";
 import { FoodType } from "@/types/food";
-import { AddToCartData } from "@/types/cart-item";
 import { toastError } from "@/utils/toast";
-import { AddToCard } from "@/services/api/cart-api";
+import { AddToCart } from "@/services/api/cart-api";
 import useMutation from "@/hooks/use-mutation";
 import ToastAddToCart from "./toast-add-to-cart";
+import { PurchaseDataType } from "@/types/purchase-data-type";
+import useCartTrigger from "@/store/use-cart-trigger";
+import { useShallow } from "zustand/react/shallow";
 
 type props = {
   data: FoodType;
@@ -132,11 +134,18 @@ export default function FoodCard({ data }: props) {
     { minPrice: Infinity, maxPrice: -Infinity },
   );
 
+  const { increaseTriggerNumber } = useCartTrigger(
+    useShallow((state) => ({
+      increaseTriggerNumber: state.increaseTriggerNumber,
+    })),
+  );
+
   const { mutate, isMutating } = useMutation({
-    fetcher: AddToCard,
+    fetcher: AddToCart,
     options: {
       onSuccess: async () => {
         ToastAddToCart();
+        increaseTriggerNumber();
       },
       onError: (error) => {
         toastError(error.message);
@@ -154,7 +163,7 @@ export default function FoodCard({ data }: props) {
       window.location.href = "/login";
     } else {
       if (food) {
-        const cartData: AddToCartData = {
+        const cartData: PurchaseDataType = {
           productVariantId: food.productVariantId,
           category: "foods",
           quantity: 1,
@@ -196,21 +205,25 @@ export default function FoodCard({ data }: props) {
             value="Cung cấp thức ăn dinh dưỡng chất lượng cao, không chứa ngũ cốc, giúp hỗ trợ sức khỏe và sự phát triển của thú cưng."
           />
 
-          <span className="flex gap-[2px]">
-            {[...Array(4)].map((_, index) => (
+          {data.rating && data.rating !== 0 ? (
+            <span className="flex gap-[2px]">
+              {[...Array(Math.floor(data.rating))].map((_, index) => (
+                <StarIcon
+                  size={12}
+                  className="fill-current text-dark_yellow_color"
+                  key={index}
+                />
+              ))}
+
               <StarIcon
                 size={12}
                 className="fill-current text-dark_yellow_color"
-                key={index}
+                percentage={data.rating - Math.floor(data.rating)}
               />
-            ))}
-
-            <StarIcon
-              size={12}
-              className="fill-current text-dark_yellow_color"
-              percentage={0.5}
-            />
-          </span>
+            </span>
+          ) : (
+            <></>
+          )}
         </div>
         <div className="mt-[15px] flex flex-wrap items-center gap-[5px] text-[13px] font-normal leading-[16px] tracking-[0.02em] text-primary">
           <Link href="#">Thức ăn khô</Link>

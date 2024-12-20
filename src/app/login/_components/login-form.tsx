@@ -48,7 +48,7 @@ export default function LoginForm() {
       onSuccess: async (data) => {
         const token = data.token;
         await saveAuthTokenForInternalServer(token);
-        window.location.href = "/profile";
+        window.location.href = "/";
       },
       onError: (error) => {
         toastError(error.message);

@@ -5,6 +5,7 @@ import Image from "next/image";
 type props = {
   name: string;
   avatar: string;
+  email: string;
   rating: number;
   content: string;
   time: string;
@@ -13,6 +14,7 @@ type props = {
 export default function Comment({
   name,
   avatar,
+  email,
   rating,
   content,
   time,
@@ -25,7 +27,7 @@ export default function Comment({
           width={60}
           height={60}
           alt="avatar"
-          className="absolute left-0 top-0 rounded-[50%]"
+          className="absolute left-0 top-0 h-[60px] w-[60px] rounded-[50%] object-cover"
         />
         <div className="flex flex-col gap-[17px]">
           <div className="flex gap-[15px]">
@@ -48,7 +50,7 @@ export default function Comment({
             </span>
 
             <span className="text-[13px] font-bold leading-[16px] tracking-[0.015em] text-primary">
-              {name}
+              {name ? name : email.split("@")[0]}
             </span>
 
             <span className="text-[12px] font-medium leading-[15px] tracking-[0.02em] text-text_color opacity-70">

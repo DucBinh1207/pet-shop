@@ -5,6 +5,7 @@ import { AddressFormType } from "@/app/profile/_components/address";
 import { ChangeAccountInfoFormType } from "@/app/profile/_components/account-info";
 import { toSnakeCase } from "@/utils/to-snake-case";
 import { ChangePasswordFormType } from "@/app/profile/_components/account-password";
+import { updateAvatarResponse } from "@/app/profile/_components/avatar";
 
 export async function getUserDetail(url: string) {
   const rawData = await get<UserType>({
@@ -15,7 +16,7 @@ export async function getUserDetail(url: string) {
 }
 
 export async function updateAvatar({ data }: { data: FormData }) {
-  return await updateFormData({
+  return await updateFormData<updateAvatarResponse>({
     url: "/user/avatar",
     data,
   });

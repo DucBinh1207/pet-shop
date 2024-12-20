@@ -4,6 +4,7 @@ import ToolTip from "@/components/common/tooltip";
 import { OrderType } from "@/types/order-item";
 import convertDate from "@/utils/convert-date";
 import { priceRender } from "@/utils/priceRender";
+import { RenderOrderStatus } from "@/utils/renderOrderStatus";
 
 type props = {
   RedirectOrderDetail: (order: OrderType) => void;
@@ -27,13 +28,12 @@ export default function OrderCard({ RedirectOrderDetail, order }: props) {
       </td>
       <td className="py-[7px] pr-[15px] text-center xx-smallest-screen:flex xx-smallest-screen:justify-center">
         {convertDate(order.dateCreated)}
-        {/* Chủ nhật, ngày 21, tháng 4 năm 2024 */}
       </td>
       <td className="py-[7px] pr-[15px] xx-smallest-screen:flex xx-smallest-screen:justify-center">
         {priceRender(Number(order.totalPrice)) + "đ"}
       </td>
       <td className="py-[7px] pr-[15px] xx-smallest-screen:flex xx-smallest-screen:justify-center">
-        {order.status}
+        {RenderOrderStatus(order.status)}
       </td>
       <td className="py-[7px] text-center xx-smallest-screen:flex xx-smallest-screen:justify-center">
         <ToolTip

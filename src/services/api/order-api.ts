@@ -4,6 +4,10 @@ import { toCamelCase } from "@/utils/to-camel-case";
 import { OrderFormType } from "@/app/cart/checkout/_components/bill-details";
 import { ResponsePayment } from "@/types/response-payment";
 import { OrderApiResponse, OrderType } from "@/types/order-item";
+import {
+  PurchaseDataType,
+  ResponseBuyNowApi,
+} from "@/types/purchase-data-type";
 
 export async function CreateOrder({
   data: orderData,
@@ -12,6 +16,7 @@ export async function CreateOrder({
 }) {
   type dataType = {
     idOrder: string;
+    amount: string;
   };
   const data = toSnakeCase(orderData);
   const dataResponse = await post<dataType>({
@@ -49,4 +54,16 @@ export async function getOrderItems(url: string) {
   });
   const data = toCamelCase<OrderType[]>(rawData);
   return data;
+}
+
+export async function BuyNow({
+  data: productData,
+}: {
+  data: PurchaseDataType;
+}) {
+  const data = toSnakeCase(productData);
+  return await post<ResponseBuyNowApi>({
+    url: "/orders/buyNow",
+    data,
+  });
 }

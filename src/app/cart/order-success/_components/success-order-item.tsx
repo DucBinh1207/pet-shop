@@ -7,7 +7,7 @@ type props = {
 
 export default function SuccessOrderItem({ product }: props) {
   return (
-    <tr className="xxx-smallest-screen:block">
+    <tr className="xxx-smallest-screen:flex">
       <td className="w-[70%] border-b border-solid border-light_gray_color_second pb-[15px] pt-[6px] text-left text-[13px] font-normal leading-[1]">
         <div className="flex flex-col">
           <div className="text-[14px] leading-[1.27] text-primary">
@@ -52,7 +52,7 @@ export default function SuccessOrderItem({ product }: props) {
         </div>
       </td>
 
-      <td className="border-b border-solid border-light_gray_color_second pb-[15px] pt-[6px] text-right font-quicksand text-[17px] font-bold leading-[1] tracking-[0.01em] text-primary">
+      <td className="w-[30%] border-b border-solid border-light_gray_color_second pb-[15px] pt-[6px] text-right font-quicksand text-[17px] font-bold leading-[1] tracking-[0.01em] text-primary">
         <span>{priceRender(product.price * product.quantity) + "đ"}</span>
       </td>
     </tr>
