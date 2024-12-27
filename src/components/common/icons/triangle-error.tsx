@@ -1,3 +1,5 @@
+"use client";
+
 import { Svg, SvgProps } from "../svg";
 
 export default function TriangleError(props: SvgProps) {

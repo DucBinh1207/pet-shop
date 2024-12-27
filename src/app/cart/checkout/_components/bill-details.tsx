@@ -84,7 +84,6 @@ export default function BillDetails() {
       onSuccess: async (data) => {
         try {
           if (data && data.idOrder) {
-            console.log(data);
             const dataPayment = {
               idOrder: data.idOrder,
               amount: data.amount,

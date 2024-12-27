@@ -55,7 +55,7 @@ export default function RootLayout({
       <body
         className={`${baloo_2_init.variable} ${quicksand_init.variable} bg-background_color`}
       >
-        <div className="root font-baloo_2 flex min-h-[100vh] flex-col">
+        <div className="root flex min-h-[100vh] flex-col font-baloo_2">
           <HeaderNotice />
           <Header />
 

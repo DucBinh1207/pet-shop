@@ -31,7 +31,6 @@ export default function Search() {
   const { products, isLoading, refresh } = useSearch(debouncedSearch);
 
   useEffect(() => {
-    console.log("1");
     if (isSearchOpen) {
       refresh(debouncedSearch);
     }
