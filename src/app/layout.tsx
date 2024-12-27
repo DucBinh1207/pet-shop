@@ -3,8 +3,12 @@ import { Baloo_2, Quicksand } from "next/font/google";
 import "./globals.css";
 import Header from "@/app/_components/common/header";
 import HeaderNotice from "./_components/common/header-notice";
-import ToastNotification from "@/components/common/toast";
 import Footer from "./_components/common/footer";
+import dynamic from "next/dynamic";
+
+const ToastNotification = dynamic(() => import("@/components/common/toast"), {
+  ssr: false,
+});
 
 const baloo_2_init = Baloo_2({
   subsets: ["latin"],
