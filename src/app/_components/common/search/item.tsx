@@ -7,8 +7,9 @@ type props = {
 };
 
 export default function Item({ product }: props) {
+  const url = "/" + product.category + "/" + product.id;
   return (
-    <Link href="#" className="flex gap-[30px]">
+    <Link href={url} className="flex gap-[30px]">
       <div className="relative h-[100px] w-[100px]">
         <Image
           src={product.image}

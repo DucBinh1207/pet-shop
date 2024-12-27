@@ -35,7 +35,6 @@ export async function updateAccountInfo({
   data: ChangeAccountInfoFormType;
 }) {
   const data = toSnakeCase(accountInfoData);
-
   return await update({
     url: "/user/update",
     data,

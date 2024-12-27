@@ -2,10 +2,10 @@ export const SuppliesCategoryType = {
   ALL: "all",
   BEDDING: "Giường",
   HYGIENE: "Vệ sinh",
-  CLOTHING: "clothing",
+  CLOTHING: "Đồ áo",
   TOY: "Đồ chơi",
   HEALTH: "Sức khỏe",
-  OTHER: "other",
+  OTHER: "Khác",
 } as const;
 
 export type SuppliesCategoryTypes =

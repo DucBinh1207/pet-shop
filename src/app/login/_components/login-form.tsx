@@ -66,7 +66,7 @@ export default function LoginForm() {
       <div className="flex w-full justify-center">
         <div className="w-[380px] max-w-full px-[20px] pb-[50px] pt-[40px]">
           <div className="flex flex-col">
-            <h2 className="mb-[35px] text-center font-quicksand text-[27px] font-bold leading-[1.27] tracking-[-0.01em] text-primary">
+            <h2 className="mb-[35px] text-center font-quicksand text-[27px] font-bold leading-[1.27] tracking-[-0.01em] text-primary">  
               Đăng nhập
             </h2>
 
