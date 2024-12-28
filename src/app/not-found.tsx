@@ -1,5 +1,17 @@
-import SearchIcon from "@/components/common/icons/search-icon";
-import Input from "@/components/common/input";
+"use client";
+
+import dynamic from "next/dynamic";
+
+const Input = dynamic(() => import("@/components/common/input"), {
+  ssr: false,
+});
+
+const SearchIcon = dynamic(
+  () => import("@/components/common/icons/search-icon"),
+  {
+    ssr: false,
+  },
+);
 
 export default function NotFound() {
   return (

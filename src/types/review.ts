@@ -1,5 +1,5 @@
 export type ReviewType = {
-  idComment: string;
+  id: string;
   idUser: string;
   email: string;
   name: string;

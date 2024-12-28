@@ -12,8 +12,6 @@ import {
 } from "swiper/modules";
 import { useRef } from "react";
 import useSupplies from "@/hooks/products/useSupplies";
-import { ColorType } from "@/constants/color-type";
-import { SizeType } from "@/constants/size-type";
 import SupplyCard from "@/components/supply-card";
 
 export default function ListSupplies() {
@@ -24,8 +22,8 @@ export default function ListSupplies() {
   const paging = 1;
   const price = [PriceRange.MIN, PriceRange.MAX];
   const limit = 10;
-  const color = [ColorType.LIGHT, ColorType.DARK];
-  const size = [SizeType.SMALL, SizeType.MEDIUM, SizeType.BIG];
+  const color: string[] = [];
+  const size: string[] = [];
 
   const { supplies, isLoading, isError } = useSupplies({
     category: categoryFoods,

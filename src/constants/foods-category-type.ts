@@ -1,9 +1,9 @@
 export const FoodsCategoryType = {
   ALL: "all",
-  DRY: "dry",
-  WET: "wet",
-  RAW: "raw",
-  FREEZE: "freeze",
+  DRY: "Thức ăn khô",
+  WET: "Thứ ăn ướt",
+  RAW: "Thức ăn tươi sống",
+  FREEZE: "Thức ăn đông lạnh",
 } as const;
 
 export type FoodsCategoryTypes =

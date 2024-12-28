@@ -1,14 +1,24 @@
 import { SearchItemType } from "@/types/search-item";
 import Image from "next/image";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 type props = {
   product: SearchItemType;
+  handleCancel: () => void;
 };
 
-export default function Item({ product }: props) {
+export default function Item({ product, handleCancel }: props) {
+  const url = "/" + product.category + "/" + product.id;
+  const router = useRouter();
+
   return (
-    <Link href="#" className="flex gap-[30px]">
+    <div
+      className="flex cursor-pointer gap-[30px]"
+      onClick={() => {
+        handleCancel();
+        router.push(url);
+      }}
+    >
       <div className="relative h-[100px] w-[100px]">
         <Image
           src={product.image}
@@ -29,6 +39,6 @@ export default function Item({ product }: props) {
           {product.price}
         </div>
       </div>
-    </Link>
+    </div>
   );
 }

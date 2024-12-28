@@ -35,17 +35,17 @@ export default function useSupplies({
 
   console.log(color, size);
 
-  // if (color) {
-  //   color.map((colorData) => {
-  //     params.append("color", colorData.toString());
-  //   });
-  // }
+  if (color) {
+    color.map((colorData) => {
+      params.append("color", colorData.toString());
+    });
+  }
 
-  // if (size) {
-  //   size.map((sizeData) => {
-  //     params.append("size", sizeData.toString());
-  //   });
-  // }
+  if (size) {
+    size.map((sizeData) => {
+      params.append("size", sizeData.toString());
+    });
+  }
 
   if (limit) {
     params.append("limit", limit.toString());

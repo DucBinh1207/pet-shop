@@ -10,6 +10,39 @@ import "swiper/css/pagination";
 import { Pagination, EffectCoverflow } from "swiper/modules";
 import { useRef } from "react";
 
+type ServiceItem = {
+  title: string;
+  description: string;
+};
+
+const sampleData: ServiceItem[] = [
+  {
+    title: "Tỉa lông",
+    description:
+      "Cắt tỉa lông thú cưng thường xuyên không chỉ giúp chúng luôn gọn gàng mà còn góp phần vào sức khỏe và sự thoải mái của chúng.",
+  },
+  {
+    title: "Chăm sóc da",
+    description:
+      "Chăm sóc da giúp thú cưng luôn có làn da khỏe mạnh và mịn màng.",
+  },
+  {
+    title: "Khám sức khỏe",
+    description:
+      "Khám định kỳ để đảm bảo sức khỏe của thú cưng luôn trong trạng thái tốt nhất.",
+  },
+  {
+    title: "Tắm cho thú cưng",
+    description:
+      "Tắm cho thú cưng giúp chúng luôn sạch sẽ, thơm tho và khỏe mạnh.",
+  },
+  {
+    title: "Cắt móng",
+    description:
+      "Cắt móng cho thú cưng định kỳ giúp ngăn ngừa những vấn đề về móng và da.",
+  },
+];
+
 export default function AboutUs() {
   const swiperRef = useRef(null);
 
@@ -127,10 +160,10 @@ export default function AboutUs() {
             >
               {[...Array(5)].map((_, index) => (
                 <SwiperSlide
-                  className="min-w-[360px] rounded-[8px] border border-solid border-light_gray_color bg-white px-[35px] pb-[44px] pt-[35px] small-screen:min-w-[calc((100%-80px)/3)] small-screen:p-[25px] x-small-screen:min-w-[calc((100%-20px)/3)] x-smallest-screen:min-w-[calc((100%-20px)/2)] xxx-smallest-screen:min-w-full"
                   key={index}
+                  className="min-w-[360px] rounded-[8px] border border-solid border-light_gray_color bg-white px-[35px] pb-[44px] pt-[35px] small-screen:min-w-[calc((100%-80px)/3)] small-screen:p-[25px] x-small-screen:min-w-[calc((100%-20px)/3)] x-smallest-screen:min-w-[calc((100%-20px)/2)] xxx-smallest-screen:min-w-full"
                 >
-                  <Item />
+                  <Item data={sampleData[index]} />
                 </SwiperSlide>
               ))}
             </Swiper>

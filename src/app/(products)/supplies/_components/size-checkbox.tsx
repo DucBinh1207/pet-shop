@@ -23,7 +23,7 @@ export default function SizeCheckbox({
           id={sizeType}
           inputSize="form_controls"
           className={cn(
-            "relative mr-[7px] cursor-pointer appearance-none rounded-[3px] align-middle after:absolute after:bottom-[1px] after:left-[1px] after:right-[1px] after:top-0",
+            "relative mr-[7px] cursor-pointer appearance-none rounded-[50%] align-middle after:absolute after:bottom-[1px] after:left-[1px] after:right-[1px] after:top-0",
             {
               "after:bg-checked": size.includes(sizeType),
             },

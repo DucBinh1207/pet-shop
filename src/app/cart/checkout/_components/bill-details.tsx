@@ -84,11 +84,19 @@ export default function BillDetails() {
       onSuccess: async (data) => {
         try {
           if (data && data.idOrder) {
-            console.log(data);
+            if (data.paymentMethod === "Trả tiền khi nhận hàng") {
+              const url =
+                "https://pet-shop-web-pink.vercel.app/cart/order-success?id_order=" +
+                data.idOrder;
+              window.location.href = url;
+              return;
+            }
+
             const dataPayment = {
               idOrder: data.idOrder,
               amount: data.amount,
             };
+
             const paymentResponse = await Payment({ data: dataPayment });
             if (paymentResponse) {
               window.location.href = paymentResponse.orderUrl;
@@ -152,6 +160,7 @@ export default function BillDetails() {
           shippingPrice: shipping.toString(),
           voucherCode: coupon.code,
         };
+        // console.log({ orderData });
         mutate({ data: orderData });
       }
     }
