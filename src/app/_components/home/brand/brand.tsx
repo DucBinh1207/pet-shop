@@ -13,37 +13,31 @@ export default function Brand() {
 
           <a href="/" className="mx-[37.5px]" target="_blank">
             <div className="relative h-[100px] w-[100px]">
-              <Image src="/assets/images/brand.png" fill alt="whole hearted" />
+              <Image src="/assets/images/brand1.png" fill alt="whole hearted" />
             </div>
           </a>
 
           <a href="/" className="mx-[37.5px]" target="_blank">
             <div className="relative h-[100px] w-[100px]">
-              <Image src="/assets/images/brand.png" fill alt="whole hearted" />
+              <Image src="/assets/images/brand2.png" fill alt="whole hearted" />
             </div>
           </a>
 
           <a href="/" className="mx-[37.5px]" target="_blank">
             <div className="relative h-[100px] w-[100px]">
-              <Image src="/assets/images/brand.png" fill alt="whole hearted" />
+              <Image src="/assets/images/brand3.png" fill alt="whole hearted" />
             </div>
           </a>
 
           <a href="/" className="mx-[37.5px]" target="_blank">
             <div className="relative h-[100px] w-[100px]">
-              <Image src="/assets/images/brand.png" fill alt="whole hearted" />
+              <Image src="/assets/images/brand4.png" fill alt="whole hearted" />
             </div>
           </a>
 
           <a href="/" className="mx-[37.5px]" target="_blank">
             <div className="relative h-[100px] w-[100px]">
-              <Image src="/assets/images/brand.png" fill alt="whole hearted" />
-            </div>
-          </a>
-
-          <a href="/" className="mx-[37.5px]" target="_blank">
-            <div className="relative h-[100px] w-[100px]">
-              <Image src="/assets/images/brand.png" fill alt="whole hearted" />
+              <Image src="/assets/images/brand5.png" fill alt="whole hearted" />
             </div>
           </a>
         </div>

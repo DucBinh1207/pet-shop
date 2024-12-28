@@ -52,14 +52,14 @@ export default function SuppliesContent() {
     if (paging !== 1) setPaging(1);
     if (size.includes(sizeCurrent)) {
       setSize(size.filter((s) => s !== sizeCurrent));
-    } else setSize([...size, sizeCurrent]);
+    } else setSize([sizeCurrent]);
   }
 
   function handleColorFilter(colorCurrent: ColorTypes) {
     if (paging !== 1) setPaging(1);
     if (color.includes(colorCurrent)) {
       setColor(color.filter((c) => c !== colorCurrent));
-    } else setColor([...color, colorCurrent]);
+    } else setColor([colorCurrent]);
   }
 
   function handleSortFilter(sortCurrent: SortTypes) {

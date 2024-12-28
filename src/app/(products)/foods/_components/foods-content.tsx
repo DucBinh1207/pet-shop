@@ -216,15 +216,11 @@ export default function FoodsContent() {
                   onChange={handleWeightFilter}
                 >
                   <option value="">Lựa chọn cân nặng</option>
-                  <option value={WeightType.FIVE}>
-                    &lt; {WeightType.FIVE}kg
-                  </option>
-                  <option value={WeightType.TEN}>
-                    &lt; {WeightType.TEN}kg
-                  </option>
-                  <option value={WeightType.FIFTY}>
-                    &lt; {WeightType.FIFTY}kg
-                  </option>
+                  {Object.values(WeightType).map((weight) => (
+                    <option key={weight} value={weight}>
+                      {weight}kg
+                    </option>
+                  ))}
                 </select>
               </div>
             </div>

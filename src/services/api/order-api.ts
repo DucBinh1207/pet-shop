@@ -17,8 +17,10 @@ export async function CreateOrder({
   type dataType = {
     idOrder: string;
     amount: string;
+    paymentMethod: string;
   };
   const data = toSnakeCase(orderData);
+
   const dataResponse = await post<dataType>({
     url: "/orders/create",
     data,

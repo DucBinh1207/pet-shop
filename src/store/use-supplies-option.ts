@@ -1,6 +1,6 @@
-import { ColorType, ColorTypes } from "@/constants/color-type";
+import { ColorTypes } from "@/constants/color-type";
 import { PriceRange, PriceType } from "@/constants/price-range";
-import { SizeType, SizeTypes } from "@/constants/size-type";
+import { SizeTypes } from "@/constants/size-type";
 import { SortType, SortTypes } from "@/constants/sort-type";
 import {
   SuppliesCategoryType,
@@ -28,8 +28,8 @@ export const defaultSuppliesOption: SuppliesOptionType = {
   price: [PriceRange.MIN, PriceRange.MAX],
   sort: SortType.DEFAULT,
   paging: 1,
-  size: [SizeType.SMALL, SizeType.MEDIUM, SizeType.BIG],
-  color: [ColorType.LIGHT, ColorType.DARK],
+  size: [],
+  color: [],
 };
 
 const useSuppliesOption = create<SuppliesStore>((set) => ({

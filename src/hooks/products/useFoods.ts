@@ -24,6 +24,8 @@ export default function useFoods({
 
   console.log(category);
 
+  if (category !== "all" && category) params.append("type", category);
+
   if (sort) params.append("sortBy", sort);
 
   if (paging) params.append("page", paging.toString());

@@ -5,7 +5,7 @@ import useSearch from "@/hooks/products/useSearch";
 import useBlockScroll from "@/hooks/use-block-scroll";
 import { useDebounce } from "@/hooks/use-debounce";
 import cn from "@/utils/style/cn";
-import { ChangeEvent, useEffect, useState } from "react";
+import { ChangeEvent, useState } from "react";
 import Item from "./item";
 
 export default function Search() {
@@ -28,13 +28,7 @@ export default function Search() {
   }
 
   const debouncedSearch = useDebounce(search);
-  const { products, isLoading, refresh } = useSearch(debouncedSearch);
-
-  useEffect(() => {
-    if (isSearchOpen) {
-      refresh(debouncedSearch);
-    }
-  }, [debouncedSearch]);
+  const { products, isLoading } = useSearch(debouncedSearch);
 
   return (
     <>
@@ -91,7 +85,11 @@ export default function Search() {
               {products && (
                 <div className="flex max-h-full flex-col gap-[25px] overflow-y-scroll">
                   {products.map((product, index) => (
-                    <Item product={product} key={index} />
+                    <Item
+                      product={product}
+                      key={index}
+                      handleCancel={handleCancel}
+                    />
                   ))}
                 </div>
               )}
