@@ -23,7 +23,6 @@ export default function ListSupplies() {
   const price = [PriceRange.MIN, PriceRange.MAX];
   const limit = 10;
   const color: string[] = [];
-  const size: string[] = [];
 
   const { supplies, isLoading, isError } = useSupplies({
     category: categoryFoods,
@@ -31,7 +30,6 @@ export default function ListSupplies() {
     paging,
     price,
     color,
-    size,
     limit,
   });
 

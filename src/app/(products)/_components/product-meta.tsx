@@ -1,8 +1,6 @@
-import { ProductTypes } from "@/constants/product-type";
 import Link from "next/link";
 
 type props = {
-  type: ProductTypes;
   sku: string;
   category: string;
   tags: string[];
@@ -10,7 +8,6 @@ type props = {
 };
 
 export default function ProductMeta({
-  type,
   sku,
   category,
   tags,

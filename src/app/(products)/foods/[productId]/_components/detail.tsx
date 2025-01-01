@@ -235,7 +235,6 @@ export default function Detail() {
           <ProductImage imageUrl={product.image} />
 
           <ProductMeta
-            type="foods"
             category={"Thức ăn"}
             sku={product.id}
             tags={["Thức ăn", "Thức ăn cho chó và mèo"]}
