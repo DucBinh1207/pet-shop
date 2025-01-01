@@ -20,7 +20,7 @@ export default function useSupplies({
 }: props) {
   const params = new URLSearchParams();
 
-  if (category) params.append("category", category);
+  if (category && category !== "all") params.append("type", category);
 
   if (sort) params.append("sortBy", sort);
 
