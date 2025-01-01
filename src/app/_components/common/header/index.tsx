@@ -5,10 +5,11 @@ import cn from "@/utils/style/cn";
 import Sidebar from "../sidebar";
 import Nav from "./nav";
 import BarIcon from "@/components/common/icons/bar-icon";
-import Action from "./action";
 import LogoIcon from "@/components/common/icons/logo-icon";
 import useSidebar from "@/store/use-sidebar";
 import Search from "../search";
+import AvatarButton from "./avatar-button";
+import CartButton from "./cart-button";
 
 export default function Header() {
   const { openSidebar } = useSidebar((state) => state);
@@ -49,8 +50,8 @@ export default function Header() {
 
       <ul className="flex text-base text-text_color_second small-screen:mx-[13px] small-screen:pt-[5px]">
         <Search />
-        <Action iconName="USER" href="/login" />
-        <Action iconName="CART" href="/cart" />
+        <AvatarButton />
+        <CartButton />
       </ul>
     </div>
   );

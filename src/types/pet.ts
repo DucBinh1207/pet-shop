@@ -23,10 +23,12 @@ export type PetType = {
   image: string;
   name: string;
   rating: number | null;
+  totalReview: number;
   variationsPets: VariationPet[];
 };
 
 export type PetResponse = {
   products: PetType[];
   totalPages: number;
+  totalRecords: number;
 };

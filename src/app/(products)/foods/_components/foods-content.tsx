@@ -17,6 +17,7 @@ import Sort from "../../_components/sort";
 import ListFoods from "./list-foods";
 import useFoodsOption from "@/store/use-foods-option";
 import { useShallow } from "zustand/react/shallow";
+import BreadCrumb from "@/components/bread-crumb";
 
 export default function FoodsContent() {
   const { foodsOption } = useFoodsOption(
@@ -51,9 +52,7 @@ export default function FoodsContent() {
 
   function handleIngredientFilter(ingredientCurrent: IngredientTypes) {
     if (paging !== 1) setPaging(1);
-    if (ingredient.includes(ingredientCurrent)) {
-      setIngredient(ingredient.filter((i) => i !== ingredientCurrent));
-    } else setIngredient([...ingredient, ingredientCurrent]);
+    setIngredient([ingredientCurrent]);
   }
 
   function handleWeightFilter(event: React.ChangeEvent<HTMLSelectElement>) {
@@ -94,6 +93,11 @@ export default function FoodsContent() {
 
   return (
     <>
+      <BreadCrumb
+        pathLink={["/foods", ""]}
+        pathName={["Thức ăn", category === "all" ? "Tất cả" : category]}
+      />
+
       <FoodsCategory
         category={category}
         handleCategoryFilter={handleCategoryFilter}
@@ -187,10 +191,31 @@ export default function FoodsContent() {
               </h3>
 
               <ul className="flex flex-col gap-[5px] text-[14px] leading-[1.23] tracking-[0.02em] text-text_color">
+                <li>
+                  <label
+                    htmlFor={"Tất cả"}
+                    className="group inline-flex cursor-pointer items-center gap-[10px] hover:text-secondary"
+                  >
+                    <input
+                      type="checkbox"
+                      id={"Tất cả"}
+                      className={cn(
+                        "relative inline-block h-[35px] w-[60px] cursor-pointer appearance-none rounded-[50%] bg-cover after:absolute after:bottom-[-4px] after:left-[-4px] after:right-[-4px] after:top-[-4px] after:flex after:items-center after:justify-center after:rounded-[4px] after:border after:border-solid after:text-[15px] after:text-primary after:content-['Tất_cả'] group-hover:after:border-secondary",
+                        {
+                          "after:border-secondary": ingredient.length === 0,
+                          "after:border-transparent": ingredient.length > 0,
+                        },
+                      )}
+                      onClick={() => {
+                        setIngredient([]);
+                      }}
+                    />
+                  </label>
+                </li>
+
                 <IngredientCheckbox
                   ingredient={ingredient}
                   ingredientType={IngredientType.BEEF}
-                  name="Thịt bò "
                   isAvailable={true}
                   handleIngredientFilter={handleIngredientFilter}
                 />
@@ -198,7 +223,27 @@ export default function FoodsContent() {
                 <IngredientCheckbox
                   ingredient={ingredient}
                   ingredientType={IngredientType.CHICKEN}
-                  name="Thịt gà "
+                  isAvailable={true}
+                  handleIngredientFilter={handleIngredientFilter}
+                />
+
+                <IngredientCheckbox
+                  ingredient={ingredient}
+                  ingredientType={IngredientType.FISH}
+                  isAvailable={true}
+                  handleIngredientFilter={handleIngredientFilter}
+                />
+
+                <IngredientCheckbox
+                  ingredient={ingredient}
+                  ingredientType={IngredientType.PORK}
+                  isAvailable={true}
+                  handleIngredientFilter={handleIngredientFilter}
+                />
+
+                <IngredientCheckbox
+                  ingredient={ingredient}
+                  ingredientType={IngredientType.OTHER}
                   isAvailable={true}
                   handleIngredientFilter={handleIngredientFilter}
                 />
@@ -215,7 +260,7 @@ export default function FoodsContent() {
                   className="relative h-auto w-full rounded-[3px] border border-solid border-input_border_color bg-form_color py-[8px] pl-[9px] pr-[28px] text-[13px] font-medium leading-[16px] tracking-[0.01em] text-primary outline-none"
                   onChange={handleWeightFilter}
                 >
-                  <option value="">Lựa chọn cân nặng</option>
+                  <option value="">Tất cả</option>
                   {Object.values(WeightType).map((weight) => (
                     <option key={weight} value={weight}>
                       {weight}kg

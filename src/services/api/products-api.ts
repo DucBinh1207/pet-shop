@@ -3,7 +3,7 @@ import { toCamelCase } from "@/utils/to-camel-case";
 import { PetResponse, PetType } from "@/types/pet";
 import { FoodResponse, FoodType } from "@/types/food";
 import { SupplyResponse, SupplyType } from "@/types/supply";
-import { SearchItemType } from "@/types/search-item";
+import { SearchItemList } from "@/types/search-item";
 
 export async function getPets(url: string) {
   const rawData = await get<PetResponse>({
@@ -54,9 +54,9 @@ export async function getSupplyDetail(url: string) {
 }
 
 export async function searchProducts(url: string) {
-  const rawData = await get<SearchItemType[]>({
+  const rawData = await get<SearchItemList>({
     url: url,
   });
-  const data = toCamelCase<SearchItemType[]>(rawData);
+  const data = toCamelCase<SearchItemList>(rawData);
   return data;
 }

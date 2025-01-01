@@ -1,5 +1,8 @@
-import { IngredientType, IngredientTypes } from "@/constants/ingredient-type";
-import { FoodsCategoryType, FoodsCategoryTypes } from "./../constants/foods-category-type";
+import { IngredientTypes } from "@/constants/ingredient-type";
+import {
+  FoodsCategoryType,
+  FoodsCategoryTypes,
+} from "./../constants/foods-category-type";
 import { PriceRange, PriceType } from "@/constants/price-range";
 import { SortType, SortTypes } from "@/constants/sort-type";
 import { create } from "zustand";
@@ -25,7 +28,7 @@ export const defaultFoodsOption: FoodsOptionType = {
   price: [PriceRange.MIN, PriceRange.MAX],
   sort: SortType.DEFAULT,
   paging: 1,
-  ingredient: [IngredientType.BEEF, IngredientType.CHICKEN],
+  ingredient: [],
   weight: WeightType.FIVE,
 };
 

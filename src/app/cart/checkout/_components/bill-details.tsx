@@ -17,18 +17,19 @@ import Button from "@/components/common/button";
 import { useRouter } from "next/navigation";
 import useProductBuyNow from "@/store/use-product-buy-now";
 import { useShallow } from "zustand/react/shallow";
+import AddressSection from "./address-section";
 
 const schema = z.object({
-  name: z.string().min(1, "Name is required"),
+  name: z.string().min(1, "Vui lòng nhập tên"),
   telephoneNumber: z
     .string()
-    .min(3, "Phone number must be at least 3 characters")
-    .max(20, "Phone number can have a maximum of 20 characters"),
-  email: z.string().email("Invalid email format"),
-  province: z.string().min(1, "Province is required"),
-  district: z.string().min(1, "District is required"),
-  ward: z.string().min(1, "Ward is required"),
-  street: z.string().min(1, "Street is required"),
+    .min(3, "Vui lòng nhập số điện thoại với ít nhất 3 ký tự")
+    .max(20, "Vui lòng nhập số điện thoại với tối đa 20 ký tự"),
+  email: z.string().email("Vui lòng nhập email hợp lệ"),
+  province: z.string().min(1, "Vui lòng nhập tỉnh"),
+  district: z.string().min(1, "Vui lòng nhập quận/huyện"),
+  ward: z.string().min(1, "Vui lòng nhập phường/xã"),
+  street: z.string().min(1, "Vui lòng nhập đường"),
   note: z.string().optional(),
   paymentMethod: z.string(),
 });
@@ -61,6 +62,8 @@ export default function BillDetails() {
   const {
     register,
     handleSubmit,
+    setValue,
+    trigger,
     formState: { errors },
   } = useForm<BillFormType>({
     defaultValues: {
@@ -160,7 +163,6 @@ export default function BillDetails() {
           shippingPrice: shipping.toString(),
           voucherCode: coupon.code,
         };
-        // console.log({ orderData });
         mutate({ data: orderData });
       }
     }
@@ -226,28 +228,10 @@ export default function BillDetails() {
               error={errors.email?.message}
             />
 
-            <InputField
-              id="province"
-              label="Tỉnh/ Thành phố"
-              placeholder="Nhập tỉnh/ thành phố "
-              {...register("province")}
-              error={errors.province?.message}
-            />
-
-            <InputField
-              id="district"
-              label="Quận/ Huyện"
-              placeholder="Nhập quận/ huyện "
-              {...register("district")}
-              error={errors.district?.message}
-            />
-
-            <InputField
-              id="ward"
-              label="Xã/ Phường"
-              placeholder="Nhập xã/ phường "
-              {...register("ward")}
-              error={errors.ward?.message}
+            <AddressSection
+              setValue={setValue}
+              errors={errors}
+              trigger={trigger}
             />
 
             <InputField
@@ -272,11 +256,6 @@ export default function BillDetails() {
                   id="note"
                   {...register("note")}
                 />
-                {errors.name && (
-                  <span className="ml-[5px] mt-[5px] text-[13px] leading-[18px] text-red-500">
-                    {errors.name?.message}
-                  </span>
-                )}
               </span>
             </div>
           </div>

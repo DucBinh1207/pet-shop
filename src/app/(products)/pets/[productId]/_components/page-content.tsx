@@ -17,6 +17,7 @@ export const ProductContext = createContext<PetType>({
   image: "",
   name: "",
   rating: null,
+  totalReview: 0,
   variationsPets: [
     {
       productVariantId: "",

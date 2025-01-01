@@ -9,10 +9,10 @@ import useUser from "@/hooks/users/useUser";
 import { updateAccountInfo } from "@/services/api/user-api";
 
 const schema = z.object({
-  name: z.string().min(1, "Name is required"),
-  telephoneNumber: z.string().min(1, "TelephoneNumber is required"),
+  name: z.string().min(1, "Vui lòng nhập tên"),
+  telephoneNumber: z.string().min(1, "Vui lòng nhập số điện thoại"),
   image: z.string().optional(),
-  nationality: z.string().min(1, "Nationality is required"),
+  nationality: z.string().min(1, "Vui lòng nhập quốc tịch"),
 });
 
 export type ChangeAccountInfoFormType = z.infer<typeof schema>;

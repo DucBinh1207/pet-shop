@@ -21,6 +21,7 @@ import useProductBuyNow, {
 } from "@/store/use-product-buy-now";
 import { useShallow } from "zustand/react/shallow";
 import ToastAddToCart from "@/components/toast-add-to-cart";
+import { priceRender } from "@/utils/priceRender";
 
 export default function Detail() {
   const product = useContext(ProductContext);
@@ -110,9 +111,9 @@ export default function Detail() {
 
           <ProductMeta
             type="pets"
-            category={"dogs"}
+            category={"Thú cưng"}
             sku={product.id}
-            tags={["pets", "dog", "husky"]}
+            tags={["Thú cưng", "chó"]}
           />
         </div>
 
@@ -121,7 +122,11 @@ export default function Detail() {
             {product.name}
           </h1>
 
-          {product.rating && <Rating rating={product.rating} />}
+          {product.rating && product.rating !== 0 ? (
+            <Rating rating={product.rating} review={product.totalReview} />
+          ) : (
+            <></>
+          )}
 
           <span className="mt-[20px] block text-[12px] font-semibold leading-[1.25] tracking-[0.02em]">
             SKU:&nbsp;<span className="font-normal"> {product.id}</span>
@@ -131,7 +136,7 @@ export default function Detail() {
             <div className="flex flex-col">
               <div className="mt-[25px]">
                 <span className="font-quicksand text-[25px] font-bold leading-[1.24] tracking-[-0.02em] text-secondary">
-                  {product.variationsPets[0].price}
+                  {priceRender(product.variationsPets[0].price)}
                 </span>
               </div>
 

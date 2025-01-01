@@ -1,11 +1,11 @@
-import BreadCrumb from "@/components/bread-crumb";
+"use client";
+
 import PetsContent from "./pets-content";
 import RecentlyViewed from "@/components/recently-viewed/recently-viewed";
 
 export default function PageContent() {
   return (
     <>
-      <BreadCrumb pathLink={["pets"]} pathName={["Thú cưng"]} />
       <PetsContent />
       <RecentlyViewed />
     </>

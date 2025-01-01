@@ -20,6 +20,7 @@ import ToastAddToCart from "./toast-add-to-cart";
 import { PurchaseDataType } from "@/types/purchase-data-type";
 import useCartTrigger from "@/store/use-cart-trigger";
 import { useShallow } from "zustand/react/shallow";
+import { priceRender } from "@/utils/priceRender";
 
 type props = {
   data: SupplyType;
@@ -114,18 +115,18 @@ export default function SupplyCard({ data }: props) {
     }
   }
 
-   const { increaseTriggerNumber } = useCartTrigger(
-     useShallow((state) => ({
-       increaseTriggerNumber: state.increaseTriggerNumber,
-     })),
-   );
+  const { increaseTriggerNumber } = useCartTrigger(
+    useShallow((state) => ({
+      increaseTriggerNumber: state.increaseTriggerNumber,
+    })),
+  );
 
   const { mutate, isMutating } = useMutation({
     fetcher: AddToCart,
     options: {
       onSuccess: async () => {
         ToastAddToCart();
-        increaseTriggerNumber()
+        increaseTriggerNumber();
       },
       onError: (error) => {
         toastError(error.message);
@@ -176,7 +177,7 @@ export default function SupplyCard({ data }: props) {
   }, []);
 
   return (
-    <div className="border-box flex min-w-[232px] flex-1 transform flex-col border border-solid border-light_gray_color_second bg-white small-screen:min-w-[25%] x-small-screen:min-w-[calc(100%/3)] x-smallest-screen:min-w-[50%]">
+    <div className="border-box flex min-h-[50%] min-w-[232px] flex-1 transform flex-col border border-solid border-light_gray_color_second bg-white small-screen:min-w-[25%] x-small-screen:min-w-[calc(100%/3)] x-smallest-screen:min-w-[50%]">
       <div className="relative w-full overflow-hidden pb-[85%]">
         <Link href={`/supplies/${data.id}`} className="h-full w-full">
           <Image
@@ -190,14 +191,16 @@ export default function SupplyCard({ data }: props) {
       </div>
       <div className="relative flex flex-auto flex-col justify-between px-[30px] pt-[20px]">
         <div className="flex flex-col">
-          <TruncateToolTip
-            spanClass="mb-[10px] line-clamp-2 max-h-[46px] w-full overflow-hidden font-quicksand text-[17px] font-bold capitalize leading-[1.35] tracking-[-0.01em] text-primary"
-            value="Khay vệ sinh cho mèo"
-          />
+          <Link href={`/supplies/${data.id}`}>
+            <TruncateToolTip
+              spanClass="mb-[10px] line-clamp-2 max-h-[46px] w-full overflow-hidden font-quicksand text-[17px] font-bold capitalize leading-[1.35] tracking-[-0.01em] text-primary"
+              value={data.name}
+            />
+          </Link>
 
           <TruncateToolTip
             spanClass="mb-[10px] line-clamp-4 max-h-[76px] w-full overflow-hidden font-quicksand text-[13px] font-normal capitalize leading-[1.46] tracking-[0.02em] text-text_color"
-            value="Khay vệ sinh có nắp giúp giữ mùi hôi và bụi bẩn bên trong, mang lại sự riêng tư cho mèo và dễ dàng cho bạn trong việc vệ sinh."
+            value={data.description}
           />
 
           {data.rating && data.rating !== 0 ? (
@@ -285,14 +288,14 @@ export default function SupplyCard({ data }: props) {
         <div className="flex items-center justify-between xxx-smallest-screen:flex-col xxx-smallest-screen:gap-[10px]">
           <span className="pr-[5px] font-quicksand font-bold leading-[1] tracking-[-0.02em] text-secondary up-smallest-screen:text-[18px]">
             {supply?.price ? (
-              `${supply?.price}đ`
+              `${priceRender(supply.price)}đ`
             ) : (
               <div className="flex flex-col items-center gap-[5px]">
-                {minPrice && <span>{minPrice}đ</span>}
+                {minPrice && <span>{priceRender(minPrice)}đ</span>}
                 {maxPrice && (
                   <>
                     <span> - </span>
-                    <span>{maxPrice}đ</span>
+                    <span>{priceRender(maxPrice)}đ</span>
                   </>
                 )}
               </div>

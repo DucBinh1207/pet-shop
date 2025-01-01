@@ -16,6 +16,11 @@ export default function ProductMeta({
   tags,
   brand,
 }: props) {
+  let categoryRender;
+  if (category === "Thú cưng") categoryRender = "pets";
+  else if (category === "Thức ăn") categoryRender = "foods";
+  else categoryRender = "supplies";
+
   return (
     <ul className="mt-[25px] columns-2 gap-x-[30px] space-y-[10px] text-[12px] font-semibold leading-[1.25] tracking-[0.02em] large-screen:ml-[45px] between-small-smallest:ml-[35px] smallest-screen:mx-[35px]">
       <li>
@@ -25,7 +30,7 @@ export default function ProductMeta({
         Danh mục:&nbsp;
         <span className="font-normal text-primary">
           <Link
-            href={`/${type}/${category}`}
+            href={`/${categoryRender}`}
             className="capitalize hover:text-secondary"
           >
             {category}
@@ -37,7 +42,10 @@ export default function ProductMeta({
         <span className="font-normal text-primary">
           {tags.map((tag, index) => (
             <span key={index}>
-              <Link href={`/${type}/${tag}`} className="hover:text-secondary">
+              <Link
+                href={`/${categoryRender}`}
+                className="hover:text-secondary"
+              >
                 {tag}
               </Link>
               {index < tags.length - 1 && ", "}

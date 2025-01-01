@@ -22,7 +22,6 @@ export default function useFoods({
 }: props) {
   const params = new URLSearchParams();
 
-  console.log(category);
 
   if (category !== "all" && category) params.append("type", category);
 
@@ -61,6 +60,7 @@ export default function useFoods({
   return {
     foods: data?.products,
     totalPages: data?.totalPages,
+    totalRecords: data?.totalRecords,
     isLoading,
     isError: error,
   };

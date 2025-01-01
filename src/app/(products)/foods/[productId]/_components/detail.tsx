@@ -24,6 +24,7 @@ import { toastError } from "@/utils/toast";
 import { BuyNow } from "@/services/api/order-api";
 import { useRouter } from "next/navigation";
 import ToastAddToCart from "@/components/toast-add-to-cart";
+import { priceRender } from "@/utils/priceRender";
 
 export default function Detail() {
   const product = useContext(ProductContext);
@@ -235,9 +236,9 @@ export default function Detail() {
 
           <ProductMeta
             type="foods"
-            category={"dry-food"}
+            category={"Thức ăn"}
             sku={product.id}
-            tags={["foods", "dog", "cat"]}
+            tags={["Thức ăn", "Thức ăn cho chó và mèo"]}
             brand={product.brand}
           />
         </div>
@@ -247,8 +248,11 @@ export default function Detail() {
             {product.name}
           </h1>
 
-          {product.rating !== 0 && <Rating rating={product.rating} />}
-
+          {product.rating && product.rating !== 0 ? (
+            <Rating rating={product.rating} review={product.totalReview} />
+          ) : (
+            <></>
+          )}
           <span className="mt-[20px] block text-[12px] font-semibold leading-[1.25] tracking-[0.02em]">
             SKU:&nbsp;<span className="font-normal"> {product.id}</span>
           </span>
@@ -340,14 +344,14 @@ export default function Detail() {
               <div className="mt-[25px]">
                 <span className="font-quicksand text-[25px] font-bold leading-[1.24] tracking-[-0.02em] text-secondary">
                   {food?.price ? (
-                    `${food?.price}đ`
+                    `${priceRender(food?.price)}đ`
                   ) : (
                     <div className="flex items-center gap-[5px]">
-                      {minPrice && <span>{minPrice}đ</span>}
+                      {minPrice && <span>{priceRender(minPrice)}đ</span>}
                       {maxPrice && minPrice !== maxPrice && (
                         <>
                           <span> - </span>
-                          <span>{maxPrice}đ</span>
+                          <span>{priceRender(maxPrice)}đ</span>
                         </>
                       )}
                     </div>

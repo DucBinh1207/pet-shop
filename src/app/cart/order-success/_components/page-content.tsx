@@ -38,7 +38,7 @@ export default function PageContent() {
         </div>
       );
     } else {
-      // window.location.href = "/cart";
+      window.location.href = "/cart";
       return;
     }
   }

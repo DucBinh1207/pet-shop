@@ -7,7 +7,6 @@ type props = {
   paging?: number;
   price: (0 | 100000000)[];
   color?: string[];
-  size: string[];
   limit?: number;
 };
 
@@ -17,7 +16,6 @@ export default function useSupplies({
   paging,
   price,
   color,
-  size,
   limit = 12,
 }: props) {
   const params = new URLSearchParams();
@@ -33,17 +31,9 @@ export default function useSupplies({
     params.append("maxPrice", price[1].toString());
   }
 
-  console.log(color, size);
-
   if (color) {
     color.map((colorData) => {
       params.append("color", colorData.toString());
-    });
-  }
-
-  if (size) {
-    size.map((sizeData) => {
-      params.append("size", sizeData.toString());
     });
   }
 
@@ -59,6 +49,7 @@ export default function useSupplies({
   return {
     supplies: data?.products,
     totalPages: data?.totalPages,
+    totalRecords: data?.totalRecords,
     isLoading,
     isError: error,
   };

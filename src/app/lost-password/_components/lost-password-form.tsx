@@ -12,7 +12,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 
 const schema = z.object({
-  email: z.string().email("Invalid email format"),
+  email: z.string().email("Vui lòng nhập email hợp lệ"),
 });
 
 export type LostPasswordFormType = z.infer<typeof schema>;

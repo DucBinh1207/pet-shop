@@ -1,14 +1,5 @@
-"use client";
-
-import dynamic from "next/dynamic";
+import CircleCheckIcon from "@/components/common/icons/circle-check";
 import Link from "next/link";
-
-const CircleCheckIcon = dynamic(
-  () => import("@/components/common/icons/circle-check"),
-  {
-    ssr: false,
-  },
-);
 
 export default function Page() {
   return (

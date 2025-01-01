@@ -9,7 +9,6 @@ type props = {
   paging?: number;
   price: (0 | 100000000)[];
   color?: string[];
-  size: string[];
   setTotalPages: Dispatch<SetStateAction<number>>;
   setResultNum: Dispatch<SetStateAction<number>>;
 };
@@ -20,18 +19,17 @@ export default function ListSupplies({
   paging,
   price,
   color,
-  size,
   setTotalPages,
   setResultNum,
 }: props) {
-  const { supplies, totalPages, isLoading, isError } = useSupplies({
-    category,
-    sort,
-    paging,
-    price,
-    color,
-    size,
-  });
+  const { supplies, totalPages, totalRecords, isLoading, isError } =
+    useSupplies({
+      category,
+      sort,
+      paging,
+      price,
+      color,
+    });
 
   if (isError) window.location.href = "/error";
 
@@ -50,8 +48,8 @@ export default function ListSupplies({
     );
   }
 
-  if (supplies && totalPages) {
-    setResultNum(supplies.length);
+  if (supplies && totalPages && totalRecords) {
+    setResultNum(totalRecords);
     setTotalPages(totalPages);
   }
 

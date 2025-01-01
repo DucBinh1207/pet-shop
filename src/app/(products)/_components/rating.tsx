@@ -1,6 +1,11 @@
 import StarIcon from "@/components/common/icons/star-icon";
 
-export default function Rating({ rating }: { rating: number }) {
+type props = {
+  rating: number;
+  review: number;
+};
+
+export default function Rating({ rating, review }: props) {
   return (
     <div className="mt-[15px] flex items-center gap-[10px] text-[12px] font-normal leading-[15px] tracking-[0.02em] text-primary">
       <span className="flex gap-[2px]">
@@ -19,7 +24,7 @@ export default function Rating({ rating }: { rating: number }) {
         />
       </span>
 
-      <span>2 Đánh giá</span>
+      <span>{review} Đánh giá</span>
     </div>
   );
 }
