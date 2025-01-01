@@ -6,12 +6,12 @@ type props = {
 };
 export default function Item({ review }: props) {
   return (
-    <>
+    <div className="flex h-full flex-col justify-between gap-[25px]">
       <p className="text-[17px] font-normal leading-[1.55] tracking-[0.015em] text-text_color">
         {review.content}
       </p>
 
-      <div className="min-h-[70px mt-[25px] flex items-center gap-[22px]">
+      <div className="min-h-[70px mt-auto flex items-center gap-[22px]">
         <div className="relative h-[70px] w-[70px] overflow-hidden rounded-[50%]">
           <Image
             src={review.image ?? "/assets/images/avatar.jpg"}
@@ -28,6 +28,6 @@ export default function Item({ review }: props) {
           )}
         </span>
       </div>
-    </>
+    </div>
   );
 }

@@ -18,7 +18,7 @@ export default function Item() {
       <div className="flex items-center gap-[10px]">
         <MoneyIcon size={20} className="text-yellow-400" />
         <div className="font-quicksand text-[20px] font-semibold leading-normal tracking-[-0.02em] text-primary">
-          Bảo Đảm Hoàn Tiền
+          Hỗ trợ hoàn tiền
         </div>
       </div>
       <div className="flex items-center gap-[10px]">

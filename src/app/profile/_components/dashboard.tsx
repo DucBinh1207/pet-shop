@@ -54,7 +54,7 @@ export default function Dashboard({ setTabActive }: props) {
             {orderList && (
               <OrderList
                 RedirectOrderDetail={RedirectOrderDetail}
-                orderList={orderList.slice(orderList.length - 3)}
+                orderList={orderList.slice(0, 3)}
               />
             )}
 

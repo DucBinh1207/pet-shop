@@ -57,8 +57,8 @@ export default function Sidebar() {
                 <div className="overflow-hidden px-[50px] text-white">
                   <ul className="flex flex-col flex-nowrap justify-end gap-[15px] py-[15px] text-[13px] font-semibold leading-[1.23] tracking-[0.015em] text-text_color_second">
                     <Notice
-                      name="petshopdanang@gmail.com"
-                      href="mailto:petshopdanang@gmail.com"
+                      name="whiskersshop@gmail.com"
+                      href="mailto:whiskersshop@gmail.com"
                       iconName="MAIL"
                     />
 

@@ -409,7 +409,7 @@ export default function OrderSummary({ register }: props) {
                     <span className="text-[14px] leading-[1.5] tracking-[0.02em] text-text_color">
                       Tôi đã đọc và đồng ý với các
                       <Link
-                        href="/refund"
+                        href="/privacy-policy"
                         className="underline decoration-light_gray_color_second hover:text-secondary"
                         target="_blank"
                       >
@@ -745,7 +745,7 @@ export default function OrderSummary({ register }: props) {
                   <span className="text-[14px] leading-[1.5] tracking-[0.02em] text-text_color">
                     Tôi đã đọc và đồng ý với các
                     <Link
-                      href="/refund"
+                      href="/privacy-policy"
                       className="underline decoration-light_gray_color_second hover:text-secondary"
                       target="_blank"
                     >

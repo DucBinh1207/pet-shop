@@ -14,7 +14,7 @@ export default function Footer() {
         <ul className="flex min-h-[90px] w-full max-w-[1160px] items-center justify-around smallest-screen:flex-col">
           <Benefit value="Vận chuyển nhanh chóng" icon="CAR" />
           <Benefit value="Hỗ trợ 24/7" icon="QUESTION" />
-          <Benefit value="Đảm bảo hoàn tiền" icon="MONEY" />
+          <Benefit value="Hỗ trợ hoàn tiền" icon="MONEY" />
         </ul>
       </div>
       <div className="relative bg-dark_blue_color text-white small-screen:p-footer-p-small smallest-screen:p-footer-p-smallest">
@@ -36,7 +36,7 @@ export default function Footer() {
               </p>
               <div className="mt-[30px] flex w-full flex-wrap items-center justify-start text-[12px] smallest-screen:justify-center">
                 <span className="smallest-screen:mr-[15px mb-[12px] mr-[10px] smallest-screen:mb-[18px]">
-                  <Link href="#" className="hover_animate hover:text-secondary">
+                  <Link href="/privacy-policy" className="hover_animate hover:text-secondary">
                     Chính sách bảo mật
                   </Link>
                 </span>
@@ -47,7 +47,7 @@ export default function Footer() {
                 />
 
                 <span className="smallest-screen:mr-[15px mb-[12px] mr-[10px] smallest-screen:mb-[18px]">
-                  <Link href="#" className="hover_animate hover:text-secondary">
+                  <Link href="/terms" className="hover_animate hover:text-secondary">
                     Điều khoản
                   </Link>
                 </span>
@@ -80,8 +80,8 @@ export default function Footer() {
           <div className="large-screen:w-[25%] small-screen:mb-[30px] small-screen:mt-[10px] between-small-smallest:w-[50%] smallest-screen:w-full">
             <div className="large-screen:pr-[30px] between-small-smallest:mb-[40px] smallest-screen:mb-[30px]">
               <ul className="flex flex-col gap-[20px]">
-                <ShopInfo value="Về chúng tôi" href="#" />
-                <ShopInfo value="Nhóm của tôi" href="#" />
+                <ShopInfo value="Về chúng tôi" href="/about-us" />
+                <ShopInfo value="Chính sách hoàn tiền" href="/refund" />
               </ul>
             </div>
             <div className="mt-[15px] flex items-center smallest-screen:justify-center xxx-smallest-screen:flex-col">
@@ -98,8 +98,8 @@ export default function Footer() {
             <div className="large-screen:pr-[30px] between-small-smallest:mb-[40px] smallest-screen:mb-[30px]">
               <ul className="flex flex-col gap-[20px]">
                 <Contact
-                  value="petshopdanang@gmail.com"
-                  href="mailto:petshopdanang@gmail.com"
+                  value="whiskersshop@gmail.com"
+                  href="mailto:whiskersshop@gmail.com"
                   icon="MAIL"
                 />
                 <Contact

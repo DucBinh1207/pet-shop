@@ -27,7 +27,8 @@ export default function useSearch(search: string) {
   }, [search]);
 
   return {
-    products: data,
+    products: data?.customProducts,
+    totalRecords: data?.totalRecords,
     isLoading,
     isError: error,
     refresh: refreshData,

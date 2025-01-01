@@ -18,6 +18,7 @@ import ToastAddToCart from "./toast-add-to-cart";
 import { PurchaseDataType } from "@/types/purchase-data-type";
 import useCartTrigger from "@/store/use-cart-trigger";
 import { useShallow } from "zustand/react/shallow";
+import { priceRender } from "@/utils/priceRender";
 
 type props = {
   data: PetType;
@@ -62,7 +63,7 @@ export default function PetCard({ data }: props) {
   };
 
   return (
-    <div className="border-box flex min-w-[232px] flex-1 transform flex-col border border-solid border-light_gray_color_second bg-white small-screen:min-w-[25%] x-small-screen:min-w-[calc(100%/3)] x-smallest-screen:min-w-[50%]">
+    <div className="border-box flex min-h-[50%] min-w-[232px] flex-1 transform flex-col border border-solid border-light_gray_color_second bg-white small-screen:min-w-[25%] x-small-screen:min-w-[calc(100%/3)] x-smallest-screen:min-w-[50%]">
       <div className="relative w-full overflow-hidden pb-[85%]">
         <Link href={`/pets/${data.id}`} className="h-full w-full">
           <Image
@@ -77,10 +78,12 @@ export default function PetCard({ data }: props) {
 
       <div className="relative flex flex-auto flex-col justify-between px-[30px] pt-[20px]">
         <div className="flex flex-col">
-          <TruncateToolTip
-            spanClass="mb-[10px] line-clamp-2 max-h-[46px] w-full overflow-hidden font-quicksand text-[17px] font-bold capitalize leading-[1.35] tracking-[-0.01em] text-primary"
-            value={data.name}
-          />
+          <Link href={`/pets/${data.id}`}>
+            <TruncateToolTip
+              spanClass="mb-[10px] line-clamp-2 max-h-[46px] w-full overflow-hidden font-quicksand text-[17px] font-bold capitalize leading-[1.35] tracking-[-0.01em] text-primary"
+              value={data.name}
+            />
+          </Link>
 
           <TruncateToolTip
             spanClass="mb-[10px] line-clamp-4 max-h-[76px] w-full overflow-hidden font-quicksand text-[13px] font-normal capitalize leading-[1.46] tracking-[0.02em] text-text_color"
@@ -117,7 +120,7 @@ export default function PetCard({ data }: props) {
       <form className="flex flex-col gap-[12.5px] px-[30px] pb-[30px] pt-[15px]">
         <div className="flex items-center justify-between xxx-smallest-screen:flex-col xxx-smallest-screen:gap-[10px]">
           <span className="pr-[5px] font-quicksand font-bold leading-[1] tracking-[-0.02em] text-secondary up-smallest-screen:text-[18px]">
-            {data.variationsPets[0].price} VND
+            {priceRender(data.variationsPets[0].price)}đ
           </span>
           {!isMutating ? (
             <ToolTip

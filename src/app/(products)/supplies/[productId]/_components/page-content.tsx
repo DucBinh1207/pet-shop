@@ -20,6 +20,7 @@ export const ProductContext = createContext<SupplyType>({
   material: "",
   brand: "",
   type: "",
+  totalReview: 0,
   variationsSupplies: [
     {
       productVariantId: "",
@@ -52,7 +53,7 @@ export default function PageContent() {
       <ProductContext.Provider value={supply}>
         <BreadCrumb
           pathLink={["/supplies", `/supplies/${supply.id}`]}
-          pathName={["Vật dụng khác", supply.name]}
+          pathName={["Vật dụng", supply.name]}
         />
 
         <Detail />

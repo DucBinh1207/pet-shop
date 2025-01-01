@@ -19,10 +19,12 @@ export type FoodType = {
   nutritionInfo: string;
   expireDate: string;
   brand: string;
+  totalReview: number;
   variationsFoods: FoodVariation[];
 };
 
 export type FoodResponse = {
   products: FoodType[];
   totalPages: number;
+  totalRecords: number;
 };

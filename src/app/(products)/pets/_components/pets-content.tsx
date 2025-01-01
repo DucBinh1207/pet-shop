@@ -14,6 +14,7 @@ import Sort from "../../_components/sort";
 import ListPets from "./list-pets";
 import usePetsOption from "@/store/use-pets-option";
 import { useShallow } from "zustand/react/shallow";
+import BreadCrumb from "@/components/bread-crumb";
 
 export default function PetsContent() {
   const { petsOption } = usePetsOption(
@@ -53,6 +54,11 @@ export default function PetsContent() {
 
   return (
     <>
+      <BreadCrumb
+        pathLink={["/pets", ""]}
+        pathName={["Thú cưng", category === "all" ? "Tất cả" : category]}
+      />
+
       <PetsCategory
         category={category}
         handleCategoryFilter={handleCategoryFilter}

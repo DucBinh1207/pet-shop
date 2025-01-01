@@ -5,8 +5,8 @@ export default function HeaderNotice() {
     <div className="bg-header_bg_color px-[50px] text-white small-screen:hidden">
       <ul className="flex flex-nowrap justify-end gap-[15px] py-[15px]">
         <Item
-          name="petshopdanang@gmail.com"
-          href="mailto:petshopdanang@gmail.com"
+          name="whiskersshop@gmail.com"
+          href="mailto:whiskersshop@gmail.com"
           iconName="MAIL"
         />
 

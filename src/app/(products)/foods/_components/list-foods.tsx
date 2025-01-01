@@ -24,7 +24,7 @@ export default function ListFoods({
   setTotalPages,
   setResultNum,
 }: props) {
-  const { foods,totalPages, isLoading, isError } = useFoods({
+  const { foods, totalPages, totalRecords, isLoading, isError } = useFoods({
     category,
     sort,
     paging,
@@ -50,8 +50,8 @@ export default function ListFoods({
     );
   }
 
-  if (foods && totalPages) {
-    setResultNum(foods.length);
+  if (foods && totalPages && totalRecords) {
+    setResultNum(totalRecords);
     setTotalPages(totalPages);
   }
 

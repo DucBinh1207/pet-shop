@@ -21,6 +21,7 @@ export const ProductContext = createContext<FoodType>({
   nutritionInfo: "",
   expireDate: "",
   brand: "",
+  totalReview: 0,
   variationsFoods: [
     {
       productVariantId: "",

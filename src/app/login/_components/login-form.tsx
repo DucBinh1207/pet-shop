@@ -14,11 +14,12 @@ import { saveAuthTokenForInternalServer } from "@/services/api/internal-auth-api
 import FormInput from "@/components/form-input";
 
 const schema = z.object({
-  email: z.string().email("Invalid email format"),
+  email: z.string().email("Vui lòng nhập email hợp lệ"),
   password: z
     .string()
-    .min(3, "Password must be at least 3 characters")
-    .max(20, "Password can have a maximum of 20 characters"),
+    .min(8, "Mật khẩu phải có ít nhất 8 ký tự")
+    .regex(/[a-zA-Z]/, "Mật khẩu phải chứa ít nhất một chữ cái")
+    .regex(/[0-9]/, "Mật khẩu phải chứa ít nhất một chữ số"),
   isRememberMe: z.boolean().optional(),
 });
 
@@ -66,7 +67,7 @@ export default function LoginForm() {
       <div className="flex w-full justify-center">
         <div className="w-[380px] max-w-full px-[20px] pb-[50px] pt-[40px]">
           <div className="flex flex-col">
-            <h2 className="mb-[35px] text-center font-quicksand text-[27px] font-bold leading-[1.27] tracking-[-0.01em] text-primary">  
+            <h2 className="mb-[35px] text-center font-quicksand text-[27px] font-bold leading-[1.27] tracking-[-0.01em] text-primary">
               Đăng nhập
             </h2>
 

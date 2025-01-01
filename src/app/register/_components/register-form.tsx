@@ -13,7 +13,7 @@ import { toastError } from "@/utils/toast";
 import { useRouter } from "next/navigation";
 
 const schema = z.object({
-  email: z.string().email("Invalid email format"),
+  email: z.string().email("Vui lòng nhập email hợp lệ"),
 });
 
 export type RegisterFormType = z.infer<typeof schema>;
@@ -86,7 +86,7 @@ export default function RegisterForm() {
                   của bạn trên trang web này, quản lý quyền truy cập vào tài
                   khoản của bạn, và cho các mục đích khác được mô tả ở
                   <Link
-                    href="/privacy"
+                    href="/privacy-policy"
                     className="inline text-primary hover:text-secondary"
                   >
                     &nbsp;chính sách bảo mật

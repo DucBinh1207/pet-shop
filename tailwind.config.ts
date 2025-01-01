@@ -121,6 +121,8 @@ const config: Config = {
         checked: 'url("/assets/icons/check-icon.svg")',
         beef_img: 'url("/assets/images/beef.png")',
         chicken_img: 'url("/assets/images/chicken.png")',
+        pork_img: 'url("/assets/images/pork.png")',
+        fish_img: 'url("/assets/images/fish.png")',
       },
       transitionProperty: {
         "max-height": "max-height",

@@ -20,7 +20,7 @@ export default function ListPets({
   setTotalPages,
   setResultNum,
 }: props) {
-  const { pets, totalPages, isLoading, isError } = usePets({
+  const { pets, totalPages, totalRecords, isLoading, isError } = usePets({
     category,
     sort,
     paging,
@@ -29,7 +29,7 @@ export default function ListPets({
 
   if (isError) window.location.href = "/error";
 
-  if (isLoading) {  
+  if (isLoading) {
     return (
       <div className="flex flex-wrap">
         {Array.from({ length: 12 }).map((_, index) => (
@@ -44,8 +44,8 @@ export default function ListPets({
     );
   }
 
-  if (pets && totalPages) {
-    setResultNum(pets.length);
+  if (pets && totalPages && totalRecords) {
+    setResultNum(totalRecords);
     setTotalPages(totalPages);
   }
 

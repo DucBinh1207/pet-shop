@@ -28,7 +28,7 @@ export default function Search() {
   }
 
   const debouncedSearch = useDebounce(search);
-  const { products, isLoading } = useSearch(debouncedSearch);
+  const { products, totalRecords, isLoading } = useSearch(debouncedSearch);
 
   return (
     <>
@@ -49,7 +49,7 @@ export default function Search() {
               <div className="text-center font-quicksand text-[42px] font-bold leading-[1] tracking-[-0.02] text-primary">
                 Bạn đang tìm gì ?
               </div>
-              <form className="mb-[85px] mt-[54px]">
+              <form className="mb-[55px] mt-[54px]">
                 <div className="relative w-full">
                   <input
                     className="border-b-solid w-full border-b border-b-primary pb-[15px] pr-[70px] text-[18px] font-semibold text-primary outline-none"
@@ -75,6 +75,11 @@ export default function Search() {
                     </div>
                   )}
                 </div>
+                <div className="text-[13px] mt-[10px] font-semibold italic text-primary">
+                  {totalRecords && (
+                    <>( Số kết quả tìm được : {totalRecords} )</>
+                  )}
+                </div>
                 <input
                   type="hidden"
                   name="post_type"
@@ -82,6 +87,7 @@ export default function Search() {
                   className="js-ajax-search-type"
                 />
               </form>
+
               {products && (
                 <div className="flex max-h-full flex-col gap-[25px] overflow-y-scroll">
                   {products.map((product, index) => (

@@ -1,10 +1,8 @@
 "use client";
 
 import { PriceRange } from "@/constants/price-range";
-import { SizeType, SizeTypes } from "@/constants/size-type";
 import { useEffect, useState } from "react";
 import ReactSlider from "react-slider";
-import SizeCheckbox from "./size-checkbox";
 import CancelIcon from "@/components/common/icons/cancel-icon";
 import { SortTypes } from "@/constants/sort-type";
 import AngleIcon from "@/components/common/icons/angle-icon";
@@ -18,6 +16,7 @@ import Sort from "../../_components/sort";
 import ListSupplies from "./list-supplies";
 import useSuppliesOption from "@/store/use-supplies-option";
 import { useShallow } from "zustand/react/shallow";
+import BreadCrumb from "@/components/bread-crumb";
 
 export default function SuppliesContent() {
   const { suppliesOption } = useSuppliesOption(
@@ -37,7 +36,6 @@ export default function SuppliesContent() {
   ]);
 
   const [resultNum, setResultNum] = useState(0);
-  const [size, setSize] = useState<SizeTypes[]>(suppliesOption.size);
   const [color, setColor] = useState<ColorTypes[]>(suppliesOption.color);
 
   const [sort, setSort] = useState<SortTypes>(suppliesOption.sort);
@@ -47,12 +45,6 @@ export default function SuppliesContent() {
   function handleCategoryFilter(categoryCurrent: SuppliesCategoryTypes) {
     setCategory(categoryCurrent);
     if (paging !== 1) setPaging(1);
-  }
-  function handleSizeFilter(sizeCurrent: SizeTypes) {
-    if (paging !== 1) setPaging(1);
-    if (size.includes(sizeCurrent)) {
-      setSize(size.filter((s) => s !== sizeCurrent));
-    } else setSize([sizeCurrent]);
   }
 
   function handleColorFilter(colorCurrent: ColorTypes) {
@@ -80,10 +72,6 @@ export default function SuppliesContent() {
 
     params.append("category", category);
 
-    size.forEach((sizeValue) => {
-      params.append("size", sizeValue);
-    });
-
     color.forEach((colorValue) => {
       params.append("color", colorValue);
     });
@@ -91,10 +79,15 @@ export default function SuppliesContent() {
     params.append("sort", sort);
 
     params.append("page", paging.toString());
-  }, [category, color, size, sort, paging]);
+  }, [category, color, sort, paging]);
 
   return (
     <>
+      <BreadCrumb
+        pathLink={["/supplies", ""]}
+        pathName={["Vật dụng", category === "all" ? "Tất cả" : category]}
+      />
+
       <SuppliesCategory
         category={category}
         handleCategoryFilter={handleCategoryFilter}
@@ -184,50 +177,100 @@ export default function SuppliesContent() {
 
             <div className="px-[25px] pt-[40px]">
               <h3 className="mb-[20px] font-quicksand text-[20px] font-bold leading-[1.1] tracking-[-0.01em] text-primary">
-                Size
-              </h3>
-
-              <ul className="text-[14px] leading-[1.23] tracking-[0.02em] text-text_color">
-                <SizeCheckbox
-                  size={size}
-                  sizeType={SizeType.SMALL}
-                  name="Nhỏ "
-                  handleSizeFilter={handleSizeFilter}
-                />
-
-                <SizeCheckbox
-                  size={size}
-                  sizeType={SizeType.MEDIUM}
-                  name="Trung bình "
-                  handleSizeFilter={handleSizeFilter}
-                />
-
-                <SizeCheckbox
-                  size={size}
-                  sizeType={SizeType.BIG}
-                  name="Lớn "
-                  handleSizeFilter={handleSizeFilter}
-                />
-              </ul>
-            </div>
-
-            <div className="px-[25px] pt-[40px]">
-              <h3 className="mb-[20px] font-quicksand text-[20px] font-bold leading-[1.1] tracking-[-0.01em] text-primary">
                 Color
               </h3>
 
               <ul className="text-[14px] leading-[1.23] tracking-[0.02em] text-text_color">
+                <li className="pb-[13px]">
+                  <label
+                    htmlFor={"Tất cả"}
+                    className="group inline-flex cursor-pointer items-center gap-[10px] hover:text-secondary"
+                  >
+                    <input
+                      type="checkbox"
+                      id={"Tất cả"}
+                      onClick={() => {
+                        setColor([]);
+                      }}
+                      className={cn(
+                        "relative inline-block h-[22px] w-[22px] cursor-pointer appearance-none rounded-[50%] bg-gradient-to-r from-red-500 via-yellow-500 to-blue-500 p-4 font-bold text-white outline outline-[1px] outline-light_gray_color_second after:absolute after:bottom-[-4px] after:left-[-4px] after:right-[-4px] after:top-[-4px] after:rounded-[50%] after:border after:border-solid after:content-[''] group-hover:after:border-secondary",
+                        {
+                          "after:border-secondary": color.length === 0,
+                          "after:border-transparent": color.length > 0,
+                        },
+                      )}
+                    />
+                    <span className="flex-1"> Tất cả </span>
+                  </label>
+                </li>
+
                 <ColorCheckbox
                   color={color}
                   colorType={ColorType.LIGHT}
-                  name="Màu sáng"
+                  name="Màu trắng"
                   handleColorFilter={handleColorFilter}
                 />
 
                 <ColorCheckbox
                   color={color}
                   colorType={ColorType.DARK}
-                  name="Màu tối"
+                  name="Màu đen"
+                  handleColorFilter={handleColorFilter}
+                />
+
+                <ColorCheckbox
+                  color={color}
+                  colorType={ColorType.RED}
+                  name="Màu đỏ"
+                  handleColorFilter={handleColorFilter}
+                />
+
+                <ColorCheckbox
+                  color={color}
+                  colorType={ColorType.ORANGE}
+                  name="Màu cam"
+                  handleColorFilter={handleColorFilter}
+                />
+
+                <ColorCheckbox
+                  color={color}
+                  colorType={ColorType.YELLOW}
+                  name="Màu vàng"
+                  handleColorFilter={handleColorFilter}
+                />
+
+                <ColorCheckbox
+                  color={color}
+                  colorType={ColorType.BLUE}
+                  name="Màu xanh lam"
+                  handleColorFilter={handleColorFilter}
+                />
+
+                <ColorCheckbox
+                  color={color}
+                  colorType={ColorType.GREEN}
+                  name="Màu xanh lá"
+                  handleColorFilter={handleColorFilter}
+                />
+
+                <ColorCheckbox
+                  color={color}
+                  colorType={ColorType.VIOLET}
+                  name="Màu tím"
+                  handleColorFilter={handleColorFilter}
+                />
+
+                <ColorCheckbox
+                  color={color}
+                  colorType={ColorType.PINK}
+                  name="Màu hồng"
+                  handleColorFilter={handleColorFilter}
+                />
+
+                <ColorCheckbox
+                  color={color}
+                  colorType={ColorType.OTHER}
+                  name="Màu khác"
                   handleColorFilter={handleColorFilter}
                 />
               </ul>
@@ -258,7 +301,6 @@ export default function SuppliesContent() {
             sort={sort}
             price={priceParams}
             color={color}
-            size={size}
             setTotalPages={setTotalPages}
             setResultNum={setResultNum}
           />

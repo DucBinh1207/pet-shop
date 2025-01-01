@@ -6,6 +6,7 @@ import useOrderDetail from "@/hooks/users/userOrderDetail";
 import convertDate from "@/utils/convert-date";
 import { useSearchParams } from "next/navigation";
 import SuccessOrderItem from "./success-order-item";
+import { priceRender } from "@/utils/priceRender";
 
 export default function OrderDetail() {
   const orderId = useSearchParams().get("id_order") ?? "";
@@ -65,7 +66,7 @@ export default function OrderDetail() {
                 Tổng :
               </span>
               <span className="mt-[20px] block pr-[15px] text-[15px] tracking-[0.01em] text-primary">
-                {order?.totalPrice}
+                {order?.totalPrice && priceRender(Number(order.totalPrice))}đ
               </span>
             </li>
           </ul>
@@ -101,26 +102,6 @@ export default function OrderDetail() {
                 </tbody>
 
                 <tfoot className="xxx-smallest-screen:block">
-                  <tr className="uppercase xxx-smallest-screen:flex">
-                    <th className="w-[70%] border-b border-solid border-light_gray_color_second text-left text-[13px] font-normal leading-[1]">
-                      Tổng phụ :
-                    </th>
-
-                    <td className="w-[30%] border-b border-solid border-light_gray_color_second py-[15px] text-right text-[17px] font-bold leading-[1] tracking-[0.01em] text-primary">
-                      <span>{order?.subtotalPrice}đ</span>
-                    </td>
-                  </tr>
-
-                  <tr className="uppercase xxx-smallest-screen:flex">
-                    <th className="w-[70%] border-b border-solid border-light_gray_color_second text-left text-[13px] font-normal leading-[1]">
-                      Vận chuyện :
-                    </th>
-
-                    <td className="w-[30%] border-b border-solid border-light_gray_color_second py-[15px] text-right text-[17px] font-bold leading-[1] tracking-[0.01em] text-primary">
-                      <span>{order?.shippingPrice}đ</span>
-                    </td>
-                  </tr>
-
                   {order && order.voucher && (
                     <>
                       <tr className="uppercase xxx-smallest-screen:flex">
@@ -130,9 +111,10 @@ export default function OrderDetail() {
 
                         <td className="w-[30%] py-[15px] text-right text-[17px] font-bold leading-[1] tracking-[0.01em] text-primary">
                           <span>
-                            {Number(order.subtotalPrice) +
-                              Number(order.shippingPrice) -
-                              Number(order.totalPrice)}
+                            {priceRender(
+                              (Number(order.subtotalPrice) * 10) /
+                                (100 - order.percent),
+                            )}
                             đ
                           </span>
                         </td>
@@ -156,6 +138,34 @@ export default function OrderDetail() {
                     </>
                   )}
 
+                  <tr className="uppercase xxx-smallest-screen:flex">
+                    <th className="w-[70%] border-b border-solid border-light_gray_color_second text-left text-[13px] font-normal leading-[1]">
+                      Tổng phụ :
+                    </th>
+
+                    <td className="w-[30%] border-b border-solid border-light_gray_color_second py-[15px] text-right text-[17px] font-bold leading-[1] tracking-[0.01em] text-primary">
+                      <span>
+                        {order?.subtotalPrice &&
+                          priceRender(Number(order.subtotalPrice))}
+                        đ
+                      </span>
+                    </td>
+                  </tr>
+
+                  <tr className="xxx-smallest-screen:flex">
+                    <th className="w-[70%] border-b border-solid border-light_gray_color_second text-left text-[13px] font-normal uppercase leading-[1]">
+                      Vận chuyện :
+                    </th>
+
+                    <td className="w-[30%] border-b border-solid border-light_gray_color_second py-[15px] text-right text-[17px] font-bold leading-[1] tracking-[0.01em] text-primary">
+                      <span>
+                        {order?.shippingPrice &&
+                          priceRender(Number(order.shippingPrice))}
+                        đ
+                      </span>
+                    </td>
+                  </tr>
+
                   <tr className="xxx-smallest-screen:flex">
                     <th className="w-[70%] border-b border-solid border-light_gray_color_second text-left text-[13px] font-normal uppercase leading-[1]">
                       Phương thức thanh toán :
@@ -170,7 +180,11 @@ export default function OrderDetail() {
                       Tổng :
                     </th>
                     <td className="w-[30%] border-b border-solid border-light_gray_color_second py-[15px] text-right font-quicksand text-[24px] font-bold leading-[23px] tracking-[-0.02em] text-secondary">
-                      <span> {order?.totalPrice}đ</span>
+                      <span>
+                        {order?.totalPrice &&
+                          priceRender(Number(order.totalPrice))}
+                        đ
+                      </span>
                     </td>
                   </tr>
                 </tfoot>

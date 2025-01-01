@@ -18,10 +18,12 @@ export type SupplyType = {
   material: string;
   brand: string;
   type: string;
+  totalReview: number;
   variationsSupplies: VariationSupply[];
 };
 
 export type SupplyResponse = {
   products: SupplyType[];
   totalPages: number;
+  totalRecords: number;
 };

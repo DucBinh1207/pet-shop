@@ -23,27 +23,33 @@ const quicksand_init = Quicksand({
 });
 
 export const metadata: Metadata = {
-  title: "Pet Shop NextJs Website",
-  description: "Pet Shop Website build by NextJs, Tailwind and TypeScript",
+  title:
+    "Whiskers Shop - Cửa hàng thú cưng cho người Việt | Mua sắm online dễ dàng",
+  description:
+    "Mua sắm thú cưng, thức ăn và phụ kiện tại Pet Shop. Chất lượng đảm bảo, giao hàng nhanh chóng, và giá tốt nhất!",
   keywords:
-    "HTML, CSS, JavaScript, TypeScript, Tailwind, NodeJS, NextJs, NextJs",
-  applicationName: "TranDucBinh",
+    "HTML, CSS, JavaScript, TypeScript, Tailwind, NodeJS, NextJs, NextJs, pet shop, thú cưng, thức ăn cho chó, phụ kiện cho mèo, cửa hàng thú cưng",
+  applicationName: "Whiskers Shop",
   openGraph: {
-    title: "Pet Shop NextJs Website",
-    description: "Welcome, This is my Pet Shop NextJs Website. Enjoy yourself",
+    title:
+      "Whiskers Shop - Cửa hàng thú cưng cho người Việt | Mua sắm online dễ dàng",
+    description:
+      "Khám phá Pet Shop, nơi cung cấp thú cưng đáng yêu, thức ăn và phụ kiện chất lượng cao. Trải nghiệm mua sắm trực tuyến dễ dàng!",
     images: [
       {
         url: "/images/banner-1.jpg",
         width: 1200,
         height: 630,
-        alt: "Banner Image",
+        alt: "Cửa hàng Pet Shop",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Pet Shop NextJs Website",
-    description: "Welcome, This is my Pet Shop NextJs Website. Enjoy yourself",
+    title:
+      "Whiskers Shop - Cửa hàng thú cưng cho người Việt | Mua sắm online dễ dàng",
+    description:
+      "Khám phá Pet Shop, nơi cung cấp thú cưng đáng yêu, thức ăn và phụ kiện chất lượng cao. Trải nghiệm mua sắm trực tuyến dễ dàng!",
     images: ["/images/banner-1.jpg"],
   },
 };

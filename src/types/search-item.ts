@@ -7,3 +7,8 @@ export type SearchItemType = {
   image: string;
   rating: number;
 };
+
+export type SearchItemList = {
+  customProducts: SearchItemType[];
+  totalRecords: number;
+};

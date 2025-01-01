@@ -9,9 +9,9 @@ import { z } from "zod";
 import InputField from "./input-field";
 
 const schema = z.object({
-  province: z.string().min(1, "Province is required"),
-  district: z.string().min(1, "District is required"),
-  ward: z.string().min(1, "Ward is required"),
+  province: z.string().min(1, "Vui lòng nhập tỉnh"),
+  district: z.string().min(1, "Vui lòng nhập quận/huyện"),
+  ward: z.string().min(1, "Vui lòng nhập phường/xã"),
   street: z.string().optional(),
 });
 
