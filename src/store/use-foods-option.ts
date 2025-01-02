@@ -29,7 +29,7 @@ export const defaultFoodsOption: FoodsOptionType = {
   sort: SortType.DEFAULT,
   paging: 1,
   ingredient: [],
-  weight: WeightType.FIVE,
+  weight: WeightType.ALL,
 };
 
 const useFoodsOption = create<FoodsStore>((set) => ({

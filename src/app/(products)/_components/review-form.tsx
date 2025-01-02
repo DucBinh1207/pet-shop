@@ -44,7 +44,7 @@ export default function ReviewForm({ trigger }: { trigger: () => void }) {
       if (productId && star !== 0 && reviewContent !== "") {
         const reviewData: AddReviewDataType = {
           idProduct: productId,
-          rating: star,
+          star: star,
           content: reviewContent,
         };
         mutate({ data: reviewData });

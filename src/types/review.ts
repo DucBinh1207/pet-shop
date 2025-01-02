@@ -18,6 +18,6 @@ export type ReviewResponse = {
 
 export type AddReviewDataType = {
   idProduct: string;
-  rating: number;
+  star: number;
   content: string;
 };
