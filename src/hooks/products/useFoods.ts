@@ -22,7 +22,6 @@ export default function useFoods({
 }: props) {
   const params = new URLSearchParams();
 
-
   if (category !== "all" && category) params.append("type", category);
 
   if (sort) params.append("sortBy", sort);
@@ -44,7 +43,7 @@ export default function useFoods({
     }
   }
 
-  if (weight) {
+  if (weight !== 0) {
     params.append("weight", weight.toString());
   }
 
